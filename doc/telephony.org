@@ -1,0 +1,8 @@
+* Telephony
+** Traditional
+- Signalling System No. 7 (SS7) :: signalling system of Public Switched Telephone Network (PSTN)
+  - sources
+    - http://www.voip-info.org/wiki/view/SIP+SS7+gateways
+    - http://en.wikipedia.org/wiki/Signalling_System_No._7
+** SIP
+- SIP proxy

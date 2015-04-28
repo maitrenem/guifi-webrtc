@@ -1,0 +1,41 @@
+* [DRAFT] user cases
+** brainstorm
+*** iteration 1
+- *VoIP*
+  - Backward compatibility with PSTN
+  - http://en.wikipedia.org/wiki/E.164#DNS_mapping_of_E.164_numbers [ENUM]
+    - If the user pays use a PSTN number. Calls inside the network + outside (gateway use).
+    - If the user doesn’t pay use a internal number. Only calls inside the network.
+  - silly SIP clients (grandstream, etc): PSTN -> SIP
+  - Asterisk PBX -> SIP
+  - Professional usage capabilities: recommend a famous platform? kamailio, asterisk, freeswitch? or integrated solutions as sipwise?
+    - User management interface
+    - Billing platform for paid services
+    - ...
+  - Centralised / Decentralised: some clients can use the same SIP Proxy to delegate configuration stuff to an organization (and the organization monitor the calls, fees, etc.). And other clients can use its own configuration.
+  - Gateway balancing
+- *Federation*: easy federation between organizations. Towards autodiscovery way?
+- *Privacy*
+  - the user can select easily what services are available for public/private/null use
+  - encryption always enabled
+- *Videocalls*: build similar to skype/google hangout?
+- *Chat/instant messaging*: build similar to whatsapp?
+- Streaming: client sends audiovisual stream to a server that manages all requests to see the video (p2p/cdn model?)
+*** iteration 2
+- *generic idea*: client/server contact list application (hangout/whatsapp style), as infrastructure to webrtc applications
+- *contact list*, user can
+  - register (user, password). Deregister. User have unique ID.
+  - be
+    - public: all user can see him in that server and all servers (interesting to have a blacklist of servers and/or persons)
+    - local: it will be seen by the users of the same server
+    - private: to see him, you require to know his ID
+  - privacy level
+    - share or not the information state (connected, busy, away, disconnected, [invented state])
+    - if is required or not a request for communication
+  - add other user through its name / ID / server. Can search, can check.
+  - examples:
+    - public user, shares state information, not need request for communication
+      - enterprise / freelance / professional, easy contact with clients or potential clients
+      - a sensor or machine that can communicate through WebRTC
+    - private user, user that wants to be in contact with few people that knows
+- *webrtc compatibility*: each webrtc service should be easy to add

@@ -1,0 +1,19 @@
+* title, abstract, document structure
+** Title (confirm)
+A solution for Real Time Communications in Community Networks based on WebRTC
+** TODO Abstract
+** Document Structure (draft)
+1. *Introduction*
+   - *guifi.net architecture*
+   - *Community wireless* (? not confirmed): bandwidth, delay and other parameters of wifi that affects RTC communications. Needs on connectivity
+   - *User cases*: services that people need in community networks
+2. *State of the art*: Other solutions proposed to solve the problem inside guifi.net and in the Internet
+3. *Methodology*: WebRTC study
+   - Study the feasability of WebRTC as a general solution to solve this user cases
+     - Detailed description of WebRTC and deep study of its features
+       - By default use open formats (vp8 / opera). Has compatibility with PSTN codec standard
+       - WebRTC solves NAT traversal
+     - Relation between WebRTC, signalling and RT multimedia protocols (SIP, RTP, H.323, ...)
+     - Available implementations
+4. *Results*: Deployment
+   - if it is a good solution, design and implementation based on Guifi.net's architecture and users cases

@@ -1,0 +1,17 @@
+* index
+** What should be clear (theory / introduction)
+- [[./basics.org]]
+- [[./internet-architecture.org]]
+- [[./guifi-architecture.org]]
+- [[./telephony.org]]
+- [[./state-of-the-art.org]]
+** Deliverables
+[[./document-structure.org]]
+** What is important now:
+- [[./webrtc-architecture.org]]
+- [[./webrtc-deployment.org]]
+** What is being thinking
+- [[./user-cases.org]]
+- [[./interface.org]]
+** Other notes
+- [[./other.org]]

@@ -1,0 +1,35 @@
+* other notes
+warning, this is chaotic
+** cloudy
+use avahi
+
+codegogs (like github) of cloudy project 
+http://dev.cloudy.community/explore
+*** avahi
+how it works? http://www.linuxplanet.com/linuxplanet/reports/6826/1
+** streaming p2p webrtc
+*** feross work - peercdn and webtorrent info
+Feross participated in https://peercdn.com/ project, and now work on other things related
+- About WebRTC: https://vimeo.com/77265280
+- simple-peer webrtc nodejs https://github.com/feross/simple-peer
+- simple-websocket https://github.com/feross/simple-websocket
+- https://speakerdeck.com/feross/adventures-in-p2p-javascript
+- Webtorrent
+  - Stream into <video>, vlc, Chromecast, Airplay...
+    - Mediasource API
+  - https://github.com/feross/webtorrent
+  - https://github.com/feross/webtorrent-swarm ???
+- https://instant.io/
+** serverless webrtc
+google: "serverless webrtc"
+- https://github.com/cjb/serverless-webrtc/
+- http://blog.printf.net/articles/2014/07/01/serverless-webrtc-continued/
+- http://blog.printf.net/articles/2013/05/17/webrtc-without-a-signaling-server/
+- http://franklinta.com/2014/10/19/serverless-webrtc-using-qr-codes/
+- http://konklone.io/serverless-webrtc/serverless-webrtc.html
+- https://www.openhub.net/p/serverless-webrtc
+- https://news.ycombinator.com/item?id=5173090
+- http://stackoverflow.com/questions/16016880/how-can-i-implement-simple-serverless-p2p-browser-to-browser-messaging-with-mini
+** zero-configuration networking
+if there are strange configurations to apply, this is how to solve the issue using DHCP and DNS
+http://en.wikipedia.org/wiki/Zero-configuration_networking

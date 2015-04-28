@@ -1,0 +1,47 @@
+* Diary
+Everyday it's a-gettin' closer
+** <2015-04-22 Wed>--<2015-04-22 Wed>
+*** <2015-04-28 Tue>
+- guifi.net proxies are problematic for webrtc applications, but as they use websockets (proof that), we can use websockets proxy. http://nginx.com/blog/realtime-applications-nginx/ http://en.wikipedia.org/wiki/WebSocket#Proxy_traversal
+*** <2015-04-24 Fri>
+I started organizing contents of the past weeks that took me to this situation
+
+**** WebRTC demo
+Succeded in the most easy way to try WebRTC between two computers,
+very interesting to do a demo
+
+: sudo apt-get install apache2
+: cd /var/www
+: git clone https://github.com/peers/peerjs/
+: cd peerjs
+: mv examples/videochat/* .
+
+change
+: <script type="text/javascript" src="/dist/peer.js"></script>
+to
+: <script type="text/javascript" src="dist/peer.js"></script>
+
+One browser:
+: localhost/peerjs/index.html
+
+Other browser:
+: <ip>/peerjs.index.html
+
+Update:
+Signalling server in the internet
+**** Others
+- Other WebRTC services
+  - https://github.com/strukturag/spreed-webrtc
+  - https://github.com/jitsi/jitsi-meet
+- WebRTC libraries
+  - What's PeerJS? http://peerjs.com/
+  - What's Simple Peer? https://github.com/feross/simple-peer
+- Related to cloudy
+  - Interesting related project: https://github.com/netmackan/socialhost
+  - Something to say about etcd (used in cloudy):
+    https://aphyr.com/posts/316-call-me-maybe-etcd-and-consul
+*** <2015-04-23 Thu>
+*** <2015-04-22 Wed>
+aplication
+** <2015-04-21 Tue>
+user cases

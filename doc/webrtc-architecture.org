@@ -1,0 +1,7 @@
+* [DRAFT] WebRTC arquitecture
+** Signalling intro
+http://www.kamailio.org/events/2014-KamailioWorld/day2/14-Anton.Roman.Portabales-WebRTC-Signaling.pdf
+** One server 
+** Multiple servers
+** comments
+is not efficient to implement in one browser a lot of datachannels to other places

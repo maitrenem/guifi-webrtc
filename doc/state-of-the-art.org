@@ -1,0 +1,14 @@
+* state of the art
+** webrtc products
+- https://talky.io/ Talky is based entirely on open-source
+  technologies like SimpleWebRTC and our Otalk platform.
+** webrtc projects
+- https://simplewebrtc.com/
+- http://ozan.io/p/
+  - https://github.com/oztu/onramp Web Socket Server for P
+*** XMPP
+- https://gowebrtc.me/
+** What's that?
+- http://openpeer.org/
+** Webrtc in debian / opensource projects
+- http://meetings-archive.debian.net/pub/debian-meetings/2015/mini-debconf-lyon/01_State_of_federated_RTC_and_WebRTC_in_Debian_by_Daniel_Pocock.webm

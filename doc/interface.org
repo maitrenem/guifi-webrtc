@@ -1,0 +1,16 @@
+* [DRAFT] graphical interface
+** iteration 1
+- the server, according to its implementation, version, offer
+  different services that users can use:
+  - file sharing
+  - communication chat +/- audio +/- video
+  - optional advanced functionalities (gateways)
+    - SIP, to interconnect with VoIP operators
+    - XMPP, to interconnect with other XMPP servers
+    - etc
+  - other interesting services
+    - streaming P2P / WebRTC
+    - WebRTC application for more than 2 users, example:
+      multiconference (meet.jitsi.org do this, but I think the link is
+      not easy)
+** iteration 2

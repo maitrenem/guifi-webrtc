@@ -1,0 +1,9 @@
+* [DRAFT] internet architecture
+Understand network architecture of community networks it's similar to internet architecture
+
+TCP/IP architecture
+1. 
+2. 
+3. 
+4. 
+
