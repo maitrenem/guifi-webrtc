@@ -4,7 +4,7 @@ Everyday it's a-gettin' closer
 *** <2015-04-28 Tue>
 - guifi.net proxies are problematic for webrtc applications, but as they use websockets (proof that), we can use websockets proxy. http://nginx.com/blog/realtime-applications-nginx/ http://en.wikipedia.org/wiki/WebSocket#Proxy_traversal
 *** <2015-04-24 Fri>
-I started organizing contents of the past weeks that took me to this situation
+- I started organizing contents of the past weeks that took me to this situation
 
 **** WebRTC demo
 Succeded in the most easy way to try WebRTC between two computers,
@@ -40,8 +40,3 @@ Signalling server in the internet
   - Interesting related project: https://github.com/netmackan/socialhost
   - Something to say about etcd (used in cloudy):
     https://aphyr.com/posts/316-call-me-maybe-etcd-and-consul
-*** <2015-04-23 Thu>
-*** <2015-04-22 Wed>
-aplication
-** <2015-04-21 Tue>
-user cases

@@ -6,10 +6,6 @@
 **** TODO Documentation, sources of information
 ***** TODO Architecture and 
 ** TODO Metaorganization
-- Pending to put in the doc
-  - scope: https://docs.google.com/document/d/1QaYWspImmj62BpUxDS8f1fJFrqpAYBW7-tRNqzSZQqg/edit
-  - user cases: https://docs.google.com/document/d/1QaYWspImmj62BpUxDS8f1fJFrqpAYBW7-tRNqzSZQqg/edit
-- Review licenses
 ** TODO Development [0/1]
 *** TODO WebRTC POC (Proof of Concept) application that use jssip.net
 - [ ] Understand how it works
