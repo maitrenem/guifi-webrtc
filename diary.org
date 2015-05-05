@@ -1,6 +1,8 @@
 * Diary
 Everyday it's a-gettin' closer
 ** <2015-04-22 Wed>--<2015-04-22 Wed>
+*** <2015-05-05 Tue>
+- kurento open source media server https://www.kurento.org/docs/current/tutorials.html LGPLv2.1 https://github.com/Kurento/kurento-media-server
 *** <2015-05-04 Mon>
 - show users registered: kamctl db show subscriber
 - guifi.net integration

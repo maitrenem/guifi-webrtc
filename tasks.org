@@ -4,7 +4,7 @@
 *** TODO Tasks and processes
 *** TODO Memory
 **** TODO Documentation, sources of information
-***** TODO Architecture and 
+***** TODO Architecture and Deployment
 ** TODO Metaorganization
 ** TODO Next 13
 - From the beginning arquitecture what should be applied to improve the basic use case in guifi
@@ -13,10 +13,10 @@
 - [ ] Basic use case defined (bidirectional videoconference)
 - [ ] Use case requirements documented
 - [ ] Definition, documentation and justification of the architecture (component selection, implementation, protocols, etc)
-- [ ] demo POC that shows that it works as supposed
-- [ ] requeriments to implement this in guifi (basic use case evolution)
-- [ ] impact of new requeriments to the defined architecture
-- [ ] proposal of architecture v2 (includes integration requirements)
+- [ ] Demo POC that shows that it works as supposed
+- [ ] Requeriments to implement this in guifi (basic use case evolution)
+- [ ] Impact of new requeriments to the defined architecture
+- [ ] Proposal of architecture v2 (includes integration requirements)
 ** TODO Development [0/1]
 *** TODO WebRTC POC (Proof of Concept) application that use jssip.net
 - [ ] Understand how it works
@@ -26,7 +26,7 @@ https://github.com/versatica/RetroRTC
 **** Option 2: jscommunicator.org
 http://jscommunicator.org/
 drucall
-** TODO Read [0/4]
+** TODO Read [0/5]
 - [ ] Evaluate security features: the use of DTLS-SRTP is secure (vs ZRTP): https://webrtchacks.com/webrtc-must-implement-dtls-srtp-but-must-not-implement-sdes
 - [ ] State of the art [0/5]
   - [ ] https://wiki.debian.org/UnifiedCommunications
@@ -36,6 +36,7 @@ drucall
   - [ ] http://www.sip5060.net/
 - [ ] Signalling that I want to use, SIP over Websockets: https://tools.ietf.org/html/rfc7118
 - [ ] http://ddd.uab.cat/record/70278?ln=ca. Comments I have: /It is more about server configuration. It's not studying with detail scalability, guifi integration, behaviour, benchmark in wireless networks/
+- [ ] webrtc architecture: https://webrtchacks.com/signalling-options-for-webrtc-applications/
 ** TODO WebRTC integration with guifi.net - cloudy
 - develop RTC plugin
 - have to change guifi.net DNS? (https://github.com/guifi/dnsservices). SRV, NAPTR

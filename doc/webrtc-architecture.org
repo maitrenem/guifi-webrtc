@@ -1,6 +1,7 @@
 * [DRAFT] WebRTC arquitecture
 ** Signalling intro
 http://www.kamailio.org/events/2014-KamailioWorld/day2/14-Anton.Roman.Portabales-WebRTC-Signaling.pdf
+http://www.webrtc.org/architecture
 ** One server 
 ** Multiple servers
 ** comments
