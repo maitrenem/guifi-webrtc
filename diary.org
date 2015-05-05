@@ -1,8 +1,47 @@
 * Diary
 Everyday it's a-gettin' closer
 ** <2015-04-22 Wed>--<2015-04-22 Wed>
+*** <2015-05-04 Mon>
+- show users registered: kamctl db show subscriber
+- guifi.net integration
+  - LDAP: unique users search name@* in all servers
+    - legacy system prefix + user number (drupal) ? (variable length in sip enum?)
+    - LDAP can be downloaded locally?
+  - fix dnsservices (naptr, srv) in bind dns: https://github.com/guifi/dnsservices/blob/master/dnsservices.php
+    - dns setup guide: http://www.rtcquickstart.org/dns-setup
+    - general guide www.rtcquickstart.org/
+    - need guifi's drupal development environment
+  - scalability: cloudy, sip trunking ?
+- others
+  - http://www.rtcquickstart.org/ICE-STUN-TURN-server-installation
+- advanced
+  - multiuser chat/video/audio
+*** <2015-05-03 Sun>
+- install cloudy KVM with proxmox
+- configure kamailio: http://kb.asipto.com/kamailio:skype-like-service-in-less-than-one-hour
+  - changes, I use wheezy
+    - wget http://deb.kamailio.org/kamailiodebkey.gpg
+    - apt-key add kamailiodebkey.gpg
+  - password MySQL with kamailio: kamailio/kamailiorw kamailioro/kamailioro
+  - upgraded steps:
+    - https://quobis.atlassian.net/wiki/display/QoffeeSIP/Server+configurations
+  - changes 64bit (mpath="/usr/lib64/kamailio/modules/") mpath to 32bit (mpath="/usr/lib/i386-linux-gnu/kamailio/modules/")
+*** <2015-04-29 Wed>
+- SRV, NAPTR seems to be needed in case of domain?
+- here is not dnsservices https://github.com/guifi/dnsservices
+- mounting a new machine for the tests
 *** <2015-04-28 Tue>
 - guifi.net proxies are problematic for webrtc applications, but as they use websockets (proof that), we can use websockets proxy. http://nginx.com/blog/realtime-applications-nginx/ http://en.wikipedia.org/wiki/WebSocket#Proxy_traversal
+- Started with jscomunicator because it details how to use a sip proxy
+  - http://jscommunicator.org/quickstart
+    - Set up a SIP proxy
+      - DNS setup needed: http://www.rtcquickstart.org/dns-setup
+        - can I use a qui.guifi.net subdomain? no
+        - alternatives (start with free dns services in internet)
+          - https://www.heroicdebugging.biz/2014/03/05/adding-srv-records-at-httpfreednsafraidorg/
+          - http://www.noip.com/support/knowledgebase/how-to-add-a-srv-record-to-your-minecraft-server-remove-the-port-on-the-end-of-the-url/
+        - I will have to look at guifi dnsservices ??? How was resolved this by the UAB work
+    - Set up the web server
 *** <2015-04-24 Fri>
 - I started organizing contents of the past weeks that took me to this situation
 

@@ -33,3 +33,37 @@ google: "serverless webrtc"
 ** zero-configuration networking
 if there are strange configurations to apply, this is how to solve the issue using DHCP and DNS
 http://en.wikipedia.org/wiki/Zero-configuration_networking
+** info to eval
+- database (por API), to be modified
+  - redis https://github.com/mranney/node_redis
+- signalling
+  - Set up a signaling server and exchange messages: http://miguelpdl.github.io/WebRTC-codelab/session05/lab/html/objectives.html
+  - WebRTC codelab http://miguelpdl.github.io/WebRTC-codelab/
+  - https://bloggeek.me/nodejs-webrtc/
+  - https://bloggeek.me/webrtc-raspberripi-nodejs/ (wow moment)
+- interface: bootstrap
+- ICE / STUN / TURN
+  - libnice (ice/stun (libstun)): http://nice.freedesktop.org/wiki/
+  - libjingle (ice/stun)
+  - coturn http://code.google.com/p/coturn/ (ice? also)
+    - és evolució de: https://code.google.com/p/rfc5766-turn-server/ (stun/turn)
+- jssip, contact autodiscovery?
+- sip: 
+- web: Node, Express (js framework), Bootstrap (~style), Jade (template HTML) and Grunt (task runner)
+  - *Express* for all your serverside logic, and *AngularJS* for client side logic
+  - *LISP* server.ls https://gist.github.com/santoshrajan/3321591
+  - http://gruntjs.com/
+  - http://twbs.github.io/bootstrap/getting-started/#examples
+  - https://github.com/ALT-F1/bootstrap3-jade-node-express-grunt
+  - https://github.com/keystonejs/keystone (node.js cms and web app framework)
+  - https://www.npmjs.com/package/twitter-bootstrap-node (only support express template)
+  - http://www.toptal.com/nodejs/why-the-hell-would-i-use-node-js
+  - TUTORIALS
+    - simple code example
+    - dailyjs
+      - http://dailyjs.com/tags.html#nodepad
+      - http://dailyjs.com/2010/11/01/node-tutorial/
+    - https://github.com/jamesshore/lets_code_javascript
+    - http://nodetuts.com/
+    - https://www.codeschool.com/courses/real-time-web-with-node-js (recomienda redis)
+    - http://nodeschool.io/#workshoppers

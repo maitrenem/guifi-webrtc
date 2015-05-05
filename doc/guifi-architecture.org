@@ -35,5 +35,6 @@
   - http://www.voip-info.org/wiki/view/QoS
   - https://books.google.es/books?id=WLRBLsaVapwC&pg=PA214&lpg=PA214&dq=100+ms+voip&source=bl&ots=-pFD00Bo1d&sig=9OPzGvopUNf7ZpA5VtjMPEx1b_k&hl=en&sa=X&ei=MnM_Vb3LGJbvaKOogPgB&redir_esc=y#v=onepage&q=100%20ms%20voip&f=false
   - http://www.voipmechanic.com/easy-voip-troubleshooting.htm
+- Wifi link quality is not bidirectional, could be different quality in both directions
 - Brandwidth requeriments: ?
 - DNS requeriments: ?

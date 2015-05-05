@@ -6,6 +6,17 @@
 **** TODO Documentation, sources of information
 ***** TODO Architecture and 
 ** TODO Metaorganization
+** TODO Next 13
+- From the beginning arquitecture what should be applied to improve the basic use case in guifi
+- Next to be done: integration with guifi
+*** TODO To be done [/]
+- [ ] Basic use case defined (bidirectional videoconference)
+- [ ] Use case requirements documented
+- [ ] Definition, documentation and justification of the architecture (component selection, implementation, protocols, etc)
+- [ ] demo POC that shows that it works as supposed
+- [ ] requeriments to implement this in guifi (basic use case evolution)
+- [ ] impact of new requeriments to the defined architecture
+- [ ] proposal of architecture v2 (includes integration requirements)
 ** TODO Development [0/1]
 *** TODO WebRTC POC (Proof of Concept) application that use jssip.net
 - [ ] Understand how it works

@@ -6,3 +6,8 @@
     - http://en.wikipedia.org/wiki/Signalling_System_No._7
 ** SIP
 - SIP proxy
+  - Stateless
+  - Stateful
+- DNS, SRV, NAPTR: http://anders.com/cms/264/, more relevant for no-webrtc environments
+  - http://en.wikipedia.org/wiki/NAPTR_record
+  - http://en.wikipedia.org/wiki/SRV_record
