@@ -1,4 +1,4 @@
-* [DRAFT] use cases
+* [DRAFT] user cases
 ** brainstorm
 *** iteration 1 (general)
 - *VoIP*
@@ -39,46 +39,90 @@
       - a sensor or machine that can communicate through WebRTC
     - private user, user that wants to be in contact with few people that knows
 - *webrtc compatibility*: each webrtc service should be easy to add
-*** iteration 3 - bidirectional conference, specific
-**** basic use case defined
-***** Core functions
-- A user can receive a call only if remain connected to the service
-  with at least one device.
-  - Access to the service
-  - Authenticated
-  - Wait random time until receive a call. If there are more devices of the same user, all of them receive the call, but only one can accept it.
-  - Accept the call
-  - Communicate (bidirectional)
-  - Stop the communication (one of the two users have to stop it)
-- A user can call another user through videocall or audiocall with chat features
-  - Access the service
-  - Authenticate
-  - Put the other user's name, try a call
-  - The other user has to accept it to continue
-  - Communicate (bidirectional)
-  - Stop the communication (one of the two users have to stop it)
-***** Social functions
-- A user can see the status of another user with its contact list if the allows it.
-- With the contact list a user can add/remove another user
-**** guifi.net integration (to review)
-***** Core functions
-- A user can connect to a server if he could reach it with good quality, if not, he can easily install it in its zone.
-- If a server reach another, the users of a server can communicate to the users of another server.
-***** Helper functions
-- The server has guifi DNS resolution, so the users can access it easily
-  - internal: using DNS servers inside guifi
-  - external: using the DNS server of guifi.net foundation
-- In the case that the user can choose a server, he can see easily (geolocalization or quality metric) what is the best server to use
-**** extension (not approved)
-***** Core functions
-- IRC / XMPP service way
-  - A user can be in a public place where there are rooms and people talk openly
-  - A user can speak privately to the users connected to this place
-- A user can start a "bidirectional conference" with another user if he knows his name.
-***** Social functions
-- User can share files of limited size in a rome or privately to a another user
-- User can set its own photo, nickname and description
-- Users can set if a rooms is able to record a history conversation (and files) such that users that connect and disconnect can follow the conversation
-- Users can create private rooms to discuss topics
-  - can add/remove other users
-- Users can delete or request deletion to the admin of information: chat conversations or files.
+** Use cases
+*** basic use case defined
+**** Core functions
+1. A user can receive a call only if remain connected to the service
+   with at least one device.
+   - Access to the service
+   - Authenticated
+   - Wait random time until receive a call. If there are more devices of the same user, all of them receive the call, but only one can accept it.
+   - Accept the call
+   - Communicate (bidirectional)
+   - Stop the communication (one of the two users have to stop it)
+2. A user can call another user through videocall or audiocall with chat features
+   - Access the service
+   - Authenticate
+   - Put the other user's name, try a call
+   - The other user has to accept it to continue
+   - Communicate (bidirectional)
+   - Stop the communication (one of the two users have to stop it)
+**** Social functions
+1. A user can see the status of another user with its contact list if the allows it.
+2. With the contact list a user can add/remove another user
+*** guifi.net integration (to review)
+**** Core functions
+1. A user can connect to a server if he could reach it with good quality, if not, he can easily install it in its zone.
+2. If a server reach another, the users of a server can communicate to the users of another server.
+3. The system is compatible with VoIP guifi.net project
+**** Helper functions
+1. The server is accessible with a name instead of an IP, so the users can remember or access easily
+   - internal: using DNS servers inside guifi
+   - external: using the DNS server of guifi.net foundation
+2. In the case that the user can choose a server, he can see easily (geolocalization or quality metric) what is the best server to use
+*** extension (not approved)
+**** Core functions
+1. User can share desktop with another user
+2. IRC / XMPP service way
+   - A user can be in a public place where there are rooms and people talk openly
+   - A user can speak privately to the users connected to this place
+3. Inside this new application, a user can start a "bidirectional conference" with another user if he knows his name.
+**** Advanced functions
+1. Share N streams to N users (Multiuser bidirectional videoconference)
+2. Share one stream to N users (Streaming)
+**** Social functions
+1. User can share files of limited size in a room or privately to a another user
+2. User preferences
+   - User can set its own photo, nickname and description
+   - Users can set if a rooms is able to record a history conversation (and files) such that users that connect and disconnect can follow the conversation
+3. Users can create private rooms to discuss topics
+   - can add/remove other users
+4. Users can delete or request deletion to the admin of information: chat conversations or files.
+**** Helper functions
+1. In the case of different devices of the same user connected. A user can set a sequential ring list for the different devices
+
+** Use case requeriments
+*** basic use case defined
+**** Core functions
+- Auth system: restrict the access of the service to the selected user target
+- Signalling Server: manage the side to side connections and logic to establish the communication
+  - The two users are registered in the same Signalling server
+- STUN, TURN service: to solve connectivity problem
+- Application: to let the user easily access the service, and use its functions.
+- Communication protocol between
+  - user and server
+  - users
+**** Social functions
+- Database: store and encrypt personal information or preferences for a particular user
+*** guifi.net integration (to review)
+**** Core functions
+- Easy installation of the architecture to extend it across the network
+- Server federation
+- VoIP guifi.net project uses SIP signalling, it has to be compatible with that
+**** Helper functions
+1. The server has guifi DNS resolution. Uses NAPTR and SRV records, this features are missing in the guifi.net package dnsservices
+*** extension (not approved)
+**** Core functions
+1. 
+2. Requires signalling
+3. The users have to be unique in the system with a centralised/nested authorization system
+**** Advanced functions
+1. Selective Forwarding Unit (SFU)
+2. A mediaserver to receive the stream of a particular user and share it to N users. Distribute the share, with a system like a Content Delivery Network (CDN), or users that has the content uploaded and share it (p2p), or an hybrid system (CDN + p2p)
+**** Social functions
+1. It requires a file server and storage. The content will be removed 7 days after its publication.
+2. User preferences
+3. Permission system
+4. Private ticketing system
+**** Helper functions
+1. More user preferences
