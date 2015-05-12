@@ -2,7 +2,46 @@
 ** Signalling intro
 http://www.kamailio.org/events/2014-KamailioWorld/day2/14-Anton.Roman.Portabales-WebRTC-Signaling.pdf
 http://www.webrtc.org/architecture
-** One server 
-** Multiple servers
+** Arquitecture - Component selection, implementation, protocols
+Component selection requirements: Open source software, patent free, open standards
+
+*** basic use case defined
+**** Core functions
+- Auth system: guifi.net LDAP
+- Signalling Server: SIP Proxy, kamailio
+- STUN, TURN service: coturn
+- Application: Web application nodejs
+- Communication protocol between:
+  - user and server: Websockets
+  - users: WebRTC Datachannel
+**** Social functions
+- Two options
+   - Use XMPP
+   - Use SIP Presence
+*** guifi.net integration (to review)
+**** Core functions
+1. Mount the server easily, integrating this architecture inside http://cloudy.community through an RTC plugin
+2. SIP trunking between SIP proxies
+3. JSSIP makes WebRTC compatible with SIP system
+**** Helper functions
+1. Improve dnsservices (bind syntax)
+   - SRV: A Domain Name Server (DNS) SRV record for SIP does the same thing as a mail exchanger record for email.
+2. ? Geolocalization: OSM with leaflet. Quality metric (?)
+*** extension (not approved)
+**** Core functions
+1. WebRTC is able to share desktop
+2. As it is text processing, it can be centralised to a server. It can be used XMPP (Prosody) as signalling because has the most advanced chat features. It means that *2 signalling protocols* run together, but is better than deploy gateways.
+3. The web application should be able to integrate the chat in XMPP to a SIP call
+**** Advanced functions
+1. SFU from jitsi has high performance https://jitsi.org/Projects/JitsiVideobridgePerformance
+   - Describes how it works. "Last N: relevance-based selectivity for forwarding video in multimedia conferences" http://dl.acm.org/citation.cfm?id=2736094
+2. Kurento Media Server has as Tutorial "WebRTC one-to-many" http://www.kurento.org/docs/current/tutorials.html#tutorial-3-webrtc-one-to-many-broadcast
+**** Social functions
+1. ? Prosody file server
+2. Web application with database to store information
+3. XMPP funcionality
+4. ? Ticketing system / bug report
+**** Helper functions
+1. Web application with database to store information, performs SIP functionality (?)
 ** comments
 is not efficient to implement in one browser a lot of datachannels to other places
