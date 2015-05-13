@@ -1,6 +1,204 @@
 * Diary
 Everyday it's a-gettin' closer
-** <2015-05-06 Wed>--<2015-05-13 Wed>
+** <2015-05-13 Wed>--<2015-05-22 Fri>
+*** <2015-05-14 Thu>
+- would like to do
+  - work on ws XMPP
+    - prosody ldap http://prosody.im/doc/authentication https://code.google.com/p/prosody-modules/wiki/mod_auth_ldap
+    - BOSH working with Ejabberd, Firefox and Strophe http://anders.conbere.org/2011/05/03/get_xmpp_-_bosh_working_with_ejabberd_firefox_and_strophe.html
+
+  - work on ws SIP
+    - kamailio ldap http://www.kamailio.org/wiki/tutorials/mini-howto-admin/ldap-user-auth http://www.kamailio.org/dokuwiki/doku.php/tutorials:kamailio31-auth-ldap
+    - test lumicall thing (is another jssip invent, but more interesting to reuse, is from debian)
+      - https://rtc.debian.org/
+  - nested LDAP
+*** <2015-05-13 Wed>
+- guifi voip
+  - LDAP nested
+  - verify that LDAP works (example from there) ldapsearch -x -h 10.139.50.2 -b dc=ripollet,guifi,dc=net -LLL SIPIdentityUserName=1*1
+    - apt-cache serach ldapsearch -> ldapscripts ldapvi (installed)
+      - https://github.com/guifi/guifiproxy/tree/master/guifi-proxy3-1
+  - register user with LDAP figure 4.2
+- kamailio modules: C, prosody modules: lua
+- /closed/ implementation (should be more modular) https://github.com/strukturag/spreed-webrtc
+- adding new service to cloudy (is not easy, seems out of scope) https://github.com/Clommunity/Doc/blob/master/plugins/pastecat/pastecat.md
+- draws
+  - [[img/architecture-design-client-serverstack.png]]
+  - [[img/deployment.png]]
+  - [[img/phases.png]]
+  - [[img/server-federation.png]]
+**** how it works guifi dnsservices
+- guifi module manages the domain
+- dnsservices is a PHP script executed ([cron] every 30 seconds) in the DNS server of each zone. Query the guifi web with its own ID of DNS service and get domain configuration for the zone in XML format. It parses the XML and translate it in a config file (named.conf) for bind dns. Also creates the config files for master zone if it has it.
+- example
+  - ID 2627 is the gurb's DNS zone
+    - In that DNS server there are configured some domain master, one of them, guifi.net
+    - this is what gets the dnsservices.php http://miquelm.guifi.net/guifi/cnml/2627/domains
+      - the important thing is this row: <master zone="guifi.net" IPv4="10.138.0.2" nameserver="ns1" domain_ip="10.38.141.69" domain_ip_v6="2a00:1508::5" externalMX="" externalNS="" allow-transfer="any" contact="name.surname@guifi.net" domain_id="1" service_id="2627">
+**** preparing guifi development environment 
+- src http://ca.wiki.guifi.net/wiki/Preparant_l'entorn_de_desenvolupament
+- installation of requirements
+  - install debian 8
+  - apt-get install mysql-server libapache2-mod-php5 php5-gd php5-mysql
+  - echo -e "extension=mysql.so\nextension=iconv.so\nextension=gd.so" >> /etc/php5/apache2/php.ini
+  - echo -e "<?php\nphpinfo();\n?>" >> /var/www/html/test.php
+    - check in browser: <serverip>/test.php
+  - Allow Override All, is not in /etc/apache2/sites-enabled/000-default is in /etc/apache2/apache2.conf 
+    - src http://stackoverflow.com/questions/18740419/how-to-set-allowoverride-all
+- placing drupal
+  - wget http://ftp.drupal.org/files/projects/drupal-6.29.tar.gz
+  - tar xvf drupal-6.29
+  - mv drupal-6.29 drupal
+  - ln -s /root/drupal /var/www/html/guifi
+    - doesn't like symbolic links
+  - mv /root/drupal /var/www/html/guifi
+  - mkdir /var/www/html/guifi/sites/all/modules
+  - cd /var/www/html/guifi/sites/all/modules
+- download modules
+  - generic modules
+    - wget http://ftp.drupal.org/files/projects/webform-6.x-3.19.tar.gz http://ftp.drupal.org/files/projects/views-6.x-2.16.tar.gz http://ftp.drupal.org/files/projects/views_slideshow-6.x-2.4.tar.gz  http://ftp.drupal.org/files/projects/i18n-6.x-1.10.tar.gz  http://ftp.drupal.org/files/projects/schema-6.x-1.7.tar.gz  http://ftp.drupal.org/files/projects/devel-6.x-1.27.tar.gz  http://ftp.drupal.org/files/projects/potx-6.x-3.3.tar.gz  http://ftp.drupal.org/files/projects/l10n_client-6.x-2.2.tar.gz  http://ftp.drupal.org/files/projects/language_sections-6.x-2.5.tar.gz  http://ftp.drupal.org/files/projects/diff-6.x-2.3.tar.gz  http://ftp.drupal.org/files/projects/captcha-6.x-2.5.tar.gz  http://ftp.drupal.org/files/projects/captcha_pack-6.x-1.0-beta3.tar.gz  http://ftp.drupal.org/files/projects/event-6.x-2.x-dev.tar.gz  http://ftp.drupal.org/files/projects/cck-6.x-2.9.tar.gz  http://ftp.drupal.org/files/projects/fckeditor-6.x-2.3.tar.gz  http://ftp.drupal.org/files/projects/image-6.x-1.2.tar.gz  http://ftp.drupal.org/files/projects/image_filter-6.x-1.0.tar.gz  http://ftp.drupal.org/files/projects/fivestar-6.x-1.20.tar.gz  http://ftp.drupal.org/files/projects/votingapi-6.x-2.3.tar.gz
+      - missing modules: language, icons (no link)
+    - modules not documented
+      - ckeditor has 2 parts, the drupal module and the web application (this module is not in the documentation)
+        - module. to download/install a module by name is, =drush en ckeditor -y=
+          - src http://drupal.stackexchange.com/questions/60375/drush-command-to-download-and-enable-a-module
+        - web application
+          - =cat /var/www/html/guifi/sites/all/modules/ckeditor/ckeditor/COPY_HERE.txt= say to download there the web application
+          - =cd /var/www/html/guifi/sites/all/modules/ckeditor/ckeditor/=
+          - wget http://download.cksource.com/CKEditor/CKEditor/CKEditor%204.4.7/ckeditor_4.4.7_standard.zip
+          - unzip *.zip
+            - apt-get install zip
+          - mv ckeditor/* .
+          - ckeditor.js should be placed in /var/www/html/guifi/sites/all/modules/ckeditor/ckeditor/ckeditor.js
+        - to quit the translator footer edit the user and quit its role of "translator"
+        - after the update, it needs to dump again the mysql database
+      - more modules!
+        - list
+          - Front Page        6.x-2.0-rc1
+          - EU Cookie Compliance        6.x-1.10
+          - Spambot        6.x-3.4
+          - Language icons        6.x-2.1
+          - Openid Provider        6.x-1.0
+          - PDF version        6.x-1.19
+          - Smileys        6.x-1.1
+        - install it with drush: =drush en spambot languageicons openid_provider print smileys=
+          - install separately
+            - front (install front_page) and tries to overwrite constantly front
+            - eu_cookie_compliance [by hand] bug, if you put eu_cookie_compliance there is an error (machine readable error) -> put it by hand
+          - https://www.drupal.org/project/print
+  - guifi modules ( /var/www/html/guifi/sites/all/modules )
+    - guifi module: git clone https://github.com/guifi/drupal-guifi guifi
+    - guifi budgets: git clone https://github.com/guifi/drupal-budgets budgets
+- install instructions in /var/www/html/guifi/INSTALL.txt
+  - cd /var/www/html/guifi
+  - cp sites/default/default.settings.php sites/default/settings.php
+  - chmod o+w sites/default/settings.php
+  - chmod o+w sites/default
+  - when achieved database part we have to create a database
+    - mysql -u root -p
+      - create database guifi_test;
+      - grant all on guifi_test.* to guifi@localhost identified by 'guifinet';
+  - put ip 10.1.56.199
+  - untar directory sites/all/modules  =for i in *.tar.gz; do tar -xvf $i; done=
+    - src http://forums.devshed.com/linux-help-33/tar-wildcards-un-tar-multiple-files-349451.html
+  - web installation finished, exit write permissions to avoid security risks (from INSTALL.txt)
+    - =chmod a-w sites/default/settings.php=
+    - =chmod a-w sites/default=
+  - current state of database:
+    - cd /root
+    - wget http://www.guifi.net/guifi66_devel.sql.gz
+    - compression/decompression of gzip
+      - compress: =gzip file.txt=
+      - decompress: =gunzip file.txt.gz=
+      - does not keep the original, to do it, pass it to stdin =gzip/gunzip -c input > output=
+        - src http://unix.stackexchange.com/questions/46786/how-to-tell-gzip-to-keep-original-file
+    - =mysql -u root -p guifi_test < guifi66_devel.sql=
+  - more things to apply in /var/www/html/guifi
+    - =echo "RewriteBase /guifi" >> .htaccess =
+    - =mkdir -p {files/nanostation,tmp}=
+    - =chmod 777 -R {files,tmp}=
+    - =cat << EOF | tee files/.htaccess tmp/.htaccess > /dev/null= and copy the text
+      - copy to multiple files, src: http://unix.stackexchange.com/questions/41246/how-to-redirect-output-to-multiple-log-files
+      - to append, tee -a
+    - =echo "Deny from all" >> tmp/.htaccess=
+    - =cat << EOF > robots.txt= and copy the text
+    - theme_guifinet2011 installation
+      - you have to apply "the changes" of the theme (strange but effective) http://10.1.56.199/guifi/ca/admin/build/themes/settings/guifi.net2011
+  - update to drupal core 6.35 using *drush* (CLI for drupal)
+    - drush doc: https://www.drupal.org/documentation/modules/drush
+    - apt-get install drush
+    - cd /var/www/html/guifi
+    - drush status
+      - got an error and pointed to the page that solves it https://www.drupal.org/node/1029506 this error will not be showed again, updated database with this changes
+        - mysql -u root -p 
+          - UPDATE users SET uid = 0 WHERE name = '';
+      - output
+        #+begin_src 
+        drush st
+        Drupal version                  :  6.35                  
+        Site URI                        :  http://default        
+        Database driver                 :  mysqli                
+        Database hostname               :  localhost             
+        Database username               :  root                  
+        Database name                   :  guifi_test            
+        Database                        :  Connected             
+        Drupal bootstrap                :  Successful            
+        Drupal user                     :  Anonymous             
+        Default theme                   :  guifi.net2011         
+        Administration theme            :  guifi.net2011         
+        PHP configuration               :  /etc/php5/cli/php.ini 
+        Drush version                   :  5.10.0                
+        Drush configuration             :                        
+        Drupal root                     :  /var/www/html/guifi   
+        Site path                       :  sites/default         
+        File directory path             :  files                 
+        Temporary file directory path   :  tmp    
+        #+end_src
+    - update: =drush up=
+      - only security updates: drush up --security-only
+        - or drush up --security-only --simulate
+        - src http://drupal.stackexchange.com/questions/71576/how-do-i-update-drupal-7-core-with-only-security-patches
+      - output example (not all modules installed)
+        #+begin_src
+        Update information last refreshed: Wed, 13/05/2015 - 20:26
+
+        Update status information on all installed and enabled Drupal projects:
+         Name                                   Installed version  Proposed version  Status                                             
+         Drupal                                 6.35               6.35              Up to date                                         
+         CAPTCHA (captcha)                      6.x-2.6            6.x-2.6           Up to date                                         
+         CKEditor (ckeditor)                    6.x-1.15           6.x-1.15          Up to date                                         
+         cck                                    6.x-2.9            6.x-2.9           Up to date                                         
+         Devel (devel)                          6.x-1.28           6.x-1.28          Up to date                                         
+         Diff (diff)                            6.x-2.3            6.x-2.3           Up to date                                         
+         Event (event)                          6.x-2.x-dev        6.x-2.x-dev       Up to date                                         
+         Fivestar (fivestar)                    6.x-1.21           6.x-1.21          Up to date                                         
+         Internationalization (i18n)            6.x-1.10           6.x-1.10          Up to date                                         
+         Image (image)                          6.x-1.2            6.x-1.2           Up to date                                         
+         Image Filter (image_filter)            6.x-1.0            6.x-1.0           Up to date                                         
+         Localization client (l10n_client)      6.x-2.2            6.x-2.2           Up to date                                         
+         Language Sections (language_sections)  6.x-2.5            6.x-2.5           Up to date                                         
+         Translation template extractor (potx)  6.x-3.3            6.x-3.3           Up to date                                         
+         Schema (schema)                        6.x-1.7            6.x-1.7           Up to date                                         
+         Views (views)                          6.x-2.18           6.x-2.18          Up to date                                         
+         Views Slideshow (views_slideshow)      6.x-2.4            6.x-2.4           Up to date                                         
+         Voting API (votingapi)                 6.x-2.3            6.x-2.3           Up to date                                         
+         Webform (webform)                      6.x-3.23           6.x-3.23          Up to date                                         
+         Budgets (budgets)                      Unknown            Unknown           Project was not packaged by drupal.org but         
+                                                                                     obtained from git. You need to enable git_deploy   
+                                                                                     module                                             
+         guifi.net (guifi)                      Unknown            Unknown           Project was not packaged by drupal.org but         
+                                                                                     obtained from git. You need to enable git_deploy   
+                                                                                     module                                             
+         guifi.net2011 (guifi.net2011)          Unknown            Unknown           Project was not packaged by drupal.org but         
+                                                                                      obtained from git. You need to enable git_deploy   
+                                                                                      module
+        #+end_src
+      - I tried with other commands, but I didn't get a complete update
+        - =drush pm-update drupal=
+          - not update to the latest: https://www.drupal.org/taxonomy/term/34882
+        - =drush pm-update devel=
+**** 
+** <2015-05-06 Wed>--<2015-05-12 Tue>
 *** <2015-05-12 Tue>
 - SRV and NAPTR
   - SRV: http://www.onsip.com/about-voip/sip/dns-srv-records-sip
@@ -19,6 +217,8 @@ Everyday it's a-gettin' closer
   - XMPP-based signalling is frequently discussed in WebRTC-related forums — and will certainly emerge
 - XMPP inspection
   - RFC7395: An Extensible Messaging and Presence Protocol (XMPP) Subprotocol for WebSocket. /The same that I found for SIP over Websockets/
+    - http://tools.ietf.org/html/rfc7395
+    - in introduction recognises that BOSH is a hacking, but that websockets is better approach
   - prosody
     - anonymous logins: http://prosody.im/doc/anonymous_logins
     - websocket module: http://prosody.im/doc/modules/mod_websocket
@@ -108,6 +308,8 @@ Everyday it's a-gettin' closer
   - https://bloggeek.me/webrtc-multipoint-large-groups/
 *** <2015-05-05 Tue>
 - draws
+  - [[img/poc-architecture-draft.png]]
+  - [[img/implementation-draft.png]]
 *** <2015-05-04 Mon>
 - show users registered: kamctl db show subscriber
 - guifi.net integration
@@ -147,7 +349,7 @@ Everyday it's a-gettin' closer
         - alternatives (start with free dns services in internet)
           - https://www.heroicdebugging.biz/2014/03/05/adding-srv-records-at-httpfreednsafraidorg/
           - http://www.noip.com/support/knowledgebase/how-to-add-a-srv-record-to-your-minecraft-server-remove-the-port-on-the-end-of-the-url/
-        - I will have to look at guifi dnsservices ??? How was resolved this by the UAB work
+        - I will have to look at guifi dnsservices ??? How was resolved this by the UAB work -> it was not resolved. didn't touch DNS
     - Set up the web server
 *** <2015-04-24 Fri>
 - I started organizing contents of the past weeks that took me to this situation
