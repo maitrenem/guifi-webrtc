@@ -1,3 +1,9 @@
 * kamailio (annex)
 ** installation
 ** usage
+*** no auth
+disable AUTH, comment this line
+:
+*** LDAP auth
+** components
+- database: http://kamailio.org/docs/modules/devel/modules/avpops.html. You can use any database (urldb)

@@ -33,7 +33,8 @@ google: "serverless webrtc"
 ** zero-configuration networking
 if there are strange configurations to apply, this is how to solve the issue using DHCP and DNS
 http://en.wikipedia.org/wiki/Zero-configuration_networking
-** info to eval
+** info to eval (come here to develop js app)
+- http://simpl.info/
 - database (por API), to be modified
   - redis https://github.com/mranney/node_redis
 - signalling

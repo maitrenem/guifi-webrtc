@@ -9,14 +9,14 @@
 ** TODO Next 13
 - From the beginning arquitecture what should be applied to improve the basic use case in guifi
 - Next to be done: integration with guifi
-*** TODO To be done [/]
-- [ ] Basic use case defined (bidirectional videoconference)
-- [ ] Use case requirements documented
+*** TODO To be done [6/7]
+- [X] [[file:doc/user-cases.org::*basic%20use%20case%20defined][Basic use case defined]] (bidirectional videoconference)
+- [X] [[file:doc/webrtc-architecture.org::*Use%20case%20requeriments][Use case requeriments]] documented
 - [ ] Definition, documentation and justification of the architecture (component selection, implementation, protocols, etc)
-- [ ] Demo POC that shows that it works as supposed
-- [ ] Requeriments to implement this in guifi (basic use case evolution)
-- [ ] Impact of new requeriments to the defined architecture
-- [ ] Proposal of architecture v2 (includes integration requirements)
+- [X] Demo POC that shows that it works as supposed [Works with a local tryit.jssip.net and RetroRTC only with firefox]
+- [X] Requeriments to implement this in guifi (basic use case evolution)
+- [X] Impact of new requeriments to the defined architecture
+- [X] Proposal of architecture v2 (includes integration requirements)
 ** TODO Development [0/1]
 *** TODO WebRTC POC (Proof of Concept) application that use jssip.net
 - [ ] Understand how it works
@@ -26,7 +26,7 @@ https://github.com/versatica/RetroRTC
 **** Option 2: jscommunicator.org
 http://jscommunicator.org/
 drucall
-** TODO Read [0/5]
+*** TODO Read [0/5]
 - [ ] Evaluate security features: the use of DTLS-SRTP is secure (vs ZRTP): https://webrtchacks.com/webrtc-must-implement-dtls-srtp-but-must-not-implement-sdes
 - [ ] State of the art [0/5]
   - [ ] https://wiki.debian.org/UnifiedCommunications
@@ -35,8 +35,12 @@ drucall
   - [ ] http://www.lumicall.org/
   - [ ] http://www.sip5060.net/
 - [ ] Signalling that I want to use, SIP over Websockets: https://tools.ietf.org/html/rfc7118
-- [ ] http://ddd.uab.cat/record/70278?ln=ca. Comments I have: /It is more about server configuration. It's not studying with detail scalability, guifi integration, behaviour, benchmark in wireless networks/
+- [ ] http://ddd.uab.cat/record/70278?ln=ca. Comments I have: /It is more about server configuration. It's not studying with detail scalability, guifi integration, behaviour, benchmark in wireless networks/ Talks about LDAP
 - [ ] webrtc architecture: https://webrtchacks.com/signalling-options-for-webrtc-applications/
+*** webrtc articles
+- [ ] https://webrtchacks.com/trickle-ice/
+- [ ] https://webrtchacks.com/coturn/
+- [ ] https://webrtchacks.com/javascript-dog-trainer/
 ** TODO WebRTC integration with guifi.net - cloudy
 - develop RTC plugin
 - have to change guifi.net DNS? (https://github.com/guifi/dnsservices). SRV, NAPTR

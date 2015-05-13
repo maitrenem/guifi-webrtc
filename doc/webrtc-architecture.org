@@ -7,12 +7,20 @@ Component selection requirements: Open source software, patent free, open standa
 
 *** basic use case defined
 **** Core functions
-- Auth system: guifi.net LDAP
+- Auth system:
+  - guifi.net LDAP
+    - LDAP module kamailio http://kamailio.org/docs/modules/1.4.x/ldap.html#id2454070
+    - guifi.net http://ca.wiki.guifi.net/wiki/LDAP/ca
+  - auth ephemeral (for anonymous)
+    - http://kamailio.org/docs/modules/devel/modules/auth_ephemeral.html
+  - OAuth 2.0 ?
+    - OAuth 2.0 has become a popular mechanism for user authentication and authorization on the web, with support for a variety of advanced web signaling flows. (security: https://webrtchacks.com/whats-in-a-webrtc-javascript-library/)
 - Signalling Server: SIP Proxy, kamailio
-- STUN, TURN service: coturn
+- Media controller: STUN, TURN service, coturn
 - Application: Web application nodejs
+  - https://www.npmjs.com/package/easyrtc ? https://webrtchacks.com/own-phoneco-with-webrtc/
 - Communication protocol between:
-  - user and server: Websockets
+  - user and server: Websockets (RFC7118 https://tools.ietf.org/html/rfc7118)
   - users: WebRTC Datachannel
 **** Social functions
 - Two options
@@ -22,10 +30,11 @@ Component selection requirements: Open source software, patent free, open standa
 **** Core functions
 1. Mount the server easily, integrating this architecture inside http://cloudy.community through an RTC plugin
 2. SIP trunking between SIP proxies
-3. JSSIP makes WebRTC compatible with SIP system
+3. JSSIP makes WebRTC compatible with SIP system. This library is done with the authors of RFC7118.
 **** Helper functions
 1. Improve dnsservices (bind syntax)
    - SRV: A Domain Name Server (DNS) SRV record for SIP does the same thing as a mail exchanger record for email.
+   - development environment guifi drupal6 http://ca.wiki.guifi.net/wiki/Preparant_l'entorn_de_desenvolupament
 2. ? Geolocalization: OSM with leaflet. Quality metric (?)
 *** extension (not approved)
 **** Core functions
@@ -33,13 +42,14 @@ Component selection requirements: Open source software, patent free, open standa
 2. As it is text processing, it can be centralised to a server. It can be used XMPP (Prosody) as signalling because has the most advanced chat features. It means that *2 signalling protocols* run together, but is better than deploy gateways.
 3. The web application should be able to integrate the chat in XMPP to a SIP call
 **** Advanced functions
-1. SFU from jitsi has high performance https://jitsi.org/Projects/JitsiVideobridgePerformance
+1. Media Controller SFU (mux/demux) from jitsi has high performance https://jitsi.org/Projects/JitsiVideobridgePerformance
    - Describes how it works. "Last N: relevance-based selectivity for forwarding video in multimedia conferences" http://dl.acm.org/citation.cfm?id=2736094
 2. Kurento Media Server has as Tutorial "WebRTC one-to-many" http://www.kurento.org/docs/current/tutorials.html#tutorial-3-webrtc-one-to-many-broadcast
+   - alternative, licode? http://lynckia.com/licode
 **** Social functions
 1. ? Prosody file server
 2. Web application with database to store information
-3. XMPP funcionality
+3. XMPP funcionality XEP-0313 (Message Archive Management)
 4. ? Ticketing system / bug report
 **** Helper functions
 1. Web application with database to store information, performs SIP functionality (?)

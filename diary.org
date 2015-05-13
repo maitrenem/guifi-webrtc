@@ -1,8 +1,113 @@
 * Diary
 Everyday it's a-gettin' closer
-** <2015-04-22 Wed>--<2015-04-22 Wed>
-*** <2015-05-05 Tue>
+** <2015-05-06 Wed>--<2015-05-13 Wed>
+*** <2015-05-12 Tue>
+- SRV and NAPTR
+  - SRV: http://www.onsip.com/about-voip/sip/dns-srv-records-sip
+  - SRV NAPTR: http://anders.com/cms/264/
+    - standard "A" DNS record lookups won't tell you anything about which of these protocols to use
+    - /NAPTR see what SRV records are available/
+- LDAP
+  - ACL means (Access Control List) http://en.wikipedia.org/wiki/Access_control_list
+- https://webrtchacks.com/signalling-options-for-webrtc-applications/
+  - Good Architectural Introduction to WebRTC http://prezi.com/qwejmltpng8x/webrtc/
+  - Problems with SIP over Websocket
+    - big obstacle to deployments in those environments where HTTP middleboxes (e.g.  corporate proxies or transparent content optimization systems) do not support it
+    - On the other hand, the SIP protocol is not designed — and not easily adaptable — to make use of the Trickle ICE optimization essential for minimizing connectivity establishment time. In quite common situations, it can lead to delays intolerable for the end user.
+      - In particular, the delays with non-trickle ICE connectivity establishment happen when the user endpoint is configured with one or more network interfaces that cannot reach the STUN and TURN servers. This is a common situation with multi-homed devices such as smartphones that simultaneously connect to 3G/4G and WiFi networks, but also with laptops running VPNs, virtual machines, or simply configured with non-reachable IPv6 address. As a reference point, although with absolutely no scientific relevance, the sipML5 live demo running on a box with an active OpenVPN instance (at the very same time this article is being written) takes more than ten seconds to fire the initial INVITE out. Disconnecting the VPN takes the delay down to less than one second.
+        - more: https://tools.ietf.org/html/draft-ietf-mmusic-trickle-ice-sip-01
+  - XMPP-based signalling is frequently discussed in WebRTC-related forums — and will certainly emerge
+- XMPP inspection
+  - RFC7395: An Extensible Messaging and Presence Protocol (XMPP) Subprotocol for WebSocket. /The same that I found for SIP over Websockets/
+  - prosody
+    - anonymous logins: http://prosody.im/doc/anonymous_logins
+    - websocket module: http://prosody.im/doc/modules/mod_websocket
+  - javascript xmpp (web) clients (not tested)
+    - https://conversejs.org/
+    - https://www.jsxc.org/ Add real-time XMPP chat to any web application!
+    - https://candy-chat.github.io/candy/ -> I like, seems similar to webchat.freenode.net , but uses old technologies. Extract design?
+    - javascript libraries compatible with websockets
+      - strophe (most important) http://strophe.im/strophejs/ (in github is more popular than stanza)
+        - plugins https://github.com/strophe/strophejs-plugins
+        - writing strophe plug-ins http://professionalxmpp.com/profxmpp_ch14.pdf
+        - book: Professional XMPP
+      - stanza https://github.com/otalk/stanza.io
+        - supports XEP-0313 (message archive management)
+        - works with RFC7395 src https://github.com/otalk/stanza.io#important-protocol-changes
+        - used in http://otalk.org/ http://talky.io jitsi style
+          - otalk server https://github.com/andyet/otalk-server
+      - node-xmpp https://github.com/node-xmpp/node-xmpp
+        - https://github.com/node-xmpp/node-xmpp/issues/217
+*** <2015-05-08 Fri>
+- Privacy issue makes that Firefox Hello is not available in Iceweasel (the unbranded Firefox) https://labs.parabola.nu/issues/677
+*** <2015-05-07 Thu>
+- how it works trysip temporary account: https://groups.google.com/forum/#!topic/jssip/EaWrPq8YTvA "OverSIP and Kamailio don't ask for SIP authentication so the REGISTER coming from JsSIP is just allowed (before that, OverSIP verifies that the WS connection comes from a script running in "http://tryit.jssip.net" and some others verifications).
+- disable auth, just =# route(AUTH);= in kamailio.cg
+- https://webrtchacks.com/webrtctrunk/
+  - "Take your WebRTC calls and route them over a SIP trunks"
+  - Ephemeral Authentication http://kamailio.org/docs/modules/4.1.x/modules/auth_ephemeral.html
+    - http://www.kamailio.org/w/tag/ephemeral/
+      - credentials will be requested from the web-service using an HTTP GET and provided in a JSON response. To prevent unauthorised use the HTTP requests can be ACLd by various means.
+      - request/response: http://kamailio.org/docs/modules/4.1.x/modules/auth_ephemeral.html#idp18624880
+  - This allows to open registration in SIP server for trusted webserver/webrtc app
+- Choice of webrtc javascript libraries https://webrtchacks.com/whats-in-a-webrtc-javascript-library/
+  - more webrtc tools: https://webrtchacks.com/vendor-directory/
+  - Common WebRTC JS library API Mechanisms
+    - Initialization of the library
+    - Registration
+    - Create and Manage WebRTC Sessions
+    - Event Callbacks: notify/debug
+  - Signalling transport: HTTP, Comet, Bosh, Websockets
+  - Signalling protocol options: XMPP, REST, XML, JSON, SIP
+  - The problem for HTTP, and especially REST, that they are inherently stateless, with strict client-server roles
+  - For a good WebRTC signaling channel, a state-ful connection is needed, where request messages can be pushed at any time from the server
+  - Check Orca.  If there was any concern that the variance in these APIs was too great, and you wanted to keep your code agnostic to the WebRTC JS library underneath, there are even industry efforts and vendors that offer to help with that (for example ORCA.js ) by maintaining a bit of JavaScript wrapper around the WebRTC JS library API.
+- https://webrtchacks.com/orca/ Open Real-Time Communications APIs
+  - The strength of WebRTC is its focus on enabling realtime media for browser-based applications. Although this has clear value, it also has limitations for developers:
+    - signalling out of scope
+    - running in browser with continuous update cycle
+    - adaptation to legacy protocols
+  - Reflector protocol: minimal signaling server that uses WebSocket and JSON elements to exchange messages.
+- https://webrtchacks.com/webrtc-gw/
+  - about gateways, functional requirements
+    - architectural
+    - protocols
+    - media management
+    - signalling
+    - putting this all together
+  - Signalling: If you want it to be as generic as possible, as I did, an alternative approach may be relying on an ad-hoc protocol, e.g., based on JSON or XML, which leaves you the greatest freedom when it comes to design a bridge to other technologies.
+  - https://github.com/meetecho/janus-gateway
+- https://webrtchacks.com/webrtc-beyond-one-one/ (RTP topologies)
+  - Centralized vs P2P
+  - Mixing vs Routing
+  - Mesh problem: low uplink and too much CPU in end client
+- others
+  - https://webrtchacks.com/tool-time-introducing-the-webrtc-developer-tool-vendor-directory/
+  - http://en.wikipedia.org/wiki/E.164
+    - max length 15 http://electronics.howstuffworks.com/telephone-country-codes3.htm
+- other things
+  - A high-performance software proxy that brings control to your VoIP network. http://www.rtpproxy.org/
+  - command line sip client:
+    - https://github.com/tmakkonen/sipcmd
+    - http://www.pjsip.org/download.htm
+  - honey pot: http://blog.pepelux.org/2013/06/22/creando-un-honeypot-con-kamailio/
+    - protect against SIP scanners: http://diablo.craem.net/?p=967
+** <2015-04-22 Wed>--<2015-05-06 Wed>
+*** <2015-05-06 Wed>
 - kurento open source media server https://www.kurento.org/docs/current/tutorials.html LGPLv2.1 https://github.com/Kurento/kurento-media-server
+  - streaming webrtc https://www.kurento.org/docs/current/tutorials/node/tutorial-3-one2many.html
+  - p2p: http://stackoverflow.com/questions/20056683/webrtc-multicast-one-to-many
+  - review: https://webrtchacks.com/kurento/
+- SFU: https://jitsi.org/Projects/JitsiVideobridge
+  - jitsi meet: https://github.com/jitsi/jitsi-meet
+  - this is a XMPP solution. SIP gateway, "jigasi": https://github.com/jitsi/jigasi
+- read
+  - https://webrtchacks.com/webrtc-beyond-one-one/
+  - https://bloggeek.me/webrtc-broadcast/
+  - https://bloggeek.me/webrtc-multipoint-small-groups/
+  - https://bloggeek.me/webrtc-multipoint-large-groups/
+*** <2015-05-05 Tue>
+- draws
 *** <2015-05-04 Mon>
 - show users registered: kamctl db show subscriber
 - guifi.net integration
