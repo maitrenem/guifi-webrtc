@@ -1,17 +1,110 @@
 * Diary
 Everyday it's a-gettin' closer
 ** <2015-05-13 Wed>--<2015-05-22 Fri>
+*** <2015-05-15 Fri>
+**** Please do
+- documentation for WebRTC
+  - http://www.html5rocks.com/en/tutorials/webrtc/basics
+    - extra? https://hacks.mozilla.org/2012/03/video-mobile-and-the-open-web/
+  - 
 *** <2015-05-14 Thu>
-- would like to do
-  - work on ws XMPP
-    - prosody ldap http://prosody.im/doc/authentication https://code.google.com/p/prosody-modules/wiki/mod_auth_ldap
-    - BOSH working with Ejabberd, Firefox and Strophe http://anders.conbere.org/2011/05/03/get_xmpp_-_bosh_working_with_ejabberd_firefox_and_strophe.html
+**** doc and links
+- work on ws XMPP
+  - prosody ldap http://prosody.im/doc/authentication https://code.google.com/p/prosody-modules/wiki/mod_auth_ldap
+    - http://rtcquickstart.org/guide/multi/xmpp-server-prosody.html#idp62916736
+  - BOSH working with Ejabberd, Firefox and Strophe http://anders.conbere.org/2011/05/03/get_xmpp_-_bosh_working_with_ejabberd_firefox_and_strophe.html
+- work on ws SIP
+  - kamailio ldap http://www.kamailio.org/wiki/tutorials/mini-howto-admin/ldap-user-auth http://www.kamailio.org/dokuwiki/doku.php/tutorials:kamailio31-auth-ldap
+    - http://www.kamailio.org/wiki/tutorials/mini-howto-admin/ldap-user-auth
+    - http://www.kamailio.org/dokuwiki/doku.php/tutorials:kamailio31-auth-ldap
+  - test lumicall thing (is another jssip invent, but more interesting to reuse, is from debian)
+    - https://rtc.debian.org/
+- nested LDAP
+- resiprocate offers SIP proxy and TURN server http://julianalouback.com/tech/2014/10/30/jscommunicator-at-xtuplecon-2014/
+- Server-side WebRTC Infrastructure http://www.slideshare.net/Dialogic/serverside-webrtc-infrastructure-chad-hart-dialogic
+  - WebRTC Gateway :: interworks signalling and media with existing VoIP networks
+  - Media Server :: Provides conferencing recording, interworking, transcoding, stream processing
+- Daniel Pocock anouncing new SIP service for Debian community https://lists.debian.org/debian-devel-announce/2014/01/msg00004.html
+  - A key feature of this SIP deployment is that it supports federated inter-connectivity with other SIP domains from the outset.  Please try it.  For details of how it works and how we establish trust between domains, please see RFC 5922 http://tools.ietf.org/html/rfc5922
+  - rAsterisk compatible with WebRTC https://wiki.debian.org/UnifiedCommunications/DebianDevelopers/UserGuide/Asterisk
+  - NAPTR debian http://danielpocock.com/naptr-record-for-debian-org
+  - https://wiki.debian.org/UnifiedCommunications/DebianDevelopers/FAQ
+    - about contact list
+    - it is stateful proxy
 
-  - work on ws SIP
-    - kamailio ldap http://www.kamailio.org/wiki/tutorials/mini-howto-admin/ldap-user-auth http://www.kamailio.org/dokuwiki/doku.php/tutorials:kamailio31-auth-ldap
-    - test lumicall thing (is another jssip invent, but more interesting to reuse, is from debian)
-      - https://rtc.debian.org/
-  - nested LDAP
+
+**** what I did
+- download last firefox and google chrome binaries from its sites to do all tests
+  - don't know if I can use the debian ones
+- trying *cloudy*
+  - installed debian 8
+  - cloudynitzar it (https://github.com/Clommunity/cloudynitzar)
+    - lost IP, reboot and =apt-get -y remove getinconf-client= applied
+    - apt-get autoremove: =liblzo2-2 tinc=
+  - installed dnsservices through web application (http://ADDRESS:7000)
+    - src http://cloudy.community/get-started/
+- *jscommunicator*
+  - trying with github repo, development version
+    - src: setup and architecture http://julianalouback.com/tech/2014/08/11/jscommunicator-setup-and-architecture/
+      - others
+        - translation? http://julianalouback.com/tech/2014/08/14/jscommunicator-2.0-is-live/
+        - contribute translation: http://julianalouback.com/tutorial/2014/07/17/contribute-a-jscommunicator-translation/
+    - debian 8 installed (debian 7 -> libjs-jquery-i18n-properties not found)
+    - apt-get install kamailio withouth AUTH in registers
+    - git clone https://github.com/opentelecoms-org/jscommunicator jsc
+    - sudo apt-get install libjs-jquery libjs-arbiter libjs-jquery-i18n-properties libjs-jquery-ui libjs-jssip fonts-font-awesome
+    - as suggested by the /var/www/html/jsc/phone-dev.shtml file, =a2enmod include=
+      - what means .shtml? indicates a file that includes some information that will be added "on the fly"
+        - src http://searchsoa.techtarget.com/definition/shtml
+    - put =Options +Includes= in the default directory of apache's debian 8 /etc/apache2/apache2.conf
+      #+begin_src
+      <Directory /var/www/>
+              Options Indexes FollowSymLinks
+              AllowOverride None
+              Require all granted
+              Options +Includes
+      </Directory>
+      #+end_src
+    - <ip>/jscommunicator/phone-dev.shtml
+    - try with latest jssip library
+      - http://jssip.net/download/jssip-devel.js not working anymore, redirects to http://jssip.net
+      - http://jssip.net/download/releases/ took http://jssip.net/download/releases/jssip-0.6.26.js
+    - missing GET http://10.1.56.214/jsc/images/ui-icons_222222_256x240.png 404 (Not Found)
+      - fixed (from jsc directory):
+        - mkdir images
+        - wget http://theobjective.com/static/grappelli/jquery/ui/css/custom-theme/images/ui-icons_222222_256x240.png -O images/ui-icons_222222_256x240.png
+          - src http://stackoverflow.com/questions/19515943/icons-missing-in-jquery-ui
+  - trying the package for debian8 (.deb)
+    - installed debian 8
+    - apt-get install jscommunicator-web-phone
+      - suggested for xmpp-server (ejabberd, prosody)
+    - next steps seems configure with *resiprocate* (instead of kamailio) http://danielpocock.com/get-webrtc-going-faster
+      - is the same as this config file? http://rtcquickstart.org/guide/multi/sip-proxy-repro.html#repro-config-file
+      - repro config http://www.sipspectrum.com/blog
+      - http://www.resiprocate.org/WebRTC_and_SIP_Over_WebSockets
+  - *freephonebox* (anonymous calls, call without register) is a jscommunicator that register an anonymous user in the configuration. seems that is not protected (only register from a webpage)
+    - article: launching freephonebox, http://danielpocock.com/launching-freephonebox-net
+  - *clicktocall* could be possible touching dialing autodial onstartup with the preferred destination in config.js
+  - WebRTC to SIP is not working, due to the low version?
+  - with JSSIP alone I cannot call to standard SIP clients, /seems I need oversip/. What happens is that media (RTP) of WebRTC is incompatible with media of SIP, it is needed a media gateway (example, http://www.rtpproxy.org/)
+    - http://es.slideshare.net/elastixorg/jssip-sip-webrtc
+- xmpp stuff (https://xmpp.org/xmpp-software/clients/ all xmpp clients, check browser ones)
+  - trying *candy-chat* (XMPP)
+    - http://candy-chat.github.io/candy/
+      - src http://candy-chat.github.io/candy/#setup
+      - https://github.com/candy-chat/candy/wiki/Installing-a-XMPP-server
+      - to be continued
+  - places where rated jappixx and candy as good things:
+    - https://is-a-furry.org/list-finished-finetuning-candy-maintaing-jappix/
+    - http://raspberrypi.stackexchange.com/questions/4414/irc-xmpp-web-based-chat-client-or-bnc
+  - trying *jappix* (XMPP)
+    - about jappix
+      - use webrtc? https://community.igniterealtime.org/blogs/ignite/2012/07/19/jappix-websockets-webrtc-and-jingle
+      - jappix mini https://github.com/jappix/jappix/issues/192
+    - XMPP server https://github.com/jappix/jappix/wiki/XmppServer
+    - https://github.com/jappix/jappix/issues/549
+    - by this info, websockets is not supported https://github.com/jappix/jappix/blob/master/PROTOCOL.md
+- trying http://otalk.org/, discarded, need too much work to do on it
 *** <2015-05-13 Wed>
 - guifi voip
   - LDAP nested
@@ -197,7 +290,6 @@ Everyday it's a-gettin' closer
         - =drush pm-update drupal=
           - not update to the latest: https://www.drupal.org/taxonomy/term/34882
         - =drush pm-update devel=
-**** 
 ** <2015-05-06 Wed>--<2015-05-12 Tue>
 *** <2015-05-12 Tue>
 - SRV and NAPTR
@@ -224,8 +316,16 @@ Everyday it's a-gettin' closer
     - websocket module: http://prosody.im/doc/modules/mod_websocket
   - javascript xmpp (web) clients (not tested)
     - https://conversejs.org/
+      - support websocket
+        - https://github.com/jcbrand/converse.js/issues/204
+        - https://github.com/jcbrand/converse.js/issues/316
     - https://www.jsxc.org/ Add real-time XMPP chat to any web application!
     - https://candy-chat.github.io/candy/ -> I like, seems similar to webchat.freenode.net , but uses old technologies. Extract design?
+      - seems supported webrtc early http://candy-chat.github.io/candy-webrtc/
+      - and is based on strophejs
+      - its developer also did:
+        - https://github.com/mweibel/sdpToJingle
+      - mailing list: https://groups.google.com/forum/#!forum/candy-chat
     - javascript libraries compatible with websockets
       - strophe (most important) http://strophe.im/strophejs/ (in github is more popular than stanza)
         - plugins https://github.com/strophe/strophejs-plugins

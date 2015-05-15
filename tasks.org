@@ -6,10 +6,11 @@
 **** TODO Documentation, sources of information
 ***** TODO Architecture and Deployment
 ** TODO Metaorganization
-** TODO Next 13
+** TODO Theory
+*** TODO Use cases and general documentation
 - From the beginning arquitecture what should be applied to improve the basic use case in guifi
 - Next to be done: integration with guifi
-*** TODO To be done [6/7]
+**** TODO To be done [6/7]
 - [X] [[file:doc/user-cases.org::*basic%20use%20case%20defined][Basic use case defined]] (bidirectional videoconference)
 - [X] [[file:doc/webrtc-architecture.org::*Use%20case%20requeriments][Use case requeriments]] documented
 - [ ] Definition, documentation and justification of the architecture (component selection, implementation, protocols, etc)
@@ -17,30 +18,52 @@
 - [X] Requeriments to implement this in guifi (basic use case evolution)
 - [X] Impact of new requeriments to the defined architecture
 - [X] Proposal of architecture v2 (includes integration requirements)
-** TODO Development [0/1]
-*** TODO WebRTC POC (Proof of Concept) application that use jssip.net
-- [ ] Understand how it works
-- [ ] Modify appropiately to run in my own server
-**** Option 1: RetroRTC
-https://github.com/versatica/RetroRTC
-**** Option 2: jscommunicator.org
-http://jscommunicator.org/
-drucall
-*** TODO Read [0/5]
+*** TODO About graphics
+- [ ] Fix: Graph, MEDIA CTRL -> MC
+- [ ] Do another graphs what happens from WebRTC to SIP
+*** TODO Read [2/6]
 - [ ] Evaluate security features: the use of DTLS-SRTP is secure (vs ZRTP): https://webrtchacks.com/webrtc-must-implement-dtls-srtp-but-must-not-implement-sdes
-- [ ] State of the art [0/5]
-  - [ ] https://wiki.debian.org/UnifiedCommunications
+- [-] State of the art [1/5]
+  - [X] https://wiki.debian.org/UnifiedCommunications
   - [ ] http://www.rtcquickstart.org
   - [ ] http://www.opentelecoms.org
   - [ ] http://www.lumicall.org/
   - [ ] http://www.sip5060.net/
 - [ ] Signalling that I want to use, SIP over Websockets: https://tools.ietf.org/html/rfc7118
-- [ ] http://ddd.uab.cat/record/70278?ln=ca. Comments I have: /It is more about server configuration. It's not studying with detail scalability, guifi integration, behaviour, benchmark in wireless networks/ Talks about LDAP
-- [ ] webrtc architecture: https://webrtchacks.com/signalling-options-for-webrtc-applications/
-*** webrtc articles
+- [X] http://ddd.uab.cat/record/70278?ln=ca. Comments I have: /It is more about server configuration. It's not studying with detail scalability, guifi integration, behaviour, benchmark in wireless networks/ Talks about LDAP
+- [X] webrtc architecture: https://webrtchacks.com/signalling-options-for-webrtc-applications/
+- [ ] https://prezi.com/qwejmltpng8x/webrtc/
+**** webrtc articles
 - [ ] https://webrtchacks.com/trickle-ice/
 - [ ] https://webrtchacks.com/coturn/
 - [ ] https://webrtchacks.com/javascript-dog-trainer/
-** TODO WebRTC integration with guifi.net - cloudy
-- develop RTC plugin
-- have to change guifi.net DNS? (https://github.com/guifi/dnsservices). SRV, NAPTR
+** TODO Practice
+*** TODO WebRTC POC (Proof of Concept)
+- [ ] Understand how it works
+- [-] Modify appropiately to run in my own server (several demos)
+  - [X] RetroRTC (sip)
+  - [X] tryit.jssip.net (sip)
+  - [X] JsCommunicator(sip)
+  - [ ] Candy Chat (xmpp)
+  - [ ] Jappix (xmpp)
+  - [ ] Conversejs (xmpp)
+*** TODO Tested Components
+- [ ] SIP Proxies
+  - [ ] Kamailio
+    - [ ] TLS
+    - [ ] LDAP
+    - [ ] RTPProxy
+  - [ ] Resiprocate
+    - [ ] TLS
+    - [ ] LDAP
+    - [ ] RTPProxy
+    - [ ] STUN
+    - [ ] TURN
+- [ ] XMPP Servers
+  - [ ] Prosody LDAP
+  - [ ] Ejabberd LDAP
+  - [ ] Metronome LDAP
+*** TODO Develop DNS (NAPTR, SRV) for guifi.net
+- [X] prepare guifi.net development environment
+- [ ] coding guifi dnsservices
+- [ ] coding guifi module
