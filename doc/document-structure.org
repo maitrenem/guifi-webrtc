@@ -1,8 +1,26 @@
-* title, abstract, document structure
+* Title, Abstract, Document Structure
 ** Title (confirm)
-A solution for Real Time Communications in Community Networks based on WebRTC
-** TODO Abstract
++A solution for Real Time Communications in Community Networks based on WebRTC+
+Real-Time Communications for Organizations
+** Abstract
+The present project introduces the disrupting technology WebRTC (Web Real-Time Communication), that supports browser-to-browser applications without need of third party plugins. It is detailed how, since its release by Google in 2011, it's changing the way communications are understood. How to materialise a Real Time Communications in organizations, taking as example guifi.net and the opportunities that it offers: use cases, architecture design, component selection, applications available, implementation and demo.
+** Project Charter
+*** Motivation -> Intro
+Reasons for undertaking the project
+*** Objectives -> Intro
+Objectives and constraints of the project
+*** Scope -> Methodology
+In-scope and out-of-scope items
+*** SWOT -> Methodology
+- Risks identified early on
+- Target project benefits
+*** Resources -> Methodology
+- Material and Human resources, its cost
+*** Planification -> Methodology
+** Tasks
+tasks.org
 ** Document Structure (draft)
+*** iteration 1
 1. *Introduction*
    - *guifi.net architecture*
    - *Community wireless* (? not confirmed): bandwidth, delay and other parameters of wifi that affects RTC communications. Needs on connectivity
@@ -17,3 +35,18 @@ A solution for Real Time Communications in Community Networks based on WebRTC
      - Available implementations
 4. *Results*: Deployment
    - if it is a good solution, design and implementation based on Guifi.net's architecture and users cases
+*** iteration 2
+**** Introduction
+***** Motivation 
+/Real Time Communications as a Service/
+***** Objectives
+***** Outline
+**** Fundamentals of ...
+**** State of the art
+**** Methodology
+***** Scope
+***** SWOT Analysis
+***** Resources
+***** Planification
+**** Contributions & Results
+**** Conclusions & Future Work

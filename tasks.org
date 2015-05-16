@@ -1,11 +1,29 @@
 * Tasks
 ** TODO Deliverables [0/4]
 *** TODO Project Charter
-*** TODO Tasks and processes
+*** TODO Tasks and processes (gantt)
 *** TODO Memory
 **** TODO Documentation, sources of information
 ***** TODO Architecture and Deployment
+**** Things to say/explain
+- [ ] Why is a disrupting technology WebRTC?
+  - [ ] http://en.wikipedia.org/wiki/Disruptive_innovation#Disruptive_technology
+  - [ ] http://searchunifiedcommunications.techtarget.com/tip/WebRTC-applications-could-disrupt-UC-market
+  - [ ] Why is evolving WebRTC?
+  - [ ] Why is changing the way ...?
+- [ ] How WebRTC is changing everything
+- [ ] Signalling JSON is the best option (webrtchacks.com) but others are more complex (Sip ws, XMPP ws), and work good. There is no problem at all with signal. I prefer signalling servers that were working for years, that a new signalling server with JSON (argument against simplewebrtc, json signalling server? not standard?)
+- [ ] What is an ATA
+- [ ] Explain at least one topic using math formulation
+- [ ] "I wanted to do about VoIP (see next Chapter) but Miquel Oliver encouraged me to do about WebRTC, and he presented me Victor Pascual."
+**** Bibliography
+***** Book SIP that I'm missing...
+***** RFC's Jaume?
 ** TODO Metaorganization
+1 month, 4 iterations
+*** Milestones
+- Definitive title of TFG and abstract <2015-05-25 Mon>
+- Deliver complete memory <2015-06-12 Fri>
 ** TODO Theory
 *** TODO Use cases and general documentation
 - From the beginning arquitecture what should be applied to improve the basic use case in guifi

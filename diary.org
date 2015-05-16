@@ -1,12 +1,55 @@
 * Diary
 Everyday it's a-gettin' closer
 ** <2015-05-13 Wed>--<2015-05-22 Fri>
+*** <2015-05-16 Sat>
+- Document Structure
+- Project Charter and Tasks (~wbs) deliverables, and how they integrate in the Document Structure
+  - Resources
+  - Gantt
+- Make the latex thing compile
+- Formal things, remember
+  - http://repositori.upf.edu/handle/10230/20036
+  - http://www.upf.edu/bibtic/es/guiesiajudes/eines/tesis/quart.html
 *** <2015-05-15 Fri>
 **** Please do
 - documentation for WebRTC
   - http://www.html5rocks.com/en/tutorials/webrtc/basics
     - extra? https://hacks.mozilla.org/2012/03/video-mobile-and-the-open-web/
-  - 
+- write day: Title, Abstract, Document Structure
+**** Did
+- Jingle, seems a pre-WebRTC release (2009)
+  - http://xmpp.org/extensions/xep-0167.html
+  - http://en.wikipedia.org/wiki/Jingle_(protocol)
+- TLS vs SSL (that is used in HTTPS and WSS): http://stackoverflow.com/questions/3690734/difference-between-ssl-tls
+- Dynamic federation (looking SRV record) http://ocsguy.com/2011/04/20/a-few-words-on-federation/
+- Autodiscover SRV http://blogs.technet.com/b/rmilne/archive/2014/10/02/how-to-check-exchange-autodiscover-srv-record-using-nslookup.aspx
+- XMPP library websockets webrtc https://gowebrtc.me/
+***** RFC inspection
+****** important
+- NAPTR: pointer to services in a domain RFC2915 https://www.ietf.org/rfc/rfc2915.txt
+- SRV
+  - RFC2782 updated by RFC6335
+  - RFC3832 remote service discovery: Remote Service Discovery in the Service Location Protocol (SLP) via DNS SRV
+****** others
+- the only RFC's about Websockets are [I included them as bibliography]:
+  - RFC6455 (websocket itself)
+  - RFC7118 (ws sip)
+  - RFC7355 (ws sip upgrade (?) *CHECK*)
+  - RFC7395 (ws xmpp)
+- this seems interesting
+  - RFC7478 Web Real-Time Communication Use Cases and Requirements
+  - RFC7362 Latching: Hosted NAT Traversal (HNT) for Media in Real-Time Communication
+  - key person: E. Ivov (XMPP)
+    - P2P RTC 5765
+    - 7081 *CUSAX: Combined Use of the Session Initiation Protocol (SIP) and the Extensible Messaging and Presence Protocol (XMPP)*
+      - Historically, SIP [RFC3261] and XMPP [RFC6120] have often been implemented and deployed with different purposes: from its very start, SIP's primary goal has been to provide a means of conducting "Internet telephone calls".  On the other hand, XMPP has, from its Jabber days, been mostly used for instant messaging, presence [RFC6121], and related services such as groupchat rooms [XEP-0045].
+      - In the context of the SIP for Instant Messaging and Presence Leveraging Extensions (SIMPLE) working group, the IETF has defined a number of protocols and protocol extensions that not only allow for SIP to be used for regular instant messaging and presence but that also provide mechanisms for related features such as multi-party chat, server-stored contact lists, and file transfer [RFC6914].
+      - Similarly, the XMPP community and the XMPP Standards Foundation have worked on defining a number of XMPP Extension Protocols (XEPs) that provide XMPP implementations with the means of establishing end-to-end sessions. These extensions are often jointly referred to as Jingle [XEP-0166], and arguably their most popular use case is audio and video calling [XEP-0167].
+  - 7106 a group text chat purpose... SIP event package..?
+  - V. Pascual
+    - RFC7332 RFC7092 about SIP and B2BUAs
+- RFC5194 Framework for Real-Time Text over IP Using the SIP
+- RFC6464 and 6465 E. Ivov RTP Header client to mixer audio level indication
 *** <2015-05-14 Thu>
 **** doc and links
 - work on ws XMPP
@@ -311,6 +354,7 @@ Everyday it's a-gettin' closer
   - RFC7395: An Extensible Messaging and Presence Protocol (XMPP) Subprotocol for WebSocket. /The same that I found for SIP over Websockets/
     - http://tools.ietf.org/html/rfc7395
     - in introduction recognises that BOSH is a hacking, but that websockets is better approach
+      - https://blog.andyet.com/2014/10/30/websocket
   - prosody
     - anonymous logins: http://prosody.im/doc/anonymous_logins
     - websocket module: http://prosody.im/doc/modules/mod_websocket
