@@ -1,0 +1,291 @@
+#+LaTeX_class: tesi_upf
+#+OPTIONS: todo:nil
+# #+OPTIONS:   TeX:t LaTeX:t skip:nil d:nil todo:nil pri:nil tags:not-in-toc
+# more: http://orgmode.org/manual/Export-settings.html
+
+#+BEGIN_LATEX
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\documentclass[12pt, a4paper,twoside]{tesi_upf}
+
+%CODIFICACIÓ
+%\usepackage[latin1]{inputenc}
+\usepackage[utf8]{inputenc}
+%IDIOMES
+\usepackage[catalan,spanish,english]{babel}
+
+%NOMÉS PER A OBTENIR INDICACIÓ DEL MARC EN MIDA A4
+%\usepackage[cam,a4,center,frame]{crop}
+
+%PER A INCLOURE GRÀFICS I EL LOGO DE LA UPF
+\usepackage{graphicx}
+\usepackage{caption}
+\usepackage{acronym}
+\usepackage{multirow}
+%FONTS TIMES O GARAMOND, 
+\usepackage{times}
+%\usepackage{garamond}
+\usepackage{url}
+
+\usepackage{pdfpages}
+%SENSE HEADINGS: NO MODIFICAR
+\pagestyle{plain}
+
+%PER A L'ÍNDEX DE MATÈRIES
+\usepackage{makeidx}
+\makeindex
+
+%ESTIL DE BIBLIOGRAFIA
+\bibliographystyle{apalike}
+
+%AQUEST DOCUMENT ÉS EN CATALÀ
+\selectlanguage{english}
+
+%EN COMPTES DE ÍNDEX, LA TAULA DE CONTINGUTS ES TITULA SUMARI
+\addto\captionscatalan
+  {\renewcommand{\contentsname}{\Large \sffamily Sumari}}
+
+% ~~~~~~~~~~~~~~~~~~~~~~~~~~
+% CUSTOM PACKAGES
+% ~~~~~~~~~~~~~~~~~~~~~~~~~~
+%\usepackage{hyperref}
+\usepackage[hidelinks]{hyperref}
+\usepackage{titlesec}
+\setcounter{secnumdepth}{5}
+% source: http://tex.stackexchange.com/questions/130795/
+\usepackage{pdfpages}
+
+\usepackage{draftwatermark}
+\SetWatermarkText{DRAFT}
+\SetWatermarkLightness{0.95}
+
+% roger table
+\usepackage{supertabular}
+\usepackage{tabularx}
+\usepackage{threeparttable}
+\usepackage[T1]{fontenc}
+% problems? solved it? % aptitude install texlive-humanities
+
+%AFEGIU EN AQUESTA PART LES VOSTRES DADES
+\title{Real-Time Communication for Organizations}
+%\subtitle{}
+\author{Pedro Vílchez}
+\thyear{2015}
+\department{Departament de Tecnologies de la Informació i les Comunicacions (DTIC)}
+\supervisor{Miquel Oliver, Victor Pascual}
+
+\usepackage{pgfgantt}
+
+\begin{document}
+
+\pdfstringdefDisableCommands{%
+\let\MakeUppercase\relax
+}
+
+\frontmatter
+
+\maketitle
+
+\cleardoublepage
+
+
+%%%%%% Dedicatòria; si no es vol posar, comenteu fins a final de dedicatòria
+
+\noindent Dedicated to my family.
+
+\cleardoublepage
+
+%%%%%% Final de dedicatòria
+
+
+%%%%%% Agraïments; si no es vol posar, comenteu fins a final de agraïments
+\noindent {\Large \sffamily Acknowledgments}
+\\[12pt] 
+
+Special thanks to Victor Pascual and Miquel Oliver for his mentorship. Thanks to Victor Oncins and Angel Elena for his feedback and help.
+
+Thanks to Daniel Pocock for its work on rtcquickstart.org. Thanks to webrtchacks.com and all its team for the useful articles.
+
+Thanks to all the people that works for the democratisation of communications
+
+Thanks for reading. Thanks for your time.
+
+\cleardoublepage
+
+%%%%%% Final dels agraïments
+
+%ABSTRACT EN DOS IDIOMES. COM A MÍNIM CATALÀ. SI L'ALTRE ÉS EN CASTELLA CANVIEU EL QUE POSA ABSTRACT
+\selectlanguage{english}
+\section*{\Large \sffamily Abstract}
+
+The present project introduces the disrupting technology WebRTC (Web Real-Time Communication), that supports browser-to-browser applications without need of third party plugins. It is detailed how, since its release by Google in 2011, it's evolving and changing the way communications are understood. How to materialise a Real Time Communications in organizations, taking as example guifi.net and the opportunities that it offers: use cases, architecture design, applications available, implementation and demo.
+
+\selectlanguage{catalan}
+\vspace*{\fill}
+\section*{\Large \sffamily Resum}
+
+Aquest projecte
+
+\selectlanguage{spanish}
+\vspace*{\fill}
+\section*{\Large \sffamily Resumen}
+
+Este proyecto
+
+\vspace*{\fill}
+
+\selectlanguage{english}
+\cleardoublepage
+%FIN DE ABSTRACTE
+
+%PREFACI OPCIONAL. SI NO ES VOL, COMENTEU FINS EL FINAL DE PREFACI
+%{\bf Prefaci}
+%
+%\cleardoublepage
+%FINAL DE PREFACI
+
+
+%TAULA DE CONTINGUTS: OBLIGATÒRIA
+\selectlanguage{english}
+\tableofcontents
+
+%INDEX DE FIGURES; NOMÉS ES POSA SI HI HA FIGURES
+\listoffigures
+%Fa que aparegui al sumari
+\addcontentsline{toc}{chapter}{List of figures}
+
+%INDEX DE TAULES; NOMÉS ES POSA SI HI HA TAULES
+\listoftables
+%Fa que aparegui al sumari
+\addcontentsline{toc}{chapter}{List of tables}
+
+%COMENÇA EL TEXT
+\mainmatter
+
+% no indent for every new paragraph
+%\setlength{\parindent}{0em}
+% \linespread{1.5} % space between every new line 1.5 (I do not like)
+% space between paragraphsx
+%\setlength{\parskip}{\baselineskip}
+#+END_LATEX
+
+* Introduction
+** Motivation
+In the other bachelor's thesis \cite{vilchez2014comnet} I worked 2 ideas: together we can do networks, it is simple to start. *Aún así*, in cities like Barcelona it is easy to find persons that do not understand what is guifi.net, probably for two reasons: there is a very competitive communications market in cities and the complexity to understand a commons model from the consumer point of view. In the case of zones where there is no investment of large operators, the things change: persons need internet, and they struggle to understand the commons model.
+
+The implementation of other services besides Internet, could help certain persons to understand the advantages of commons network, add value to the network. There are services based on contents that are difficult to maintain but there is a service that can be easily applied on a large scale: RTC. It is something to plan and wait until people start using it. Because is communication with your environment. We are social.
+
+Also, from the guifi point of view, is a challenge, there were some attempts to implement a RTC system but they failed. With WebRTC, let’s try again!
+** Objectives
+- Free and secure communication between users using own RTC system and commons network infrastructure.
+- Backward compatible with VoIP network. Hence, users can communicate to other VoIP operators from inside and/or outside guifi.net.
+- An architecture design of an RTC system that fits the community network scenario.
+- Ease of installation and use of the RTC.
+** Outline
+This document is organised in 5 chapters.
+
+*Chapter 1 Introduction* introduces the project. The motivation to start this project and the high level objectives to achieve.
+
+*Chapter 2 Fundamentals of RTC* presents the basics of fill.
+
+*Chapter 3 State of the Art* discusses the state of the art of fill.
+
+*Chapter 4 Contributions and Results* contains a description of the methodology used to fill.
+
+*Chapter 5 Conclusions and Future Work*, the results obtained. Finally, the last Chapter presents the conclusions and future work
+* Fundamentals of RTC
+** Communications
+*** Circuit switching and traditional telephony
+*** Packet switching and Internet
+** Real-time
+* State of the art
+** Important mechanisms
+** Voice and video calls
+*** VoIP
+** Instant messaging
+** WebRTC
+* Methodology
+** SWOT Analysis
+** Scope
+** Resources
+** Planning
+
+#+BEGIN_LATEX
+\begin{ganttchart}[hgrid, vgrid]{1}{12}
+\gantttitle{2014}{5}
+\gantttitle{2015}{7} \\
+\gantttitlelist{8,9,10,11,12,1,2,3,4,5,6,7}{1} \ganttnewline
+\ganttbar{VoIP study}{2}{5} \ganttnewline
+\ganttbar{WebRTC study}{6}{9} \ganttnewline
+\ganttbar{Scrum plan}{10}{11}
+\end{ganttchart}
+#+END_LATEX
+
+*** Scrum plan
+#+BEGIN_LATEX
+\begin{ganttchart}[
+hgrid,
+vgrid,
+x unit=3.5mm,
+time slot format=isodate
+]{2015-05-12}{2015-06-18}
+\gantttitlecalendar{year, month=name, week} \\
+\ganttbar{i1}{2015-05-13}{2015-05-22} \ganttnewline
+\ganttbar{i2}{2015-05-23}{2015-05-29} \ganttnewline
+\ganttbar{i3}{2015-05-30}{2015-06-05} \ganttnewline
+\ganttbar{i4}{2015-06-06}{2015-06-15} \ganttnewline
+\ganttmilestone{d1}{2015-05-18} \ganttnewline
+\ganttmilestone{d1}{2015-05-22} \ganttnewline
+\ganttmilestone{d1}{2015-05-25} \ganttnewline
+\ganttmilestone{d1}{2015-06-15}
+\end{ganttchart}
+#+END_LATEX
+
+* Contributions & Results
+** Architecture of guifi.net
+** Use cases
+** Architecture design
+** Component selection
+** Applications available
+** Implementation
+** /Demo/
+* Conclusions & Future Work
+** Conclusions
+** Future Work
+* Fake
+#+BEGIN_LATEX
+\bibliography{bibliography}
+\cleardoublepage
+
+
+
+\backmatter
+\printindex
+
+
+
+
+
+\end{document}
+
+
+%NUMERACIÓ DE LA PÀGINA EXTERIOR EXCEPTE EN LA PRIMERA PÀGINA DE CADA CAPÍTOL
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+\fancyfoot{}
+\fancyfoot[RO]{\thepage}
+\fancyfoot[LE]{\thepage}
+
+
+%MUTIPLES ÍNDEX
+%En el preàmbul
+\usepackage{multind}
+\makeindex{authors}
+%Introducció d'entrades la forma
+\index{authors}{Einstein}
+%Situació de l'Índex
+\printindex{authors}{Author index}
+%Cal eliminar les comandes \usepakage{makeidx} \makeindex \printindex
+%cal exacutar des de la línia de comandes makeindex authors
+#+END_LATEX
