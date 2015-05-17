@@ -60,13 +60,6 @@
 \SetWatermarkText{DRAFT}
 \SetWatermarkLightness{0.95}
 
-% roger table
-\usepackage{supertabular}
-\usepackage{tabularx}
-\usepackage{threeparttable}
-\usepackage[T1]{fontenc}
-% problems? solved it? % aptitude install texlive-humanities
-
 %AFEGIU EN AQUESTA PART LES VOSTRES DADES
 \title{Real-Time Communication for Organizations}
 %\subtitle{}
@@ -208,10 +201,58 @@ This document is organised in 5 chapters.
 * Methodology
 ** SWOT Analysis
 ** Scope
-** Resources
-** Planning
+IN
+packet switched, Internet, guifi
 
+OUT
+circuit switch
+** Resources
+There are costs related to the activity of this project in terms of equipment and human effort.
+
+Table [[tab:eqre]] shows the equipment resources and its economic estimation. Observations:
+- Guifi.net connectivity to Barcelona, a reachable IPv4 10.0.0.0/8 [fn:1] has not direct cost.
+- Nearly all software involved is open source and has no direct cost.
+- Usually the cost of installation it’s greater or equal than the cost of equipment.
+
+The human effort part was financed by the university in the form of a grant to the author, representing a cost of 2800 euro. A bachelor’s thesis corresponds in Europe to 500 hours of work.
+
+#+CAPTION: Equipment resources
+#+NAME: tab:eqre
+| Material                                   | Estimated cost (euro) |
+|--------------------------------------------+-----------------------|
+| guifi.net equipments in my home            |                   200 |
+| PC with virtualization capabilities [home] |                  1000 |
+| guifi.net equipments in university         |                  1000 |
+| PC with Internet public IPv4 [university]  |                   300 |
+| Laptop                                     |                   400 |
+| ATA x 2                                    |                    60 |
+| Old phone x 2                              |                     2 |
+|--------------------------------------------+-----------------------|
+| Total                                      |                  2962 |
+
+# C-c + to sum all rows in a column
+# S-insertchar to insert the result
+
+This implies a total cost of approximately 6000 euro
+
+** Planning
+The project can be separated in two phases. The first phase is a long preamble of studying VoIP and WebRTC. The second phase is an agile plan. Figure \ref{fig:gantt1} shows the two phases in a gantt diagram.
+
+About the first phase, while studying VoIP the intention was to work about VoIP and guifi.net. But Miquel Oliver encouraged me to do it about WebRTC. He presented me Victor Pascual, a SIP and WebRTC expert. It was hard to realise a convenient project, because this technology involves lots of protocols, other technologies, and it’s being modified now. In this phase It were settled the necessary
+concepts to start the project.
+
+The second phase is an agile plan, inspired by the Scrum methodology. Scrum is one of the Agile methods used for software development. The important fact is that promotes adaptive planning and flexible response to change. Scrum, particularly, is a general method that should be adapted to a concrete scenario.
+
+About Scrum (general) *FILL*
+
+ \ref{fig:gantt1}
+
+# In the case of a pgfgantt, you have to create the "figure" inside
+# to refer it, use a \ref instead of a orgmode local link
 #+BEGIN_LATEX
+\begin{figure}[htb]
+\centering
+
 \begin{ganttchart}[hgrid, vgrid]{1}{12}
 \gantttitle{2014}{5}
 \gantttitle{2015}{7} \\
@@ -220,10 +261,16 @@ This document is organised in 5 chapters.
 \ganttbar{WebRTC study}{6}{9} \ganttnewline
 \ganttbar{Scrum plan}{10}{11}
 \end{ganttchart}
+
+\caption{\label{fig:gantt1}Blablablablaaaa}
+\end{figure}
 #+END_LATEX
 
 *** Scrum plan
 #+BEGIN_LATEX
+\begin{figure}[htb]
+\centering
+
 \begin{ganttchart}[
 hgrid,
 vgrid,
@@ -240,6 +287,9 @@ time slot format=isodate
 \ganttmilestone{d1}{2015-05-25} \ganttnewline
 \ganttmilestone{d1}{2015-06-15}
 \end{ganttchart}
+
+\caption{\label{fig:gantt2}Blablabla}
+\end{figure}
 #+END_LATEX
 
 * Contributions & Results
@@ -289,3 +339,8 @@ time slot format=isodate
 %Cal eliminar les comandes \usepakage{makeidx} \makeindex \printindex
 %cal exacutar des de la línia de comandes makeindex authors
 #+END_LATEX
+
+* Footnotes
+
+[fn:1] range of IP's used by guifi.net and private networks
+
