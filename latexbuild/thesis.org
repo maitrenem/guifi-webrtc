@@ -198,8 +198,32 @@ This document is organised in 5 chapters.
 *** VoIP
 ** Instant messaging
 ** WebRTC
+*** Security
 * Methodology
-** TODO SWOT Analysis
+** TODO SWOT Analysis of WebRTC
+Table [[tab:swot]] shows the analysis of Strengs, Weaknesses, Opportunities and Threat about this project.
+*** Strengths
+- Ease of use: real-time communication is supported without the need for additional applications or plug-ins.
+- It helps to solve connectivity problems caused by NAT, Firewall, etc.
+- It solved the problem with audio and video codecs.
+- It is based on open technology.
+- It has well general acceptance in both worlds: enterprise and community.
+- The communication between peers can be P2P
+- WebRTC standard do not specify signalling: it can be used in very different scenarios.
+- The communication channel between peers is encrypted
+*** Weaknesses
+- There are detractors of WebRTC, this includes some web browsers.
+- There is a a long discussion about what video codec should be supported in web browsers.
+- WebRTC uses different RTP packets than SIP. So a gateway is needed.
+- Security compromised in VPN-tunnels, where the true IP address of the user can be read.
+*** Opportunities
+- For VoIP, WebRTC could be a web softphone. Easy to install, easy to update.
+- A WebRTC audio call could be routed to traditional telephony.
+- It uses javascript as programming language, this language has the wider community.
+- It encourages a new generation of web applications.
+*** Threats
+- WebRTC standard do not specify signalling: this can produce a positive or negative fragmentation of projects. Positive fragmentation: different projects for different applications. Negative fragmentation: divided effort.
+- Is a work in progress technology, it is being changed.
 ** Scope
 
 There are a lots of RTC systems for different purposes. This project focuses in the work of IETF organization and the Internet. Guifi.net is part of Internet, and has additional constraints to take in account.
