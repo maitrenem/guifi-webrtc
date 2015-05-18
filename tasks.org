@@ -26,6 +26,19 @@
 - [ ] What appendices, and detail them in Last part of Chapter 1, introduction
 - [ ] Better documentation of *Scrum*
 - [ ] Brief mention to IP-ranges Subnetting
+- [ ] Softphone
+- [ ] Security compromised in VPN-tunnels, where the true IP address of the user can be read. (in webrtc state of the art)
+  - https://github.com/diafygi/webrtc-ips
+  - https://torrentfreak.com/huge-security-flaw-leaks-vpn-users-real-ip-addresses-150130/
+  - http://en.wikipedia.org/wiki/WebRTC#Concerns
+**** Parts to Fill
+- [ ] every chapter should introduce the subparts
+- [ ] Chapter 1 Outline (1.3) has to be completed
+- [ ] 4.4.1 scrum plan, little introduction
+**** Questions
+- [ ] What to use in the redaction of the memory: 1 or one, 2 or two?
+- [ ] Gantt diagram is table or figure? 0> is a type of bar chart
+- [ ] WebRTC codecs, is about video codecs, or also audio codecs?
 **** Bibliography
 ***** Book SIP that I'm missing...
 ***** RFC's Jaume?

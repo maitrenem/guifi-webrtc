@@ -6,13 +6,17 @@ Everyday it's a-gettin' closer
   - Scope
   - Planning
   - SWOT
+- Codecs supported by WebRTC http://www.webrtc.org/faq#TOC-What-codecs-are-supported-in-WebRTC-
+- Major components of WebRTC http://en.wikipedia.org/wiki/WebRTC#Design
 *** <2015-05-17 Sun>
-- Continue Project Charter: end contents for resources, planning
+- Continue Project Charter, end contents of:
+  - motivation
+  - objectives
+  - resources
+  - planning (not finished)
 *** <2015-05-16 Sat>
 - Document Structure
 - Project Charter and Tasks (~wbs) deliverables, and how they integrate in the Document Structure
-  - motivation
-  - objectives
   - table for resources
   - gantt diagram for planning
 - Make the latex thing compile
