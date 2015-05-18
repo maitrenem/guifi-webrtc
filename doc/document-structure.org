@@ -9,17 +9,29 @@ The present project introduces the disrupting technology WebRTC (Web Real-Time C
 Reasons for undertaking the project
 *** Objectives -> Intro
 Objectives and constraints of the project
-*** Scope -> Methodology
-In-scope and out-of-scope items
 *** SWOT -> Methodology
 - Risks identified early on
 - Target project benefits
+*** Scope -> Methodology (dismissed)
+In-scope and out-of-scope items
+**** attempt backup
+The selected topic is very extensive, that's why it needs concretion.
+
+Discarded parts are:
+- Circuit switching and traditional telephony: The trend goes to Internet products (packet switching). For example traditional telecom product is starting to use VoIP massively (source?).
+
+IN
+packet switched, Internet, guifi
+
+OUT
+circuit switch
 *** Resources -> Methodology
 - Material and Human resources, its cost
-*** Planification -> Methodology
+*** Planning -> Methodology
 ** Tasks
-tasks.org
+snapshot of the tasks     tasks.org
 ** Document Structure (draft)
+only 2 iterations, no more updates, next changes to [[../latexbuild/thesis.org]]
 *** iteration 1
 1. *Introduction*
    - *guifi.net architecture*
@@ -35,18 +47,35 @@ tasks.org
      - Available implementations
 4. *Results*: Deployment
    - if it is a good solution, design and implementation based on Guifi.net's architecture and users cases
-*** iteration 2
+*** iteration 2 (no more updates)
 **** Introduction
 ***** Motivation 
-/Real Time Communications as a Service/
 ***** Objectives
 ***** Outline
-**** Fundamentals of ...
+**** Fundamentals of RTC
+Soft and Hard Real Time
+***** Bandwidth
+***** Delay
+***** Signalling
+***** Transport
+****** Circuit switching
+****** Packet switching
 **** State of the art
+***** Voice and video calls
+***** Instant messaging
+***** WebRTC
 **** Methodology
-***** Scope
 ***** SWOT Analysis
 ***** Resources
-***** Planification
+***** Planning
 **** Contributions & Results
+***** Architecture of guifi.net
+***** Use cases
+***** Architecture design
+***** Component selection
+***** Applications available
+***** Implementation
+***** /Demo/
 **** Conclusions & Future Work
+***** Conclusions
+***** Future Work

@@ -1,11 +1,18 @@
 * Tasks
 ** TODO Deliverables [0/4]
 *** TODO Project Charter
+**** DONE Motivation
+**** DONE Objectives
+**** TODO SWOT
+**** TODO Scope
+**** DONE Resources
+**** TODO Planification
 *** TODO Tasks and processes (gantt)
 *** TODO Memory
 **** TODO Documentation, sources of information
 ***** TODO Architecture and Deployment
 **** Things to say/explain
+- [X] "I wanted to do about VoIP (see next Chapter) but Miquel Oliver encouraged me to do about WebRTC, and he presented me Victor Pascual."
 - [ ] Why is a disrupting technology WebRTC?
   - [ ] http://en.wikipedia.org/wiki/Disruptive_innovation#Disruptive_technology
   - [ ] http://searchunifiedcommunications.techtarget.com/tip/WebRTC-applications-could-disrupt-UC-market
@@ -15,7 +22,10 @@
 - [ ] Signalling JSON is the best option (webrtchacks.com) but others are more complex (Sip ws, XMPP ws), and work good. There is no problem at all with signal. I prefer signalling servers that were working for years, that a new signalling server with JSON (argument against simplewebrtc, json signalling server? not standard?)
 - [ ] What is an ATA
 - [ ] Explain at least one topic using math formulation
-- [ ] "I wanted to do about VoIP (see next Chapter) but Miquel Oliver encouraged me to do about WebRTC, and he presented me Victor Pascual."
+- [ ] About QoS, how is done by Angel Elena, what said velazquezPFC
+- [ ] What appendices, and detail them in Last part of Chapter 1, introduction
+- [ ] Better documentation of *Scrum*
+- [ ] Brief mention to IP-ranges Subnetting
 **** Bibliography
 ***** Book SIP that I'm missing...
 ***** RFC's Jaume?

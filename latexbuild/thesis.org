@@ -138,7 +138,7 @@ Este proyecto
 %\cleardoublepage
 %FINAL DE PREFACI
 
-
+r
 %TAULA DE CONTINGUTS: OBLIGATÒRIA
 \selectlanguage{english}
 \tableofcontents
@@ -199,22 +199,23 @@ This document is organised in 5 chapters.
 ** Instant messaging
 ** WebRTC
 * Methodology
-** SWOT Analysis
+** TODO SWOT Analysis
 ** Scope
-IN
-packet switched, Internet, guifi
 
-OUT
-circuit switch
+There are a lots of RTC systems for different purposes. This project focuses in the work of IETF organization and the Internet. Guifi.net is part of Internet, and has additional constraints to take in account.
+
+Dismissed well-known RTC systems built for organizations is from the ITU organization. It only was introduced in the Fundamentals Chapter as "Circuit switching and traditional telephony".
+
+Preferences in terms of technologies chosen, they should be open standard, open source software, with royalty free patent. If this is not possible, it will be notified, and will be used temporarily another technology until a new one appear and substitute it.
+
 ** Resources
+
 There are costs related to the activity of this project in terms of equipment and human effort.
 
 Table [[tab:eqre]] shows the equipment resources and its economic estimation. Observations:
 - Guifi.net connectivity to Barcelona, a reachable IPv4 10.0.0.0/8 [fn:1] has not direct cost.
 - Nearly all software involved is open source and has no direct cost.
 - Usually the cost of installation it’s greater or equal than the cost of equipment.
-
-The human effort part was financed by the university in the form of a grant to the author, representing a cost of 2800 euro. A bachelor’s thesis corresponds in Europe to 500 hours of work.
 
 #+CAPTION: Equipment resources
 #+NAME: tab:eqre
@@ -233,19 +234,19 @@ The human effort part was financed by the university in the form of a grant to t
 # C-c + to sum all rows in a column
 # S-insertchar to insert the result
 
+The human effort part was financed by the university in the form of a grant to the author, representing a cost of 2800 euro. A bachelor’s thesis corresponds in Europe to 500 hours of work.
+
 This implies a total cost of approximately 6000 euro
 
-** Planning
+** TODO Planning
 The project can be separated in two phases. The first phase is a long preamble of studying VoIP and WebRTC. The second phase is an agile plan. Figure \ref{fig:gantt1} shows the two phases in a gantt diagram.
 
-About the first phase, while studying VoIP the intention was to work about VoIP and guifi.net. But Miquel Oliver encouraged me to do it about WebRTC. He presented me Victor Pascual, a SIP and WebRTC expert. It was hard to realise a convenient project, because this technology involves lots of protocols, other technologies, and it’s being modified now. In this phase It were settled the necessary
+In the first phase, while studying VoIP the intention was to work about VoIP and guifi.net. But Miquel Oliver encouraged me to do it about WebRTC. He presented me Victor Pascual, a SIP and WebRTC expert. It was hard to realise a convenient project, because this technology involves lots of protocols, other technologies, and it’s being modified now. In this phase It were settled the necessary
 concepts to start the project.
 
 The second phase is an agile plan, inspired by the Scrum methodology. Scrum is one of the Agile methods used for software development. The important fact is that promotes adaptive planning and flexible response to change. Scrum, particularly, is a general method that should be adapted to a concrete scenario.
 
-About Scrum (general) *FILL*
-
- \ref{fig:gantt1}
+According to the Scrum Guide [fn:2] 
 
 # In the case of a pgfgantt, you have to create the "figure" inside
 # to refer it, use a \ref instead of a orgmode local link
@@ -262,7 +263,7 @@ About Scrum (general) *FILL*
 \ganttbar{Scrum plan}{10}{11}
 \end{ganttchart}
 
-\caption{\label{fig:gantt1}Blablablablaaaa}
+\caption{\label{fig:gantt1}General gantt diagram}
 \end{figure}
 #+END_LATEX
 
@@ -288,7 +289,7 @@ time slot format=isodate
 \ganttmilestone{d1}{2015-06-15}
 \end{ganttchart}
 
-\caption{\label{fig:gantt2}Blablabla}
+\caption{\label{fig:gantt2}Scrum plan gantt diagram}
 \end{figure}
 #+END_LATEX
 
@@ -343,4 +344,6 @@ time slot format=isodate
 * Footnotes
 
 [fn:1] range of IP's used by guifi.net and private networks
+
+[fn:2] http://www.scrumguides.org/docs/scrumguide/v1/scrum-guide-us.pdf
 

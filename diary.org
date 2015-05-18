@@ -1,11 +1,20 @@
 * Diary
 Everyday it's a-gettin' closer
 ** <2015-05-13 Wed>--<2015-05-22 Fri>
+*** <2015-05-18 Mon>
+- Finishing Project Charter
+  - Scope
+  - Planning
+  - SWOT
+*** <2015-05-17 Sun>
+- Continue Project Charter: end contents for resources, planning
 *** <2015-05-16 Sat>
 - Document Structure
 - Project Charter and Tasks (~wbs) deliverables, and how they integrate in the Document Structure
-  - Resources
-  - Gantt
+  - motivation
+  - objectives
+  - table for resources
+  - gantt diagram for planning
 - Make the latex thing compile
 - Formal things, remember
   - http://repositori.upf.edu/handle/10230/20036
