@@ -165,9 +165,9 @@ r
 
 * Introduction
 ** Motivation
-In the other bachelor's thesis \cite{vilchez2014comnet} I worked 2 ideas: together we can do networks, it is simple to start. *Aún así*, in cities like Barcelona it is easy to find persons that do not understand what is guifi.net, probably for two reasons: there is a very competitive communications market in cities and the complexity to understand a commons model from the consumer point of view. In the case of zones where there is no investment of large operators, the things change: persons need internet, and they struggle to understand the commons model.
+In the other bachelor's thesis \cite{vilchez2014comnet} I worked 2 ideas: together we can do networks, it is simple to start. Even so, in cities like Barcelona it is easy to find persons that do not understand what is guifi.net, probably for two reasons: there is a very competitive communications market in cities and the complexity to understand a commons model from the consumer point of view. In the case of zones where there is no investment of large operators, the things change: persons need internet, and they struggle to understand the commons model.
 
-The implementation of other services besides Internet, could help certain persons to understand the advantages of commons network, add value to the network. There are services based on contents that are difficult to maintain but there is a service that can be easily applied on a large scale: RTC. It is something to plan and wait until people start using it. Because is communication with your environment. We are social.
+The implementation of other services besides Internet, could help certain persons to understand the advantages of commons network, add value to the network. There are services based on contents that are difficult to maintain but there is a service that can be easily applied on a large scale: RTC. It is something to plan and wait until people start using it. Because is communication with close environment. We are social.
 
 Also, from the guifi point of view, is a challenge, there were some attempts to implement a RTC system but they failed. With WebRTC, let’s try again!
 ** Objectives
@@ -213,7 +213,7 @@ Preferences in terms of technologies chosen, they should be open standard, open 
 There are costs related to the activity of this project in terms of equipment and human effort.
 
 Table [[tab:eqre]] shows the equipment resources and its economic estimation. Observations:
-- Guifi.net connectivity to Barcelona, a reachable IPv4 10.0.0.0/8 [fn:1] has not direct cost.
+- Guifi.net connectivity to Barcelona, a reachable IPv4 10.0.0.0/8[fn:1] has not direct cost.
 - Nearly all software involved is open source and has no direct cost.
 - Usually the cost of installation it’s greater or equal than the cost of equipment.
 
@@ -238,15 +238,8 @@ The human effort part was financed by the university in the form of a grant to t
 
 This implies a total cost of approximately 6000 euro
 
-** TODO Planning
-The project can be separated in two phases. The first phase is a long preamble of studying VoIP and WebRTC. The second phase is an agile plan. Figure \ref{fig:gantt1} shows the two phases in a gantt diagram.
-
-In the first phase, while studying VoIP the intention was to work about VoIP and guifi.net. But Miquel Oliver encouraged me to do it about WebRTC. He presented me Victor Pascual, a SIP and WebRTC expert. It was hard to realise a convenient project, because this technology involves lots of protocols, other technologies, and it’s being modified now. In this phase It were settled the necessary
-concepts to start the project.
-
-The second phase is an agile plan, inspired by the Scrum methodology. Scrum is one of the Agile methods used for software development. The important fact is that promotes adaptive planning and flexible response to change. Scrum, particularly, is a general method that should be adapted to a concrete scenario.
-
-According to the Scrum Guide [fn:2] 
+** Planning
+The project can be separated in two phases. The first phase is a long preamble of studying VoIP and WebRTC. The second phase is an agile plan. Figure \ref{fig:gantt1} shows the two phases in a gantt chart.
 
 # In the case of a pgfgantt, you have to create the "figure" inside
 # to refer it, use a \ref instead of a orgmode local link
@@ -263,11 +256,40 @@ According to the Scrum Guide [fn:2]
 \ganttbar{Scrum plan}{10}{11}
 \end{ganttchart}
 
-\caption{\label{fig:gantt1}General gantt diagram}
+\caption{\label{fig:gantt1}General gantt chart}
 \end{figure}
 #+END_LATEX
 
+In the first phase, while studying VoIP the intention was to work about VoIP and guifi.net. But Miquel Oliver encouraged me to do it about WebRTC. He presented me Victor Pascual, a SIP and WebRTC expert. It was hard to realise a convenient project, because this technology involves lots of protocols, other technologies, and it’s being modified now. In this phase It were settled the necessary
+concepts to start the project.
+
+The second phase is an agile plan, inspired by the Scrum methodology. Scrum is one of the Agile methods[fn:3] used for software development. The important fact is that promotes adaptive planning and flexible response to change. Scrum, particularly, is a general method that should be adapted to a concrete scenario.
+
+The Scrum Team consists of a Product Owner, the Development Team, and a Scrum Master. The work of the scrum team according to the Scrum Guide[fn:2] is /deliver products iteratively and incrementally, maximizing opportunities for feedback. Incremental deliveries of "Done" product ensure a potentially useful version of working product is always available/. The roles are
+- Product Owner: /is responsible for maximizing the value of the product and the work of the Development Team/
+- Development Team: /consists of professionals who do the work of delivering a potentially releasable Increment of "Done" product at the end of each Sprint/
+- Scrum Master: /is responsible for ensuring Scrum is understood and enacted/
+
+/The heart of Scrum is a *Sprint*, a time-box of one month or less during which a "Done", usable, and potentially releasable product Increment is created/
+
 *** Scrum plan
+It is necessary to adapt the different concepts that comprise the scrum methodology for this particular project.
+
+Roles:
+- Product Owner (in some way, stakeholders): Mentors, University, people interested in the project. The author is interested in the output of the project because is volunteer in guifi.net.
+- Development Team: assumed by the author
+- Scrum Master: assumed by the author, optionally could be assumed by mentors.
+
+This means that the author has to see the project with different points of view.
+
+The Sprint time is approximately one week, because it is assumed that the minimum time-box possible to do a release of the product is one week. The product comprise two parts: the theory (documentation, memory) and practice (how this theory is fitted to the real world experiments).
+
+Figure \ref{fig:gantt2} shows the Scrum plan with the different sprint phases (s1, s2, s3, s4) and important milestones:
+- d1: project charter and tasks, delivery to mentors
+- d2: first consistent draft memory, delivery to mentors
+- d3: set title and abstract to the thesis, delivery to university
+- d4: thesis, delivery to assigned tribunal
+
 #+BEGIN_LATEX
 \begin{figure}[htb]
 \centering
@@ -279,19 +301,38 @@ x unit=3.5mm,
 time slot format=isodate
 ]{2015-05-12}{2015-06-18}
 \gantttitlecalendar{year, month=name, week} \\
-\ganttbar{i1}{2015-05-13}{2015-05-22} \ganttnewline
-\ganttbar{i2}{2015-05-23}{2015-05-29} \ganttnewline
-\ganttbar{i3}{2015-05-30}{2015-06-05} \ganttnewline
-\ganttbar{i4}{2015-06-06}{2015-06-15} \ganttnewline
+\ganttbar{s1}{2015-05-13}{2015-05-22} \ganttnewline
+\ganttbar{s2}{2015-05-23}{2015-05-29} \ganttnewline
+\ganttbar{s3}{2015-05-30}{2015-06-05} \ganttnewline
+\ganttbar{s4}{2015-06-06}{2015-06-15} \ganttnewline
 \ganttmilestone{d1}{2015-05-18} \ganttnewline
-\ganttmilestone{d1}{2015-05-22} \ganttnewline
-\ganttmilestone{d1}{2015-05-25} \ganttnewline
-\ganttmilestone{d1}{2015-06-15}
+\ganttmilestone{d2}{2015-05-22} \ganttnewline
+\ganttmilestone{d3}{2015-05-25} \ganttnewline
+\ganttmilestone{d4}{2015-06-15}
 \end{ganttchart}
 
-\caption{\label{fig:gantt2}Scrum plan gantt diagram}
+\caption{\label{fig:gantt2}Scrum plan gantt chart}
 \end{figure}
+
+\vspace*{\fill}
 #+END_LATEX
+
+*** Metatools
+To ensure the scrum plan and the project, different tools were used:
+- Emacs orgmode: is a plain text syntax and software that facilitates different operations
+  - nested concepts: It is possible to fold and unfold nested concepts different parts. This brings facilities to take different points of view of the project.
+  - write the memory of the project and export to UPF publication constraints.
+  - diary: used as autoevaluation tool. Time spent in some operations. Place to record when was discovered something.
+  - tasks: to write things to do and mark them as TODO and DONE. To see overall progress of the project.
+- Git: is a distributed version control system that helps to ensure the work is not lost. It can has a local and remote copy of all different states (commits) of the project. It is very flexible to do changes and apply.
+- Github[fn:4] repository: is a social network that uses git and has the largest community. Good place to host and share open source projects. This project is hosted as a repository in https://github.com/pedro-nonfree/guifi-webrtc. Featured files:
+  - diary.org: record of activity in time
+  - tasks.org: parts to do for the project
+  - doc directory: independent parts written before starting the memory, or that needs isolation
+    - doc/index.org: organise the different files of this directory
+  - latexbuild directory: place where emacs orgmode thesis file is exported to latex and compiled to PDF
+    - thesis.org: source code of memory
+    - thesis.pdf: memory
 
 * Contributions & Results
 ** Architecture of guifi.net
@@ -347,3 +388,6 @@ time slot format=isodate
 
 [fn:2] http://www.scrumguides.org/docs/scrumguide/v1/scrum-guide-us.pdf
 
+[fn:3] There are different metodologies grouped into agile. The process started with the write of the Agile Manifesto (12 principles) http://agilemanifesto.org/iso/en/principles.html. Since February 2001, this manifesto remains unchanged.
+
+[fn:4] the web implementation is proprietary software, but it can be easily migrated to other open source tools such as http://gitlab.com or http://gogs.io/
