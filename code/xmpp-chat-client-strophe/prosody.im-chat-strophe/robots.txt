@@ -1,0 +1,13 @@
+User-agent: *
+Allow: /
+Disallow: /nightly/
+Disallow: /source/browse
+Disallow: /source/hg
+Disallow: /source/0.4
+Disallow: /source/0.5
+Disallow: /source/0.6
+Disallow: /changesets
+Disallow: /files
+Disallow: /tip
+Disallow: /pastebin/
+Disallow: /downloads/debian/
