@@ -1,8 +1,72 @@
 * Diary
 Everyday it's a-gettin' closer
-** <2015-05-13 Wed>--<2015-05-22 Fri>
+** <2015-05-13 Wed>--<2015-05-22 Fri> sprint 1
+*** <2015-05-20 Wed>
+- Documment theory, read.
+- Move contents of thesis.pdf.bkp to thesis.org
+- Fundamentals, State of the Art
 *** <2015-05-19 Tue>
-- Do a document that identify the kind of tasks for the project, like WBS, last section of methodology
+- Write a document that identify the kind of tasks for the project, like WBS, last section of methodology
+- finish introduction and methodology sections of the project
+- XMPP research
+  - prosody
+    - very simple XMPP chat using strophe (and bosh) https://prosody.im/chat/
+    - usa lua como qmp
+    - https://code.google.com/p/prosody-modules/wiki/mod_carbons
+  - ejabberd
+    - old docs: https://www.process-one.net/docs/ejabberd/guide_en.html#htoc80
+    - fully XMPP compliant
+    - web admin <ip>:5280/admin
+      - user:   password: ?
+    - documentation: https://www.process-one.net/en/ejabberd/docs/
+    - config file
+      - debian wheezy 7 does not have yaml (/etc/ejabberd/ejabberd.cfg) (new thing in config)
+      - debian 8 yes (/etc/ejabberd/ejabberd.yml)
+        - has nothing in admin gui, doc: http://ip:5280/admin/doc/guide.html#toc
+    - small tricks https://www.ejabberd.im/tricks
+    - get admin user:
+      - /etc/ejabberd/ejabberd.conf ->
+        - {acl, admin, {user, "admin", "ip"}}.
+        - {hosts, ["ip"]}.
+      - service ejabberd restart
+      - ejabberdctl register admin <ip> password
+  - prosody vs ejabberd: http://comments.gmane.org/gmane.linux.debian.freedombox.user/2372
+    - ejabberd has webadministration but bypass config files
+  - buddycloud http://buddycloud.com/documentation, seems is a protocol itself (buddycloud channels http://xmpp.org/extensions/inbox/buddycloud-channels.html), is not XMPP standard
+    - http://buddycloud.com/install (DNS)
+    - uses prosody
+- workflow idea
+  - XMPP PoC
+    - Configure Prosody
+    - Test against the prosody chat webapp (BOSH)
+    - Try with websockets
+  - LDAP guifi
+  - Integrated PoC, SIP + XMPP
+  - later, try with candy chat (more advanced XMPP chat)
+    - https://github.com/candy-chat/candy/wiki/Installing-a-XMPP-server
+- Next week work on DNS's: config DNS's in software and develop guifi drupal dns thing
+- xmpp vocabulary
+  - JID: Jabber Identifier
+  - 5222: xmpp client connection
+  - roster: contact list. A user's roster is stored by the user's server on the user's behalf so that the user may access roster information from any resource.
+    - Note: There are important interactions between rosters and subscriptions; these are defined under Integration of Roster Items and Presence Subscriptions, and the reader must refer to that section for a complete understanding of roster management.
+    - http://xmpp.org/rfcs/rfc3921.html#int
+- trying prosody
+- XMPP was known as jabber http://en.wikipedia.org/wiki/XMPP#History
+- c2s/s2s: client to server/server 2 server connections (with tls)
+- Prosody (going depth)
+  - first, configure DNS's. Seems that simply with an A domain, is sufficient
+  - http://prosody.im/doc/configure
+  - http://prosody.im/doc/example_config
+  - https://prosody.im/doc/creating_accounts
+  - https://prosody.im/doc/setting_up_bosh
+  - developers
+    - https://prosody.im/doc/developers/http
+    - https://prosody.im/doc/developers
+- 
+  - http://xmpp.org/extensions/xep-0029.html
+  - http://tools.ietf.org/html/rfc6122
+  - http://tools.ietf.org/html/rfc3920
 *** <2015-05-18 Mon>
 - Finishing Project Charter
   - Scope
