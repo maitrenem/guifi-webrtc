@@ -31,6 +31,8 @@
   - https://github.com/diafygi/webrtc-ips
   - https://torrentfreak.com/huge-security-flaw-leaks-vpn-users-real-ip-addresses-150130/
   - http://en.wikipedia.org/wiki/WebRTC#Concerns
+- [ ] [graphics] Do another graphs what happens from WebRTC to SIP
+- [ ] From the beginning arquitecture what should be applied to improve the basic use case in guifi
 **** Parts to Fill
 - [ ] every chapter should introduce the subparts
 - [ ] Chapter 1 Outline (1.3) has to be completed
@@ -39,6 +41,8 @@
 - [ ] What to use in the redaction of the memory: 1 or one, 2 or two?
 - [ ] Gantt diagram is table or figure? 0> is a type of bar chart
 - [ ] WebRTC codecs, is about video codecs, or also audio codecs?
+**** Parts to Fix
+- [ ] Fix: Graph, MEDIA CTRL -> MC
 **** Bibliography
 ***** Book SIP that I'm missing...
 ***** RFC's Jaume?
@@ -49,8 +53,6 @@
 - Deliver complete memory <2015-06-12 Fri>
 ** TODO Theory
 *** TODO Use cases and general documentation
-- From the beginning arquitecture what should be applied to improve the basic use case in guifi
-- Next to be done: integration with guifi
 **** TODO To be done [6/7]
 - [X] [[file:doc/user-cases.org::*basic%20use%20case%20defined][Basic use case defined]] (bidirectional videoconference)
 - [X] [[file:doc/webrtc-architecture.org::*Use%20case%20requeriments][Use case requeriments]] documented
@@ -59,10 +61,7 @@
 - [X] Requeriments to implement this in guifi (basic use case evolution)
 - [X] Impact of new requeriments to the defined architecture
 - [X] Proposal of architecture v2 (includes integration requirements)
-*** TODO About graphics
-- [ ] Fix: Graph, MEDIA CTRL -> MC
-- [ ] Do another graphs what happens from WebRTC to SIP
-*** TODO Read [2/6]
+**** TODO Read [2/6]
 - [ ] Evaluate security features: the use of DTLS-SRTP is secure (vs ZRTP): https://webrtchacks.com/webrtc-must-implement-dtls-srtp-but-must-not-implement-sdes
 - [-] State of the art [1/5]
   - [X] https://wiki.debian.org/UnifiedCommunications

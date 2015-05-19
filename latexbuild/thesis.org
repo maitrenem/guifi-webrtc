@@ -139,7 +139,7 @@ Este proyecto
 %\cleardoublepage
 %FINAL DE PREFACI
 
-r
+
 %TAULA DE CONTINGUTS: OBLIGATÒRIA
 \selectlanguage{english}
 \tableofcontents
@@ -168,7 +168,7 @@ r
 ** Motivation
 In the other bachelor's thesis \cite{vilchez2014comnet} I worked 2 ideas: together we can do networks, it is simple to start. Even so, in cities like Barcelona it is easy to find persons that do not understand what is guifi.net, probably for two reasons: there is a very competitive communications market in cities and the complexity to understand a commons model from the consumer point of view. In the case of zones where there is no investment of large operators, the things change: persons need internet, and they struggle to understand the commons model.
 
-The implementation of other services besides Internet, could help certain persons to understand the advantages of commons network, add value to the network. There are services based on contents that are difficult to maintain but there is a service that can be easily applied on a large scale: RTC. It is something to plan and wait until people start using it. Because is communication with close environment. We are social.
+The implementation of other services besides Internet, could help certain persons to understand the advantages of commons network, add value to the network. There are services based on contents that are difficult to maintain but there is a service that can be easily applied on a large scale: RTC. It is something to plan and wait until people start using it. Because is communication in a close environment. We are social.
 
 Also, from the guifi point of view, is a challenge, there were some attempts to implement a RTC system but they failed. With WebRTC, let’s try again!
 ** Objectives
@@ -181,55 +181,59 @@ This document is organised in 5 chapters.
 
 *Chapter 1 Introduction* introduces the project. The motivation to start this project and the high level objectives to achieve.
 
-*Chapter 2 Fundamentals of RTC* presents the basics of fill.
+*Chapter 2 Fundamentals of RTC* presents the basics of the concepts communications and real-time .
 
-*Chapter 3 State of the Art* discusses the state of the art of fill.
+*Chapter 3 State of the Art* discusses the state of the art of WebRTC and its associated technologies.
 
-*Chapter 4 Contributions and Results* contains a description of the methodology used to fill.
+*Chapter 4 Methodology* contains a description of the processes involved to achieve this project.
 
-*Chapter 5 Conclusions and Future Work*, the results obtained. Finally, the last Chapter presents the conclusions and future work
+*Chapter 5 Contributions and Results* develops the theory and practice of the objectives proposed by this project
+
+*Chapter 6 Conclusions and Future Work* provides a general assessment of the project
 * Fundamentals of RTC
 ** Communications
-*** Circuit switching and traditional telephony
-*** Packet switching and Internet
+- *Circuit switching and traditional telephony*
+
+- *Packet switching and Internet*
 ** Real-time
 * State of the art
 ** Important mechanisms
 ** Voice and video calls
-*** VoIP
+- *VoIP*
 ** Instant messaging
 ** WebRTC
-*** Security
+
+- *Security*
 * Methodology
 ** SWOT Analysis of WebRTC
 
 An analysis of Strengths, Weaknesses, Opportunities and Threats (SWOT) will help the decision-making and tasks for the project.
 
-*** Strengths
-- Ease of use: real-time communication is supported without the need for additional applications or plug-ins.
-- It helps to solve connectivity problems caused by NAT, Firewall, etc.
-- It solved the problem with audio and video codecs.
-- It is based on open technology.
-- It has well general acceptance in both worlds: enterprise and community.
-- The communication between peers is bidirectional and can be P2P
-- WebRTC standard do not specify signalling: it can be used in very different scenarios.
-- The communication channel between peers is encrypted
-*** Weaknesses
-- There are detractors of WebRTC, this includes some web browsers.
-- There is a a long discussion about what video codec should be supported in web browsers.
-- WebRTC uses different RTP packets than SIP. So a gateway is needed.
-- Security compromised in VPN-tunnels, where the true IP address of the user can be read.
-*** Opportunities
-- For VoIP, WebRTC could be a web softphone. Easy to install, easy to update.
-- A WebRTC audio call could be routed to traditional telephony.
-- It uses javascript as programming language, this language has the wider community.
-- It encourages a new generation of web applications using its strenghts.
-*** Threats
-- WebRTC standard do not specify signalling: this can produce a positive or negative fragmentation of projects. Positive fragmentation: different projects for different applications. Negative fragmentation: divided effort.
-- Is a work in progress technology, it is being changed.
+- Strengths
+  - Ease of use: real-time communication is supported without the need for additional applications or plug-ins.
+  - It helps to solve connectivity problems caused by NAT, Firewall, etc.
+  - It solved the problem with audio and video codecs.
+  - It is based on open technology.
+  - It has well general acceptance in both worlds: enterprise and community.
+  - The communication between peers is bidirectional and can be P2P
+  - WebRTC standard do not specify signalling: it can be used in very different scenarios.
+  - The communication channel between peers is encrypted
+- Weaknesses
+  - There are detractors of WebRTC, this includes some web browsers.
+  - There is a a long discussion about what video codec should be supported in web browsers.
+  - WebRTC uses different RTP packets than SIP. So a gateway is needed.
+  - Security compromised in VPN-tunnels, where the true IP address of the user can be read.
+- Opportunities
+  - For VoIP, WebRTC could be a web softphone. Easy to install, easy to update.
+  - A WebRTC audio call could be routed to traditional telephony.
+  - It uses javascript as programming language, this language has the wider community.
+  - It encourages a new generation of web applications using its strenghts.
+- Threats
+  - WebRTC standard do not specify signalling: this can produce a positive or negative fragmentation of projects. Positive fragmentation: different projects for different applications. Negative fragmentation: divided effort.
+  - Is a work in progress technology, it is being changed.
 ** Scope
 
-There are a lots of RTC systems for different purposes. This project focuses in the work of IETF organization and the Internet. Guifi.net is part of Internet, and has additional constraints to take in account.
+There are a lots of RTC systems for different purposes. This project focuses in the work of IETF organization and Internet. Guifi.net is part of Internet, and has additional constraints to take in account.
 
 Dismissed well-known RTC systems built for organizations is from the ITU organization. It only was introduced in the Fundamentals Chapter as "Circuit switching and traditional telephony".
 
@@ -264,7 +268,6 @@ Table [[tab:eqre]] shows the equipment resources and its economic estimation. Ob
 The human effort part was financed by the university in the form of a grant to the author, representing a cost of 2800 euro. A bachelor’s thesis corresponds in Europe to 500 hours of work.
 
 This implies a total cost of approximately 6000 euro
-
 ** Planning
 The project can be separated in two phases. The first phase is a long preamble of studying VoIP and WebRTC. The second phase is an agile plan. Figure \ref{fig:gantt1} shows the two phases in a gantt chart.
 
@@ -309,7 +312,7 @@ Roles:
 
 This means that the author has to see the project with different points of view.
 
-The Sprint time is approximately one week, because it is assumed that the minimum time-box possible to do a release of the product is one week. The product comprise two parts: the theory (documentation, memory) and practice (how this theory is fitted to the real world experiments).
+The Sprint time is approximately one week, because it is assumed that the minimum time-box possible to do a release of the product is one week. The product comprise two major tasks: the theory (documentation, memory) and practice (how this theory is fitted to the real world experiments). The tasks are explained with more detail in the next section [[Tasks]].
 
 Figure \ref{fig:gantt2} shows the Scrum plan with the different sprint phases (s1, s2, s3, s4) and important milestones:
 - d1: project charter and tasks, delivery to mentors
@@ -352,7 +355,7 @@ To ensure the scrum plan and the project, different tools were used:
   - diary: used as autoevaluation tool. Time spent in some operations. Place to record when was discovered something.
   - tasks: to write things to do and mark them as TODO and DONE. To see overall progress of the project.
 - Git: is a distributed version control system that helps to ensure the work is not lost. It can has a local and remote copy of all different states (commits) of the project. It is very flexible to do changes and apply.
-- Github[fn:4] repository: is a social network that uses git and has the largest community. Good place to host and share open source projects. This project is hosted as a repository in https://github.com/pedro-nonfree/guifi-webrtc. Featured files:
+- Github[fn:4] repository: is a social network that uses git and has the largest community. A place to host and share open source projects. This project is hosted as a repository in https://github.com/pedro-nonfree/guifi-webrtc. Featured files:
   - diary.org: record of activity in time
   - tasks.org: parts to do for the project
   - doc directory: independent parts written before starting the memory, or that needs isolation
@@ -360,7 +363,26 @@ To ensure the scrum plan and the project, different tools were used:
   - latexbuild directory: place where emacs orgmode thesis file is exported to latex and compiled to PDF
     - thesis.org: source code of memory
     - thesis.pdf: memory
+** Tasks
+The tasks for this project are divided in two components: theory and practice.
 
+Inside theory, there is:
+- Documentation
+  - Things to say/explain: what should be said but at the moment is missing (checklist)
+  - Parts to Fill: developed parts that are missing few details (checklist)
+  - Parts to Fix: developed parts that are incorrect and should be fixed (checklist)
+  - Questions: related to the writing or the theory part, that it is needed an answer (checklist, done when answered)
+  - Memory document has tools to track the state of different sections. For theory, it will be specially important:
+    - Fundamentals
+    - State of the Art
+    - Result and Contributions
+- Search of information
+  - What things should be read (checklist).
+
+Inside practice, there is:
+- WebRTC POC: what WebRTC Proof Of Concepts that have been executed, and wishlist (checklist). What signalling was used. The POCs are web applications that have library linking with signalling. Interested in SIP (jssip) and XMPP (strophe) signalling.
+- Tested components: what specific components that have been executed, and wishlist (checklist). LDAP Authentication, SSL/TLS certificates, STUN/TURN server, DNS.
+- Develop DNS for guifi.net: is a major task that has to be achieved.
 * Contributions & Results
 ** Architecture of guifi.net
 ** Use cases
@@ -373,6 +395,9 @@ To ensure the scrum plan and the project, different tools were used:
 ** Conclusions
 ** Future Work
 * Fake
+[To be removed]
+
+Fake section to put the last latex code of the document
 #+BEGIN_LATEX
 \bibliography{bibliography}
 \cleardoublepage

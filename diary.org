@@ -1,6 +1,8 @@
 * Diary
 Everyday it's a-gettin' closer
 ** <2015-05-13 Wed>--<2015-05-22 Fri>
+*** <2015-05-19 Tue>
+- Do a document that identify the kind of tasks for the project, like WBS, last section of methodology
 *** <2015-05-18 Mon>
 - Finishing Project Charter
   - Scope

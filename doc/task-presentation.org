@@ -1,0 +1,33 @@
+#+LATEX_CLASS: article
+
+#+LATEX_HEADER: \usepackage{pgfgantt}
+#+LATEX_HEADER: \usepackage{pdfpages}
+#+LATEX_HEADER: \usepackage{url}
+
+# I put this variable with this conditions in org-latex-default-packages-alist
+# #+LATEX_HEADER: \usepackage[hidelinks]{hyperref}
+
+#+OPTIONS: toc:nil
+#+TITLE: RTC for Organizations. Task presentation
+#+AUTHOR: Pedro Vílchez
+
+* Tasks
+The tasks for this project are divided in two components: theory and practice.
+
+Inside theory, there is:
+- Documentation
+  - Things to say/explain: what should be said but at the moment is missing (checklist)
+  - Parts to Fill: developed parts that are missing few details (checklist)
+  - Parts to Fix: developed parts that are incorrect and should be fixed (checklist)
+  - Questions: related to the writing or the theory part, that it is needed an answer (checklist, done when answered)
+  - Memory document has tools to track the state of different sections. For theory, it will be specially important:
+    - Fundamentals
+    - State of the Art
+    - Result and Contributions
+- Search of information
+  - What things should be read (checklist).
+
+Inside practice, there is:
+- WebRTC POC: what WebRTC Proof Of Concepts that have been executed, and wishlist (checklist). What signalling was used. The POCs are web applications that have library linking with signalling. Interested in SIP (jssip) and XMPP (strophe) signalling.
+- Tested components: what specific components that have been executed, and wishlist (checklist). LDAP Authentication, SSL/TLS certificates, STUN/TURN server, DNS.
+- Develop DNS for guifi.net: is a major task that has to be achieved.
