@@ -2,6 +2,70 @@
 Everyday it's a-gettin' closer
 ** <2015-05-13 Wed>--<2015-05-22 Fri> sprint 1
 *** <2015-05-20 Wed>
+**** practice: xmpp poc with prosody and web app in strophe
+- get xmpp web chat code (bosh) in prosody.im
+  : wget -p -k https://prosody.im/chat/
+  (only misses the image, because is inside the js code, not html)
+  - analysis
+    - var room, put the room to enter (prosody) inside the MUC component (IRC style)
+    - version of chat? https://prosody.im/chat/strophe/strophe.js
+      - strophe 1.2 can do websockets connections http://strophe.im/strophejs/doc/1.2.0/files/strophe-js.html#Strophe.Connection.Strophe.Connection
+- install debian 8, later: sudo apt-get install apache2 prosody
+- put the code stuff in /var/www/html
+- put in the client and server /etc/hosts: =ip  example.org=
+- prosody config /etc/prosody/prosody.cfg.lua
+  - activate bosh module (it is commented by default) bosh is well configured if in the desired url we have:
+    #+begin_src
+    It works! Now point your BOSH client to this URL to connect to Prosody.
+
+    For more information see Prosody: Setting up BOSH.
+    #+end_src
+    - src https://prosody.im/doc/modules/mod_bosh
+  - cross_domain_bosh = true
+  - specify domains and complements
+    #+begin_src conf
+    VirtualHost "example.org"
+        http_paths = {
+                bosh = "/bosh";
+        }
+    VirtualHost "anon.example.org"
+        authentication = "anonymous"
+    Component "muc.example.org" "muc"
+
+    #+end_src
+    - src https://prosody.im/doc/http
+  - add debug stuff:
+    #+begin_src conf
+    log = {
+            -- Log files (change 'info' to 'debug' for debug logs):
+            info = "/var/log/prosody/prosody.log";
+            error = "/var/log/prosody/prosody.err";
+            debug = "/var/log/prosody/prosodydebug";
+            -- Syslog:
+            { levels = { "error" }; to = "syslog";  };
+    }
+    #+end_src
+    - bad connection =May 20 12:08:56 socket  debug   server.lua: accepted new client connection from ip:53282 to 5280=
+    - good connection =May 20 12:08:59 socket  debug   server.lua: accepted new client connection from ::1:48271 to 5280=
+    - src https://prosody.im/doc/logging
+
+- apache config
+  - in apache file /etc/apache2/sites-enabled/000-default.conf, within <VirtualHost *:80>:
+    #+begin_src conf
+    <Location /bosh>
+            Order allow,deny
+            Allow from all
+    </Location>
+    RewriteEngine On
+    RewriteRule ^/bosh$ http://example.org:5280/bosh [P,L]
+    #+end_src
+    - not working with localhost, perhaps because is not a real dns
+    - src https://prosody.im/doc/setting_up_bosh#cross-domain_issues
+
+
+
+
+**** theory
 - Documment theory, read.
 - Move contents of thesis.pdf.bkp to thesis.org
 - Fundamentals, State of the Art
@@ -56,6 +120,8 @@ Everyday it's a-gettin' closer
 - c2s/s2s: client to server/server 2 server connections (with tls)
 - Prosody (going depth)
   - first, configure DNS's. Seems that simply with an A domain, is sufficient
+    - https://prosody.im/doc/dns
+    - A records are the standard record type, and are used in XMPP when there are no XMPP SRV records for a domain. This allows simple setups to work with no extra DNS configuration.
   - http://prosody.im/doc/configure
   - http://prosody.im/doc/example_config
   - https://prosody.im/doc/creating_accounts
@@ -67,6 +133,18 @@ Everyday it's a-gettin' closer
   - http://xmpp.org/extensions/xep-0029.html
   - http://tools.ietf.org/html/rfc6122
   - http://tools.ietf.org/html/rfc3920
+- bind DNS
+  - installing bind9 using this guide http://rtcquickstart.org/guide/multi/dns.html
+  - http://serverfault.com/questions/347295/how-to-configure-bind9-to-be-a-local-dns-only-with-no-internet-access
+  - custom tld
+    - https://jackal777.wordpress.com/2013/11/19/custom-tld-for-local-network/
+    - http://timg.ws/2008/07/31/how-to-run-your-own-top-level-domain/
+  - http://linuxconfig.org/linux-dns-server-bind-configuration
+- /etc/hosts test
+  - get certificate: http://prosody.im/doc/certificates
+  - http://prosody.im/doc/anonymous_logins
+  - atest.org/bosh
+  - https://prosody.im/doc/setting_up_bosh#cross-domain_issues (apache)
 *** <2015-05-18 Mon>
 - Finishing Project Charter
   - Scope

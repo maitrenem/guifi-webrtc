@@ -3,7 +3,7 @@
 	<title>Prosody IM Webchat</title>
 	<link rel="stylesheet" href="webchat.css" type="text/css" media="screen" />
 	<link rel="icon" href="https://prosody.im/favicon.png" type="image/png" />
-	
+
 	<script type="text/javascript" src="strophe/b64.js"></script>
 	<script type="text/javascript" src="strophe/md5.js"></script>
 	<script type="text/javascript" src="strophe/sha1.js"></script>
@@ -16,18 +16,18 @@
 	<script type="text/javascript" src="muc_ui.js"></script>
 
 	<script type="text/javascript" src="uki.js"></script>
-	
+
 	<style type="text/css">
 		body, html { overflow: hidden; margin: 0; padding: 0; width: 100%, height: 100% }
 	</style>
 	<script type="text/javascript">
 		var conn = new Strophe.Connection("/bosh");
-		var room = "prosody@conference.prosody.im";
+		var room = "prosody@muc.example.org";
 		var nick = window.location.search.match(/[?&]nick=([^&]*)/);
-		
+
 		if(nick && nick[1] && nick[1].length > 0)
 			nick = nick[1];
-		
+
 		function version_handler(stanza)
 		{
 			conn.send($iq({to: stanza.getAttribute("from"), type: "result", id: stanza.getAttribute("id") })
@@ -37,7 +37,7 @@
 					.c('os').t(BrowserDetect.OS).tree());
 			return true;
 		}
-		
+
 		function htmlescape(s)
 		{
 			return s.replace(/&/g,'&amp;').
@@ -46,7 +46,7 @@
                 		replace(/"/g,'&quot;');
 		}
 
-		
+
 		function handle_connection_status(status, err)
 		{
 			if(err) {
@@ -73,12 +73,12 @@
 					conn.disconnect();
 					conn = null;
 				};
-				
+
 				// Focus on entry box
 				document.getElementById('msginput').focus();
 				document.getElementById('msginput').select();
 			}
-			
+
 		}
 
 		function show_client()
@@ -125,7 +125,7 @@
     						, anchors: 'top left right'
     						, id: 'notifications'
     						}
-    						,	
+    						,
     						{ view: 'MultilineTextField'
     						, rect: '10 10 835 24'
     						, anchors: 'bottom left right'
@@ -150,9 +150,9 @@
 			if(nick.length > 24) nick = nick.substr(0, 20);
 			document.getElementById('nickchoose').style.display = 'none';
 			show_client();
-			conn.connect("anon.prosody.im", null, handle_connection_status, 50);
+			conn.connect("anon.example.org", null, handle_connection_status, 50);
 		}
-		
+
 		function nickname_entered()
 		{
 			nick = document.getElementById('nickentry').value;
@@ -161,9 +161,9 @@
 
 		window.onload = function ()
 		{
-			var showprompt = false;			
+			var showprompt = false;
 			var nickentry = document.getElementById('nickentry');
-			
+
 			if(nick == null)
 			{
 				showprompt = true;
@@ -179,7 +179,7 @@
 			}
 			else
 				nickentry.value = nick;
-			
+
 			if(showprompt)
 			{
 				nickentry.focus();
@@ -199,7 +199,7 @@
 			<img src="/horse.png" />
 	</div>
 	<br style="clear:both; width:100%;"/>
--->	
+-->
 <!--	<h1>Webchat unavailable</h1>
 	<p>The webchat is currently unavailable while we perform some server maintenance. In the meantime, feel free to get support via <a href="/discuss">any of our other methods</a>!</p>
 -->
@@ -209,9 +209,9 @@
 			<p>Nickname: <input id="nickentry" type="text" value="" />&nbsp;<input style="font-weight:bold;" type="submit" value="Enter" onclick='nickname_entered()' /></p>
 		</div>
 	</div>
-	<!-- <div id="client" style="width:100%; height:100%;"></div> 
+	<!-- <div id="client" style="width:100%; height:100%;"></div>
 	<script type="text/javascript">
 	</script> -->
-	
+
 </body>
 </html>
