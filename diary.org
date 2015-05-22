@@ -1,7 +1,201 @@
 * Diary
 Everyday it's a-gettin' closer
+** <2015-05-22 Fri>--<2015-05-29 Fri> sprint 2
+*** <2015-05-22 Fri> after meeting
+- featured (WebRTC in general): https://www.terena.org/activities/tf-webrtc/meeting2/slides/20150509-Cisco-WebRTC.pdf
+**** Analysis (there is a convergence to webrtc)
+- amazon https://webrtchacks.com/mayday-trace/
+- whatsapp https://webrtchacks.com/whats-up-with-whatsapp-and-webrtc/
+- google hangouts https://webrtchacks.com/hangout-analysis-philipp-hancke/
+- facebook https://webrtchacks.com/facebook-webrtc/
+- firefox hello https://webrtchacks.com/hello-decode/
+**** Memory Refactor
+- Change of title and abstract (with WebRTC)
+- Change scope, put pyramid of work style in methodology
+- Search of info
+**** Things to consider
+- http://www.webrtc.org/architecture
+- NAT Traversal
+  - http://en.wikipedia.org/wiki/Network_address_translation
+    - Symmetric NAT (typical case)
+- ICE https://tools.ietf.org/html/rfc5245
+  - ICE lite
+  - https://webrtchacks.com/trickle-ice/
+  - intro ice: https://docs.google.com/presentation/d/17mVv6_eKqLkKkG-pwx_p-NOrYl2CK02OAtAtcHKJgHU/edit#slide=id.p4
+- STUN: RFC5389 (3489?) 7350
+  - https://webrtchacks.com/stun-helps-webrtc-traverse-nats/
+- TURN: RFC5766
+- SIP guide https://www.rfc-editor.org/rfc/rfc5411.txt
+- SIP https://www.ietf.org/rfc/rfc3261.txt
+- SIP - WebRTC interop
+  - http://www.slideshare.net/victorpascual/webrtc-and-voip-bridging-the-gap-kamailio-world-conference-2013
+  - https://webrtchacks.com/webrtc-gw/
+    - DTLS/ICE/SRTP https://webrtchacks.com/wp-content/uploads/2014/03/webrtc-2.jpeg
+- webrtc books https://bloggeek.me/best-webrtc-book/
+  - https://bloggeek.me/webrtc-book-interview/
+    - /You focus a lot in the book about connectivity to SIP and PSTN/
+- webrtc draft security http://www.ietf.org/id/draft-ietf-rtcweb-security-arch-11.txt
+  - Datagram Transport Layer Security (DTLS), Secure Real-time Transport Protocol (SRTP) - DTLS-SRTP is an essential protocol for WebRTC key management
+    - src:http://en.wikipedia.org/wiki/WebRTC
+    - http://en.wikipedia.org/wiki/Datagram_Transport_Layer_Security
+    - http://en.wikipedia.org/wiki/Secure_Real-time_Transport_Protocol
+- [signalling] JSEP style SDP https://tools.ietf.org/html/draft-ietf-rtcweb-jsep-09
+- media transport https://www.ietf.org/proceedings/89/slides/slides-89-rtcweb-6.pdf
+  - draft-ietf-rtcweb-rtp-usage-12
+- [security] https://webrtchacks.com/webrtc-must-implement-dtls-srtp-but-must-not-implement-sdes/
+  - zrtp http://tools.ietf.org/html/draft-johnston-rtcweb-zrtp-00
+***** IETF (RTCWEB group)
+- http://tools.ietf.org/wg/rtcweb/charters
+- all webrtc work of IETF: https://tools.ietf.org/wg/rtcweb/
+- overview https://tools.ietf.org/html/draft-ietf-rtcweb-overview-13
+- use cases, requeriments http://www.ietf.org/rfc/rfc7478.txt
+- data tracker: http://datatracker.ietf.org/wg/rtcweb/documents/
+- security: http://www.ietf.org/id/draft-ietf-rtcweb-security-arch-11.txt
+***** w3c
+- http://www.w3.org/2011/04/webrtc-charter.html
+- http://www.w3.org/TR/webrtc/
+- http://w3c.github.io/mediacapture-main/
+***** webrtchacks (more)
+- https://webrtchacks.com/ims-approach-webrtc/
+- https://webrtchacks.com/wonder_webrtc_nni/
+**** Discarded
+- [Discarded, not enough time] sipwise.org is an easy solution, provides XMPP and SIP, how it works, see here: http://www.kamailio.org/events/2014-KamailioWorld/day0/w1-Andreas.Granig-SIPProvider-Workshop.pdf
+**** Drupal guifi
+- ????
+- http://en.wikipedia.org/wiki/SRV_record#Usage
+- SRV mail https://tools.ietf.org/html/rfc6186
+  - http://en.wikipedia.org/wiki/Mail_submission_agent
 ** <2015-05-13 Wed>--<2015-05-22 Fri> sprint 1
+*** <2015-05-22 Fri> before meeting
+- POCs summary
+  - kamailio SIP
+    - tryit.jssip.net
+    - jscommunicator
+  - prosody XMPP bosh
+    - prosody webchat
+    - candy chat
+    - converse
+    - loqui
+  - what I have planned
+    - upgrade XMPP bosh -> websockets
+    - SIP webrtc -> webrtc a webrtc
+- TURN: forwarding a nivel de IP
+- gateway: conversión a nivel de aplicación, y a nivel de transporte
+  - gateway, se usa la capa más alta
+  - mediagateway: adaptación de medios
+- turn server
+  - check turn server work: http://stackoverflow.com/questions/21227770/opensips-rtpproxy-integration
+  - RTPProxy [turn server]: It should be able to handle up to 2,000 simulateneous G.729 sessions on a decent machine (P4 2.5-3.0 GHz). Please note that fine-tuning of OS network stack parameters can be necessary to get such high numbers, since RTP traffic consists of big number of very short UDP frames (up to 30 frames/sec for one session), so that network stack should be prepared to handle huge number of short packets.
+  - https://webrtchacks.com/coturn/ (continue reading: Example from the latest TURNbis draft)
+    - rfc5766-turn-server (legacy): The old project, rfc5766-turn-server, will continue benefiting from the stable code and large number of users; it has trusted verified code with minimum changes Only the bug fixes and absolutely necessary changes are added to the old project. That project is going to continue to exist and be supported as long as the legacy old-style RFC5766-compliant solutions are still in demand.
+    - coturn (new features)
+- ngrep -d any -W byline port 5060
+  - src http://jonathanmanning.com/2009/11/17/how-to-sip-capture-using-ngrep-debug-sip-packets/
+- Mediaserver (streaming)
+  - http://lynckia.com/licode/
+  - http://kurento.org
+  - licode vs kurento: https://groups.google.com/forum/#!topic/lynckia/CX71wIwcYWA
+    - My sense is that Kurento is focused on video mixing big time. For example, companies can mix their logos etc in live videos. The focus is on augmenting video stream with ads or data or other things. Their focus seems less on conferencing solution. Whereas Licode does not attempt to mix streams. Their focus is entirely on video conferencing. Also, mixing in Kurento is still has to come a long way in comparison to FFmpeg.
+**** theory
+- Documment theory, read.
+- Move contents of thesis.pdf.bkp to thesis.org
+- Fundamentals, State of the Art, Define, redefine contributions
+
+*** <2015-05-21 Thu>
+- mediaservers: https://groups.google.com/forum/#!topic/lynckia/CX71wIwcYWA
+- WebRTC -> SIP [http://www.kamailio.org/w/2013/08/new-module-rtpproxy-ng-webrtc-to-bare-rtp/]
+- strophe apps
+  - [old] https://code.google.com/p/trophyim/
+    - explanation: https://delog.wordpress.com/2011/03/31/web-chat-using-strophe-and-openfire/
+  - [simple] prosody webchat
+  - [good] candy chat
+  - [complete?] conversejs, interesting for integration in a website
+    - about https://opkode.com/blog/category/strophe-js/
+    - do chat app inspired by conversejs https://developer.tizen.org/documentation/articles/chat-application
+    - docs
+      - https://conversejs.org/docs/html/manual.html
+      - https://conversejs.org/docs/html/index.html
+  - [mobile] https://loqui.im/
+    - perhaps could be working https://github.com/loqui/im/issues/721
+- register account prosody
+  - prosodyctl register bob test.org bob
+    - jitsi error XMPP account: No SRV addresses found for _xmpp-client._tcp.10.1.56.195
+    - gajim works by default
+    - swift works by default
+- try general roaster, user account - candy chat (intro to a plugin in candy)
+  - static lobby
+  - using strophe client: https://github.com/candy-chat/candy/issues/256
+    - https://github.com/metajack/strophejs-plugins/blob/master/roster/strophe.roster.js
+    - se incluye en el index.html
+  - no es candy.init(), sino candy.core.init() [está de la versión antigua]
+- http://xmpp.org/extensions/xep-0206.html
+- implement exactly google talk? http://www.opensourceforu.com/2012/06/use-xmpp-to-create-your-own-google-talk-client/
+- xmpp vocabulary:
+  - stanza
+- ejabberd-websocket README calls XMPP over WebSocket "a more elegant, modern and faster replacement to Bosh
+- give it a try: https://web.whatsapp.com/
 *** <2015-05-20 Wed>
+- about prosody for guifi routers
+  - available in openwrt
+    - its doc http://wiki.openwrt.org/doc/howto/xmpp.server
+    - .ipk 200 KB, x86 version: https://downloads.openwrt.org/barrier_breaker/14.07/x86/generic/packages/packages/prosody_0.9.4-1_x86.ipk
+    - * 	luafilesystem * 	libidn * 	luaexpat * 	luasec * 	libidn * . * opkg_install_cmd: Cannot install package prosody.
+      - http://downloads.openwrt.org/barrier_breaker/14.07/x86/generic/packages/packages/luafilesystem_1.6.2-1_x86.ipk
+      - http://downloads.openwrt.org/barrier_breaker/14.07/x86/generic/packages/packages/libidn_1.28-1_x86.ipk
+      - http://downloads.openwrt.org/barrier_breaker/14.07/x86/generic/packages/packages/luaexpat_1.2.0-1_x86.ipk
+        - security errror: The version of LuaExpat on your system does not support stanza size limits, which may leave servers on untrusted networks (e.g. the internet) vulnerable to denial-of-service attacks. You should upgrade to LuaExpat 1.3.0 or higher as soon as possible. See http://prosody.im/doc/depends#luaexpat for more information.
+        - https://dev.openwrt.org/ticket/17389 -> https://github.com/openwrt/packages/ (not reported)
+      - http://downloads.openwrt.org/barrier_breaker/14.07/x86/generic/packages/packages/luasec_0.4-1_x86.ipk
+      - http://downloads.openwrt.org/barrier_breaker/14.07/x86/generic/packages/packages/libidn_1.28-1_x86.ipk
+      - with prosody + depedencies: 368K. before: 40.90 MB, after: 40.42 MB
+      - md5sum mismatch problem, this repo is not included in qmp
+        - opkg-configuration, add : "src/gz packages http://downloads.openwrt.org/barrier_breaker/14.07/x86/generic/packages/packages/"
+        - update
+        - install prosody
+    - it can be installed in 4 and 8 MIB Flash
+- free dns service: http://freedns.no-ip.com/
+**** candychat, retrying
+- http://candy-chat.github.io/candy/
+  - src http://candy-chat.github.io/candy/#setup
+  - https://github.com/candy-chat/candy/wiki/Candy-In-The-Wild#candy-as-a-plugin
+    - 
+  - xmpp installed: prosody
+    - candy chat as node : https://github.com/pstadler/candy-node
+    - prosody module: https://code.google.com/p/prosody-modules/wiki/mod_candy
+      - https://code.google.com/p/prosody-modules/wiki/mod_candy
+      - http://prosody.im/doc/plugins_directory
+      - http://prosody.im/doc/installing_modules
+      - http://prosody.im/doc/modules_enabled
+  - candy config (using the example, doing this changes)
+    #+begin_src js
+    Candy.init('http://test.org/bosh', {
+            core: {
+                    autojoin: ['test@muc.test.org', 'test2@muc.test.org']
+                  },
+    // (...)
+    Candy.Core.connect('anon.test.org')
+    #+end_src
+  - https://github.com/candy-chat/candy-plugins
+    - https://github.com/candy-chat/candy-plugins/tree/master/inline-images
+  - webrtc connection to strophe https://github.com/ESTOS/strophe.jingle
+- does not have "someone is writing...?" (it is available as a plugin, only one-to-one conversation (in prosody chat is available)
+
+**** whatsapp example
+ - 1 year of use. I suspect this is average use.
+ - txt messages: arrived 33. 3 MB (26,864 messages), sent 11.2 MB (14630 messages)
+ - multimedia messages: arrived 347 MB (? messages), sent 104 MB (? messages)
+ - 150 contacts. chat with 70. 15 groups.
+ - status features
+   - if this is set on, you can see from the others that has this feature on
+     - ✓: sent; ✓✓ received; ✓✓ (blue) read
+     - last activity (date), if is online, "Online"
+     - photo (as a description about you)
+     - status: available, busy, set your status, people put here something like "what's thinking"
+ - storage: you store all information in your device
+   - images: you receive a gaussian wavelet (?) lighweight image with the size, if you click, the image is downloaded to the device and in the conversation there is a link to the image
+     - video, audio: similar
+   - links: appear the link
+     - what can be improved: you see directly the photo (the client goes to the link and download the photo). this can have security risks?
 **** practice: xmpp poc with prosody and web app in strophe
 - get xmpp web chat code (bosh) in prosody.im
   : wget -p -k https://prosody.im/chat/
@@ -12,7 +206,7 @@ Everyday it's a-gettin' closer
       - strophe 1.2 can do websockets connections http://strophe.im/strophejs/doc/1.2.0/files/strophe-js.html#Strophe.Connection.Strophe.Connection
 - install debian 8, later: sudo apt-get install apache2 prosody
 - put the code stuff in /var/www/html
-- put in the client and server /etc/hosts: =ip  example.org=
+- put in the client and server /etc/hosts: =ip  test.org=
 - prosody config /etc/prosody/prosody.cfg.lua
   - activate bosh module (it is commented by default) bosh is well configured if in the desired url we have:
     #+begin_src
@@ -24,13 +218,13 @@ Everyday it's a-gettin' closer
   - cross_domain_bosh = true
   - specify domains and complements
     #+begin_src conf
-    VirtualHost "example.org"
+    VirtualHost "test.org"
         http_paths = {
                 bosh = "/bosh";
         }
-    VirtualHost "anon.example.org"
+    VirtualHost "anon.test.org"
         authentication = "anonymous"
-    Component "muc.example.org" "muc"
+    Component "muc.test.org" "muc"
 
     #+end_src
     - src https://prosody.im/doc/http
@@ -57,18 +251,10 @@ Everyday it's a-gettin' closer
             Allow from all
     </Location>
     RewriteEngine On
-    RewriteRule ^/bosh$ http://example.org:5280/bosh [P,L]
+    RewriteRule ^/bosh$ http://test.org:5280/bosh [P,L]
     #+end_src
     - not working with localhost, perhaps because is not a real dns
     - src https://prosody.im/doc/setting_up_bosh#cross-domain_issues
-
-
-
-
-**** theory
-- Documment theory, read.
-- Move contents of thesis.pdf.bkp to thesis.org
-- Fundamentals, State of the Art
 *** <2015-05-19 Tue>
 - Write a document that identify the kind of tasks for the project, like WBS, last section of methodology
 - finish introduction and methodology sections of the project
@@ -223,6 +409,8 @@ Everyday it's a-gettin' closer
 - resiprocate offers SIP proxy and TURN server http://julianalouback.com/tech/2014/10/30/jscommunicator-at-xtuplecon-2014/
 - Server-side WebRTC Infrastructure http://www.slideshare.net/Dialogic/serverside-webrtc-infrastructure-chad-hart-dialogic
   - WebRTC Gateway :: interworks signalling and media with existing VoIP networks
+    - defined here https://tools.ietf.org/html/draft-ietf-rtcweb-overview-13 "as A WebRTC gateway is a WebRTC-compatible endpoint that mediates
+      media traffic to non-WebRTC entities."
   - Media Server :: Provides conferencing recording, interworking, transcoding, stream processing
 - Daniel Pocock anouncing new SIP service for Debian community https://lists.debian.org/debian-devel-announce/2014/01/msg00004.html
   - A key feature of this SIP deployment is that it supports federated inter-connectivity with other SIP domains from the outset.  Please try it.  For details of how it works and how we establish trust between domains, please see RFC 5922 http://tools.ietf.org/html/rfc5922

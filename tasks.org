@@ -12,6 +12,8 @@
 **** TODO Documentation, sources of information
 ***** TODO Architecture and Deployment
 **** Things to say/explain
+- [X] Documentation of Scrum
+- [X] include pyramid explanation and work style in methodologies (inside tasks?)
 - [X] "I wanted to do about VoIP (see next Chapter) but Miquel Oliver encouraged me to do about WebRTC, and he presented me Victor Pascual."
 - [ ] Why is a disrupting technology WebRTC?
   - [ ] http://en.wikipedia.org/wiki/Disruptive_innovation#Disruptive_technology
@@ -24,28 +26,37 @@
 - [ ] Explain at least one topic using math formulation
 - [ ] About QoS, how is done by Angel Elena, what said velazquezPFC
 - [ ] What appendices, and detail them in Last part of Chapter 1, introduction
-- [ ] Better documentation of *Scrum*
 - [ ] Brief mention to IP-ranges Subnetting
 - [ ] Softphone
 - [ ] Security compromised in VPN-tunnels, where the true IP address of the user can be read. (in webrtc state of the art)
   - https://github.com/diafygi/webrtc-ips
   - https://torrentfreak.com/huge-security-flaw-leaks-vpn-users-real-ip-addresses-150130/
   - http://en.wikipedia.org/wiki/WebRTC#Concerns
-- [ ] [graphics] Do another graphs what happens from WebRTC to SIP
 - [ ] From the beginning arquitecture what should be applied to improve the basic use case in guifi
+- [ ] move the generalizations and xmpp things and other things different than use case audio video call to introduction, conclusion
+- [ ] case-based requirements inspired in this: http://uet.vnu.edu.vn/~chauttm/se2014/project/UseCaseRequirements.pdf
+***** Graphics
+- [X] pyramid: requirements, design, implementation, poc
+- [ ] do a diagram like this http://www.just2good.co.uk/images/gif/tcpipstack.gif explain
+- [ ] what happens from WebRTC to SIP
+- [ ] protocol stack diagram (gateway) http://www.slideshare.net/victorpascual/webrtc-standards-update-jul-2014/35/
 **** Parts to Fill
 - [ ] every chapter should introduce the subparts
 - [ ] Chapter 1 Outline (1.3) has to be completed
 - [ ] 4.4.1 scrum plan, little introduction
+**** Parts to Fix
+- [ ] Fix: Graph, MEDIA CTRL -> ????
+- [X] Fix: w-w graph, connection is not through data channel
+- [ ] webrtc to webrtc diagram, is not datachannel communication what we use in that case
 **** Questions
 - [ ] What to use in the redaction of the memory: 1 or one, 2 or two?
 - [ ] Gantt diagram is table or figure? 0> is a type of bar chart
 - [ ] WebRTC codecs, is about video codecs, or also audio codecs?
-**** Parts to Fix
-- [ ] Fix: Graph, MEDIA CTRL -> MC
+**** Review
+- [ ] Tasks, inside practice, WebRTC POC SCHEDULED: <2015-05-29 Fri>
 **** Bibliography
 ***** Book SIP that I'm missing...
-***** RFC's Jaume?
+***** RFC's
 ** TODO Metaorganization
 1 month, 4 iterations
 *** Milestones
@@ -77,6 +88,15 @@
 - [ ] https://webrtchacks.com/trickle-ice/
 - [ ] https://webrtchacks.com/coturn/
 - [ ] https://webrtchacks.com/javascript-dog-trainer/
+**** dev reading
+- [ ] http://www.html5rocks.com/en/tutorials/websockets/basics/
+- [ ] http://www.html5rocks.com/en/tutorials/webrtc/basics/
+- [ ] http://www.html5rocks.com/en/tutorials/webrtc/infrastructure/
+- [ ] http://www.html5rocks.com/en/tutorials/webrtc/datachannels/
+**** 
+- [ ] understanding ice https://webrtchacks.com/trickle-ice/
+- [ ] interconnectivity webrtc with ims https://webrtchacks.com/ims-approach-webrtc/
+  - [ ] http://www.slideshare.net/victorpascual/webrtc-standards-update-jul-2014/34/
 ** TODO Practice
 *** TODO WebRTC POC (Proof of Concept)
 - [ ] Understand how it works
