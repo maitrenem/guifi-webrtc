@@ -62,7 +62,7 @@
 \SetWatermarkLightness{0.95}
 
 %AFEGIU EN AQUESTA PART LES VOSTRES DADES
-\title{Real-Time Communication for Organizations}
+\title{Real-Time Communication for Organizations with WebRTC}
 %\subtitle{}
 \author{Pedro Vílchez}
 \thyear{2015}
@@ -113,7 +113,7 @@ Thanks for reading. Thanks for your time.
 \selectlanguage{english}
 \section*{\Large \sffamily Abstract}
 
-The present project introduces the disrupting technology WebRTC (Web Real-Time Communication), that supports browser-to-browser applications without need of third party plugins. It is detailed how, since its release by Google in 2011, it's evolving and changing the way communications are understood. How to materialise a Real Time Communications in organizations, taking as example guifi.net and the opportunities that it offers: use cases, architecture design, applications available, implementation and demo.
+The present project introduces the disrupting technology WebRTC (Web Real-Time Communication), that supports browser-to-browser applications without need of third party plugins. It is detailed how, since its release by Google in 2011, it's evolving and changing the way communications are understood. How to materialise a Real Time Communications in organizations with WebRTC and the use case of video and audio calls, taking as example guifi.net and the opportunities that it offers: requirements, architecture design, component selection, implementation and demo.
 
 \selectlanguage{catalan}
 \vspace*{\fill}
@@ -203,7 +203,25 @@ This document is organised in 5 chapters.
 ** Instant messaging
 ** WebRTC
 
-- *Security*
+- *Security* problems hiding public IP
+
+
+
+
+
+
+
+
+
+
+
+- Blocks
+  - Application
+  - Signalling
+  - Gateway
+    - Media Gateway
+    - Signalling Gateway
+  - Transport
 * Methodology
 ** SWOT Analysis of WebRTC
 
@@ -235,7 +253,7 @@ An analysis of Strengths, Weaknesses, Opportunities and Threats (SWOT) will help
 
 There are a lots of RTC systems for different purposes. This project focuses in the work of IETF organization and Internet. Guifi.net is part of Internet, and has additional constraints to take in account.
 
-Dismissed well-known RTC systems built for organizations is from the ITU organization. It only was introduced in the Fundamentals Chapter as "Circuit switching and traditional telephony".
+Dismissed RTC standard systems from ITU[fn:5], referred to in the [[Fundamentals of RTC]], and XMPP Standards Foundation, small references.
 
 Preferences in terms of technologies chosen, they should be open standard, open source software, with royalty free patent. If this is not possible, it will be notified, and will be used temporarily another technology until a new one appear and substitute it.
 
@@ -363,15 +381,16 @@ To ensure the scrum plan and the project, different tools were used:
   - latexbuild directory: place where emacs orgmode thesis file is exported to latex and compiled to PDF
     - thesis.org: source code of memory
     - thesis.pdf: memory
-** Tasks
+** Tasks and work style
 The tasks for this project are divided in two components: theory and practice.
 
-Inside theory, there is:
+Inside *theory*, there is:
 - Documentation
-  - Things to say/explain: what should be said but at the moment is missing (checklist)
+  - Things to say/explain: what should be said that at the moment is missing (checklist)
   - Parts to Fill: developed parts that are missing few details (checklist)
   - Parts to Fix: developed parts that are incorrect and should be fixed (checklist)
   - Questions: related to the writing or the theory part, that it is needed an answer (checklist, done when answered)
+  - Review: concepts that should be reviewed again, after a scheduled date (checklist)
   - Memory document has tools to track the state of different sections. For theory, it will be specially important:
     - Fundamentals
     - State of the Art
@@ -379,15 +398,29 @@ Inside theory, there is:
 - Search of information
   - What things should be read (checklist).
 
-Inside practice, there is:
+Inside *practice*, there is:
 - WebRTC POC: what WebRTC Proof Of Concepts that have been executed, and wishlist (checklist). What signalling was used. The POCs are web applications that have library linking with signalling. Interested in SIP (jssip) and XMPP (strophe) signalling.
 - Tested components: what specific components that have been executed, and wishlist (checklist). LDAP Authentication, SSL/TLS certificates, STUN/TURN server, DNS.
-- Develop DNS for guifi.net: is a major task that has to be achieved.
+# I don't know if I want to develop this for guifi
+# - Develop DNS for guifi.net: is a major task that has to be achieved.
+
+Figure [[fig:wsd]] shows the *work style*, how the objectives will be accomplished and its quality. Stable means that it should be clear and complete its content; best effort that it will work in the best way possible but with less priority:
+- Requirements: use cases, constraints needed for the chosen organization. (quality: stable)
+- Design: arquitecture design that fits the requirements. (quality: stable)
+- Implementation: component selection, protocols (quality: best effort)
+- PoC: applications that shows some of the results (quality: best effort)
+
+# #+ATTR_LATEX: :width 5cm
+#+CAPTION: Work style diagram
+#+NAME: fig:wsd
+[[../img/workstyle.png]]
 * Contributions & Results
 ** Architecture of guifi.net
-** Use cases
+** Requirements
+*** Use case-based requirements
 ** Architecture design
 ** Component selection
+*** POCs
 ** Applications available
 ** Implementation
 ** /Demo/
@@ -443,3 +476,5 @@ Fake section to put the last latex code of the document
 [fn:3] There are different metodologies grouped into agile. The process started with the write of the Agile Manifesto (12 principles) http://agilemanifesto.org/iso/en/principles.html. Since February 2001, this manifesto remains unchanged.
 
 [fn:4] the web implementation is proprietary software, but it can be easily migrated to other open source tools such as http://gitlab.com or http://gogs.io/
+
+[fn:5] International Telecommunication Union, formerly the International Telegraph Union

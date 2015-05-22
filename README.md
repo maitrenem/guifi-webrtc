@@ -2,9 +2,9 @@
 
 Work In Progress. Estimation time to be completed: 2015-06-15
 
-**Title**: Real Time Communications for Organizations
+**Title**: Real Time Communications for Organizations with WebRTC
 
-**Abstract**: The present project introduces the disrupting technology WebRTC (Web Real-Time Communication), that supports browser-to-browser applications without need of third party plugins. It is detailed how, since its release by Google in 2011, it's evolving and changing the way communications are understood. How to materialise a Real Time Communications in organizations, taking as example guifi.net and the opportunities that it offers: use cases, architecture design, applications available, implementation and demo.
+**Abstract**: The present project introduces the disrupting technology WebRTC (Web Real-Time Communication), that supports browser-to-browser applications without need of third party plugins. It is detailed how, since its release by Google in 2011, it's evolving and changing the way communications are understood. How to materialise a Real Time Communications in organizations with WebRTC and the use case of video and audio calls, taking as example guifi.net and the opportunities that it offers: use cases, architecture design, applications available, implementation and demo.
 
 ## *Making-Of* Tour
 - **diary.org**: record of activity in time
