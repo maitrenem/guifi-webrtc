@@ -35,11 +35,13 @@
 - [ ] From the beginning arquitecture what should be applied to improve the basic use case in guifi
 - [ ] move the generalizations and xmpp things and other things different than use case audio video call to introduction, conclusion
 - [ ] case-based requirements inspired in this: http://uet.vnu.edu.vn/~chauttm/se2014/project/UseCaseRequirements.pdf
+- [ ] classic guifi has the structure of internet (tree), but with 3 layers: interconnection with other zones, backbone of the zone and access network. New model mesh (viral) is only one layer/tier, but optionally one up (more high level routing), one down (access to user devices)
 ***** Graphics
 - [X] pyramid: requirements, design, implementation, poc
 - [ ] do a diagram like this http://www.just2good.co.uk/images/gif/tcpipstack.gif explain
 - [ ] what happens from WebRTC to SIP
 - [ ] protocol stack diagram (gateway) http://www.slideshare.net/victorpascual/webrtc-standards-update-jul-2014/35/
+- [ ] webrtc protocol stack: IP, UDP, SRTP
 **** Parts to Fill
 - [ ] every chapter should introduce the subparts
 - [ ] Chapter 1 Outline (1.3) has to be completed

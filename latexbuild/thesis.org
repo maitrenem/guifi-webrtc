@@ -62,7 +62,7 @@
 \SetWatermarkLightness{0.95}
 
 %AFEGIU EN AQUESTA PART LES VOSTRES DADES
-\title{Real-Time Communication for Organizations with WebRTC}
+\title{Architecture Design of Real-Time Communication for Organizations with WebRTC}
 %\subtitle{}
 \author{Pedro Vílchez}
 \thyear{2015}
@@ -415,9 +415,54 @@ Figure [[fig:wsd]] shows the *work style*, how the objectives will be accomplish
 #+NAME: fig:wsd
 [[../img/workstyle.png]]
 * Contributions & Results
+It is wanted to define the architecture of a general RTC service, as set of different services and applications.
 ** Architecture of guifi.net
 ** Requirements
-*** Use case-based requirements
+*** Generic use cases
+Actors or Roles are User and Admin. A call refers to a audio or video call. The *basic service* is defined as it follows:
+1. *A user receive a call only if is connected to the service with at least one device.*
+   - Access to the service through an application.
+   - Authenticate.
+   - Wait random time until receive a call. If there are more devices of the same user, all of them receive the call, but only one can accept it.
+   - Accept the call.
+   - Bidirectional communication.
+   - One of the two users stop the communication.
+2. *A user call another user with an audio channel. Optional channels of communication if available: video and chat.*
+   - Access to the service through an application.
+   - Authenticate.
+   - Select the user it is wanted to call.
+   - The other user has to accept it to continue.
+   - Bidirectional communication.
+   - One of the two users stop the communication.
+
+The *advanced service* is defined as it follows:
+
+1. Call history: a user can see the calls sent, received, missed. He can delete it.
+2. Missed call notification
+   - When a user call another user that is not available (not connected to the service or in another call). A "missed call" notification is generated to be delivered to the other user.
+   - A user has been notified by a missed call if the device is compatible with this service and he is available.
+3. Contact list
+   - A user can see the status (online, offline, busy, etc.) of another user in its contact list if he is allowed by the other user.
+   - A user can add or remove another user from the contact list.
+4. Chat rooms
+   - A user can be in a public place where there are rooms and people talk openly.
+   - A user can speak privately to the users connected to this place.
+   - The identity in the chat room is the same as in the contact list.
+5. User preferences
+   - User can set its own photo, nickname and description.
+   - Users can set if a room is able to record a history conversation (and files) such that users that connect and disconnect can follow the conversation.
+   - User can change password of its account.
+6. Share advanced media
+   - User can share its screen with another user.
+   - User can share files of limited size in a room or privately to another user. The data is temporarily stored.
+   - Share N streams to N users (Multiuser bidirectional videoconference).
+   - Share one stream to N users (Streaming).
+7. *Integration: all the services are integrated and the account is the same.*
+*** Guifi.net use cases service
+1. A user can connect to a server if he could reach it with good quality, if not, he can easily install it in its zone.
+2. If a server reach another, the users of a server can communicate to the users of another server.
+3. The service is compatible with VoIP guifi.net project.
+*** Technology requirements
 ** Architecture design
 ** Component selection
 *** POCs

@@ -1,6 +1,59 @@
 * Diary
 Everyday it's a-gettin' closer
 ** <2015-05-22 Fri>--<2015-05-29 Fri> sprint 2
+*** <2015-05-25 Mon>
+- dudas dnsservices
+  - Advanced configuration permite hacer MX (en ese mismo sitio habría que añadir SIP, XMPP y NAPTR)
+  - to confirm
+    - external: anounced by guifi.net through internet
+    - internal: anounced inside guifi.net with servers and dnsservices
+- http://www.slideshare.net/miconda/kamailio-sip-routing-in-lua
+  - Missed call notification
+    - appears here https://tools.ietf.org/html/rfc3326
+  - Lua Config
+- Org diagram example
+  - https://code.google.com/p/oslo-protocol/wiki/OSLOcomponents
+- XMPP vs SIMPLE http://vinaytechs.blogspot.com.es/2009/10/xmpp-and-simple-comparative-study.html
+- kamailio
+  - what is kamailio http://www.kamailio.org/wp-images/kamailio-sip-ucp.png
+  - http://www.asipto.com/pub/kamailio-devel-guide/
+  - doxygen http://rpm.kamailio.org/doxygen/sip-router/branch/master/
+  - wiki http://sip-router.org/wiki/
+  - wiki http://www.kamailio.org/wiki/
+  - GUI Siremis
+- Authentication protocol, list https://en.wikipedia.org/wiki/Authentication_protocol
+  - Radius
+    - Because of the broad support and the ubiquitous nature of the RADIUS protocol, it is often used by ISPs and enterprises to manage access to the Internet or internal networks, wireless networks, and integrated e-mail services. 
+    - Radius RFC2865 https://tools.ietf.org/html/rfc2865
+    - Radius RFC5080 http://www.rfc-editor.org/rfc/rfc5080.txt
+  - Diameter is theoretically better than radius https://en.wikipedia.org/wiki/Diameter_(protocol)
+    - http://www.freediameter.net/
+- LDAP: A common usage of LDAP is to provide a "single sign on" where one password for a user is shared between many services
+  - origins of LDAP https://en.wikipedia.org/wiki/X.500
+- https://en.wikipedia.org/wiki/EAP
+*** <2015-05-24 Sun>
+- What is XMLHttpRequest ?
+
+- Real-time communication with WebRTC
+  - "The general idea behind the design of WebRTC has been to fully specify how to control the media plane, while leaving the signalling plane as much as possible to the application layer"
+  - Session description represents the most important information that needs to be exchanged.
+  - SDP blocks presented things really hard to address, IETF is standardizing JavaScript Session Establishment Protocol (JSEP). Its approach is to delegate entirely to the application the responsibility for driving the signaling state machine.
+  - Security
+    - Handshake with DTLS self-signed certificates
+    - SRTP is used on the wire. (stream data)
+      - RTCP
+
+      - RTP
+      - SSRC?
+      - SCTP: (for) multiple streams
+        - encapsulation of SCTP over DTLS over UDP together with ICE provides a NAT traversal solution, confidentiality, source authentication, integrity protected transfers. Allows data transport  to interwork parallel media transport, share single transport-layer port number. Possibility of opening several independent streams within a SCTP association towards a peering SCTP endpoint.
+      - Multiplex all the sessions in one
+  - WebRTC API
+    - MediaStream: acquisition and management actions on the media stream (getUserMedia)
+    - PeerConnection: management of connections. Allows two users to communicate directly. Typically websocket. Uses ICE with STUN and TURN
+    - DataChannel: management of arbitrary data. Designed to provide a generic transport service allowing peers to exchange generic data as bidirectional P2P.
+      - bundle of incoming and outgoing SCTP stream
+      - DataChannel (SCTP?) vs WebSockets ?
 *** <2015-05-22 Fri> after meeting
 - featured (WebRTC in general): https://www.terena.org/activities/tf-webrtc/meeting2/slides/20150509-Cisco-WebRTC.pdf
 **** Analysis (there is a convergence to webrtc)
@@ -15,16 +68,19 @@ Everyday it's a-gettin' closer
 - Search of info
 **** Things to consider
 - http://www.webrtc.org/architecture
-- NAT Traversal
+- NAT Traversal (Newtork Address Translator)
+  - RFC1631
   - http://en.wikipedia.org/wiki/Network_address_translation
     - Symmetric NAT (typical case)
-- ICE https://tools.ietf.org/html/rfc5245
+- ICE https://tools.ietf.org/html/rfc5245 (ICE Candidate Exchanging)
   - ICE lite
   - https://webrtchacks.com/trickle-ice/
   - intro ice: https://docs.google.com/presentation/d/17mVv6_eKqLkKkG-pwx_p-NOrYl2CK02OAtAtcHKJgHU/edit#slide=id.p4
 - STUN: RFC5389 (3489?) 7350
   - https://webrtchacks.com/stun-helps-webrtc-traverse-nats/
+  - discovers presence of a NAT, obtain the allocated public IP and port tuple for the current connection. Requires STUN server that resides on public network.
 - TURN: RFC5766
+  - Traversal Using Relays around NAT (TURN) allows a host behind a NAT to obtain a public IP address and port from a relay server residing on the public Internet. Thanks to the relayed transport address, the host can then receive media from any peer that can send packets to the public Internet
 - SIP guide https://www.rfc-editor.org/rfc/rfc5411.txt
 - SIP https://www.ietf.org/rfc/rfc3261.txt
 - SIP - WebRTC interop

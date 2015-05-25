@@ -40,10 +40,10 @@
     - private user, user that wants to be in contact with few people that knows
 - *webrtc compatibility*: each webrtc service should be easy to add
 ** Use cases
+/this goes to the final document with some modifications/
 *** basic use case defined
 **** Core functions
-1. A user can receive a call only if remain connected to the service
-   with at least one device.
+1. A user can receive a call only if remain connected to the service with at least one device.
    - Access to the service
    - Authenticated
    - Wait random time until receive a call. If there are more devices of the same user, all of them receive the call, but only one can accept it.
@@ -58,7 +58,7 @@
    - Communicate (bidirectional)
    - Stop the communication (one of the two users have to stop it)
 **** Social functions
-1. A user can see the status of another user with its contact list if the allows it.
+1. A user can see the status of another user with its contact list if he allows it.
 2. With the contact list a user can add/remove another user
 *** guifi.net integration (to review)
 **** Core functions
@@ -84,7 +84,7 @@
 1. User can share files of limited size in a room or privately to a another user
 2. User preferences
    - User can set its own photo, nickname and description
-   - Users can set if a rooms is able to record a history conversation (and files) such that users that connect and disconnect can follow the conversation
+   - Users can set if a room or private conversation is able to record its conversation (and files). This way, users can disconnect from the service and when they reconnect can continue with the conversation.
 3. Users can create private rooms to discuss topics
    - can add/remove other users
 4. Users can delete or request deletion to the admin of information: chat conversations or files.
