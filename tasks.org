@@ -36,6 +36,11 @@
 - [ ] move the generalizations and xmpp things and other things different than use case audio video call to introduction, conclusion
 - [ ] case-based requirements inspired in this: http://uet.vnu.edu.vn/~chauttm/se2014/project/UseCaseRequirements.pdf
 - [ ] classic guifi has the structure of internet (tree), but with 3 layers: interconnection with other zones, backbone of the zone and access network. New model mesh (viral) is only one layer/tier, but optionally one up (more high level routing), one down (access to user devices)
+- [ ] communication fundamentals
+  - [ ] request response http://en.wikipedia.org/wiki/Request%E2%80%93response
+  - [ ] publish subscribe pattern http://en.wikipedia.org/wiki/Publish%E2%80%93subscribe_pattern
+  - [ ] simplex, half duplex, full-duplex http://en.wikipedia.org/wiki/WebSocket
+    - This is made possible by providing a standardized way for the server to send content to the browser without being solicited by the client, and allowing for messages to be passed back and forth while keeping the connection open
 ***** Graphics
 - [X] pyramid: requirements, design, implementation, poc
 - [ ] do a diagram like this http://www.just2good.co.uk/images/gif/tcpipstack.gif explain

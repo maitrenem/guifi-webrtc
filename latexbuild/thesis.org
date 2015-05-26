@@ -419,50 +419,70 @@ It is wanted to define the architecture of a general RTC service, as set of diff
 ** Architecture of guifi.net
 ** Requirements
 *** Generic use cases
-Actors or Roles are User and Admin. A call refers to a audio or video call. The *basic service* is defined as it follows:
-1. *A user receive a call only if is connected to the service with at least one device.*
+
+Definitions:
+- Actors or Roles have a *user* and/or *admin* account. The user has minimum permissions in the application, the admin has all the permissions in the application. It can be defined one or more middle actors that have more permissions than user and less permissions than admin.
+- A *call* refers to an audio or video call, bidirectional communication with video and/or audio channel.
+- A user is *available* if is connected to the service and is not in a call.
+
+A general RTC service could be defined as it follows:
+1. *Send calls: a user call another user with an audio channel. Optional channels of communication if available: video and chat.*
    - Access to the service through an application.
-   - Authenticate.
-   - Wait random time until receive a call. If there are more devices of the same user, all of them receive the call, but only one can accept it.
-   - Accept the call.
+   - Authentication.
+   - Decision of which user it is wanted to call.
+   - The call is accepted by the other user.
    - Bidirectional communication.
    - One of the two users stop the communication.
-2. *A user call another user with an audio channel. Optional channels of communication if available: video and chat.*
+2. *Receive calls: a user receive a call only if is connected to the service with at least one device and is available.*
    - Access to the service through an application.
-   - Authenticate.
-   - Select the user it is wanted to call.
-   - The other user has to accept it to continue.
+   - Authentication.
+   - A lapse of random time until it is received a call. If there are more devices of the same user, all of them receive the call, but only one can accept it.
+   - The call is accepted.
    - Bidirectional communication.
    - One of the two users stop the communication.
-
-The *advanced service* is defined as it follows:
-
-1. Call history: a user can see the calls sent, received, missed. He can delete it.
-2. Missed call notification
+3. A user can subscribe or unsubscribe to the RTC service.
+4. Call history: a user can see the calls sent, received, missed. He can delete it.
+5. Missed call notification
    - When a user call another user that is not available (not connected to the service or in another call). A "missed call" notification is generated to be delivered to the other user.
    - A user has been notified by a missed call if the device is compatible with this service and he is available.
-3. Contact list
+6. Contact list
    - A user can see the status (online, offline, busy, etc.) of another user in its contact list if he is allowed by the other user.
    - A user can add or remove another user from the contact list.
-4. Chat rooms
+7. Chat rooms
    - A user can be in a public place where there are rooms and people talk openly.
    - A user can speak privately to the users connected to this place.
    - The identity in the chat room is the same as in the contact list.
-5. User preferences
+8. User preferences
    - User can set its own photo, nickname and description.
    - Users can set if a room is able to record a history conversation (and files) such that users that connect and disconnect can follow the conversation.
    - User can change password of its account.
-6. Share advanced media
+9. Share advanced media
    - User can share its screen with another user.
    - User can share files of limited size in a room or privately to another user. The data is temporarily stored.
    - Share N streams to N users (Multiuser bidirectional videoconference).
    - Share one stream to N users (Streaming).
-7. *Integration: all the services are integrated and the account is the same.*
-*** Guifi.net use cases service
+10. Administration
+    - User can only change its settings. Admin can change configuration of all users.
+    - Users can report other users because of a social conflict, admin is notified.
+11. *Integration: all the services are integrated and is the same account.*
+
+*Guifi.net service* is defined as it follows:
+
 1. A user can connect to a server if he could reach it with good quality, if not, he can easily install it in its zone.
 2. If a server reach another, the users of a server can communicate to the users of another server.
 3. The service is compatible with VoIP guifi.net project.
-*** Technology requirements
+*** Component requirements
+
+The use cases developed are those that are bold.
+
+Requirements to send, receive calls, subscribe, unsubscribe and have integration:
+- Application interface: gives appropriate interaction to the actors in order to perform the different operations.
+- Authentication service: restrict access of service only to permitted users. Differentiate available operations depending on if is user or admin.
+- Signalling protocol: manage the side to side connections and logic to establish the call.
+- Transport protocol between users and between user and server.
+- Database: store and encrypt personal information or preferences for a particular user.
+- Connectivity solver: a set of tools to avoid common communication problems that appear in networking scenarios
+
 ** Architecture design
 ** Component selection
 *** POCs
@@ -523,3 +543,4 @@ Fake section to put the last latex code of the document
 [fn:4] the web implementation is proprietary software, but it can be easily migrated to other open source tools such as http://gitlab.com or http://gogs.io/
 
 [fn:5] International Telecommunication Union, formerly the International Telegraph Union
+

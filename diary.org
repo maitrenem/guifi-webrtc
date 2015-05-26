@@ -1,6 +1,8 @@
 * Diary
 Everyday it's a-gettin' closer
 ** <2015-05-22 Fri>--<2015-05-29 Fri> sprint 2
+*** <2015-05-26 Tue>
+- Progress on use cases, component requirements
 *** <2015-05-25 Mon>
 - dudas dnsservices
   - Advanced configuration permite hacer MX (en ese mismo sitio habría que añadir SIP, XMPP y NAPTR)
