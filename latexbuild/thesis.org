@@ -475,18 +475,62 @@ A general RTC service could be defined as it follows:
 
 The use cases developed are those that are bold.
 
-Requirements to send, receive calls, subscribe, unsubscribe and have integration:
-- Application interface: gives appropriate interaction to the actors in order to perform the different operations.
-- Authentication service: restrict access of service only to permitted users. Differentiate available operations depending on if is user or admin.
-- Signalling protocol: manage the side to side connections and logic to establish the call.
-- Transport protocol between users and between user and server.
-- Database: store and encrypt personal information or preferences for a particular user.
-- Connectivity solver: a set of tools to avoid common communication problems that appear in networking scenarios
+Requirements to send, receive calls, subscribe, unsubscribe and have integration. For a WebRTC scenario, the components are distributed. In brackets, name of the components in the component graph.
+- Application interface: gives appropriate interaction to the actors in order to perform the different operations. Is distributed, a web server (WSRV) offering a page, and a client executing the web application (WAPP) through the web browser.
+- Authentication service (AUTH): restrict access of service only to permitted users. Differentiate available operations depending on if is user or admin. Single sign on, after the web page is accessed, the user can operate.
+- Signalling protocol (SIG): manage the side to side connections and logic to establish the call. The two peers must use a compatible signalling protocol.
+- Transport protocol (TP): between users and between user and server. Compatible, secure if possible.
+- Database (DB): store and encrypt personal information or preferences for a particular user. Accessible through web application if succeed in authentication.
+- Connectivity solver (CS): a set of tools to avoid common communication problems that appear in networking scenarios. The most common problems are NAT and firewall.
+- Gateway (GW): adapt or convert the communication to work with different communication systems. The most important difference between communication systems is the signalling protocol.
+
+*** Network requirements
+/number and math justification?/
+
+- DNS (multiple servers)
+- Quality of Service (QoS): put priority to real-time traffic
+- Throughput (more used than Bandwidth)
+- Delay
+- Jitter
+- Loss
+- Congestion
+
+** Component selection
 
 ** Architecture design
-** Component selection
-*** POCs
+/general diagrams/
+
+Each link has associated transport protocol
+
+#+CAPTION: Component Diagram
+#+NAME: fig:compdiag
+[[../img/arch.png]]
+
+/flow chart communication/
+
+*** WebRTC to SIP case
+
+Authentication
+/authentication diagrams/
+
+Gateway
+/gateway diagrams/ 
+
+#+CAPTION: SDP exchange during SIP signalling
+#+NAME: fig:compdiag
+[[../img/gw-sdp-exchange.png]]
+
+#+CAPTION: SIP transport
+#+NAME: fig:compdiag
+[[../img/gw-sip-transport.png]]
+
+#+CAPTION: Transport
+#+NAME: fig:compdiag
+[[../img/gw-transport.png]]
+
 ** Applications available
+*** POCs
+
 ** Implementation
 ** /Demo/
 * Conclusions & Future Work
