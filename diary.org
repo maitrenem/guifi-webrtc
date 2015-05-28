@@ -1,6 +1,25 @@
 * Diary
 Everyday it's a-gettin' closer
 ** <2015-05-22 Fri>--<2015-05-29 Fri> sprint 2
+*** <2015-05-29 Fri>
+- Review this definitions
+  - RTP: Real-time Transport Protocol is an Internet Engineering Task Force (IETF) standardized protocol for transmitting multimedia in IP networks. RTP is used for the “bearer” channels—the actual voice, video, and image content. SIP is commonly used for the signaling to set up and tear down sessions.
+  - SIP: Session Initiation Protocol establishes sessions over IP networks, such as those for telephone calls, audio conferencing, click-to-dial from the Web, and instant messaging exchanges between devices. It is also used to link IP telephones from different manufacturers to SIP-compatible IP telephone systems. It is used in landline and mobile networks.
+  - QoS: Quality of Service guarantees a particular level of service. To meet these guarantees, service providers or IT staff members allocate bandwidth for certain types of traffic.
+  - Router: Routers carry traffic between LANs, from enterprises to the Internet, and across the Internet. They are more complex than switches because they have routing tables with addresses and perform other functions. Routers select the best available path over which to send data.
+  - G.711 is used to compress voice signals at 64,000 bits per second plus a 6- to 21-kilobit header for VoIP services. It produces good voice quality but uses more network capacity than other compression techniques. This technique requires 60 milliseconds to process and “look ahead” (check the route).
+- check
+  - https://tools.ietf.org/html/draft-ietf-rtcweb-audio
+  - https://tools.ietf.org/html/draft-ietf-rtcweb-rtp-usage-23
+- more about RTP-RTCP-RTSP (AIS course)
+- about him
+  - http://www.arkko.com/tools/allstats/simonpietroromano.html
+  - http://www.computer.org/csdl/mags/ic/2012/05/mic2012050068-abs.html
+*** <2015-05-28 Thu>
+- RTP-RTCP-RTSP overview
+- SSRC field identifies the synchronization source. This identifier SHOULD be chosen randomly, with the intent that no two synchronization sources within the same RTP session wil have the same SSRC identifier.
+- working on some fundamental definition
+- how to handle bibliography: http://www.ijet.pl/ijet-files/Bibtex.pdf
 *** <2015-05-27 Wed>
 - some diagrams
 - network requirements, delay, bandwidth (math appear)
@@ -14,16 +33,18 @@ Everyday it's a-gettin' closer
   - WebRTC motivations: easy and rich for developers, easy to deploy (crossplatform), strong security, P2P
   - The SDP offer/answer protocol used by SIP is used for media negotiation
   - identity does not allow man in the middle
-  - SSRC per stream?
   - security issue with split tunnel http://en.wikipedia.org/wiki/Split_tunneling
     - http://www.unhappyghost.com/2015/02/webrtc-killing-tor-vpn-ip-masking-privacy.html
   - http://www.gfi.com/blog/to-split-or-not-to-split-that-is-the-question/
   - https://diafygi.github.io/webrtc-ips/
+  - http://ipleak.net/
 - http://10.90.224.161 -> QoS ?
 - QoS
   - Mikrotik
     - Firewall Mangle =/ip firewall mangle print=
     - Queue Queue tree =/queue tree= -> priority queue
+    - http://wiki.mikrotik.com/wiki/DSCP_based_QoS_with_HTB
+    - http://forum.mikrotik.com/viewtopic.php?t=73214
   - Linux kernel
     - tc, mangle (traffic shaping)
     - http://www.netfilter.org/documentation/HOWTO/netfilter-hacking-HOWTO-3.html
@@ -72,9 +93,7 @@ Everyday it's a-gettin' closer
     - Handshake with DTLS self-signed certificates
     - SRTP is used on the wire. (stream data)
       - RTCP
-
       - RTP
-      - SSRC?
       - SCTP: (for) multiple streams
         - encapsulation of SCTP over DTLS over UDP together with ICE provides a NAT traversal solution, confidentiality, source authentication, integrity protected transfers. Allows data transport  to interwork parallel media transport, share single transport-layer port number. Possibility of opening several independent streams within a SCTP association towards a peering SCTP endpoint.
       - Multiplex all the sessions in one

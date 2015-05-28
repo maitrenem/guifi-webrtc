@@ -101,7 +101,7 @@ Special thanks to Victor Pascual and Miquel Oliver for his mentorship. Thanks to
 
 Thanks to Daniel Pocock for its work on rtcquickstart.org. Thanks to webrtchacks.com and all its team for the useful articles.
 
-Thanks to all the people that works for the democratisation of communications
+Thanks to all the people that works for the democratization of communications
 
 Thanks for reading. Thanks for your time.
 
@@ -119,13 +119,13 @@ The present project introduces the disrupting technology WebRTC (Web Real-Time C
 \vspace*{\fill}
 \section*{\Large \sffamily Resum}
 
-Aquest projecte
+Aquest projecte introdueix la tecnologia disruptiva WebRTC (comunicació web en temps real), que suporta aplicacions de navegador a navegador sense la necessitat de complements adicionals. Es detalla com, des de que va ser alliberat per Google al 2011, està evolucionant i canviant la forma en que les comunicacions són enteses. Com materialitzar les comunicacions en temps real en organitzacions amb WebRTC i el cas d'ús de trucades de veu i vídeo, prenent com exemple guifi.net i les oportunitats que ofereix: requeriments, disseny d'arquitectura, selecció de components, implementació i demostració.
 
 \selectlanguage{spanish}
 \vspace*{\fill}
 \section*{\Large \sffamily Resumen}
 
-Este proyecto
+Este proyecto introduce la tecnología disruptiva WebRTC (comunicación web en tiempo real), que soporta aplicaciones de navegador a navegador sin necesidad de complementos adicionales. Se detalla cómo, desde que fue liberado por Google en el 2011, está evolucionando y cambiando la forma en que son entendidas las comunicaciones. Cómo materializar las comunicaciones en tiempo real en organizaciones con WebRTC y el caso de uso de llamadas de voz y vídeo, tomando como ejemplo guifi.net y las oportunidades que ofrece: requerimientos, diseño de la arquitectura, selección de componentes, implementación y demostración.
 
 \vspace*{\fill}
 
@@ -166,7 +166,7 @@ Este proyecto
 
 * Introduction
 ** Motivation
-In the other bachelor's thesis \cite{vilchez2014comnet} I worked 2 ideas: together we can do networks, it is simple to start. Even so, in cities like Barcelona it is easy to find persons that do not understand what is guifi.net, probably for two reasons: there is a very competitive communications market in cities and the complexity to understand a commons model from the consumer point of view. In the case of zones where there is no investment of large operators, the things change: persons need internet, and they struggle to understand the commons model.
+In the other bachelor's thesis \cite{vilchez2014comnet} I worked 2 ideas: /together we can do networks/ and /it is simple to start/. Even so, in cities like Barcelona it is easy to find persons that do not understand what is guifi.net, probably for two reasons: there is a very competitive communications market in cities and the complexity to understand a commons model from the consumer point of view. In the case of zones where there is no investment of large operators, the things change: persons need internet, and they struggle to understand the commons model.
 
 The implementation of other services besides Internet, could help certain persons to understand the advantages of commons network, add value to the network. There are services based on contents that are difficult to maintain but there is a service that can be easily applied on a large scale: RTC. It is something to plan and wait until people start using it. Because is communication in a close environment. We are social.
 
@@ -179,22 +179,58 @@ Also, from the guifi point of view, is a challenge, there were some attempts to 
 ** Outline
 This document is organised in 5 chapters.
 
-*Chapter 1 Introduction* introduces the project. The motivation to start this project and the high level objectives to achieve.
+*Chapter [[Introduction]] Introduction* introduces the project. The motivation to start this project and the high level objectives to achieve.
 
-*Chapter 2 Fundamentals of RTC* presents the basics of the concepts communications and real-time .
+*Chapter [[Fundamentals of RTC]] Fundamentals of RTC* presents the basics of the concepts communications and real-time.
 
-*Chapter 3 State of the Art* discusses the state of the art of WebRTC and its associated technologies.
+*Chapter [[State of the art]] State of the art* discusses the state of the art of WebRTC and its associated technologies.
 
-*Chapter 4 Methodology* contains a description of the processes involved to achieve this project.
+*Chapter [[Methodology]] Methodology* contains a description of the processes involved to achieve this project.
 
-*Chapter 5 Contributions and Results* develops the theory and practice of the objectives proposed by this project
+*Chapter [[Contributions and Results]] Contributions and Results* develops the theory and practice of the objectives proposed by this project
 
-*Chapter 6 Conclusions and Future Work* provides a general assessment of the project
+*Chapter [[Conclusions and Future Work]] Conclusions and Future Work* provides a general assessment of the project
 * Fundamentals of RTC
 ** Communications
-- *Circuit switching and traditional telephony*
+In this section was necessary to use as sources of information \cite{kurose2013net} and \cite{dodd2012telecom}
 
-- *Packet switching and Internet*
+- Protocol: /defines the format and the order of messages exchanged between two or more communicating entities, as well as the actions taken on the transmission and/or receipt of a message or other event./  \cite{kurose2013net}
+
+- Signalling: /signaling is the process of sending control information over landline and mobile networks to monitor, control, route, and set up sessions between devices. These sessions include video and audio conference calls, data sessions, video calls, and mobile and landline telephone calls. Signaling is also used to set up instant messaging and chat sessions. Signaling is used within public networks and the Internet as well as for intercarrier connections and billing./ \cite{dodd2012telecom}
+
+- Signalling protocol
+
+- OSI model and TCP/IP model
+
+#+CAPTION: Left: OSI model. Right: TCP/IP model
+#+NAME: fig:ositcpip
+[[../img/osi-and-tcpip.png]]
+
+- Gateway: translate a protocol of a particular layer into another (improve)
+
+There are two fundamental approaches to transport data: circuit switching and packet switching.
+
+*Circuit switching and traditional telephony*. The resource (a network path between source and destination) is reserved for the duration of the communication session between the endpoints. In one hand, is a guaranteed constant transmission rate, good link quality, in the other hand, is an expensive resource that is being wasted in silent periods. One of the techniques used to reduce the silent periods is to multiplex the circuits in time (Time-Division Multiplexing) or frequency (Frequency-Division Multiplexing). The Public Switched Telephone Network (PSTN) is an example of an aggregate network operated by national, regional and local telephony operators that used this type of network paradigm in the past, now is moving towards a packet switching network. The technical operation of the PSTN uses the standards created by the ITU (International Telecommunication Union). The signalling protocol of PSTN is the SS7 (Signalling System No. 7), and to become compatible with other systems it is required a gateway.
+# https://en.wikipedia.org/wiki/Public_switched_telephone_network
+
+*Packet switching and the Internet*. The messages are divided in appropriate sized chunks of data known as packets. Each packet travels from the source through a network, when it arrives at its destination, the messages are reconstructed. The network resources are used on demand, not reserved, as a consequence, a packet may have to wait for access a communication link. Each packet could be routed in a different network path depending on the network state. Some of them could be lost if there is a congestion (a lot of traffic, a big number of packets). The network makes its best effort to deliver packets in a timely manner, but it does not make any guarantees. The network equipment needed to build a packet switching infrastructure is affordable, flexible and can manage easily a large amount of data (throughput). The internet is an example of a network of networks that consists of lots of private, public, academic, business, and government networks of local to global scope. The technical operation and standardization of the Internet is an activity of the IETF (Internet Engineering Task Force). There are some signalling protocols proposed in the IETF, it will be showed the most important in the Section [[State of the art]] State of the art.
+# https://en.wikipedia.org/wiki/Internet
+
+  - UDP and TCP
+  - IP and DNS
+
+How a "best effort network" become prepared for professional real time communication? Switch to telephony/RTC in internet
+
+  - QoS Quality of Service
+  - RTP
+    - DTP Data Transfer Protocol
+    - RTCP Real Time Control Protocol
+  - Security
+    - SRTP
+    - ZRTP
+  - Compression
+    - Codecs
+
 ** Real-time
 * State of the art
 ** Important mechanisms
@@ -414,7 +450,7 @@ Figure [[fig:wsd]] shows the *work style*, how the objectives will be accomplish
 #+CAPTION: Work style diagram
 #+NAME: fig:wsd
 [[../img/workstyle.png]]
-* Contributions & Results
+* Contributions and Results
 It is wanted to define the architecture of a general RTC service, as set of different services and applications.
 ** Architecture of guifi.net
 ** Requirements
@@ -492,8 +528,14 @@ Requirements to send, receive calls, subscribe, unsubscribe and have integration
 - Throughput (more used than Bandwidth)
 - Delay
 - Jitter
-- Loss
+- Packet Loss
 - Congestion
+
+# esential guide to telecommunications [page 77]
+# - Packet loss This refers to the packets that are dropped when there is network congestion. Packet loss results in uneven voice quality. Voice conversations “break up” when packet loss is too high.
+# - Latency This term refers to delays (in milliseconds) that are incurred when voice packets traverse the network. Latency results in long pauses within conversations, and clipped words.
+# - Jitter Jitter is uneven latency and packet loss, which results in noisy calls that contain pops and clicks or crackling sounds.IP Private Branch Exchange Architecture
+# - Echo This is the annoying effect of hearing your voice repeated, an issue with which so many of us are familiar. It is often caused when voice data is translated from a circuit-switched format to the IP format. This is usually corrected during installation by special echo-canceling software.
 
 ** Component selection
 
@@ -533,7 +575,7 @@ Gateway
 
 ** Implementation
 ** /Demo/
-* Conclusions & Future Work
+* Conclusions and Future Work
 ** Conclusions
 ** Future Work
 * Fake

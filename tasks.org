@@ -44,6 +44,7 @@
 - [ ] client server model
 - [ ] p2p model
 - [ ] QoS en WebRTC?
+- [ ] SDP vs /JSON new format for SDP/
 ***** Graphics
 - [X] pyramid: requirements, design, implementation, poc
 - [ ] do a diagram like this http://www.just2good.co.uk/images/gif/tcpipstack.gif explain
