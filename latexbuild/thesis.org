@@ -192,32 +192,61 @@ This document is organised in 5 chapters.
 *Chapter [[Conclusions and Future Work]] Conclusions and Future Work* provides a general assessment of the project
 * Fundamentals of RTC
 ** Communications
-In this section was necessary to use as sources of information \cite{kurose2013net} and \cite{dodd2012telecom}
+For this section, it was necessary to use as sources of information \cite{kurose2013net} and \cite{dodd2012telecom}.
 
-- Protocol: /defines the format and the order of messages exchanged between two or more communicating entities, as well as the actions taken on the transmission and/or receipt of a message or other event./  \cite{kurose2013net}
+In order to design communications in a system, the different elements what to do with the messages. That's why it is needed protocols. A protocol defines the format and the order of messages exchanged between two or more communicating entities, as well as the actions taken on the transmission and/or receipt of a message or other event.
 
-- Signalling: /signaling is the process of sending control information over landline and mobile networks to monitor, control, route, and set up sessions between devices. These sessions include video and audio conference calls, data sessions, video calls, and mobile and landline telephone calls. Signaling is also used to set up instant messaging and chat sessions. Signaling is used within public networks and the Internet as well as for intercarrier connections and billing./ \cite{dodd2012telecom}
+Real-time communications are even more complex, the information has to arrive fast and it is convenient to prepare the receiver of the communication. It is called signalling. Signaling is the process of sending control information over landline and mobile networks to monitor, control, route, and set up sessions between devices. These sessions include video and audio conference calls, data sessions, video calls, and mobile and landline telephone calls. Signaling is also used to set up instant messaging and chat sessions. There are different signalling protocols.
 
-- Signalling protocol
+There are different approaches to achieve real-time systems, that is why it is needed compatibility between the systems. A gateway allows equipment with different protocols to communicate with one another. For example, gateways are used when incompatible video systems are used for a video conference.
 
-- OSI model and TCP/IP model
+It is also important how to transport the data, there are two fundamental approaches: circuit switching and packet switching.
 
-#+CAPTION: Left: OSI model. Right: TCP/IP model
-#+NAME: fig:ositcpip
-[[../img/osi-and-tcpip.png]]
-
-- Gateway: translate a protocol of a particular layer into another (improve)
-
-There are two fundamental approaches to transport data: circuit switching and packet switching.
-
-*Circuit switching and traditional telephony*. The resource (a network path between source and destination) is reserved for the duration of the communication session between the endpoints. In one hand, is a guaranteed constant transmission rate, good link quality, in the other hand, is an expensive resource that is being wasted in silent periods. One of the techniques used to reduce the silent periods is to multiplex the circuits in time (Time-Division Multiplexing) or frequency (Frequency-Division Multiplexing). The Public Switched Telephone Network (PSTN) is an example of an aggregate network operated by national, regional and local telephony operators that used this type of network paradigm in the past, now is moving towards a packet switching network. The technical operation of the PSTN uses the standards created by the ITU (International Telecommunication Union). The signalling protocol of PSTN is the SS7 (Signalling System No. 7), and to become compatible with other systems it is required a gateway.
-# https://en.wikipedia.org/wiki/Public_switched_telephone_network
-
-*Packet switching and the Internet*. The messages are divided in appropriate sized chunks of data known as packets. Each packet travels from the source through a network, when it arrives at its destination, the messages are reconstructed. The network resources are used on demand, not reserved, as a consequence, a packet may have to wait for access a communication link. Each packet could be routed in a different network path depending on the network state. Some of them could be lost if there is a congestion (a lot of traffic, a big number of packets). The network makes its best effort to deliver packets in a timely manner, but it does not make any guarantees. The network equipment needed to build a packet switching infrastructure is affordable, flexible and can manage easily a large amount of data (throughput). The internet is an example of a network of networks that consists of lots of private, public, academic, business, and government networks of local to global scope. The technical operation and standardization of the Internet is an activity of the IETF (Internet Engineering Task Force). There are some signalling protocols proposed in the IETF, it will be showed the most important in the Section [[State of the art]] State of the art.
+*Packet switching and the Internet*. The messages are divided in appropriate sized chunks of data known as packets. Each packet travels from the source through a network, when it arrives at its destination, the messages are reconstructed. The network resources are used on demand, not reserved, as a consequence, a packet may have to wait for access a communication link. Each packet could be routed in a different network path depending on the network state. Some of them could be lost if there is a congestion (a lot of traffic, a big number of packets). The network makes its best effort to deliver packets in a timely manner, but it does not make any guarantees. The network equipment needed to build a packet switching infrastructure is affordable, flexible and can manage easily a large amount of data (throughput). The internet is an example of a network of networks that consists of lots of private, public, academic, business, and government networks of local to global scope. The technical operation and standardization of the Internet is an activity of the IETF (Internet Engineering Task Force). The protocol stack of the Internet is the TCP/IP stack, the name was given due to the importance of this two protocols on the system.
 # https://en.wikipedia.org/wiki/Internet
 
-  - UDP and TCP
-  - IP and DNS
+*Circuit switching and traditional telephony*. The resource (a network path between source and destination) is reserved for the duration of the communication session between the endpoints. In one hand, is a guaranteed constant transmission rate, good link quality, in the other hand, is an expensive resource that is being wasted in silent periods. One of the techniques used to reduce the silent periods is to multiplex the circuits in time (Time-Division Multiplexing) or frequency (Frequency-Division Multiplexing). The Public Switched Telephone Network (PSTN) is an example of an aggregate network operated by national, regional and local telephony operators that used this type of network paradigm in the past, now is moving towards a packet switching network. The technical operation of the PSTN uses the standards created by the ITU (International Telecommunication Union). The protocol stack of PSTN network is the SS7 stack (Signalling System No. 7). Later, they added generic data to its networks with ISDN (Integrated Services Digital Network).
+# https://en.wikipedia.org/wiki/Public_switched_telephone_network
+# https://en.wikipedia.org/wiki/Integrated_Services_Digital_Network
+
+IETF and ITU did efforts to adapt its networks to the requested uses: transport of generic data and real-time data. Internet is becoming the standard way to transport any kind of data. IETF did operations to include traditional telecommunication operators inside Internet, for example SIGTRAN[fn:6] family of protocols (compatibility with SS7 and ISDN). That's why Internet can manage real-time data with reasonable delay.
+
+# https://en.wikipedia.org/wiki/SIGTRAN
+
+SS7, ISDN and TCP/IP stacks are based on the Open Systems Interconnection model (OSI model[fn:7]). This helped at the interconnection of different applications and compatibility between systems that use different protocols. Each protocol belongs to one layer. Each layer provides its service by performing certain actions within that layer and by using the services of the layer directly below it, this is called the service model. Table [[tab:ositcpip]] shows the difference between TCP/IP stack and OSI model, each row is a layer. Physical layer is implementated with hardware for example with NIC (Network Interface Controller) or WNIC (Wireless Network Interface Controller), generally uses the IEEE 802 family, and its standardization is managed by IEEE[fn:8]. Link layer is typically implemented by an element called switch, they provide close connectivity. Network layer is typically implemented by an element called router, they provide far connectivity. Session and presentation layers has to be implemented by the application.
+
+# https://en.wikipedia.org/wiki/OSI_model
+
+#+CAPTION: OSI, TCP layers and its description.
+#+NAME: tab:ositcpip
+| OSI          | Description                           | TCP/IP      |
+|--------------+---------------------------------------+-------------|
+| Application  | Network and application services      | Application |
+| Presentation | Data format                           | $\nearrow$  |
+| Session      | Signalling of data                    | $\nearrow$  |
+| Transport    | Connection establishment side to side | Transport   |
+| Network      | Logic addressing (far)                | Network     |
+| Link         | Physical addressing (close)           | Link        |
+| Physical     | Binary signal and transmission        | Physical    |
+
+Table [[tab:pdu]] shows the name of each Protocol Data Unit (PDU), the most important protocols and the organization that standarizes it. At link layer the most common PDU is the Ethernet frame, with its associated MAC address (Media Access Control). At the network layer the datagram, with its associated IP address (Internet Protocol). It is difficult to remember IP addresses to access different services, that's why there is DNS (Domain Name Server) that associate human readable addresses with IP's. At the transport layer, one unreliable and fast protocol, UDP (User Datagram Protocol) and another reliable, TCP (Transmission Control Protocol). For the real-time field, UDP is massively used in the real-time communication, and TCP for the signalling. At the application layer there are lots of possibilities.
+
+#+CAPTION: PDU associated with each layer
+#+NAME: tab:pdu
+| TCP/IP layer | PDU                           | Standardization |
+|--------------+-------------------------------+-----------------|
+| Application  | Message                       | IETF            |
+| Transport    | Datagram (UDP), Segment (TCP) | IETF            |
+| Network      | Datagram or Packet (IP)       | IETF            |
+| Link         | Frame (MAC)                   | IEEE            |
+
+Every PDU has two types of fields: header and payload. A PDU is encapsulated with the layer below (see Figure [[fig:encap]]). If the header part is greater than payload part is called overhead. In that case, the communication is not very efficient, specially if they are sent lots of packets.
+
+#+CAPTION: PDU encapsulation with IP and TCP protocols, application is not specified.
+#+NAME: fig:encap
+[[../img/encapsulation.png]]
+# https://en.wikipedia.org/wiki/Protocol_data_unit#OSI_model
+
 
 How a "best effort network" become prepared for professional real time communication? Switch to telephony/RTC in internet
 
@@ -225,19 +254,47 @@ How a "best effort network" become prepared for professional real time communica
   - RTP
     - DTP Data Transfer Protocol
     - RTCP Real Time Control Protocol
-  - Security
-    - SRTP
-    - ZRTP
-  - Compression
-    - Codecs
 
 ** Real-time
+Bandwidth
+Packet problems for real-time (book voip for wifi speaks about it)
+- Delay: long queues, bad quality links
+- Jitter: the different packets arrive with different delays
+- Packets delivered out of order
+- Error: corruption of packets
 * State of the art
 ** Important mechanisms
+- LDAP
+- DNS: NAPTR and SRV (it's like an email)
+- Connectivity Problems
+  - NAT
+  - Firewall
+  - ICE
+  - STUN
+  - TURN
+- Websockets
 ** Voice and video calls
 - *VoIP*
+  - H.323 (ITU)
+  - SIP (IETF)
+    - SIP Proxy
 ** Instant messaging
+- XMPP (RFC, XEV)
 ** WebRTC
+- No signalling specified, you can use for example...
+- Use of SDP (evolution to SDP of json)
+- Codecs
+  - Audio: G.711, Opus
+  - Video: H264, VP8
+- Media Management
+  - MCU
+  - SFU
+
+
+
+
+
+
 
 - *Security* problems hiding public IP
 
@@ -629,4 +686,10 @@ Fake section to put the last latex code of the document
 [fn:4] the web implementation is proprietary software, but it can be easily migrated to other open source tools such as http://gitlab.com or http://gogs.io/
 
 [fn:5] International Telecommunication Union, formerly the International Telegraph Union
+
+[fn:6] derived from signalling transport, working group of IETF.
+
+[fn:7] ISO/IEC 7498-1:1994
+
+[fn:8] Institute of Electrical and Electronics Engineers
 
