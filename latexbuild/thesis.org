@@ -113,19 +113,19 @@ Thanks for reading. Thanks for your time.
 \selectlanguage{english}
 \section*{\Large \sffamily Abstract}
 
-The present project introduces the disrupting technology WebRTC (Web Real-Time Communication), that supports browser-to-browser applications without need of third party plugins. It is detailed how, since its release by Google in 2011, it's evolving and changing the way communications are understood. How to materialise a Real Time Communications in organizations with WebRTC and the use case of video and audio calls, taking as example guifi.net and the opportunities that it offers: requirements, architecture design, component selection, implementation and demo.
+The present project introduces the disrupting technology WebRTC (Web Real-Time Communication), that supports browser-to-browser applications without need of third party plugins. It is detailed how, since its release by Google in 2011, it's evolving and changing the way communications are understood. How to materialise a Real Time Communications in organizations with WebRTC and the use case of video and audio calls, taking as example Guifi.net and the opportunities that it offers: requirements, architecture design, component selection, implementation and demo.
 
 \selectlanguage{catalan}
 \vspace*{\fill}
 \section*{\Large \sffamily Resum}
 
-Aquest projecte introdueix la tecnologia disruptiva WebRTC (comunicació web en temps real), que suporta aplicacions de navegador a navegador sense la necessitat de complements adicionals. Es detalla com, des de que va ser alliberat per Google al 2011, està evolucionant i canviant la forma en que les comunicacions són enteses. Com materialitzar les comunicacions en temps real en organitzacions amb WebRTC i el cas d'ús de trucades de veu i vídeo, prenent com exemple guifi.net i les oportunitats que ofereix: requeriments, disseny d'arquitectura, selecció de components, implementació i demostració.
+Aquest projecte introdueix la tecnologia disruptiva WebRTC (comunicació web en temps real), que suporta aplicacions de navegador a navegador sense la necessitat de complements adicionals. Es detalla com, des de que va ser alliberat per Google al 2011, està evolucionant i canviant la forma en que les comunicacions són enteses. Com materialitzar les comunicacions en temps real en organitzacions amb WebRTC i el cas d'ús de trucades de veu i vídeo, prenent com exemple Guifi.net i les oportunitats que ofereix: requeriments, disseny d'arquitectura, selecció de components, implementació i demostració.
 
 \selectlanguage{spanish}
 \vspace*{\fill}
 \section*{\Large \sffamily Resumen}
 
-Este proyecto introduce la tecnología disruptiva WebRTC (comunicación web en tiempo real), que soporta aplicaciones de navegador a navegador sin necesidad de complementos adicionales. Se detalla cómo, desde que fue liberado por Google en el 2011, está evolucionando y cambiando la forma en que son entendidas las comunicaciones. Cómo materializar las comunicaciones en tiempo real en organizaciones con WebRTC y el caso de uso de llamadas de voz y vídeo, tomando como ejemplo guifi.net y las oportunidades que ofrece: requerimientos, diseño de la arquitectura, selección de componentes, implementación y demostración.
+Este proyecto introduce la tecnología disruptiva WebRTC (comunicación web en tiempo real), que soporta aplicaciones de navegador a navegador sin necesidad de complementos adicionales. Se detalla cómo, desde que fue liberado por Google en el 2011, está evolucionando y cambiando la forma en que son entendidas las comunicaciones. Cómo materializar las comunicaciones en tiempo real en organizaciones con WebRTC y el caso de uso de llamadas de voz y vídeo, tomando como ejemplo Guifi.net y las oportunidades que ofrece: requerimientos, diseño de la arquitectura, selección de componentes, implementación y demostración.
 
 \vspace*{\fill}
 
@@ -166,17 +166,22 @@ Este proyecto introduce la tecnología disruptiva WebRTC (comunicación web en t
 
 * Introduction
 ** Motivation
-In the other bachelor's thesis \cite{vilchez2014comnet} I worked 2 ideas: /together we can do networks/ and /it is simple to start/. Even so, in cities like Barcelona it is easy to find persons that do not understand what is guifi.net, probably for two reasons: there is a very competitive communications market in cities and the complexity to understand a commons model from the consumer point of view. In the case of zones where there is no investment of large operators, the things change: persons need internet, and they struggle to understand the commons model.
+
+In the other bachelor's thesis \cite{vilchez2014comnet} I worked 2 ideas: /together we can do networks/ and /it is simple to start/. Even so, in cities like Barcelona it is easy to find persons that do not understand what is Guifi.net, probably for two reasons: there is a very competitive communications market in cities and the complexity to understand a commons model from the consumer point of view. In the case of zones where there is no investment of large operators, the things change: persons need internet, and they struggle to understand the commons model.
 
 The implementation of other services besides Internet, could help certain persons to understand the advantages of commons network, add value to the network. There are services based on contents that are difficult to maintain but there is a service that can be easily applied on a large scale: RTC. It is something to plan and wait until people start using it. Because is communication in a close environment. We are social.
 
-Also, from the guifi point of view, is a challenge, there were some attempts to implement a RTC system but they failed. With WebRTC, let’s try again!
+Also, from the Guifi.net point of view, is a challenge, there were some attempts to implement a RTC system but they failed. With WebRTC, let’s try again!
+
 ** Objectives
+
 - Free and secure communication between users using own RTC system and commons network infrastructure.
-- Backward compatible with VoIP network. Hence, users can communicate to other VoIP operators from inside and/or outside guifi.net.
+- Backward compatible with VoIP network. Hence, users can communicate to other VoIP operators from inside and/or outside Guifi.net.
 - An architecture design of an RTC system that fits the community network scenario.
 - Ease of installation and use of the RTC.
+
 ** Outline
+
 This document is organised in 5 chapters.
 
 *Chapter [[Introduction]] Introduction* introduces the project. The motivation to start this project and the high level objectives to achieve.
@@ -190,30 +195,32 @@ This document is organised in 5 chapters.
 *Chapter [[Contributions and Results]] Contributions and Results* develops the theory and practice of the objectives proposed by this project
 
 *Chapter [[Conclusions and Future Work]] Conclusions and Future Work* provides a general assessment of the project
+
 * Fundamentals of RTC
 ** Communications
+
 For this section, it was necessary to use as sources of information \cite{kurose2013net} and \cite{dodd2012telecom}.
 
-In order to design communications in a system, the different elements what to do with the messages. That's why it is needed protocols. A protocol defines the format and the order of messages exchanged between two or more communicating entities, as well as the actions taken on the transmission and/or receipt of a message or other event.
+In order to design communications in a system, the different elements must know what to do with the messages. That's why it is needed protocols. A protocol defines the format and the order of messages exchanged between two or more communicating entities, as well as the actions taken on the transmission and/or receipt of a message or other event.
 
-Real-time communications are even more complex, the information has to arrive fast and it is convenient to prepare the receiver of the communication. It is called signalling. Signaling is the process of sending control information over landline and mobile networks to monitor, control, route, and set up sessions between devices. These sessions include video and audio conference calls, data sessions, video calls, and mobile and landline telephone calls. Signaling is also used to set up instant messaging and chat sessions. There are different signalling protocols.
+Real-time communications are even more complex, the information has to arrive fast and it is convenient to prepare the receiver of the communication. Signalling is the process of sending control information over landline and mobile networks to monitor, control, route, and set up sessions between devices. These sessions include video and audio conference calls, data sessions, video calls, and mobile and landline telephone calls. Signalling is also used to set up instant messaging and chat sessions. A signalling protocol, is a protocol that needs signalling features.
 
 There are different approaches to achieve real-time systems, that is why it is needed compatibility between the systems. A gateway allows equipment with different protocols to communicate with one another. For example, gateways are used when incompatible video systems are used for a video conference.
 
 It is also important how to transport the data, there are two fundamental approaches: circuit switching and packet switching.
 
-*Packet switching and the Internet*. The messages are divided in appropriate sized chunks of data known as packets. Each packet travels from the source through a network, when it arrives at its destination, the messages are reconstructed. The network resources are used on demand, not reserved, as a consequence, a packet may have to wait for access a communication link. Each packet could be routed in a different network path depending on the network state. Some of them could be lost if there is a congestion (a lot of traffic, a big number of packets). The network makes its best effort to deliver packets in a timely manner, but it does not make any guarantees. The network equipment needed to build a packet switching infrastructure is affordable, flexible and can manage easily a large amount of data (throughput). The internet is an example of a network of networks that consists of lots of private, public, academic, business, and government networks of local to global scope. The technical operation and standardization of the Internet is an activity of the IETF (Internet Engineering Task Force). The protocol stack of the Internet is the TCP/IP stack, the name was given due to the importance of this two protocols on the system.
+*Packet switching and the Internet*. The messages are divided in appropriate sized chunks of data known as packets. Packets travel from the source through a network, when they arrive at its destination, the messages are reconstructed. The network makes its best effort to deliver packets in a timely manner, but it does not make any guarantees. Because the resources of the network are used on demand, not reserved, as a consequence, a packet may have to wait for access a communication link. Each packet could be routed in a different network path depending on the network state. Some of them could be lost if there is a congestion (a lot of traffic, a big number of packets). The network equipment needed to build a packet switching infrastructure is affordable, flexible and can manage easily a large amount of data (throughput). The internet is an example of a network of networks that consists of lots of private, public, academic, business, and government networks of local to global scope. The technical operation and standardization of the Internet is an activity of the IETF (Internet Engineering Task Force). The protocol stack of the Internet is the TCP/IP stack, the name was given due to the importance of this two protocols on the system.
 # https://en.wikipedia.org/wiki/Internet
 
-*Circuit switching and traditional telephony*. The resource (a network path between source and destination) is reserved for the duration of the communication session between the endpoints. In one hand, is a guaranteed constant transmission rate, good link quality, in the other hand, is an expensive resource that is being wasted in silent periods. One of the techniques used to reduce the silent periods is to multiplex the circuits in time (Time-Division Multiplexing) or frequency (Frequency-Division Multiplexing). The Public Switched Telephone Network (PSTN) is an example of an aggregate network operated by national, regional and local telephony operators that used this type of network paradigm in the past, now is moving towards a packet switching network. The technical operation of the PSTN uses the standards created by the ITU (International Telecommunication Union). The protocol stack of PSTN network is the SS7 stack (Signalling System No. 7). Later, they added generic data to its networks with ISDN (Integrated Services Digital Network).
+*Circuit switching and traditional telephony*. The resource (a network path between source and destination) is reserved for the duration of the communication session between the endpoints. In one hand, is a guaranteed constant transmission rate, good link quality, in the other hand, is an expensive resource that is being wasted in silent periods. One of the techniques used to reduce the silent periods is to multiplex the circuits in time (Time-Division Multiplexing, TDM) or frequency (Frequency-Division Multiplexing, FDM). The Public Switched Telephone Network (PSTN) is an example of an aggregate network operated by national, regional and local telephony operators that used this type of network paradigm in the past. Now it is moving towards a packet switching network. The technical operation of the PSTN uses the standards created by the ITU (International Telecommunication Union). The protocol stack of PSTN network is the SS7 stack (Signalling System No. 7). Later, it was added the possibility to include generic data to its networks with ISDN (Integrated Services Digital Network).
 # https://en.wikipedia.org/wiki/Public_switched_telephone_network
 # https://en.wikipedia.org/wiki/Integrated_Services_Digital_Network
 
-IETF and ITU did efforts to adapt its networks to the requested uses: transport of generic data and real-time data. Internet is becoming the standard way to transport any kind of data. IETF did operations to include traditional telecommunication operators inside Internet, for example SIGTRAN[fn:6] family of protocols (compatibility with SS7 and ISDN). That's why Internet can manage real-time data with reasonable delay.
+IETF and ITU did efforts to adapt its networks to the requested uses: transport of generic data and real-time data. Internet is becoming the standard way to transport any kind of data. IETF did operations to include traditional telecommunication operators inside Internet, for example SIGTRAN[fn:6] family of protocols (compatibility with SS7 and ISDN stacks). There is also the Quality of Service (QoS) concept, that gives priority to chosen packets to arrive faster. That's why Internet can manage real-time data with reasonable delay.
 
 # https://en.wikipedia.org/wiki/SIGTRAN
 
-SS7, ISDN and TCP/IP stacks are based on the Open Systems Interconnection model (OSI model[fn:7]). This helped at the interconnection of different applications and compatibility between systems that use different protocols. Each protocol belongs to one layer. Each layer provides its service by performing certain actions within that layer and by using the services of the layer directly below it, this is called the service model. Table [[tab:ositcpip]] shows the difference between TCP/IP stack and OSI model, each row is a layer. Physical layer is implementated with hardware for example with NIC (Network Interface Controller) or WNIC (Wireless Network Interface Controller), generally uses the IEEE 802 family, and its standardization is managed by IEEE[fn:8]. Link layer is typically implemented by an element called switch, they provide close connectivity. Network layer is typically implemented by an element called router, they provide far connectivity. Session and presentation layers has to be implemented by the application.
+SS7, ISDN and TCP/IP stacks are based on the Open Systems Interconnection model (OSI model[fn:7]). Each protocol belongs to one layer. Each layer provides its service by performing certain actions within that layer and by using the services of the layer directly below it, this is called the service model. Table [[tab:ositcpip]] shows the difference between the and OSI model and the TCP/IP stack, each row is a layer. In TCP/IP, physical layer is implementated with hardwarem, for example with NIC (Network Interface Controller) or WNIC (Wireless Network Interface Controller), generally uses the IEEE 802 family, and its standardization is managed by IEEE[fn:8]. Link layer is typically implemented by an element called switch, they provide close connectivity. Network layer is typically implemented by an element called router, they provide far connectivity. Session and presentation layers has to be implemented by the developer of the application.
 
 # https://en.wikipedia.org/wiki/OSI_model
 
@@ -229,9 +236,9 @@ SS7, ISDN and TCP/IP stacks are based on the Open Systems Interconnection model 
 | Link         | Physical addressing (close)           | Link        |
 | Physical     | Binary signal and transmission        | Physical    |
 
-Table [[tab:pdu]] shows the name of each Protocol Data Unit (PDU), the most important protocols and the organization that standarizes it. At link layer the most common PDU is the Ethernet frame, with its associated MAC address (Media Access Control). At the network layer the datagram, with its associated IP address (Internet Protocol). It is difficult to remember IP addresses to access different services, that's why there is DNS (Domain Name Server) that associate human readable addresses with IP's. At the transport layer, one unreliable and fast protocol, UDP (User Datagram Protocol) and another reliable, TCP (Transmission Control Protocol). For the real-time field, UDP is massively used in the real-time communication, and TCP for the signalling. At the application layer there are lots of possibilities.
+Table [[tab:pdu]] shows the name of each Protocol Data Unit (PDU), the most important protocols and the organization that standarizes it. At link layer the most common PDU is the Ethernet frame, with its associated MAC address (Media Access Control). At the network layer the datagram, with its associated IP address (Internet Protocol). It is difficult to remember IP addresses to access different locations, that's why there is DNS (Domain Name Server), it associates human readable addresses to IP's. At the transport layer, one unreliable and fast protocol, UDP (User Datagram Protocol) and another reliable, TCP (Transmission Control Protocol). For the real-time topic, UDP is massively used in the real-time communication, and TCP for the signalling. At the application layer there are many possibilities, an example is the DNS, briefly described above.
 
-#+CAPTION: PDU associated with each layer
+#+CAPTION: PDU associated with each layer in TCP/IP model
 #+NAME: tab:pdu
 | TCP/IP layer | PDU                           | Standardization |
 |--------------+-------------------------------+-----------------|
@@ -240,7 +247,7 @@ Table [[tab:pdu]] shows the name of each Protocol Data Unit (PDU), the most impo
 | Network      | Datagram or Packet (IP)       | IETF            |
 | Link         | Frame (MAC)                   | IEEE            |
 
-Every PDU has two types of fields: header and payload. A PDU is encapsulated with the layer below (see Figure [[fig:encap]]). If the header part is greater than payload part is called overhead. In that case, the communication is not very efficient, specially if they are sent lots of packets.
+Every PDU has two types of fields: header and payload. A PDU is encapsulated with the layer below (see Figure [[fig:encap]]). If the header part is greater than payload part is called overhead. If it occurs, the communication is not very efficient, specially if they are sent lots of packets.
 
 #+CAPTION: PDU encapsulation with IP and TCP protocols, application is not specified.
 #+NAME: fig:encap
@@ -248,22 +255,21 @@ Every PDU has two types of fields: header and payload. A PDU is encapsulated wit
 # https://en.wikipedia.org/wiki/Protocol_data_unit#OSI_model
 
 
-How a "best effort network" become prepared for professional real time communication? Switch to telephony/RTC in internet
 
-  - QoS Quality of Service
-  - RTP
-    - DTP Data Transfer Protocol
-    - RTCP Real Time Control Protocol
 
-** Real-time
+RTP and RTCP
+
+** TODO Real-time
+
 Bandwidth
-Packet problems for real-time (book voip for wifi speaks about it)
+Packet problems for real-time (book VoIP for wifi speaks about it)
 - Delay: long queues, bad quality links
 - Jitter: the different packets arrive with different delays
 - Packets delivered out of order
 - Error: corruption of packets
+
 * State of the art
-** Important mechanisms
+** TODO Important mechanisms
 - LDAP
 - DNS: NAPTR and SRV (it's like an email)
 - Connectivity Problems
@@ -273,16 +279,16 @@ Packet problems for real-time (book voip for wifi speaks about it)
   - STUN
   - TURN
 - Websockets
-** Voice and video calls
+** TODO Voice and video calls
 - *VoIP*
   - H.323 (ITU)
   - SIP (IETF)
     - SIP Proxy
-** Instant messaging
+** TODO Instant messaging
 - XMPP (RFC, XEV)
-** WebRTC
+** TODO WebRTC
 - No signalling specified, you can use for example...
-- Use of SDP (evolution to SDP of json)
+- Use of SDP (JSEP is the evolution)
 - Codecs
   - Audio: G.711, Opus
   - Video: H264, VP8
@@ -323,32 +329,33 @@ An analysis of Strengths, Weaknesses, Opportunities and Threats (SWOT) will help
 - Strengths
   - Ease of use: real-time communication is supported without the need for additional applications or plug-ins.
   - It helps to solve connectivity problems caused by NAT, Firewall, etc.
-  - It solved the problem with audio and video codecs.
-  - It is based on open technology.
+  - Solved the problem of selection of video and audio codecs.
+  - It is based on open standards and open source implementations.
   - It has well general acceptance in both worlds: enterprise and community.
   - The communication between peers is bidirectional and can be P2P
-  - WebRTC standard do not specify signalling: it can be used in very different scenarios.
+  - WebRTC standard does not specify signalling: it can be used in very different scenarios.
   - The communication channel between peers is encrypted
 - Weaknesses
-  - There are detractors of WebRTC, this includes some web browsers.
-  - There is a a long discussion about what video codec should be supported in web browsers.
-  - WebRTC uses different RTP packets than SIP. So a gateway is needed.
-  - Security compromised in VPN-tunnels, where the true IP address of the user can be read.
+  - It is not implemented in all browsers.
+  - The different browsers that implement WebRTC could have incompatibilities.
+  - WebRTC has incompatibility at transport level with SIP, a gateway is needed.
+  - Security compromised when using split VPN-tunnels, the IP address before the VPN-tunnel is exposed.
 - Opportunities
-  - For VoIP, WebRTC could be a web softphone. Easy to install, easy to update.
+  - WebRTC can be used in web based softphone for VoIP. Easy to install, easy to update.
   - A WebRTC audio call could be routed to traditional telephony.
-  - It uses javascript as programming language, this language has the wider community.
+  - It uses javascript as programming language, this language has the widest developer's community.
   - It encourages a new generation of web applications using its strenghts.
 - Threats
   - WebRTC standard do not specify signalling: this can produce a positive or negative fragmentation of projects. Positive fragmentation: different projects for different applications. Negative fragmentation: divided effort.
   - Is a work in progress technology, it is being changed.
+
 ** Scope
 
-There are a lots of RTC systems for different purposes. This project focuses in the work of IETF organization and Internet. Guifi.net is part of Internet, and has additional constraints to take in account.
+There are lots of RTC systems for different purposes. This project focuses in the work of IETF organization and Internet. Guifi.net is part of Internet, and has additional constraints to take in account.
 
-Dismissed RTC standard systems from ITU[fn:5], referred to in the [[Fundamentals of RTC]], and XMPP Standards Foundation, small references.
+The following topics are worked only in its fundamentals: RTC standard systems from ITU[fn:5], referred to in the [[Fundamentals of RTC]], and XMPP Standards Foundation, referred to in the [[State of the art]].
 
-Preferences in terms of technologies chosen, they should be open standard, open source software, with royalty free patent. If this is not possible, it will be notified, and will be used temporarily another technology until a new one appear and substitute it.
+In general it has chosen technologies based on open standards, open source implementations and royalty free patent.
 
 ** Resources
 
@@ -363,9 +370,9 @@ Table [[tab:eqre]] shows the equipment resources and its economic estimation. Ob
 #+NAME: tab:eqre
 | Material                                   | Estimated cost (euro) |
 |--------------------------------------------+-----------------------|
-| guifi.net equipments in my home            |                   200 |
+| Guifi.net equipments in my home            |                   200 |
 | PC with virtualization capabilities [home] |                  1000 |
-| guifi.net equipments in university         |                  1000 |
+| Guifi.net equipments in university         |                  1000 |
 | PC with Internet public IPv4 [university]  |                   300 |
 | Laptop                                     |                   400 |
 | ATA x 2                                    |                    60 |
@@ -379,7 +386,9 @@ Table [[tab:eqre]] shows the equipment resources and its economic estimation. Ob
 The human effort part was financed by the university in the form of a grant to the author, representing a cost of 2800 euro. A bachelor’s thesis corresponds in Europe to 500 hours of work.
 
 This implies a total cost of approximately 6000 euro
+
 ** Planning
+
 The project can be separated in two phases. The first phase is a long preamble of studying VoIP and WebRTC. The second phase is an agile plan. Figure \ref{fig:gantt1} shows the two phases in a gantt chart.
 
 # In the case of a pgfgantt, you have to create the "figure" inside
@@ -401,7 +410,7 @@ The project can be separated in two phases. The first phase is a long preamble o
 \end{figure}
 #+END_LATEX
 
-In the first phase, while studying VoIP the intention was to work about VoIP and guifi.net. But Miquel Oliver encouraged me to do it about WebRTC. He presented me Victor Pascual, a SIP and WebRTC expert. It was hard to realise a convenient project, because this technology involves lots of protocols, other technologies, and it’s being modified now. In this phase It were settled the necessary
+In the first phase, while studying VoIP the intention was to work about VoIP and Guifi.net. But Miquel Oliver encouraged me to do it about WebRTC. He presented me Victor Pascual, a SIP and WebRTC expert. It was hard to realise a convenient project, because this technology involves lots of protocols, other technologies, and it’s being modified now. In this phase It were settled the necessary
 concepts to start the project.
 
 The second phase is an agile plan, inspired by the Scrum methodology. Scrum is one of the Agile methods[fn:3] used for software development. The important fact is that promotes adaptive planning and flexible response to change. Scrum, particularly, is a general method that should be adapted to a concrete scenario.
@@ -414,10 +423,11 @@ The Scrum Team consists of a Product Owner, the Development Team, and a Scrum Ma
 /The heart of Scrum is a *Sprint*, a time-box of one month or less during which a "Done", usable, and potentially releasable product Increment is created/
 
 *** Scrum plan
+
 It is necessary to adapt the different concepts that comprise the scrum methodology for this particular project.
 
 Roles:
-- Product Owner (in some way, stakeholders): Mentors, University, people interested in the project. The author is interested in the output of the project because is volunteer in guifi.net.
+- Product Owner (in some way, stakeholders): Mentors, University, people interested in the project. The author is interested in the output of the project because is volunteer in Guifi.net.
 - Development Team: assumed by the author
 - Scrum Master: assumed by the author, optionally could be assumed by mentors.
 
@@ -459,6 +469,7 @@ time slot format=isodate
 #+END_LATEX
 
 *** Metatools
+
 To ensure the scrum plan and the project, different tools were used:
 - Emacs orgmode: is a plain text syntax and software that facilitates different operations
   - nested concepts: It is possible to fold and unfold nested concepts different parts. This brings facilities to take different points of view of the project.
@@ -474,7 +485,9 @@ To ensure the scrum plan and the project, different tools were used:
   - latexbuild directory: place where emacs orgmode thesis file is exported to latex and compiled to PDF
     - thesis.org: source code of memory
     - thesis.pdf: memory
+
 ** Tasks and work style
+
 The tasks for this project are divided in two components: theory and practice.
 
 Inside *theory*, there is:
@@ -507,36 +520,57 @@ Figure [[fig:wsd]] shows the *work style*, how the objectives will be accomplish
 #+CAPTION: Work style diagram
 #+NAME: fig:wsd
 [[../img/workstyle.png]]
+
 * Contributions and Results
+
 It is wanted to define the architecture of a general RTC service, as set of different services and applications.
-** Architecture of guifi.net
+
+** TODO Architecture of Guifi.net
 ** Requirements
+*** Network requirements
+
+/number and math justification?/
+
+- DNS (multiple servers)
+- Quality of Service (QoS): put priority to real-time traffic
+- Throughput (more used than Bandwidth)
+- Delay
+- Jitter
+- Packet Loss
+- Congestion
+
+# esential guide to telecommunications [page 77]
+# - Packet loss This refers to the packets that are dropped when there is network congestion. Packet loss results in uneven voice quality. Voice conversations “break up” when packet loss is too high.
+# - Latency This term refers to delays (in milliseconds) that are incurred when voice packets traverse the network. Latency results in long pauses within conversations, and clipped words.
+# - Jitter Jitter is uneven latency and packet loss, which results in noisy calls that contain pops and clicks or crackling sounds.IP Private Branch Exchange Architecture
+# - Echo This is the annoying effect of hearing your voice repeated, an issue with which so many of us are familiar. It is often caused when voice data is translated from a circuit-switched format to the IP format. This is usually corrected during installation by special echo-canceling software.
 *** Generic use cases
+The use cases developed are those that are bold.
 
 Definitions:
 - Actors or Roles have a *user* and/or *admin* account. The user has minimum permissions in the application, the admin has all the permissions in the application. It can be defined one or more middle actors that have more permissions than user and less permissions than admin.
 - A *call* refers to an audio or video call, bidirectional communication with video and/or audio channel.
-- A user is *available* if is connected to the service and is not in a call.
+- A user is *available* if is connected to the service and busy.
 
 A general RTC service could be defined as it follows:
-1. *Send calls: a user call another user with an audio channel. Optional channels of communication if available: video and chat.*
+1. *Send calls: a user calls another user with an audio channel. Optional channels of communication if available: video and chat.*
    - Access to the service through an application.
    - Authentication.
    - Decision of which user it is wanted to call.
    - The call is accepted by the other user.
    - Bidirectional communication.
    - One of the two users stop the communication.
-2. *Receive calls: a user receive a call only if is connected to the service with at least one device and is available.*
+2. *Receive calls: a user receives a call only if is connected to the service with at least one device and is available.*
    - Access to the service through an application.
    - Authentication.
-   - A lapse of random time until it is received a call. If there are more devices of the same user, all of them receive the call, but only one can accept it.
+   - A lapse of random time until a call is received. If there are more devices of the same user, all of them receive the call, but only one can accept it.
    - The call is accepted.
    - Bidirectional communication.
    - One of the two users stop the communication.
 3. A user can subscribe or unsubscribe to the RTC service.
 4. Call history: a user can see the calls sent, received, missed. He can delete it.
 5. Missed call notification
-   - When a user call another user that is not available (not connected to the service or in another call). A "missed call" notification is generated to be delivered to the other user.
+   - When a user calls to another user that is not available. A "missed call" notification is generated to be delivered to the other user.
    - A user has been notified by a missed call if the device is compatible with this service and he is available.
 6. Contact list
    - A user can see the status (online, offline, busy, etc.) of another user in its contact list if he is allowed by the other user.
@@ -563,40 +597,21 @@ A general RTC service could be defined as it follows:
 
 1. A user can connect to a server if he could reach it with good quality, if not, he can easily install it in its zone.
 2. If a server reach another, the users of a server can communicate to the users of another server.
-3. The service is compatible with VoIP guifi.net project.
-*** Component requirements
+3. The service is compatible with VoIP Guifi.net project.
 
-The use cases developed are those that are bold.
+*** Required components
 
-Requirements to send, receive calls, subscribe, unsubscribe and have integration. For a WebRTC scenario, the components are distributed. In brackets, name of the components in the component graph.
+This section presents the components required for the architecture design. Concretely the requirements to send, receive calls, subscribe, unsubscribe and have integration are described now. For a WebRTC scenario, the components are distributed.
 - Application interface: gives appropriate interaction to the actors in order to perform the different operations. Is distributed, a web server (WSRV) offering a page, and a client executing the web application (WAPP) through the web browser.
-- Authentication service (AUTH): restrict access of service only to permitted users. Differentiate available operations depending on if is user or admin. Single sign on, after the web page is accessed, the user can operate.
-- Signalling protocol (SIG): manage the side to side connections and logic to establish the call. The two peers must use a compatible signalling protocol.
-- Transport protocol (TP): between users and between user and server. Compatible, secure if possible.
-- Database (DB): store and encrypt personal information or preferences for a particular user. Accessible through web application if succeed in authentication.
+- Authentication service (AUTH): restricts access of service only to permitted users. Differentiate available operations depending on if is user or admin. Single sign on, after the web page is accessed, the user can operate.
+- Signalling protocol (SIG): manages the side to side connections and logic to establish the call. The two peers must use a compatible signalling protocol.
+- Transport protocol (TP): used between users and between user and server. Compatible, secure if possible.
+- Database (DB): stores and encrypts personal information or preferences for a particular user. Accessible through web application if succeed in authentication.
 - Connectivity solver (CS): a set of tools to avoid common communication problems that appear in networking scenarios. The most common problems are NAT and firewall.
-- Gateway (GW): adapt or convert the communication to work with different communication systems. The most important difference between communication systems is the signalling protocol.
+- Gateway (GW): adapts or converts the communication to work with different communication systems. The most important difference between communication systems is the signalling protocol.
 
-*** Network requirements
-/number and math justification?/
+** TODO Architecture design
 
-- DNS (multiple servers)
-- Quality of Service (QoS): put priority to real-time traffic
-- Throughput (more used than Bandwidth)
-- Delay
-- Jitter
-- Packet Loss
-- Congestion
-
-# esential guide to telecommunications [page 77]
-# - Packet loss This refers to the packets that are dropped when there is network congestion. Packet loss results in uneven voice quality. Voice conversations “break up” when packet loss is too high.
-# - Latency This term refers to delays (in milliseconds) that are incurred when voice packets traverse the network. Latency results in long pauses within conversations, and clipped words.
-# - Jitter Jitter is uneven latency and packet loss, which results in noisy calls that contain pops and clicks or crackling sounds.IP Private Branch Exchange Architecture
-# - Echo This is the annoying effect of hearing your voice repeated, an issue with which so many of us are familiar. It is often caused when voice data is translated from a circuit-switched format to the IP format. This is usually corrected during installation by special echo-canceling software.
-
-** Component selection
-
-** Architecture design
 /general diagrams/
 
 Each link has associated transport protocol
@@ -627,14 +642,16 @@ Gateway
 #+NAME: fig:compdiag
 [[../img/gw-transport.png]]
 
-** Applications available
+** TODO Component selection
+
+** TODO Applications available
 *** POCs
 
-** Implementation
-** /Demo/
-* Conclusions and Future Work
-** Conclusions
-** Future Work
+** TODO Implementation
+** TODO /Demo/
+* TODO Conclusions and Future Work
+** TODO Conclusions
+** TODO Future Work
 * Fake
 [To be removed]
 
@@ -677,7 +694,7 @@ Fake section to put the last latex code of the document
 
 * Footnotes
 
-[fn:1] range of IP's used by guifi.net and private networks
+[fn:1] range of IP's used by Guifi.net and private networks
 
 [fn:2] http://www.scrumguides.org/docs/scrumguide/v1/scrum-guide-us.pdf
 
