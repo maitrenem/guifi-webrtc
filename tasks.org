@@ -45,6 +45,27 @@
 - [ ] p2p model
 - [ ] QoS en WebRTC?
 - [ ] SDP vs /JSON new format for SDP/
+- [ ] payload header protocol header. overhead http://en.wikipedia.org/wiki/Network_packet#Payload
+- [ ] security in SIP vs security in WebRTC
+- [ ] (fundamentals?) architecture design (AIS, 1. Architectures.pdf)
+  - [ ] network architecture
+    - [ ] structure: nodes, connections, relationships
+    - [ ] behavior: protocols, functionality
+    - [ ] production and deployment plans
+  - [ ] architecture features
+    - [ ] centralization vs. distribution
+    - [ ] open vs closed
+    - [ ] availability
+    - [ ] scalability
+      - [ ] extendability
+    - [ ] control
+      - [ ] security
+  - [ ] network architectures (guifi)
+  - [ ] signalling types
+- [ ] SIP security SDES
+- [ ] put to each protocol its RFC?
+***** RFC's
+- [ ] SRTP RFC 3711 (wikipedia)
 ***** Graphics
 - [X] pyramid: requirements, design, implementation, poc
 - [ ] do a diagram like this http://www.just2good.co.uk/images/gif/tcpipstack.gif explain

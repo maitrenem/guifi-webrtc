@@ -97,7 +97,7 @@
 \noindent {\Large \sffamily Acknowledgments}
 \\[12pt] 
 
-Special thanks to Victor Pascual and Miquel Oliver for his mentorship. Thanks to Victor Oncins and Angel Elena for his feedback and help.
+Special thanks to Victor Pascual and Miquel Oliver for his mentorship. Thanks to Victor Oncins and Angel Elena (craem) for his feedback and help.
 
 Thanks to Daniel Pocock for its work on rtcquickstart.org. Thanks to webrtchacks.com and all its team for the useful articles.
 
@@ -169,7 +169,7 @@ Este proyecto introduce la tecnología disruptiva WebRTC (comunicación web en t
 
 In the other bachelor's thesis \cite{vilchez2014comnet} I worked 2 ideas: /together we can do networks/ and /it is simple to start/. Even so, in cities like Barcelona it is easy to find persons that do not understand what is Guifi.net, probably for two reasons: there is a very competitive communications market in cities and the complexity to understand a commons model from the consumer point of view. In the case of zones where there is no investment of large operators, the things change: persons need internet, and they struggle to understand the commons model.
 
-The implementation of other services besides Internet, could help certain persons to understand the advantages of commons network, add value to the network. There are services based on contents that are difficult to maintain but there is a service that can be easily applied on a large scale: RTC. It is something to plan and wait until people start using it. Because is communication in a close environment. We are social.
+The implementation of other services besides Internet, could help certain persons to understand the advantages of commons network, add value to the network. There are services based on contents that are difficult to maintain but there is a service that can be easily applied on a large scale: Real-time Communications. It is something to plan and wait until people start using it. Because is communication in a close environment. We are social.
 
 Also, from the Guifi.net point of view, is a challenge, there were some attempts to implement a RTC system but they failed. With WebRTC, let’s try again!
 
@@ -184,9 +184,9 @@ Also, from the Guifi.net point of view, is a challenge, there were some attempts
 
 This document is organised in 5 chapters.
 
-*Chapter [[Introduction]] Introduction* introduces the project. The motivation to start this project and the high level objectives to achieve.
+*Chapter [[Introduction]] Introduction* introduces the project. The motivation to start this project and the general objectives to achieve.
 
-*Chapter [[Fundamentals of RTC]] Fundamentals of RTC* presents the basics of the concepts communications and real-time.
+*Chapter [[Fundamentals of RTC]] Fundamentals of RTC* presents the basics of the concepts communications and real-time quality measurements.
 
 *Chapter [[State of the art]] State of the art* discusses the state of the art of WebRTC and its associated technologies.
 
@@ -197,13 +197,12 @@ This document is organised in 5 chapters.
 *Chapter [[Conclusions and Future Work]] Conclusions and Future Work* provides a general assessment of the project
 
 * Fundamentals of RTC
-** Communications
 
-For this section, it was necessary to use as sources of information \cite{kurose2013net} and \cite{dodd2012telecom}.
+** Communications
 
 In order to design communications in a system, the different elements must know what to do with the messages. That's why it is needed protocols. A protocol defines the format and the order of messages exchanged between two or more communicating entities, as well as the actions taken on the transmission and/or receipt of a message or other event.
 
-Real-time communications are even more complex, the information has to arrive fast and it is convenient to prepare the receiver of the communication. Signalling is the process of sending control information over landline and mobile networks to monitor, control, route, and set up sessions between devices. These sessions include video and audio conference calls, data sessions, video calls, and mobile and landline telephone calls. Signalling is also used to set up instant messaging and chat sessions. A signalling protocol, is a protocol that needs signalling features.
+Real-time communications are even more complex, the information has to arrive fast and it is convenient to prepare the receiver of the communication. Signalling is the process of sending control information over networks to monitor, control, route, and set up sessions between devices. These sessions include video and audio conference calls, data sessions, video calls, and mobile and landline telephone calls. Signalling is also used to set up instant messaging and chat sessions. A signalling protocol, is a protocol that needs signalling features.
 
 There are different approaches to achieve real-time systems, that is why it is needed compatibility between the systems. A gateway allows equipment with different protocols to communicate with one another. For example, gateways are used when incompatible video systems are used for a video conference.
 
@@ -212,7 +211,7 @@ It is also important how to transport the data, there are two fundamental approa
 *Packet switching and the Internet*. The messages are divided in appropriate sized chunks of data known as packets. Packets travel from the source through a network, when they arrive at its destination, the messages are reconstructed. The network makes its best effort to deliver packets in a timely manner, but it does not make any guarantees. Because the resources of the network are used on demand, not reserved, as a consequence, a packet may have to wait for access a communication link. Each packet could be routed in a different network path depending on the network state. Some of them could be lost if there is a congestion (a lot of traffic, a big number of packets). The network equipment needed to build a packet switching infrastructure is affordable, flexible and can manage easily a large amount of data (throughput). The internet is an example of a network of networks that consists of lots of private, public, academic, business, and government networks of local to global scope. The technical operation and standardization of the Internet is an activity of the IETF (Internet Engineering Task Force). The protocol stack of the Internet is the TCP/IP stack, the name was given due to the importance of this two protocols on the system.
 # https://en.wikipedia.org/wiki/Internet
 
-*Circuit switching and traditional telephony*. The resource (a network path between source and destination) is reserved for the duration of the communication session between the endpoints. In one hand, is a guaranteed constant transmission rate, good link quality, in the other hand, is an expensive resource that is being wasted in silent periods. One of the techniques used to reduce the silent periods is to multiplex the circuits in time (Time-Division Multiplexing, TDM) or frequency (Frequency-Division Multiplexing, FDM). The Public Switched Telephone Network (PSTN) is an example of an aggregate network operated by national, regional and local telephony operators that used this type of network paradigm in the past. Now it is moving towards a packet switching network. The technical operation of the PSTN uses the standards created by the ITU (International Telecommunication Union). The protocol stack of PSTN network is the SS7 stack (Signalling System No. 7). Later, it was added the possibility to include generic data to its networks with ISDN (Integrated Services Digital Network).
+*Circuit switching and traditional telephony*. The resource (a network path between source and destination) is reserved for the duration of the communication session between the endpoints. In one hand, is a guaranteed constant transmission rate, good link quality, in the other hand, is an expensive resource that is being wasted in silent periods. One of the techniques used to reduce the silent periods is the multiplexing of the circuits in time (Time-Division Multiplexing, TDM) or frequency (Frequency-Division Multiplexing, FDM). The Public Switched Telephone Network (PSTN) is an example of an aggregate network operated by national, regional and local telephony operators that used this type of network paradigm in the past. Now it is moving towards a packet switching network. The technical operation of the PSTN uses the standards created by the ITU (International Telecommunication Union). The protocol stack of PSTN network is the SS7 stack (Signalling System No. 7). Later, it was added the possibility to include generic data to its networks with ISDN (Integrated Services Digital Network).
 # https://en.wikipedia.org/wiki/Public_switched_telephone_network
 # https://en.wikipedia.org/wiki/Integrated_Services_Digital_Network
 
@@ -220,23 +219,23 @@ IETF and ITU did efforts to adapt its networks to the requested uses: transport 
 
 # https://en.wikipedia.org/wiki/SIGTRAN
 
-SS7, ISDN and TCP/IP stacks are based on the Open Systems Interconnection model (OSI model[fn:7]). Each protocol belongs to one layer. Each layer provides its service by performing certain actions within that layer and by using the services of the layer directly below it, this is called the service model. Table [[tab:ositcpip]] shows the difference between the and OSI model and the TCP/IP stack, each row is a layer. In TCP/IP, physical layer is implementated with hardwarem, for example with NIC (Network Interface Controller) or WNIC (Wireless Network Interface Controller), generally uses the IEEE 802 family, and its standardization is managed by IEEE[fn:8]. Link layer is typically implemented by an element called switch, they provide close connectivity. Network layer is typically implemented by an element called router, they provide far connectivity. Session and presentation layers has to be implemented by the developer of the application.
+SS7, ISDN and TCP/IP stacks are based on the Open Systems Interconnection model (OSI model[fn:7]). Each protocol belongs to one layer. Each layer provides its service by performing certain actions within that layer and by using the services of the layer directly below it, this is called the service model. Table [[tab:ositcpip]] shows the difference between the and OSI model and the TCP/IP stack, each row is a layer. In TCP/IP, physical layer is implementated with hardware, for example with NIC (Network Interface Controller) or WNIC (Wireless Network Interface Controller), generally uses the IEEE 802 family, and its standardization is managed by IEEE[fn:8]. Link layer is typically implemented by an element called switch, they provide close connectivity. Network layer is typically implemented by an element called router, they provide far connectivity. Session and presentation layers has to be implemented by the developer of the application ($\nearrow$).
 
 # https://en.wikipedia.org/wiki/OSI_model
 
 #+CAPTION: OSI, TCP layers and its description.
 #+NAME: tab:ositcpip
-| OSI          | Description                           | TCP/IP      |
-|--------------+---------------------------------------+-------------|
-| Application  | Network and application services      | Application |
-| Presentation | Data format                           | $\nearrow$  |
-| Session      | Signalling of data                    | $\nearrow$  |
-| Transport    | Connection establishment side to side | Transport   |
-| Network      | Logic addressing (far)                | Network     |
-| Link         | Physical addressing (close)           | Link        |
-| Physical     | Binary signal and transmission        | Physical    |
+| OSI layer    | Description                           | TCP/IP layer |
+|--------------+---------------------------------------+--------------|
+| Application  | Network and application services      | Application  |
+| Presentation | Data format                           | $\nearrow$   |
+| Session      | Signalling of data                    | $\nearrow$   |
+| Transport    | Connection establishment side to side | Transport    |
+| Network      | Logic addressing (far)                | Network      |
+| Link         | Physical addressing (close)           | Link         |
+| Physical     | Binary signal and transmission        | Physical     |
 
-Table [[tab:pdu]] shows the name of each Protocol Data Unit (PDU), the most important protocols and the organization that standarizes it. At link layer the most common PDU is the Ethernet frame, with its associated MAC address (Media Access Control). At the network layer the datagram, with its associated IP address (Internet Protocol). It is difficult to remember IP addresses to access different locations, that's why there is DNS (Domain Name Server), it associates human readable addresses to IP's. At the transport layer, one unreliable and fast protocol, UDP (User Datagram Protocol) and another reliable, TCP (Transmission Control Protocol). For the real-time topic, UDP is massively used in the real-time communication, and TCP for the signalling. At the application layer there are many possibilities, an example is the DNS, briefly described above.
+Table [[tab:pdu]] shows the name of each Protocol Data Unit (PDU), the most important protocols and the organization that standarizes it. At link layer the most common PDU is the Ethernet frame, with its associated MAC address (Media Access Control). At the network layer the datagram, with its associated IP address (Internet Protocol). It is difficult to remember IP addresses to access different locations, that's why there is DNS (Domain Name Server), it associates human readable addresses to IP's. At the transport layer, one unreliable and fast protocol, UDP (User Datagram Protocol) and another reliable, TCP (Transmission Control Protocol). For the real-time topic, UDP is massively used in the real-time communication, and TCP is usually used for the signalling. At the application layer there are many possibilities, an example is the DNS, briefly described above.
 
 #+CAPTION: PDU associated with each layer in TCP/IP model
 #+NAME: tab:pdu
@@ -247,28 +246,30 @@ Table [[tab:pdu]] shows the name of each Protocol Data Unit (PDU), the most impo
 | Network      | Datagram or Packet (IP)       | IETF            |
 | Link         | Frame (MAC)                   | IEEE            |
 
-Every PDU has two types of fields: header and payload. A PDU is encapsulated with the layer below (see Figure [[fig:encap]]). If the header part is greater than payload part is called overhead. If it occurs, the communication is not very efficient, specially if they are sent lots of packets.
+Every PDU has two types of fields: header and payload. A PDU is encapsulated with the layer below (see Figure [[fig:encap]]). If the header part is greater than payload part is called overhead. If it occurs, the communication is not very efficient, specially if they are sent lots of packets. Signalling data is overhead in the sense that it is not user data, but is useful to stablish a call.
 
 #+CAPTION: PDU encapsulation with IP and TCP protocols, application is not specified.
 #+NAME: fig:encap
 [[../img/encapsulation.png]]
 # https://en.wikipedia.org/wiki/Protocol_data_unit#OSI_model
 
+During a call, inside the UDP datagram there is the Real-time Transport Protocol (RTP). RTP is a protocol used to encapsulate multimedia content (audio, video streams). Its header contains a sequence number and timestamp. The sequence number increments by one for each RTP data packet sent, and may be used by the receiver to detect packet loss and to restore packet sequence. The timestamp registers the time when the RTP packet has been generated, it helps with the synchronization and jitter[fn:9] calculations. The RTP Control Protocol (RTCP) periodically sends packets with statistics information to participants in a streaming multimedia RTP session. RTP and RTCP provide information on the quality of communication but do nothing to fix or improve it. An application may use this information to control quality of service parameters. RTCP itself does not provide encryption or authentication methods. If they are needed, it is available the Secure Real-time Transport Protocol (SRTP).
 
+# RTCP https://en.wikipedia.org/wiki/RTP_Control_Protocol
 
+More information about packet switching can be found at \cite{kurose2013net}, more information about telecommunications in general and signalling at \cite{dodd2012telecom}. Some parts of that sources were included in this section.
 
-RTP and RTCP
+** Real-time quality measurements
 
-** TODO Real-time
+The network is defined as the router, switch and link components that interconnect all the path between receiver and its destination (them included). The real-time communication depends on how the network is affected by the following parameters.
 
-Bandwidth
-Packet problems for real-time (book VoIP for wifi speaks about it)
-- Delay: long queues, bad quality links
-- Jitter: the different packets arrive with different delays
-- Packets delivered out of order
-- Error: corruption of packets
+The bandwidth is the number of bits[fn:10] that can arrive from the source to the destination through the network in one unit of time (for example, MB/s). A greater bandwidth delivers higher definition multimedia content. A packet can be lost if it is never received at the destination. A communication suffers jitter when different packets arrive with different delays at its destination. It is defined delay as the time between transmitting the packet and arriving at its destination. Due to the nature of packet switching, packets can be delivered out of order. The arrived packet can present a corruption of data. The prior parameters presented affect negatively to the communication. The undesirable effects might be silent lapses and interruptions of the communication.
 
-* State of the art
+Real-time data transport is managed with UDP. This protocol does not perform retransmission, it means that the communication should be fixed for the next upcoming packets. Real-time communications require low bandwidth and delay. This two requirements can be achieved easily with the technologies nowadays.
+
+Some parts of \cite{velazquez2010voipguifi} and \cite{of2004voip} were included in this section. This sources are about voice and its quality, but it can be extended to certain forms of real-time video because of the improved technology nowadays.
+
+* TODO State of the art
 ** TODO Important mechanisms
 - LDAP
 - DNS: NAPTR and SRV (it's like an email)
@@ -521,7 +522,7 @@ Figure [[fig:wsd]] shows the *work style*, how the objectives will be accomplish
 #+NAME: fig:wsd
 [[../img/workstyle.png]]
 
-* Contributions and Results
+* TODO Contributions and Results
 
 It is wanted to define the architecture of a general RTC service, as set of different services and applications.
 
@@ -709,4 +710,8 @@ Fake section to put the last latex code of the document
 [fn:7] ISO/IEC 7498-1:1994
 
 [fn:8] Institute of Electrical and Electronics Engineers
+
+[fn:9] jitter is briefly defined in the next section
+
+[fn:10] A bit can be 0 or 1. A stream of this symbols express information. In telecommunications the information unit is the bit, expressed with the unit b. In computer science the Byte, expressed with the unit B. 1 Byte is 8 bits. 
 

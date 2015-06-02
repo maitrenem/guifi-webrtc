@@ -1,5 +1,17 @@
 * Diary
 Everyday it's a-gettin' closer
+** <2015-06-02 Tue>
+- Finished real-time quality measurements, review
+** <2015-06-01 Mon>
+- http://stackoverflow.com/questions/21775531/csrc-and-ssrc-in-rtp
+- interesting slides, interesting slides https://jitsi.org/Education/RTCSof
+  - (RTP media transport) https://jitsi.org/rtcsof/1.voip-basics.pptx.pdf
+    - CSRC and SSRC is for mixing (that's why is used in jitsi)
+** <2015-05-31 Sun>
+- WebRTC has incompatibility in transport packets with SIP. So a gateway is needed.
+- correct typos in all document, finish structure of communications
+** <2015-05-30 Sat>
+- writing section communications
 ** <2015-05-22 Fri>--<2015-05-29 Fri> sprint 2
 *** <2015-05-29 Fri>
 - Review this definitions
@@ -15,6 +27,7 @@ Everyday it's a-gettin' closer
 - about him
   - http://www.arkko.com/tools/allstats/simonpietroromano.html
   - http://www.computer.org/csdl/mags/ic/2012/05/mic2012050068-abs.html
+- 2.2.4 Protocols TFG Velazquez
 *** <2015-05-28 Thu>
 - RTP-RTCP-RTSP overview
 - SSRC field identifies the synchronization source. This identifier SHOULD be chosen randomly, with the intent that no two synchronization sources within the same RTP session wil have the same SSRC identifier.
