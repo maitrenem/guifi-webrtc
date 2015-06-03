@@ -165,9 +165,10 @@ Este proyecto introduce la tecnología disruptiva WebRTC (comunicación web en t
 #+END_LATEX
 
 * Introduction
+A project presentation, motivation, objectives and outline of the chapters.
 ** Motivation
 
-In the other bachelor's thesis \cite{vilchez2014comnet} I worked 2 ideas: /together we can do networks/ and /it is simple to start/. Even so, in cities like Barcelona it is easy to find persons that do not understand what is Guifi.net, probably for two reasons: there is a very competitive communications market in cities and the complexity to understand a commons model from the consumer point of view. In the case of zones where there is no investment of large operators, the things change: persons need internet, and they struggle to understand the commons model.
+In the other bachelor's thesis \cite{vilchez2014comnet} I worked two ideas: /together we can do networks/ and /it is simple to start/. Even so, in cities like Barcelona it is easy to find persons that do not understand what is Guifi.net, probably for 2reasons: there is a very competitive communications market in cities and the complexity to understand a commons model from the consumer point of view. In the case of zones where there is no investment of large operators, the things change: persons need internet, and they struggle to understand the commons model.
 
 The implementation of other services besides Internet, could help certain persons to understand the advantages of commons network, add value to the network. There are services based on contents that are difficult to maintain but there is a service that can be easily applied on a large scale: Real-time Communications. It is something to plan and wait until people start using it. Because is communication in a close environment. We are social.
 
@@ -176,7 +177,7 @@ Also, from the Guifi.net point of view, is a challenge, there were some attempts
 ** Objectives
 
 - Free and secure communication between users using own RTC system and commons network infrastructure.
-- Backward compatible with VoIP network. Hence, users can communicate to other VoIP operators from inside and/or outside Guifi.net.
+- Backward compatible with VoIP[fn:11] network. Hence, users can communicate to other VoIP operators from inside and/or outside Guifi.net.
 - An architecture design of an RTC system that fits the community network scenario.
 - Ease of installation and use of the RTC.
 
@@ -197,7 +198,7 @@ This document is organised in 5 chapters.
 *Chapter [[Conclusions and Future Work]] Conclusions and Future Work* provides a general assessment of the project
 
 * Fundamentals of RTC
-
+The generic concepts and infrastructures that make possible real-time communications and important quality parameters to consider.
 ** Communications
 
 In order to design communications in a system, the different elements must know what to do with the messages. That's why it is needed protocols. A protocol defines the format and the order of messages exchanged between two or more communicating entities, as well as the actions taken on the transmission and/or receipt of a message or other event.
@@ -219,7 +220,7 @@ IETF and ITU did efforts to adapt its networks to the requested uses: transport 
 
 # https://en.wikipedia.org/wiki/SIGTRAN
 
-SS7, ISDN and TCP/IP stacks are based on the Open Systems Interconnection model (OSI model[fn:7]). Each protocol belongs to one layer. Each layer provides its service by performing certain actions within that layer and by using the services of the layer directly below it, this is called the service model. Table [[tab:ositcpip]] shows the difference between the and OSI model and the TCP/IP stack, each row is a layer. In TCP/IP, physical layer is implementated with hardware, for example with NIC (Network Interface Controller) or WNIC (Wireless Network Interface Controller), generally uses the IEEE 802 family, and its standardization is managed by IEEE[fn:8]. Link layer is typically implemented by an element called switch, they provide close connectivity. Network layer is typically implemented by an element called router, they provide far connectivity. Session and presentation layers has to be implemented by the developer of the application ($\nearrow$).
+SS7, ISDN and TCP/IP stacks are based on the Open Systems Interconnection model (OSI model[fn:7]). Each protocol belongs to one layer. Each layer provides its service by performing certain actions within that layer and by using the services of the layer directly below it, this is called the service model. Table [[tab:ositcpip]] shows the difference between the and OSI model and the TCP/IP stack, each row is a layer. In TCP/IP, physical layer is implementated with hardware, for example with NIC (Network Interface Controller) or WNIC (Wireless Network Interface Controller), generally uses the IEEE 802 family, and its standardization is managed by IEEE (Institute of Electrical and Electronics Engineers.). Link layer is typically implemented by an element called switch, they provide close connectivity. Network layer is typically implemented by an element called router, they provide far connectivity. Session and presentation layers has to be implemented by the developer of the application ($\nearrow$).
 
 # https://en.wikipedia.org/wiki/OSI_model
 
@@ -235,7 +236,9 @@ SS7, ISDN and TCP/IP stacks are based on the Open Systems Interconnection model 
 | Link         | Physical addressing (close)           | Link         |
 | Physical     | Binary signal and transmission        | Physical     |
 
-Table [[tab:pdu]] shows the name of each Protocol Data Unit (PDU), the most important protocols and the organization that standarizes it. At link layer the most common PDU is the Ethernet frame, with its associated MAC address (Media Access Control). At the network layer the datagram, with its associated IP address (Internet Protocol). It is difficult to remember IP addresses to access different locations, that's why there is DNS (Domain Name Server), it associates human readable addresses to IP's. At the transport layer, one unreliable and fast protocol, UDP (User Datagram Protocol) and another reliable, TCP (Transmission Control Protocol). For the real-time topic, UDP is massively used in the real-time communication, and TCP is usually used for the signalling. At the application layer there are many possibilities, an example is the DNS, briefly described above.
+Table [[tab:pdu]] shows the name of each Protocol Data Unit (PDU), the most important protocols and the organization that standarizes it. At link layer the most common PDU is the Ethernet frame, with its associated MAC address (Media Access Control). At the network layer the datagram, with its associated IP address (Internet Protocol). The version 4 of IP, IPv4 \cite{rfc791}, contains $2^{32}$ (4.3 billion) addresses, as this is not enough, that is why Internet network is upgrading to IPv6 \cite{rfc2460} with $2^{128}$ (more than $7.9\cdot10^{28}$ times as many as IPv4). Meanwhile, there are basically two types of IPv4 addresses: private IP, not reachable from the Internet, and public IP, reachable from the Internet. It is difficult to remember IP addresses to access different locations, that's why there is DNS \cite{rfc1034} (Domain Name Server), it associates human readable addresses (domain) to IP's. An IP adddress includes a range of ports (0 to 65535), its main purpose is to share a single physical connection to another place (host), for example an IP destination can has more than one different services available. At the transport layer, one unreliable and fast protocol, UDP \cite{rfc768} (User Datagram Protocol) and another reliable, TCP \cite{rfc793} (Transmission Control Protocol). For the real-time topic, UDP is massively used in the real-time communication, and TCP is usually used for the signalling. At the application layer there are many possibilities, an example is the DNS, briefly described above.
+
+# https://en.wikipedia.org/wiki/Port_(computer_networking)
 
 #+CAPTION: PDU associated with each layer in TCP/IP model
 #+NAME: tab:pdu
@@ -253,13 +256,13 @@ Every PDU has two types of fields: header and payload. A PDU is encapsulated wit
 [[../img/encapsulation.png]]
 # https://en.wikipedia.org/wiki/Protocol_data_unit#OSI_model
 
-During a call, inside the UDP datagram there is the Real-time Transport Protocol (RTP). RTP is a protocol used to encapsulate multimedia content (audio, video streams). Its header contains a sequence number and timestamp. The sequence number increments by one for each RTP data packet sent, and may be used by the receiver to detect packet loss and to restore packet sequence. The timestamp registers the time when the RTP packet has been generated, it helps with the synchronization and jitter[fn:9] calculations. The RTP Control Protocol (RTCP) periodically sends packets with statistics information to participants in a streaming multimedia RTP session. RTP and RTCP provide information on the quality of communication but do nothing to fix or improve it. An application may use this information to control quality of service parameters. RTCP itself does not provide encryption or authentication methods. If they are needed, it is available the Secure Real-time Transport Protocol (SRTP).
+During a call, inside the UDP datagram there is the Real-time Transport Protocol \cite{rfc3550} (RTP). RTP is a protocol used to encapsulate multimedia content (audio, video streams). Its header contains a sequence number and timestamp. The sequence number increments by one for each RTP data packet sent, and may be used by the receiver to detect packet loss and to restore packet sequence. The timestamp registers the time when the RTP packet has been generated, it helps with the synchronization and jitter[fn:9] calculations. The RTP Control Protocol (RTCP) periodically sends packets with statistics information to participants in a streaming multimedia RTP session. RTP and RTCP provide information on the quality of communication but do nothing to fix or improve it. An application may use this information to control quality of service parameters. RTCP itself does not provide encryption or authentication methods. If they are needed, it is available the Secure Real-time Transport Protocol \cite{rfc3711} (SRTP).
 
 # RTCP https://en.wikipedia.org/wiki/RTP_Control_Protocol
 
 More information about packet switching can be found at \cite{kurose2013net}, more information about telecommunications in general and signalling at \cite{dodd2012telecom}. Some parts of that sources were included in this section.
 
-** Real-time quality measurements
+** Real-time quality parameters
 
 The network is defined as the router, switch and link components that interconnect all the path between receiver and its destination (them included). The real-time communication depends on how the network is affected by the following parameters.
 
@@ -270,24 +273,42 @@ Real-time data transport is managed with UDP. This protocol does not perform ret
 Some parts of \cite{velazquez2010voipguifi} and \cite{of2004voip} were included in this section. This sources are about voice and its quality, but it can be extended to certain forms of real-time video because of the improved technology nowadays.
 
 * TODO State of the art
+The different technologies that use WebRTC and other associated technologies such as SIP and XMPP
+
 ** TODO Important mechanisms
-- LDAP
-- DNS: NAPTR and SRV (it's like an email)
-- Connectivity Problems
-  - NAT
-  - Firewall
-  - ICE
-  - STUN
-  - TURN
-- Websockets
+
+The Internet evolved, and different mechanisms solve problems that affect real-time communications.
+
+Besides IPv4 addresses to destination hosts, people can register to services of hosts and be reachable from the Internet. A clear example of this is the email system, bob@example.com means that bob user is registered in example.com domain that is reachable from Internet. DNS needs an additional parameter to reach bob, in the case of email is the MX record \cite{rfc5321} (mail exchanger record). It is a resource record that specifies a mail server responsible for accepting email messages on behalf of a recipient's domain. To do something similar to advertise other network services like SIP and XMPP, it is needed SRV record \cite{rfc2782} (Service record). A simple contact address such as bob@example.com can contain the available forms of contact and its priority to different services with the NAPTR record \cite{rfc3403} (Name Authority Pointer) that performs this operation.
+
+SDP JSEP ?
+
+In the transition from IPv4 to IPv6 that is happening now, NAT (Network Address Translation) has been standarized to alleviate the scarcity and depletion of IPv4 addresses. A NAT allows a public IP address to be reused among many different private networks (and its private IP addresses). What it does is to maintain a table mapping of private local IP and port tuples to one or more globally unique public IP and port tuple. Unfortunately this introduces connectivity problems, specially in peer-to-peer connections[fn:8]. There are two server utilities that the host can set in its client to solve it, they must reside on the public network. A STUN \cite{rfc5389} (Session Traversal Utilities for NAT) server obtains the allocated public IP and port tuple for the current connection of the host that corresponds to its private IP address and port. STUN service maintains the NAT binding alive. A TURN \cite{rfc5766} (Traversal Using Relays around NAT) server acts as a middleman, relays its transport address, between the two hosts that want to communicate. TURN is resource intensive for the provider, while STUN no. The problem of this two techniques is that they are optimal in some network topologies but a poor choice in others. That is why the most interesting solution for nat traversal (solve connectivity issues) is ICE \cite{rfc5245} (Interactive Connectivity Establishment). ICE exchanges, using the offer/answer SDP model, a multiplicity of IP addresses and ports, that includes STUN and TURN, which are then tested for connectivity by peer-to-peer connectivity checks. It is selected the best candidate transport address.
+
+# http://en.wikipedia.org/wiki/MX_record
+# http://en.wikipedia.org/wiki/SRV_record
+# https://en.wikipedia.org/wiki/NAPTR_record
+# http://anders.com/cms/264/
+
+Internet is a very open, distributed and huge network, but this has undesirable consequences. For example, reachable hosts from internet are constantly attacked by other hosts that try to exploit weaknesses in a computer system or computer network. This can affect the security of an organization. Because of this reason, and/or orther, that is why its administrators deny by default any service that is not explicitly important for the organization. One of the components used to control the incoming and outgoing network traffic on an applied rule set is the firewall. But the firewall can has undesirable consequences in big organizations, it is less flexible. Suppose a university with students interested in computers. They are experimenting services related to courses or projects, but are having connectivity problems because of the restrictive security and administrators do not have resources to prepare an expermiental environmnent.
+
+# https://en.wikipedia.org/wiki/Firewall_(computing)
+# https://en.wikipedia.org/wiki/Hacker_(computer_security)
+
+Websockets \cite{rfc6455}
+
+
+- LDAP ?
+
 ** TODO Voice and video calls
 - *VoIP*
   - H.323 (ITU)
-  - SIP (IETF)
+  - SIP (IETF) - pensado para IP pública
     - SIP Proxy
 ** TODO Instant messaging
 - XMPP (RFC, XEV)
 ** TODO WebRTC
+- Orgs: W3C (webrtc) and IETF (rtcweb)
 - No signalling specified, you can use for example...
 - Use of SDP (JSEP is the evolution)
 - Codecs
@@ -322,7 +343,7 @@ Some parts of \cite{velazquez2010voipguifi} and \cite{of2004voip} were included 
     - Media Gateway
     - Signalling Gateway
   - Transport
-* Methodology
+* TODO Methodology
 ** SWOT Analysis of WebRTC
 
 An analysis of Strengths, Weaknesses, Opportunities and Threats (SWOT) will help the decision-making and tasks for the project.
@@ -522,6 +543,7 @@ Figure [[fig:wsd]] shows the *work style*, how the objectives will be accomplish
 #+NAME: fig:wsd
 [[../img/workstyle.png]]
 
+** TODO Architecture Design
 * TODO Contributions and Results
 
 It is wanted to define the architecture of a general RTC service, as set of different services and applications.
@@ -695,23 +717,25 @@ Fake section to put the last latex code of the document
 
 * Footnotes
 
-[fn:1] range of IP's used by Guifi.net and private networks
+[fn:1] range of IP's used by Guifi.net and private networks.
 
-[fn:2] http://www.scrumguides.org/docs/scrumguide/v1/scrum-guide-us.pdf
+[fn:2] http://www.scrumguides.org/docs/scrumguide/v1/scrum-guide-us.pdf.
 
 [fn:3] There are different metodologies grouped into agile. The process started with the write of the Agile Manifesto (12 principles) http://agilemanifesto.org/iso/en/principles.html. Since February 2001, this manifesto remains unchanged.
 
-[fn:4] the web implementation is proprietary software, but it can be easily migrated to other open source tools such as http://gitlab.com or http://gogs.io/
+[fn:4] the web implementation is proprietary software, but it can be easily migrated to other open source tools such as http://gitlab.com or http://gogs.io/.
 
-[fn:5] International Telecommunication Union, formerly the International Telegraph Union
+[fn:5] International Telecommunication Union, formerly the International Telegraph Union.
 
 [fn:6] derived from signalling transport, working group of IETF.
 
-[fn:7] ISO/IEC 7498-1:1994
+[fn:7] ISO/IEC 7498-1:1994.
 
-[fn:8] Institute of Electrical and Electronics Engineers
-
-[fn:9] jitter is briefly defined in the next section
+[fn:9] jitter is briefly defined in the next section.
 
 [fn:10] A bit can be 0 or 1. A stream of this symbols express information. In telecommunications the information unit is the bit, expressed with the unit b. In computer science the Byte, expressed with the unit B. 1 Byte is 8 bits. 
+
+[fn:11] Voice over IP. The use of the telephone adapted to the the Internet network.
+
+[fn:8] p2p, connection that goes directly from a host to another host, without an intermediate server
 
