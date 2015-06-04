@@ -81,6 +81,7 @@
 - [ ] Fix: Graph, MEDIA CTRL -> ????
 - [X] Fix: w-w graph, connection is not through data channel
 - [ ] webrtc to webrtc diagram, is not datachannel communication what we use in that case
+- [ ] bibliography, all RFC links are incorrect, should be like this, because it has updated information about obsolete or not https://tools.ietf.org/html/rfc2616
 **** Questions
 - [ ] What to use in the redaction of the memory: 1 or one, 2 or two?
 - [ ] Gantt diagram is table or figure? 0> is a type of bar chart

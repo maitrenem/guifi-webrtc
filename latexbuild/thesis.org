@@ -113,7 +113,7 @@ Thanks for reading. Thanks for your time.
 \selectlanguage{english}
 \section*{\Large \sffamily Abstract}
 
-The present project introduces the disrupting technology WebRTC (Web Real-Time Communication), that supports browser-to-browser applications without need of third party plugins. It is detailed how, since its release by Google in 2011, it's evolving and changing the way communications are understood. How to materialise a Real Time Communications in organizations with WebRTC and the use case of video and audio calls, taking as example Guifi.net and the opportunities that it offers: requirements, architecture design, component selection, implementation and demo.
+The present project introduces the disrupting technology WebRTC (Web Real-Time Communication), that supports browser-to-browser applications without need of third party plugins. It is detailed how, since its release by Google in 2011, it is evolving and changing the way communications are understood. How to materialise a Real Time Communications in organizations with WebRTC and the use case of video and audio calls, taking as example Guifi.net and the opportunities that it offers: requirements, architecture design, component selection, implementation and demo.
 
 \selectlanguage{catalan}
 \vspace*{\fill}
@@ -201,7 +201,7 @@ This document is organised in 5 chapters.
 The generic concepts and infrastructures that make possible real-time communications and important quality parameters to consider.
 ** Communications
 
-In order to design communications in a system, the different elements must know what to do with the messages. That's why it is needed protocols. A protocol defines the format and the order of messages exchanged between two or more communicating entities, as well as the actions taken on the transmission and/or receipt of a message or other event.
+In order to design communications in a system, the different elements must know what to do with the messages. That is why it is needed protocols. A protocol defines the format and the order of messages exchanged between two or more communicating entities, as well as the actions taken on the transmission and/or receipt of a message or other event.
 
 Real-time communications are even more complex, the information has to arrive fast and it is convenient to prepare the receiver of the communication. Signalling is the process of sending control information over networks to monitor, control, route, and set up sessions between devices. These sessions include video and audio conference calls, data sessions, video calls, and mobile and landline telephone calls. Signalling is also used to set up instant messaging and chat sessions. A signalling protocol, is a protocol that needs signalling features.
 
@@ -216,7 +216,7 @@ It is also important how to transport the data, there are two fundamental approa
 # https://en.wikipedia.org/wiki/Public_switched_telephone_network
 # https://en.wikipedia.org/wiki/Integrated_Services_Digital_Network
 
-IETF and ITU did efforts to adapt its networks to the requested uses: transport of generic data and real-time data. Internet is becoming the standard way to transport any kind of data. IETF did operations to include traditional telecommunication operators inside Internet, for example SIGTRAN[fn:6] family of protocols (compatibility with SS7 and ISDN stacks). There is also the Quality of Service (QoS) concept, that gives priority to chosen packets to arrive faster. That's why Internet can manage real-time data with reasonable delay.
+IETF and ITU did efforts to adapt its networks to the requested uses: transport of generic data and real-time data. Internet is becoming the standard way to transport any kind of data. IETF did operations to include traditional telecommunication operators inside Internet, for example SIGTRAN[fn:6] family of protocols (compatibility with SS7 and ISDN stacks). There is also the Quality of Service (QoS) concept, that gives priority to chosen packets to arrive faster. That is why Internet can manage real-time data with reasonable delay.
 
 # https://en.wikipedia.org/wiki/SIGTRAN
 
@@ -236,7 +236,7 @@ SS7, ISDN and TCP/IP stacks are based on the Open Systems Interconnection model 
 | Link         | Physical addressing (close)           | Link         |
 | Physical     | Binary signal and transmission        | Physical     |
 
-Table [[tab:pdu]] shows the name of each Protocol Data Unit (PDU), the most important protocols and the organization that standarizes it. At link layer the most common PDU is the Ethernet frame, with its associated MAC address (Media Access Control). At the network layer the datagram, with its associated IP address (Internet Protocol). The version 4 of IP, IPv4 \cite{rfc791}, contains $2^{32}$ (4.3 billion) addresses, as this is not enough, that is why Internet network is upgrading to IPv6 \cite{rfc2460} with $2^{128}$ (more than $7.9\cdot10^{28}$ times as many as IPv4). Meanwhile, there are basically two types of IPv4 addresses: private IP, not reachable from the Internet, and public IP, reachable from the Internet. It is difficult to remember IP addresses to access different locations, that's why there is DNS \cite{rfc1034} (Domain Name Server), it associates human readable addresses (domain) to IP's. An IP adddress includes a range of ports (0 to 65535), its main purpose is to share a single physical connection to another place (host), for example an IP destination can has more than one different services available. At the transport layer, one unreliable and fast protocol, UDP \cite{rfc768} (User Datagram Protocol) and another reliable, TCP \cite{rfc793} (Transmission Control Protocol). For the real-time topic, UDP is massively used in the real-time communication, and TCP is usually used for the signalling. At the application layer there are many possibilities, an example is the DNS, briefly described above.
+Table [[tab:pdu]] shows the name of each Protocol Data Unit (PDU), the most important protocols and the organization that standarizes it. At link layer the most common PDU is the Ethernet frame, with its associated MAC address (Media Access Control). At the network layer the datagram, with its associated IP address (Internet Protocol). The version 4 of IP, IPv4 \cite{rfc791}, contains $2^{32}$ (4.3 billion) addresses, as this is not enough, that is why Internet network is upgrading to IPv6 \cite{rfc2460} with $2^{128}$ (more than $7.9\cdot10^{28}$ times as many as IPv4). Meanwhile, there are basically two types of IPv4 addresses: private IP \cite{rfc1918}, not reachable via Internet, and public IP, reachable via Internet. It is difficult to remember IP addresses to access different locations, that is why there is DNS (Domain Name Server, \cite{rfc1034}), it associates human readable addresses (domain) to IP's. An IP adddress includes a port in the range of 0 to 65535, its main purpose is to share a single physical connection to another place (host), for example an IP destination can has more than one different services available; the different services is usually associated with a specific port. At the transport layer, one unreliable and fast protocol, UDP (User Datagram Protocol, \cite{rfc768}) and another reliable, TCP (Transmission Control Protocol, \cite{rfc793}). For the real-time topic, UDP is massively used in the real-time communication, and TCP is usually used for the signalling. At the application layer there are many possibilities, an example is the DNS, briefly described above.
 
 # https://en.wikipedia.org/wiki/Port_(computer_networking)
 
@@ -256,49 +256,50 @@ Every PDU has two types of fields: header and payload. A PDU is encapsulated wit
 [[../img/encapsulation.png]]
 # https://en.wikipedia.org/wiki/Protocol_data_unit#OSI_model
 
-During a call, inside the UDP datagram there is the Real-time Transport Protocol \cite{rfc3550} (RTP). RTP is a protocol used to encapsulate multimedia content (audio, video streams). Its header contains a sequence number and timestamp. The sequence number increments by one for each RTP data packet sent, and may be used by the receiver to detect packet loss and to restore packet sequence. The timestamp registers the time when the RTP packet has been generated, it helps with the synchronization and jitter[fn:9] calculations. The RTP Control Protocol (RTCP) periodically sends packets with statistics information to participants in a streaming multimedia RTP session. RTP and RTCP provide information on the quality of communication but do nothing to fix or improve it. An application may use this information to control quality of service parameters. RTCP itself does not provide encryption or authentication methods. If they are needed, it is available the Secure Real-time Transport Protocol \cite{rfc3711} (SRTP).
+Before initializing a call is a requirement to convey media details to the participants, SDP (Session Description Protocol, \cite{rfc4566}) provides a standard representation for such information.
+
+During a call, there is the RTP (Real-time Transport Protocol, \cite{rfc3550}). RTP is a protocol used to encapsulate multimedia content (audio, video). Its header contains a sequence number and timestamp. The sequence number increments by one for each RTP data packet sent, and may be used by the receiver to detect packet loss and to restore packet sequence. The timestamp registers the time when the RTP packet has been generated, it helps with the synchronization and jitter[fn:9] calculations. The RTP Control Protocol (RTCP) periodically sends packets with statistics information to participants in a streaming multimedia RTP session. RTP and RTCP provide information on the quality of communication but do nothing to fix or improve it. An application may use this information to control quality of service parameters. RTCP itself does not provide encryption[fn:13] or authentication methods. If they are needed, it is available the SRTP (Secure Real-time Transport Protocol, \cite{rfc3711}). 
 
 # RTCP https://en.wikipedia.org/wiki/RTP_Control_Protocol
 
-More information about packet switching can be found at \cite{kurose2013net}, more information about telecommunications in general and signalling at \cite{dodd2012telecom}. Some parts of that sources were included in this section.
+More information about packet switching can be found at \cite{kurose2013net} and about general telecommunications and signalling at \cite{dodd2012telecom}. Some parts of that sources were included in this section.
 
 ** Real-time quality parameters
 
 The network is defined as the router, switch and link components that interconnect all the path between receiver and its destination (them included). The real-time communication depends on how the network is affected by the following parameters.
 
-The bandwidth is the number of bits[fn:10] that can arrive from the source to the destination through the network in one unit of time (for example, MB/s). A greater bandwidth delivers higher definition multimedia content. A packet can be lost if it is never received at the destination. A communication suffers jitter when different packets arrive with different delays at its destination. It is defined delay as the time between transmitting the packet and arriving at its destination. Due to the nature of packet switching, packets can be delivered out of order. The arrived packet can present a corruption of data. The prior parameters presented affect negatively to the communication. The undesirable effects might be silent lapses and interruptions of the communication.
+The bandwidth is the number of bits[fn:10] that can arrive from the source to the destination through the network in one unit of time (for example, MB/s). A greater bandwidth delivers higher definition of the media content. A packet can be lost if it is never received at the destination. A communication suffers jitter when different packets arrive with different delays at its destination. It is defined delay as the time between transmitting the packet and arriving at its destination. Due to the nature of packet switching, packets can be delivered out of order. The arrived packet can present a corruption of data. The prior parameters presented affect negatively to the communication. The undesirable effects might be silent lapses and interruptions of the communication.
 
 Real-time data transport is managed with UDP. This protocol does not perform retransmission, it means that the communication should be fixed for the next upcoming packets. Real-time communications require low bandwidth and delay. This two requirements can be achieved easily with the technologies nowadays.
 
 Some parts of \cite{velazquez2010voipguifi} and \cite{of2004voip} were included in this section. This sources are about voice and its quality, but it can be extended to certain forms of real-time video because of the improved technology nowadays.
 
 * TODO State of the art
-The different technologies that use WebRTC and other associated technologies such as SIP and XMPP
+Important mechanisms and different technologies that use WebRTC and other associated technologies such as SIP and XMPP
 
 ** TODO Important mechanisms
 
-The Internet evolved, and different mechanisms solve problems that affect real-time communications.
+The Internet is in constant evolution, and different mechanisms are necessary for solving problems affecting real-time communications.
 
-Besides IPv4 addresses to destination hosts, people can register to services of hosts and be reachable from the Internet. A clear example of this is the email system, bob@example.com means that bob user is registered in example.com domain that is reachable from Internet. DNS needs an additional parameter to reach bob, in the case of email is the MX record \cite{rfc5321} (mail exchanger record). It is a resource record that specifies a mail server responsible for accepting email messages on behalf of a recipient's domain. To do something similar to advertise other network services like SIP and XMPP, it is needed SRV record \cite{rfc2782} (Service record). A simple contact address such as bob@example.com can contain the available forms of contact and its priority to different services with the NAPTR record \cite{rfc3403} (Name Authority Pointer) that performs this operation.
-
-SDP JSEP ?
-
-In the transition from IPv4 to IPv6 that is happening now, NAT (Network Address Translation) has been standarized to alleviate the scarcity and depletion of IPv4 addresses. A NAT allows a public IP address to be reused among many different private networks (and its private IP addresses). What it does is to maintain a table mapping of private local IP and port tuples to one or more globally unique public IP and port tuple. Unfortunately this introduces connectivity problems, specially in peer-to-peer connections[fn:8]. There are two server utilities that the host can set in its client to solve it, they must reside on the public network. A STUN \cite{rfc5389} (Session Traversal Utilities for NAT) server obtains the allocated public IP and port tuple for the current connection of the host that corresponds to its private IP address and port. STUN service maintains the NAT binding alive. A TURN \cite{rfc5766} (Traversal Using Relays around NAT) server acts as a middleman, relays its transport address, between the two hosts that want to communicate. TURN is resource intensive for the provider, while STUN no. The problem of this two techniques is that they are optimal in some network topologies but a poor choice in others. That is why the most interesting solution for nat traversal (solve connectivity issues) is ICE \cite{rfc5245} (Interactive Connectivity Establishment). ICE exchanges, using the offer/answer SDP model, a multiplicity of IP addresses and ports, that includes STUN and TURN, which are then tested for connectivity by peer-to-peer connectivity checks. It is selected the best candidate transport address.
+Apart from IPv4 addresses to destination hosts, people can sign up with devices onto host services and be reachable via Internet. A clear example of this is the email system; bob@example.com means that the user, bob, is registered in the domain example.com that is reachable via Internet. DNS needs an additional parameter to reach bob; in the case of email the parameter is MX record (Mail eXchanger record, \cite{rfc5321}). This is a resource record that specifies a mail server responsible for accepting email messages on behalf of a recipient's domain. To advertise other network services such as SIP and XMPP, the SRV record (SeRVice record, \cite{rfc2782}) is necessary. The NAPTR record (Name Authority PoinTeR, \cite{rfc3403}) allows a simple contact address such as bob@example.com to contain the available forms of contact and its priority to different services.
 
 # http://en.wikipedia.org/wiki/MX_record
 # http://en.wikipedia.org/wiki/SRV_record
 # https://en.wikipedia.org/wiki/NAPTR_record
 # http://anders.com/cms/264/
 
-Internet is a very open, distributed and huge network, but this has undesirable consequences. For example, reachable hosts from internet are constantly attacked by other hosts that try to exploit weaknesses in a computer system or computer network. This can affect the security of an organization. Because of this reason, and/or orther, that is why its administrators deny by default any service that is not explicitly important for the organization. One of the components used to control the incoming and outgoing network traffic on an applied rule set is the firewall. But the firewall can has undesirable consequences in big organizations, it is less flexible. Suppose a university with students interested in computers. They are experimenting services related to courses or projects, but are having connectivity problems because of the restrictive security and administrators do not have resources to prepare an expermiental environmnent.
+In the current upgrade from IPv4 to IPv6, NAT (Network Address Translation, \cite{rfc3235}) has been standarized in order to alleviate the scarcity and depletion of IPv4 addresses. NAT allows a public IP address to be reused among many different private networks (and its private IP addresses). It functions by connecting private local IP addresses and port tuples to one or more public IP addresses and port tuples. Unfortunately this introduces connectivity problems, especially in peer-to-peer connections[fn:8] (p2p). There are two server utilities which can be configured into a device to solve these problems. Both are required to be on the public network. A STUN server (Session Traversal Utilities for NAT, \cite{rfc5389}) allows a device to discover its public IP address if is located behind a NAT. STUN service maintains the NAT binding alive. A TURN server (Traversal Using Relays around NAT, \cite{rfc5766}) acts as a transport address middleman between the two people wishing to communicate. Unlike STUN, TURN is resource-intensive for the provider. The problem of this two techniques is that they are optimal in some network topologies but a poor choice in others. That is why the most interesting solution for nat traversal is ICE (Interactive Connectivity Establishment, \cite{rfc5245}). ICE exchanges, using the offer/answer SDP model, a multiplicity of IP addresses and ports, that includes STUN and TURN, which are then tested for connectivity by peer-to-peer connectivity checks. It is selected the best candidate transport address.
+
+# http://en.wikipedia.org/wiki/STUN
+
+Internet is a very open, distributed and huge network, but this has undesirable consequences. For example, reachable devices from Internet are constantly attacked by other devices that try to exploit its weaknesses in computer systems and computer networks. This can affect the security of an organization. With this an other reasons, that is why its administrators deny by default any service that is not explicitly important for the organization. One of the components used to control the incoming and outgoing network traffic on an applied rule set is the firewall. But the firewall can has undesirable consequences in big organizations, it is less flexible. Suppose a university with students interested in computers. They are experimenting services related to courses or projects, but are having connectivity problems because of the restrictive security and administrators do not have resources to prepare an expermiental environmnent.
 
 # https://en.wikipedia.org/wiki/Firewall_(computing)
 # https://en.wikipedia.org/wiki/Hacker_(computer_security)
 
-Websockets \cite{rfc6455}
+Firewalls commonly allow traffic via port 80, that corresponds to unencrypted web navigation with HTTP[fn:12] (HyperText Transfer Protocol, \cite{rfc2616}), and port 443, that corresponds to encrypted web navigation with HTTPS (HTTP Secure, \cite{rfc2818}). This is because the most common form of communication is through the web browser. HTTP and HTTPS are request response. Websockets \cite{rfc6455}, however, introduces bidirectional communication between browsers via ports 80 and 443. This allows the devices to traverse the firewall, and a new generation of applications with the browsers, for example, real-time communications.
 
-
-- LDAP ?
+# - LDAP ?
 
 ** TODO Voice and video calls
 - *VoIP*
@@ -317,8 +318,7 @@ Websockets \cite{rfc6455}
 - Media Management
   - MCU
   - SFU
-
-
+- Datachannel: SCPT over DTLS over UDP
 
 
 
@@ -737,5 +737,9 @@ Fake section to put the last latex code of the document
 
 [fn:11] Voice over IP. The use of the telephone adapted to the the Internet network.
 
-[fn:8] p2p, connection that goes directly from a host to another host, without an intermediate server
+[fn:8] a connection that goes directly from a host to another host, without an intermediate server.
+
+[fn:12] HTTP is a coordinated effort by the IETF and the World Wide Web Consortium (W3C).
+
+[fn:13] an encryption system guarantees privacy, only authorized participants can read the content.
 

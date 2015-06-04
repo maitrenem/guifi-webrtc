@@ -1,5 +1,16 @@
 * Diary
 Everyday it's a-gettin' closer
+** <2015-06-04 Thu>
+- fundamentals added: SDP
+- state of the art: HTTP, HTTPS, W3C as organization
+** <2015-06-03 Wed>
+- State of the art, important mechanisms
+- Security / Auth
+  - about OAuth http://code.tutsplus.com/articles/oauth-20-the-good-the-bad-the-ugly--net-33216
+  - SAML vs federated login with OAuth http://stackoverflow.com/questions/2837553/saml-vs-federated-login-with-oauth
+  - Using LDAP for Authentication is Never Best Practice http://www.erikwebb.net/blog/using-ldap-authentication-never-best-practice/
+  - OAuth has RFC
+  - An identity access management (IAM) system is a framework for business processes that facilitates the management of electronic identities.
 ** <2015-06-02 Tue>
 - Finished real-time quality measurements, review
 ** <2015-06-01 Mon>
