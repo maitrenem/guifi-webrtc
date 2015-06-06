@@ -236,7 +236,7 @@ SS7, ISDN and TCP/IP stacks are based on the Open Systems Interconnection model 
 | Link         | Physical addressing (close)           | Link         |
 | Physical     | Binary signal and transmission        | Physical     |
 
-Table [[tab:pdu]] shows the name of each Protocol Data Unit (PDU), the most important protocols and the organization that standarizes it. At link layer the most common PDU is the Ethernet frame, with its associated MAC address (Media Access Control). At the network layer the datagram, with its associated IP address (Internet Protocol). The version 4 of IP, IPv4 \cite{rfc791}, contains $2^{32}$ (4.3 billion) addresses, as this is not enough, that is why Internet network is upgrading to IPv6 \cite{rfc2460} with $2^{128}$ (more than $7.9\cdot10^{28}$ times as many as IPv4). Meanwhile, there are basically two types of IPv4 addresses: private IP \cite{rfc1918}, not reachable via Internet, and public IP, reachable via Internet. It is difficult to remember IP addresses to access different locations, that is why there is DNS (Domain Name Server, \cite{rfc1034}), it associates human readable addresses (domain) to IP's. An IP adddress includes a port in the range of 0 to 65535, its main purpose is to share a single physical connection to another place (host), for example an IP destination can has more than one different services available; the different services is usually associated with a specific port. At the transport layer, one unreliable and fast protocol, UDP (User Datagram Protocol, \cite{rfc768}) and another reliable, TCP (Transmission Control Protocol, \cite{rfc793}). For the real-time topic, UDP is massively used in the real-time communication, and TCP is usually used for the signalling. At the application layer there are many possibilities, an example is the DNS, briefly described above.
+Table [[tab:pdu]] shows the name of each Protocol Data Unit (PDU), the most important protocols and the organization that standarizes it. At link layer the most common PDU is the Ethernet frame, with its associated MAC address (Media Access Control). At the network layer the datagram, with its associated IP address (Internet Protocol). The version 4 of IP, IPv4 \cite{rfc791}, contains $2^{32}$ (4.3 billion) addresses, as this is not enough, that is why Internet network is upgrading to IPv6 \cite{rfc2460} with $2^{128}$ (more than $7.9\cdot10^{28}$ times as many as IPv4). Meanwhile, there are basically two types of IPv4 addresses: private IP \cite{rfc1918}, not reachable via Internet, and public IP, reachable via Internet. It is difficult to remember IP addresses to access different locations, that is why there is DNS (Domain Name Server, \cite{rfc1034}), it associates human readable addresses (domain) to IP's. An IP adddress includes a port in the range of 0 to 65535, its main purpose is to share a single physical connection to another place (host), for example an IP destination can has more than one different services available; the different services is usually associated with a specific port. At the transport layer, one unreliable and fast protocol, UDP (User Datagram Protocol, \cite{rfc768}) and another reliable, TCP (Transmission Control Protocol, \cite{rfc793}). For the real-time topic, UDP is massively used in the real-time communication, because TCP favors reliability over timeliness. TCP is usually used for the signalling. At the application layer there are many possibilities, an example is the DNS, briefly described above.
 
 # https://en.wikipedia.org/wiki/Port_(computer_networking)
 
@@ -249,7 +249,7 @@ Table [[tab:pdu]] shows the name of each Protocol Data Unit (PDU), the most impo
 | Network      | Datagram or Packet (IP)       | IETF            |
 | Link         | Frame (MAC)                   | IEEE            |
 
-Every PDU has two types of fields: header and payload. A PDU is encapsulated with the layer below (see Figure [[fig:encap]]). If the header part is greater than payload part is called overhead. If it occurs, the communication is not very efficient, specially if they are sent lots of packets. Signalling data is overhead in the sense that it is not user data, but is useful to stablish a call.
+Every PDU has two types of fields: header and payload. A PDU is encapsulated with the layer below (see Figure [[fig:encap]]). If the header part is greater than payload part is called overhead. If it occurs, the communication is not very efficient, specially if they are sent lots of packets. Signalling data is overhead in the sense that it is not user data, but is useful to establish a call.
 
 #+CAPTION: PDU encapsulation with IP and TCP protocols, application is not specified.
 #+NAME: fig:encap
@@ -258,8 +258,9 @@ Every PDU has two types of fields: header and payload. A PDU is encapsulated wit
 
 Before initializing a call is a requirement to convey media details to the participants, SDP (Session Description Protocol, \cite{rfc4566}) provides a standard representation for such information.
 
-During a call, there is the RTP (Real-time Transport Protocol, \cite{rfc3550}). RTP is a protocol used to encapsulate multimedia content (audio, video). Its header contains a sequence number and timestamp. The sequence number increments by one for each RTP data packet sent, and may be used by the receiver to detect packet loss and to restore packet sequence. The timestamp registers the time when the RTP packet has been generated, it helps with the synchronization and jitter[fn:9] calculations. The RTP Control Protocol (RTCP) periodically sends packets with statistics information to participants in a streaming multimedia RTP session. RTP and RTCP provide information on the quality of communication but do nothing to fix or improve it. An application may use this information to control quality of service parameters. RTCP itself does not provide encryption[fn:13] or authentication methods. If they are needed, it is available the SRTP (Secure Real-time Transport Protocol, \cite{rfc3711}). 
+During a call, there is the RTP (Real-time Transport Protocol, \cite{rfc3550}). The majority of the RTP implementations are build on the UDP. RTP is a protocol used to encapsulate multimedia content (audio, video). Its header contains a sequence number and timestamp. The sequence number increments by one for each RTP data packet sent, and may be used by the receiver to detect packet loss and to restore packet sequence. The timestamp registers the time when the RTP packet has been generated, it helps with the synchronization and jitter[fn:9] calculations. The RTP Control Protocol (RTCP) periodically sends packets with statistics information to participants in a streaming multimedia RTP session. RTP and RTCP provide information on the quality of communication but do nothing to fix or improve it. An application may use this information to control quality of service parameters. RTCP itself does not provide encryption[fn:13] or authentication methods. If they are needed, it is available the SRTP (Secure Real-time Transport Protocol, \cite{rfc3711}). 
 
+# https://en.wikipedia.org/wiki/Real-time_Transport_Protocol
 # RTCP https://en.wikipedia.org/wiki/RTP_Control_Protocol
 
 More information about packet switching can be found at \cite{kurose2013net} and about general telecommunications and signalling at \cite{dodd2012telecom}. Some parts of that sources were included in this section.
@@ -277,37 +278,51 @@ Some parts of \cite{velazquez2010voipguifi} and \cite{of2004voip} were included 
 * TODO State of the art
 Important mechanisms and different technologies that use WebRTC and other associated technologies such as SIP and XMPP
 
-** TODO Important mechanisms
+** Important mechanisms
 
 The Internet is in constant evolution, and different mechanisms are necessary for solving problems affecting real-time communications.
 
-Apart from IPv4 addresses to destination hosts, people can sign up with devices onto host services and be reachable via Internet. A clear example of this is the email system; bob@example.com means that the user, bob, is registered in the domain example.com that is reachable via Internet. DNS needs an additional parameter to reach bob; in the case of email the parameter is MX record (Mail eXchanger record, \cite{rfc5321}). This is a resource record that specifies a mail server responsible for accepting email messages on behalf of a recipient's domain. To advertise other network services such as SIP and XMPP, the SRV record (SeRVice record, \cite{rfc2782}) is necessary. The NAPTR record (Name Authority PoinTeR, \cite{rfc3403}) allows a simple contact address such as bob@example.com to contain the available forms of contact and its priority to different services.
+Apart from IPv4 addresses to destination hosts, people can sign up with devices onto host services and be reachable via Internet. A clear example of this is the email system; bob@example.com means that the user, bob, is registered in the domain example.com that is reachable via Internet. DNS needs an additional parameter to reach bob; in the case of email the parameter is MX record (Mail eXchanger record, detailed in the SMTP[fn:15] standard \cite{rfc5321}). This is a resource record that specifies a mail server responsible for accepting email messages on behalf of a recipient's domain. To advertise other network services such as SIP and XMPP, the SRV record (SeRVice record, \cite{rfc2782}) is necessary. The NAPTR record (Name Authority PoinTeR, \cite{rfc3403}) allows a simple contact address such as bob@example.com to contain the available forms of contact and its priority to different services.
 
 # http://en.wikipedia.org/wiki/MX_record
 # http://en.wikipedia.org/wiki/SRV_record
 # https://en.wikipedia.org/wiki/NAPTR_record
 # http://anders.com/cms/264/
 
-In the current upgrade from IPv4 to IPv6, NAT (Network Address Translation, \cite{rfc3235}) has been standarized in order to alleviate the scarcity and depletion of IPv4 addresses. NAT allows a public IP address to be reused among many different private networks (and its private IP addresses). It functions by connecting private local IP addresses and port tuples to one or more public IP addresses and port tuples. Unfortunately this introduces connectivity problems, especially in peer-to-peer connections[fn:8] (p2p). There are two server utilities which can be configured into a device to solve these problems. Both are required to be on the public network. A STUN server (Session Traversal Utilities for NAT, \cite{rfc5389}) allows a device to discover its public IP address if is located behind a NAT. STUN service maintains the NAT binding alive. A TURN server (Traversal Using Relays around NAT, \cite{rfc5766}) acts as a transport address middleman between the two people wishing to communicate. Unlike STUN, TURN is resource-intensive for the provider. The problem of this two techniques is that they are optimal in some network topologies but a poor choice in others. That is why the most interesting solution for nat traversal is ICE (Interactive Connectivity Establishment, \cite{rfc5245}). ICE exchanges, using the offer/answer SDP model, a multiplicity of IP addresses and ports, that includes STUN and TURN, which are then tested for connectivity by peer-to-peer connectivity checks. It is selected the best candidate transport address.
+In the current upgrade from IPv4 to IPv6, NAT (Network Address Translation, \cite{rfc3235}) has been standarized in order to alleviate the scarcity and depletion of IPv4 addresses. NAT allows a public IP address to be reused among many different private networks (and its private IP addresses). It functions by connecting private local IP addresses and port tuples to one or more public IP addresses and port tuples. Unfortunately this introduces connectivity problems, especially in peer-to-peer connections[fn:8] (p2p). There are two server utilities which can be configured into a device to solve these problems. Both are required to be on the public network. A STUN server (Session Traversal Utilities for NAT, \cite{rfc5389}) allows a device to find out its public IP address if the device is located behind a NAT. STUN service keeps the NAT binding alive. A TURN server (Traversal Using Relays around NAT, \cite{rfc5766}) acts as a transport address middleman between the two people wishing to communicate. Unlike STUN, TURN is resource-intensive for the provider. The problem with these two techniques is that they are optimal in some network topologies but a poor choice in others. That is why the most interesting solution for NAT traversal is ICE (Interactive Connectivity Establishment, \cite{rfc5245}). ICE exchanges, using the offer/answer SDP model, a multiplicity of IP addresses and ports, that includes STUN and TURN, which are then tested for connectivity by peer-to-peer connectivity checks. The best candidate transport address is then selected.
 
 # http://en.wikipedia.org/wiki/STUN
 
-Internet is a very open, distributed and huge network, but this has undesirable consequences. For example, reachable devices from Internet are constantly attacked by other devices that try to exploit its weaknesses in computer systems and computer networks. This can affect the security of an organization. With this an other reasons, that is why its administrators deny by default any service that is not explicitly important for the organization. One of the components used to control the incoming and outgoing network traffic on an applied rule set is the firewall. But the firewall can has undesirable consequences in big organizations, it is less flexible. Suppose a university with students interested in computers. They are experimenting services related to courses or projects, but are having connectivity problems because of the restrictive security and administrators do not have resources to prepare an expermiental environmnent.
+As Internet is such a vast, open and widely distributed network, it is therefore also open to undesirable consequences. For example, devices reachable via Internet are constantly attacked by other devices trying to exploit its weaknesses in computer systems and computer networks and thus can affect the security of an organization. For this and other reasons, its administrators deny by default any service which is not explicitly important to the organization. One of the components used to control the incoming and outgoing network traffic on an applied rule set is the firewall. But the firewall itself can also have undesirable consequences; in large organizations it can be less flexible. Take as an example a university with students interested in computers who are experimenting with services related to courses or projects; they may be having connectivity problems due to the restrictive nature of the firewall.
 
 # https://en.wikipedia.org/wiki/Firewall_(computing)
 # https://en.wikipedia.org/wiki/Hacker_(computer_security)
 
-Firewalls commonly allow traffic via port 80, that corresponds to unencrypted web navigation with HTTP[fn:12] (HyperText Transfer Protocol, \cite{rfc2616}), and port 443, that corresponds to encrypted web navigation with HTTPS (HTTP Secure, \cite{rfc2818}). This is because the most common form of communication is through the web browser. HTTP and HTTPS are request response. Websockets \cite{rfc6455}, however, introduces bidirectional communication between browsers via ports 80 and 443. This allows the devices to traverse the firewall, and a new generation of applications with the browsers, for example, real-time communications.
+Firewalls commonly admit traffic via ports 80 and 443. Port 80 is associated with unencrypted web navigation using HTTP[fn:12] (HyperText Transfer Protocol, \cite{rfc2616}). Port 443 is associated with encrypted web navigation using HTTPS (HTTP Secure, \cite{rfc2818}). HTTP and HTTPS, through a web browser, are the most common forms for communicating over the Internet. Both follow a request-response communication model, but a call requires a bidirectional resource. The Websocket protocol \cite{rfc6455} introduces bidirectional communication between browsers via ports 80 and 443. This allows websocket-based services to be accepted by a firewall, and also prepares the way for a new generation of applications which operate between browsers, such as real-time communications.
 
 # - LDAP ?
 
-** TODO Voice and video calls
-- *VoIP*
-  - H.323 (ITU)
-  - SIP (IETF) - pensado para IP pública
-    - SIP Proxy
-** TODO Instant messaging
-- XMPP (RFC, XEV)
+** TODO Voice, video calls and instant messaging
+# other title was "SIP and XMPP"
+# the other title was "Voice and video calls"
+# the other title was "Instant messaging"
+
+There are two strong open standard alternatives to supply the use cases of voice, video calls and instant messaging: SIP and XMPP.
+
+SIP (Session Initiation Protocol, \cite{rfc3261}) is a protocol used to establish, modify and terminate multimedia sessions in the Internet. It is one of the VoIP[fn:14] available services, an alternative to H.323 from the ITU. It is text-based, on a request/response transaction model from HTTP and SMTP; for example encrypted SIP is SIPS, and it has similarities to the relation between HTTP and HTTPS. SIP itself provides a TCP or UDP signalling channel, SDP to agree a media session and a RTP media channel. SIMPLE[fn:16] is a concluded workgroup at IETF that extended SIP with messaging and presence, this source offers an overview of the work done \cite{rfc6914}. Important telecommunication enterprises provides SIP trunking[fn:20] such as Telefonica[fn:17] and AT&T[fn:18].
+
+# http://tools.ietf.org/id/draft-rosenberg-sipping-siptrunk-00.txt
+
+XMPP (Extensible Messaging and Presence Protocol, \cite{rfc6120}), is a protocol to manage instant messaging and presence of your contact list (roster). It is one of the IM (Instant Messaging) applications available. It encrypts its traffic with TLS such as SIP and HTTP. It is text-based streaming XML (Extensible Markup Language) data in close to real-time. XMPP itself provides a signalling channel, typically via the TCP. Jingle \cite{xep0166} is a signalling protocol that extends XMPP with audio and video calls and is designed to interwork with SIP through gateways. Massively used services provides XMPP-based solutions such as WhatsApp Messenger with 800 million monthly active users[fn:19].
+
+missing to put: It is defined at the IETF, and the extensions are worked with the XMPP Foundation with XEV
+
+# http://xmpp.org/extensions/xep-0166.xml
+# overview jingle http://xmpp.org/about-xmpp/technology-overview/jingle/
+# http://xmpp.org/internet-drafts/draft-saintandre-jingle-sip-00.html
+
+clients problem connecting to this services (firewall). SOlution for SIP: SIP over websockets \cite{rfc7118}. Solution for XMPP. It used BOSH (Bidirectional-streams Over Synchronous HTTP), later websockets. XMPP over websockets \cite{rfc7395}
+
 ** TODO WebRTC
 - Orgs: W3C (webrtc) and IETF (rtcweb)
 - No signalling specified, you can use for example...
@@ -515,8 +530,8 @@ The tasks for this project are divided in two components: theory and practice.
 Inside *theory*, there is:
 - Documentation
   - Things to say/explain: what should be said that at the moment is missing (checklist)
-  - Parts to Fill: developed parts that are missing few details (checklist)
-  - Parts to Fix: developed parts that are incorrect and should be fixed (checklist)
+  - Parts to fill: developed parts that are missing few details (checklist)
+  - Parts to fix: developed parts that are incorrect and should be fixed (checklist)
   - Questions: related to the writing or the theory part, that it is needed an answer (checklist, done when answered)
   - Review: concepts that should be reviewed again, after a scheduled date (checklist)
   - Memory document has tools to track the state of different sections. For theory, it will be specially important:
@@ -742,4 +757,18 @@ Fake section to put the last latex code of the document
 [fn:12] HTTP is a coordinated effort by the IETF and the World Wide Web Consortium (W3C).
 
 [fn:13] an encryption system guarantees privacy, only authorized participants can read the content.
+
+[fn:14] Voice over IP, allows telephone calls via Internet
+
+[fn:15] Simple Mail Transfer Protocol, defines the electronic mail (e-mail) transmission.
+
+[fn:16] SIP for Instant Messaging and Presence Leveraging Extensions https://tools.ietf.org/wg/simple/
+
+[fn:17] https://www.globalsolutions.telefonica.com/en/wholesale/products-services/global-voice/sip-trunking/
+
+[fn:18] http://www.business.att.com/enterprise/Service/voice-services/null/sip-trunking
+
+[fn:19] https://www.facebook.com/jan.koum/posts/10153230480220011
+
+[fn:20] SIP trunking means interconnection to this operator through SIP
 

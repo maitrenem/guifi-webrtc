@@ -1,5 +1,14 @@
 * Diary
 Everyday it's a-gettin' closer
+** <2015-06-06 Sat>
+- state of the art, doing sip and xmpp
+- XEP-166: "Because dual-stack XMPP+SIP clients are difficult to build, Jingle was designed as a pure XMPP signalling protocol". Not anymore with websockets, web development?
+  - history: "Implementation experience indicates that a dual-stack approach might not be feasible on all the computing platforms for which Jabber clients have been written, or even desirable on platforms where it is feasible."
+- IETF WG JOSE https://tools.ietf.org/wg/jose/
+  - JSON Web Encryption (JWE) https://tools.ietf.org/html/draft-ietf-jose-json-web-encryption-40
+    - http://www.ietf.org/proceedings/83/slides/slides-83-xmpp-1.pdf
+** <2015-06-05 Fri>
+- corrections to text already written
 ** <2015-06-04 Thu>
 - fundamentals added: SDP
 - state of the art: HTTP, HTTPS, W3C as organization
