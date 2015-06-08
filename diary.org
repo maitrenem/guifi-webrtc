@@ -1,5 +1,69 @@
 * Diary
 Everyday it's a-gettin' closer
+** <2015-06-08 Mon>
+- The one and only architectural requirement with respect to this part of a WebRTC application concerns the availability of a properly configured bidirectional communication channel between the web browser and the web server. WebSocket, for example.
+- The signalling channel is needed to allow the exchange of three types of information between WebRTC peers
+  - Media session management: setting up and teatring down the communication, as well as reporting potential error conditions
+  - Node's network configuration: network addresses and ports available for the exchanging of real-time data, even in the presence of NATs
+  - Node's multimedia capabilities: supported media, available encoders/decoders (codecs), supported resolutions and frame rates, etc.
+  - note: no data can be transferred between WebRTC peers before all of the above information has been properly exchanged and negotiated.
+- Rewrite rule of apache for websockets http://stackoverflow.com/questions/27526281/websockets-and-apache-proxy-how-to-configure-mod-proxy-wstunnel
+- webrtc test http://iswebrtcready.appear.in/
+- Opus: Opus: Supports constant and variable bitrate encoding from 6 kbit/s to 510 kbit/s, frame sizes from 2.5 ms to 60 ms, and various sampling rates from 8 kHz (with 4 kHz bandwidth) to 48 kHz (with 20 kHz bandwidth, where the entire hearing range of the human auditory system can be reproduced). Defined by IETF RFC 6176. [src http://www.webrtc.org/architecture]
+- screen sharing firefox hello http://www.wired.co.uk/news/archive/2015-03/06/firefox-hello-video-call-upgrade
+- trickle ice: incremental updates to the other peer
+- media engine market: https://bloggeek.me/webrtc-media-engine/
+** <2015-06-07 Sun>
+- Missing Proxy definition
+- Websocket bidirectional between web server and browser. WebRTC bidirectional between browsers. http://stackoverflow.com/questions/4118272/do-websockets-allow-for-p2p-browser-to-browser-communication
+- kamailio installation in internet server at UPF
+
+- foxyproxy buggy with ws, works with wss. firefox proxy works
+
+- transport of webrtc is not working via http proxy. (to do the test disable fetch internet)
+  - https://webrtchacks.com/a-hitchhikers-guide-to-webrtc-standardization/
+    - http proxies http://tools.ietf.org/html/draft-hutton-rtcweb-nat-firewall-considerations
+
+      - F21 The browser must be able to send streams and data to a peer in the presence of Firewalls that only allows traffic via a HTTP Proxy, when Firewall policy allows WebRTC traffic. src https://tools.ietf.org/html/draft-ietf-rtcweb-use-cases-and-requirements-14#section-4.2
+      - http://tools.ietf.org/agenda/89/slides/slides-89-rtcweb-8.pdf
+      - last notice: https://www.ietf.org/mail-archive/web/rtcweb/current/msg12921.html   Note: I don’t intend to maintain or progress [I-D.hutton-rtcweb-nat-firewall-considerations].
+      - evolution to...?
+        - http://tools.ietf.org/html/draft-ietf-httpbis-tunnel-protocol-04
+          - The HTTP CONNECT method (Section 4.3.6 of [RFC7231]) requests that the recipient establish a tunnel to the identified origin server and thereafter forward packets, in both directions, until the tunnel is closed.  Such tunnels are commonly used to create end-to-end virtual connections, through one or more proxies.
+          - ALPN identify the protocol to be used (ALPN: http://tools.ietf.org/html/rfc7301)
+            - https://tools.ietf.org/html/draft-ietf-rtcweb-alpn-01
+            - origins: http://en.wikipedia.org/wiki/Application-Layer_Protocol_Negotiation
+        - http://tools.ietf.org/html/draft-ietf-rtcweb-transports-08
+          - binding to httpbis-tunnel-protocol https://tools.ietf.org/html/draft-ietf-httpbis-tunnel-protocol-04
+          - The WebRTC implementation MAY support accessing the Internet through an HTTP proxy.  If it does so, it MUST support the "connect" header as specified in [I-D.ietf-httpbis-tunnel-protocol].
+
+    - WebRTC Media gateway: it does all the media plane adaptations and its functionality include things like SRTP/RTP media conversion
+
+    - WebRTC portal/Unified Auth System: For the last couple of years I’ve seen service providers combining things like SIP and Oauth 2.0 and hence implementing a very basic version of what some folks call today ‘Identity Federation’. I think this kind of features/services will gain popularity in the context of WebRTC; especially when users can reach each other using the Internet.
+
+- about sdp https://webrtchacks.com/the-minimum-viable-sdp/
+  - WebRTC uses ICE and DTLS to establish a secure connection between peers
+  - SDP anatomy https://webrtchacks.com/sdp-anatomy/
+
+
+- starting webrtc state of the art
+  - rtcweb overview https://tools.ietf.org/html/draft-ietf-rtcweb-overview-13
+    - use cases and requirements https://tools.ietf.org/html/draft-ietf-rtcweb-use-cases-and-requirements-14
+      - Wiretapping is what occurs when information passed across the Internet from one party to one or more other parties is delivered to a third party
+      - Appendix API requirements for the browser
+    - terminology
+      - Signalling path
+      - Media path
+    - figure 2 is interesting
+    - functionalities
+      - data transport
+      - data framing
+      - data formats
+      - connection management (signalling)
+      - presentation and control (?)
+      - local system support functions: include echo cancellation, volume control, camera management including focus, zoom, pan/tilt controls (if available), and more.
+- squid is a http proxy server
+
 ** <2015-06-06 Sat>
 - state of the art, doing sip and xmpp
 - XEP-166: "Because dual-stack XMPP+SIP clients are difficult to build, Jingle was designed as a pure XMPP signalling protocol". Not anymore with websockets, web development?
@@ -961,9 +1025,12 @@ Everyday it's a-gettin' closer
     - wget http://deb.kamailio.org/kamailiodebkey.gpg
     - apt-key add kamailiodebkey.gpg
   - password MySQL with kamailio: kamailio/kamailiorw kamailioro/kamailioro
+  - sudo apt-get install kamailio kamailio-websocket-modules kamailio-mysql-modules kamailio-tls-modules
+  - sudo apt-get install mysql-server
   - upgraded steps:
     - https://quobis.atlassian.net/wiki/display/QoffeeSIP/Server+configurations
-  - changes 64bit (mpath="/usr/lib64/kamailio/modules/") mpath to 32bit (mpath="/usr/lib/i386-linux-gnu/kamailio/modules/")
+  - changes 64bit (mpath="/etc/kamailio# cd /usr/lib/x86_64-linux-gnu/kamailio/modules/") mpath to 32bit (mpath="/usr/lib/i386-linux-gnu/kamailio/modules/")
+  - /etc/kamailio/kamctlrc
 *** <2015-04-29 Wed>
 - SRV, NAPTR seems to be needed in case of domain?
 - here is not dnsservices https://github.com/guifi/dnsservices

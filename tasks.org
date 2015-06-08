@@ -9,6 +9,7 @@
 **** TODO Planification
 *** TODO Tasks and processes (gantt)
 *** TODO Memory
+- [ ] From 50 to 75 pages of content
 **** TODO Documentation, sources of information
 ***** TODO Architecture and Deployment
 **** Things to say/explain
@@ -22,7 +23,7 @@
   - [ ] Why is changing the way ...?
 - [ ] How WebRTC is changing everything
 - [ ] Signalling JSON is the best option (webrtchacks.com) but others are more complex (Sip ws, XMPP ws), and work good. There is no problem at all with signal. I prefer signalling servers that were working for years, that a new signalling server with JSON (argument against simplewebrtc, json signalling server? not standard?)
-- [ ] What is an ATA
+- [X] What is an ATA
 - [ ] Explain at least one topic using math formulation
 - [ ] About QoS, how is done by Angel Elena, what said velazquezPFC
 - [ ] What appendices, and detail them in Last part of Chapter 1, introduction
@@ -64,6 +65,11 @@
   - [ ] signalling types
 - [ ] SIP security SDES
 - [ ] put to each protocol its RFC?
+- [ ] http proxy alpn (guifi.net)
+- [ ] Annex
+  - [ ] Rewrite rule of apache for websockets
+  - [ ] Installation and configuration of kamailio
+    - with GUI??
 ***** RFC's
 - [ ] SRTP RFC 3711 (wikipedia)
 ***** Graphics

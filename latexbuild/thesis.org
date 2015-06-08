@@ -168,18 +168,20 @@ Este proyecto introduce la tecnología disruptiva WebRTC (comunicación web en t
 A project presentation, motivation, objectives and outline of the chapters.
 ** Motivation
 
-In the other bachelor's thesis \cite{vilchez2014comnet} I worked two ideas: /together we can do networks/ and /it is simple to start/. Even so, in cities like Barcelona it is easy to find persons that do not understand what is Guifi.net, probably for 2reasons: there is a very competitive communications market in cities and the complexity to understand a commons model from the consumer point of view. In the case of zones where there is no investment of large operators, the things change: persons need internet, and they struggle to understand the commons model.
+In my previous Bachelor's thesis \cite{vilchez2014comnet} I developed two ideas: /together we can build a commons network/ and /it is simple to start/. This project explores how to provide Real-Time Communications (RTC) to a commons network such as Guifi.net. Very few large cities have a commons network. Barcelona's commons network is called Guifi.net. However, the majority of Barcelona's population has no knowledge nor understanding of Guifi.net. Since the communications market is already highly commercial and competitive, users have a very wide choice of providers and therefore no need to think any further. In areas such as smaller cities and towns where large telecommunication companies have not invested in infrastructure, there is a far greater incentive to participate in a commons network.
 
-The implementation of other services besides Internet, could help certain persons to understand the advantages of commons network, add value to the network. There are services based on contents that are difficult to maintain but there is a service that can be easily applied on a large scale: Real-time Communications. It is something to plan and wait until people start using it. Because is communication in a close environment. We are social.
+# In my previous Bachelor's thesis \cite{vilchez2014comnet} I developed two ideas: /together we can build commons networks/ and /it is simple to start/. Even so, in cities like Barcelona many people do not have reason to understand what Guifi.net is, probably for two reasons: in cities the communications market is extremely competitive and to understand the commons model is complex for consumers. In areas where large operators has not invested, things are different: people lack internet, and they struggle to understand the commons model.
 
-Also, from the Guifi.net point of view, is a challenge, there were some attempts to implement a RTC system but they failed. With WebRTC, let’s try again!
+Inside a commons network, the implementation of other services besides Internet inherently adds value to the network and could help people understand its advantages. There are services based on contents which are difficult to maintain. But RTC as a service can be easily applied on a large scale. Once RTC has been set up, it is merely a question of time before people start using it. For various reasons a commons network generally functions within a narrow radius, and an RTC system could enhance social cohesion within the community.
+
+To apply an RTC system to Guifi.net's commons network is a challenge. Attempts to implement an RTC system have failed. WebRTC is a new opportunity to try again.
 
 ** Objectives
 
-- Free and secure communication between users using own RTC system and commons network infrastructure.
-- Backward compatible with VoIP[fn:11] network. Hence, users can communicate to other VoIP operators from inside and/or outside Guifi.net.
-- An architecture design of an RTC system that fits the community network scenario.
-- Ease of installation and use of the RTC.
+- Free and secure communication between users via an RTC system and commons network infrastructure.
+- Backward compatibility with VoIP[fn:11] network. Hence, users can communicate to other VoIP operators from inside and/or outside Guifi.net.
+- Designing RTC architecture to fit the commons network scenario.
+- Ease of installation and use of RTC.
 
 ** Outline
 
@@ -209,10 +211,10 @@ There are different approaches to achieve real-time systems, that is why it is n
 
 It is also important how to transport the data, there are two fundamental approaches: circuit switching and packet switching.
 
-*Packet switching and the Internet*. The messages are divided in appropriate sized chunks of data known as packets. Packets travel from the source through a network, when they arrive at its destination, the messages are reconstructed. The network makes its best effort to deliver packets in a timely manner, but it does not make any guarantees. Because the resources of the network are used on demand, not reserved, as a consequence, a packet may have to wait for access a communication link. Each packet could be routed in a different network path depending on the network state. Some of them could be lost if there is a congestion (a lot of traffic, a big number of packets). The network equipment needed to build a packet switching infrastructure is affordable, flexible and can manage easily a large amount of data (throughput). The internet is an example of a network of networks that consists of lots of private, public, academic, business, and government networks of local to global scope. The technical operation and standardization of the Internet is an activity of the IETF (Internet Engineering Task Force). The protocol stack of the Internet is the TCP/IP stack, the name was given due to the importance of this two protocols on the system.
+*Packet switching and the Internet*. The messages are divided in appropriate sized chunks of data known as packets. Packets travel from the source through a network, when they arrive at its destination, the messages are reconstructed. The network makes its best effort to deliver packets in a timely manner, but it does not make any guarantees. Because the resources of the network are used on demand, not reserved, as a consequence, a packet may have to wait for access a communication link. Each packet could be routed in a different network path depending on the network state. Some of them could be lost if there is a congestion (a lot of traffic, a large number of packets). The network equipment needed to build a packet switching infrastructure is affordable, flexible and can manage easily a large amount of data (throughput). The internet is an example of a network of networks that consists of lots of private, public, academic, business, and government networks of local to global scope. The technical operation and standardization of the Internet is done with the RFC's[fn:23] (Request for Comments) and is an activity of the IETF (Internet Engineering Task Force). The protocol stack of the Internet is the TCP/IP stack, the name was given due to the importance of this two protocols on the system.
 # https://en.wikipedia.org/wiki/Internet
 
-*Circuit switching and traditional telephony*. The resource (a network path between source and destination) is reserved for the duration of the communication session between the endpoints. In one hand, is a guaranteed constant transmission rate, good link quality, in the other hand, is an expensive resource that is being wasted in silent periods. One of the techniques used to reduce the silent periods is the multiplexing of the circuits in time (Time-Division Multiplexing, TDM) or frequency (Frequency-Division Multiplexing, FDM). The Public Switched Telephone Network (PSTN) is an example of an aggregate network operated by national, regional and local telephony operators that used this type of network paradigm in the past. Now it is moving towards a packet switching network. The technical operation of the PSTN uses the standards created by the ITU (International Telecommunication Union). The protocol stack of PSTN network is the SS7 stack (Signalling System No. 7). Later, it was added the possibility to include generic data to its networks with ISDN (Integrated Services Digital Network).
+*Circuit switching and traditional telephony*. The resource (a network path composed of communication channels between source and destination) is reserved for the duration of the communication session between the endpoints. In one hand, is a guaranteed constant transmission rate, good link quality, in the other hand, is an expensive resource that is being wasted in silent periods. One of the techniques used to reduce the silent periods is the multiplexing of the circuits in time (Time-Division Multiplexing, TDM) or frequency (Frequency-Division Multiplexing, FDM). The Public Switched Telephone Network (PSTN) is an example of an aggregate network operated by national, regional and local telephony operators that used this type of network paradigm in the past. Now it is moving towards a packet switching network. The technical operation of the PSTN uses the standards created by the ITU (International Telecommunication Union[fn:5]). The protocol stack of PSTN network is the SS7 stack (Signalling System No. 7). Later, it was added the possibility to include generic data to its networks with ISDN (Integrated Services Digital Network).
 # https://en.wikipedia.org/wiki/Public_switched_telephone_network
 # https://en.wikipedia.org/wiki/Integrated_Services_Digital_Network
 
@@ -258,7 +260,7 @@ Every PDU has two types of fields: header and payload. A PDU is encapsulated wit
 
 Before initializing a call is a requirement to convey media details to the participants, SDP (Session Description Protocol, \cite{rfc4566}) provides a standard representation for such information.
 
-During a call, there is the RTP (Real-time Transport Protocol, \cite{rfc3550}). The majority of the RTP implementations are build on the UDP. RTP is a protocol used to encapsulate multimedia content (audio, video). Its header contains a sequence number and timestamp. The sequence number increments by one for each RTP data packet sent, and may be used by the receiver to detect packet loss and to restore packet sequence. The timestamp registers the time when the RTP packet has been generated, it helps with the synchronization and jitter[fn:9] calculations. The RTP Control Protocol (RTCP) periodically sends packets with statistics information to participants in a streaming multimedia RTP session. RTP and RTCP provide information on the quality of communication but do nothing to fix or improve it. An application may use this information to control quality of service parameters. RTCP itself does not provide encryption[fn:13] or authentication methods. If they are needed, it is available the SRTP (Secure Real-time Transport Protocol, \cite{rfc3711}). 
+During a call, there is the RTP (Real-time Transport Protocol, \cite{rfc3550}). The majority of the RTP implementations are build on top of UDP. RTP is a protocol used to encapsulate multimedia content (audio, video). Its header contains a sequence number and timestamp. The sequence number increments by one for each RTP data packet sent, and may be used by the receiver to detect packet loss and to restore packet sequence. The timestamp registers the time when the RTP packet has been generated, it helps with the synchronization and jitter[fn:9] calculations. The RTP Control Protocol (RTCP) periodically sends packets with statistics information to participants in a streaming multimedia RTP session. RTP and RTCP provide information on the quality of communication but do nothing to fix or improve it. An application may use this information to control quality of service parameters. RTCP itself does not provide encryption[fn:13] or authentication methods. If they are needed, it is available the SRTP (Secure Real-time Transport Protocol, \cite{rfc3711}). 
 
 # https://en.wikipedia.org/wiki/Real-time_Transport_Protocol
 # RTCP https://en.wikipedia.org/wiki/RTP_Control_Protocol
@@ -269,7 +271,7 @@ More information about packet switching can be found at \cite{kurose2013net} and
 
 The network is defined as the router, switch and link components that interconnect all the path between receiver and its destination (them included). The real-time communication depends on how the network is affected by the following parameters.
 
-The bandwidth is the number of bits[fn:10] that can arrive from the source to the destination through the network in one unit of time (for example, MB/s). A greater bandwidth delivers higher definition of the media content. A packet can be lost if it is never received at the destination. A communication suffers jitter when different packets arrive with different delays at its destination. It is defined delay as the time between transmitting the packet and arriving at its destination. Due to the nature of packet switching, packets can be delivered out of order. The arrived packet can present a corruption of data. The prior parameters presented affect negatively to the communication. The undesirable effects might be silent lapses and interruptions of the communication.
+The bandwidth is the number of bits[fn:10] that can arrive from the source to the destination through the network in one unit of time (for example, MB/s). A greater bandwidth delivers higher definition of the media content. A packet can be lost if it is never received at the destination. A communication suffers jitter when different packets arrive with different delays at its destination. It is defined delay as the time between transmitting the packet and arriving at its destination. Due to the nature of packet switching, packets can be delivered out of order. The arrived packet can present a corruption of data. The prior parameters presented affect negatively to the communication. Its undesirable effects might be silent lapses and interruptions of the communication.
 
 Real-time data transport is managed with UDP. This protocol does not perform retransmission, it means that the communication should be fixed for the next upcoming packets. Real-time communications require low bandwidth and delay. This two requirements can be achieved easily with the technologies nowadays.
 
@@ -278,9 +280,9 @@ Some parts of \cite{velazquez2010voipguifi} and \cite{of2004voip} were included 
 * TODO State of the art
 Important mechanisms and different technologies that use WebRTC and other associated technologies such as SIP and XMPP
 
-** Important mechanisms
+** Internet's evolution
 
-The Internet is in constant evolution, and different mechanisms are necessary for solving problems affecting real-time communications.
+The Internet is in constant evolution, and different mechanisms are necessary for solving problems affecting RTC.
 
 Apart from IPv4 addresses to destination hosts, people can sign up with devices onto host services and be reachable via Internet. A clear example of this is the email system; bob@example.com means that the user, bob, is registered in the domain example.com that is reachable via Internet. DNS needs an additional parameter to reach bob; in the case of email the parameter is MX record (Mail eXchanger record, detailed in the SMTP[fn:15] standard \cite{rfc5321}). This is a resource record that specifies a mail server responsible for accepting email messages on behalf of a recipient's domain. To advertise other network services such as SIP and XMPP, the SRV record (SeRVice record, \cite{rfc2782}) is necessary. The NAPTR record (Name Authority PoinTeR, \cite{rfc3403}) allows a simple contact address such as bob@example.com to contain the available forms of contact and its priority to different services.
 
@@ -289,62 +291,104 @@ Apart from IPv4 addresses to destination hosts, people can sign up with devices 
 # https://en.wikipedia.org/wiki/NAPTR_record
 # http://anders.com/cms/264/
 
-In the current upgrade from IPv4 to IPv6, NAT (Network Address Translation, \cite{rfc3235}) has been standarized in order to alleviate the scarcity and depletion of IPv4 addresses. NAT allows a public IP address to be reused among many different private networks (and its private IP addresses). It functions by connecting private local IP addresses and port tuples to one or more public IP addresses and port tuples. Unfortunately this introduces connectivity problems, especially in peer-to-peer connections[fn:8] (p2p). There are two server utilities which can be configured into a device to solve these problems. Both are required to be on the public network. A STUN server (Session Traversal Utilities for NAT, \cite{rfc5389}) allows a device to find out its public IP address if the device is located behind a NAT. STUN service keeps the NAT binding alive. A TURN server (Traversal Using Relays around NAT, \cite{rfc5766}) acts as a transport address middleman between the two people wishing to communicate. Unlike STUN, TURN is resource-intensive for the provider. The problem with these two techniques is that they are optimal in some network topologies but a poor choice in others. That is why the most interesting solution for NAT traversal is ICE (Interactive Connectivity Establishment, \cite{rfc5245}). ICE exchanges, using the offer/answer SDP model, a multiplicity of IP addresses and ports, that includes STUN and TURN, which are then tested for connectivity by peer-to-peer connectivity checks. The best candidate transport address is then selected.
+In the current upgrade from IPv4 to IPv6, NAT (Network Address Translation, \cite{rfc3235}) has been standarized in order to alleviate the scarcity and depletion of IPv4 addresses. NAT allows a public IP address to be reused among many different private networks (and its private IP addresses). It functions by connecting private local IP addresses and port tuples to one or more public IP addresses and port tuples. Unfortunately this introduces connectivity problems, especially in peer-to-peer connections[fn:8] (p2p). There are two server utilities which can be configured into a device to solve these problems. Both are required to be on the public network. A STUN server (Session Traversal Utilities for NAT, \cite{rfc5389}) allows a device to find out its public IP address if the device is located behind a NAT. STUN service keeps the NAT binding alive. A TURN server (Traversal Using Relays around NAT, \cite{rfc5766}) acts as a transport address intermediary between the two people wishing to communicate. Unlike STUN, TURN is resource-intensive for the provider. The problem with these two techniques is that they are optimal in some network topologies but a poor choice in others. That is why the most interesting solution for NAT traversal is ICE (Interactive Connectivity Establishment, \cite{rfc5245}). ICE exchanges, using the offer/answer SDP model, a multiplicity of IP addresses and ports, that includes STUN and TURN, which are then tested for connectivity by peer-to-peer connectivity checks. The best candidate transport address is then selected.
 
 # http://en.wikipedia.org/wiki/STUN
+
+The World Wide Web[fn:24], the Web, is the most common way to use the Internet. It has a client-server distributed architecture model[fn:25]. Web servers act as providers of resources or services and browsers as client requesters. It means that it follows a request-response communication model: client requests and server responses. The browsers navigates between different web pages provided by the web servers. The web navigation could be unencrypted with HTTP[fn:12] (HyperText Transfer Protocol, \cite{rfc2616}) requests or encrypted with HTTPS (HTTP Secure, \cite{rfc2818}). The success of the Web is promoting the use of web applications for all possible services. Two important features of web applications are that they are cross-platform, the browser is a default application in most of the operating systems, and easy to update or upgrade, the browsers only has to refresh the page to obtain a new version. An important problem of the request-response communication model was its complexity associated to the use of bidirectional communication or streaming \cite{rfc6202}, for example to call through a browser. The solution is provided below (the Websocket protocol).
 
 As Internet is such a vast, open and widely distributed network, it is therefore also open to undesirable consequences. For example, devices reachable via Internet are constantly attacked by other devices trying to exploit its weaknesses in computer systems and computer networks and thus can affect the security of an organization. For this and other reasons, its administrators deny by default any service which is not explicitly important to the organization. One of the components used to control the incoming and outgoing network traffic on an applied rule set is the firewall. But the firewall itself can also have undesirable consequences; in large organizations it can be less flexible. Take as an example a university with students interested in computers who are experimenting with services related to courses or projects; they may be having connectivity problems due to the restrictive nature of the firewall.
 
 # https://en.wikipedia.org/wiki/Firewall_(computing)
 # https://en.wikipedia.org/wiki/Hacker_(computer_security)
 
-Firewalls commonly admit traffic via ports 80 and 443. Port 80 is associated with unencrypted web navigation using HTTP[fn:12] (HyperText Transfer Protocol, \cite{rfc2616}). Port 443 is associated with encrypted web navigation using HTTPS (HTTP Secure, \cite{rfc2818}). HTTP and HTTPS, through a web browser, are the most common forms for communicating over the Internet. Both follow a request-response communication model, but a call requires a bidirectional resource. The Websocket protocol \cite{rfc6455} introduces bidirectional communication between browsers via ports 80 and 443. This allows websocket-based services to be accepted by a firewall, and also prepares the way for a new generation of applications which operate between browsers, such as real-time communications.
+Another common mechanism to control the networks is the proxy. A proxy is a network entity that acts as an intermediary between two communication entities. A web proxy satisfies HTTP requests on the behalf of an origin web server. A proxy has the ability to inspect traffic flowing through the service, and can ensure no traffic flows through to the Internet without inspection or control.
+
+# https://www.bluecoat.com/security/security-archive/2011-10-04/why-do-you-need-proxy-secure-web-gateway-0
+# https://en.wikipedia.org/wiki/Client%E2%80%93server_model
+# https://en.wikipedia.org/wiki/Web_server
+# https://en.wikipedia.org/wiki/World_Wide_Web
+# https://en.wikipedia.org/wiki/Proxy_server
+
+Firewalls and web proxies commonly admit traffic via ports 80 (HTTP) and 443 (HTTPS). The Websocket protocol \cite{rfc6455} introduces bidirectional communication between a browser and a web server via ports 80, 443 or any other specified port. This provides websocket-based services an ability to traverse firewalls and proxies, and also prepares the way for a new generation of bidirectional applications, such as RTC.
+
+# https://www.websocket.org/aboutwebsocket.html
 
 # - LDAP ?
 
-** TODO Voice, video calls and instant messaging
+** Voice, video calls and instant messaging
 # other title was "SIP and XMPP"
 # the other title was "Voice and video calls"
 # the other title was "Instant messaging"
 
 There are two strong open standard alternatives to supply the use cases of voice, video calls and instant messaging: SIP and XMPP.
 
-SIP (Session Initiation Protocol, \cite{rfc3261}) is a protocol used to establish, modify and terminate multimedia sessions in the Internet. It is one of the VoIP[fn:14] available services, an alternative to H.323 from the ITU. It is text-based, on a request/response transaction model from HTTP and SMTP; for example encrypted SIP is SIPS, and it has similarities to the relation between HTTP and HTTPS. SIP itself provides a TCP or UDP signalling channel, SDP to agree a media session and a RTP media channel. SIMPLE[fn:16] is a concluded workgroup at IETF that extended SIP with messaging and presence, this source offers an overview of the work done \cite{rfc6914}. Important telecommunication enterprises provides SIP trunking[fn:20] such as Telefonica[fn:17] and AT&T[fn:18].
+SIP (Session Initiation Protocol, \cite{rfc3261}) is a protocol used to establish, modify and terminate multimedia sessions in the Internet. It is one of the VoIP[fn:14] available services, an alternative to H.323 from the ITU. It is text-based, on a request/response transaction model from HTTP and SMTP; for example encrypted SIP is SIPS, and it has similarities to the relation between HTTP and HTTPS. SIP itself provides a TCP or UDP signalling channel, SDP to agree a media session and a RTP media channel. SIMPLE[fn:16] is a concluded workgroup at IETF that extended SIP with messaging and presence, this source offers an overview of the work done \cite{rfc6914}. Important telecommunication enterprises provides SIP trunking[fn:20] such as Telefonica[fn:17] and AT&T[fn:18]. SIP have hardware client implementations called SIP-based VoIP phones, and software client implementations called softphones. Old telephones can have a SIP conversion with ATA (Analog Telephone Adapter).
 
 # http://tools.ietf.org/id/draft-rosenberg-sipping-siptrunk-00.txt
 
-XMPP (Extensible Messaging and Presence Protocol, \cite{rfc6120}), is a protocol to manage instant messaging and presence of your contact list (roster). It is one of the IM (Instant Messaging) applications available. It encrypts its traffic with TLS such as SIP and HTTP. It is text-based streaming XML (Extensible Markup Language) data in close to real-time. XMPP itself provides a signalling channel, typically via the TCP. Jingle \cite{xep0166} is a signalling protocol that extends XMPP with audio and video calls and is designed to interwork with SIP through gateways. Massively used services provides XMPP-based solutions such as WhatsApp Messenger with 800 million monthly active users[fn:19].
-
-missing to put: It is defined at the IETF, and the extensions are worked with the XMPP Foundation with XEV
+XMPP[fn:21] (Extensible Messaging and Presence Protocol), is a protocol to manage instant messaging and presence of your contact list, called roster in its terminology. It is defined in the IETF \cite{rfc6120} and the XEP's (XMPP Extension Protocols) are worked by the XMPP Standards Foundation[fn:22] (XSF). It is one of the IM (Instant Messaging) applications available. It encrypts its traffic with TLS such as SIP and HTTP. It is text-based streaming XML (Extensible Markup Language) data in close to real-time. XMPP itself provides a signalling channel, typically via the TCP. Jingle \cite{xep0166} is a signalling protocol that extends XMPP with audio and video calls and is designed to interwork with SIP through gateways. Massively used services provides XMPP-based solutions such as WhatsApp Messenger with 800 million monthly active users[fn:19]. The XMPP clients usually are implemented as a software device.
 
 # http://xmpp.org/extensions/xep-0166.xml
 # overview jingle http://xmpp.org/about-xmpp/technology-overview/jingle/
 # http://xmpp.org/internet-drafts/draft-saintandre-jingle-sip-00.html
 
-clients problem connecting to this services (firewall). SOlution for SIP: SIP over websockets \cite{rfc7118}. Solution for XMPP. It used BOSH (Bidirectional-streams Over Synchronous HTTP), later websockets. XMPP over websockets \cite{rfc7395}
+Because of firewalls and proxies, clients usually have connectivity problems connecting to SIP (port 5060) and XMPP services (port 5222). XMPP started using BOSH (Bidirectional-streams Over Synchronous HTTP, \cite{xep0124}), this had the problems of using HTTP for bidirectional communication. Now, with the standardization of Websocket protocol, there are SIP over websocket \cite{rfc7118} and XMPP over websocket \cite{rfc7395}.
 
 ** TODO WebRTC
-- Orgs: W3C (webrtc) and IETF (rtcweb)
-- No signalling specified, you can use for example...
-- Use of SDP (JSEP is the evolution)
-- Codecs
-  - Audio: G.711, Opus
-  - Video: H264, VP8
+WebRTC is the technology able to perform calls through the browser and real-time communications in general. Here is presented WebRTC through the works of the two organizations working on its standardization: IETF and W3C. The presentation of the different concepts it is inspired by some sections of the IETF Internet-Draft /Overview: Real Time Protocols for Browser-based Applications[fn:28]/.
+
+WebRTC is a browser-embedded media engine released by Google in 2011. A media engine packages multimedia processing components into an optimized software solution for smoother integration and better performance. It is also an effort from IETF and W3C to add standardized RTC capabilities into browsers. IETF RTCWEB[fn:26] working group is producing architecture and requirements for selection and profiling of the on the wire protocols. W3C WEBRTC[fn:27] working group is defining browser APIs to enable Real-Time Communications in Web browsers. The WebRTC effort is still a work in progress. Figure [[fig:wrtcwp]] links the browser model with the work in progress of IETF and W3C, the source[fn:29] is from a Victor Pascual's presentation of WebRTC.
+
+# media engine definition http://en.wikipedia.org/wiki/Global_IP_Solutions
+# what does IETF from charter: https://tools.ietf.org/wg/rtcweb/charters
+
+#+CAPTION: WebRTC browser model
+#+NAME: fig:wrtcwp
+[[../img/webrtc-protocols.png]]
+# source: WebRTC presentation of Victor Pascual
+
+The WebRTC trapezoid architecture model (see figure [[fig:wrtca]]) shows the elements that make possible the communication between browsers. JS/HTML/CSS are the components to do a web application, it includes the WebRTC W3C APIs. It is required bidirectional communication channel between the web browser and the web server, it can be used an application-defined over Websocket Protocol such as: XMPP or SIP. The signalling path is composed by the communication channels used between entities participating in signalling. Once signalling is transferred, it starts a media path, a communication channel where multimedia content follows from one WebRTC device to another.
+
+#+CAPTION: WebRTC trapezoid architecture model. Source: IETF WebRTC Overview
+#+NAME: fig:wrtca
+[[../img/webrtc-trapezoid.png]]
+# source: https://tools.ietf.org/html/draft-ietf-rtcweb-overview-13#page-10
+
+*Data transport*. IETF Internet-Draft /Transports for WebRTC[fn:30]/
+
+*Data framing and securing* (RTP, SRTP). It MUST IMPLEMENT IETF Internet-Draft /Web Real-Time Communication (WebRTC): Media Transport and Use of RTP[fn:31]/ IETF Internet-Draft /Security Considerations for WebRTC[fn:32]/. IETF Internet-Draft /WebRTC Security Architecture[fn:33]/. For non RTP data, datachannels (SCPT over DTLS over UDP) IETF Internet-Draft /WebRTC Data Channels[fn:34]/, IETF Internet-Draft /WebRTC Data Channel Establishment Protocol[fn:35]/.
+
+*Data formats*. IETF Internet-Draft /WebRTC Audio Codec and Processing Requirements[fn:36]/. IETF Internet-Draft /WebRTC Video Processing and Codec Requirements[fn:37]/. Codecs, Audio: G.711, Opus; Video: H264, VP8.
+
+*Connection management*. No signalling is specified. Use of SDP (JSEP is the evolution). IETF Internet-Draft /Javascript Session Establishment Protocol[fn:38]/
+
+*Presentation and control*. Peer Connection API. W3C Working Draft /WebRTC 1.0: Real-time Communication Between Browsers[fn:39]/. Media Capture API. W3C Working Draft /Media Capture and Streams[fn:40]/
+
+*Local system support functions*
+- Echo cancellation should be good enough to achieve the suppression of acoustical feedback loops below a perceptually noticeable level.
+- Privacy concerns MUST be satisfied; for instance, if remote control of camera is offered, the APIs should be available to let the local participant figure out who's controlling the camera, and possibly decide to revoke the permission for camera usage.
+- Automatic gain control, if present, should normalize a speaking voice into a reasonable dB range.
+
+The requirements on WebRTC systems with regard to audio processing are found in https://tools.ietf.org/html/draft-ietf-rtcweb-audio-05 (previous); the proposed API for control of local devices are found in Media Capture API.
+
+
+
+
+
+
+
 - Media Management
   - MCU
   - SFU
-- Datachannel: SCPT over DTLS over UDP
+
+
 
 
 
 
 
 - *Security* problems hiding public IP
-
-
-
-
-
 
 
 
@@ -358,8 +402,11 @@ clients problem connecting to this services (firewall). SOlution for SIP: SIP ov
     - Media Gateway
     - Signalling Gateway
   - Transport
+
+
+Some parts of \cite{asdf} and \cite{asf2} were included in this section.
 * TODO Methodology
-** SWOT Analysis of WebRTC
+** SWOT analysis of WebRTC
 
 An analysis of Strengths, Weaknesses, Opportunities and Threats (SWOT) will help the decision-making and tasks for the project.
 
@@ -390,7 +437,7 @@ An analysis of Strengths, Weaknesses, Opportunities and Threats (SWOT) will help
 
 There are lots of RTC systems for different purposes. This project focuses in the work of IETF organization and Internet. Guifi.net is part of Internet, and has additional constraints to take in account.
 
-The following topics are worked only in its fundamentals: RTC standard systems from ITU[fn:5], referred to in the [[Fundamentals of RTC]], and XMPP Standards Foundation, referred to in the [[State of the art]].
+The following topics are worked only in its fundamentals: RTC standard systems from ITU[fn:5], referred to in the [[Fundamentals of RTC]], and XMPP, referred to in the [[State of the art]].
 
 In general it has chosen technologies based on open standards, open source implementations and royalty free patent.
 
@@ -470,7 +517,7 @@ Roles:
 
 This means that the author has to see the project with different points of view.
 
-The Sprint time is approximately one week, because it is assumed that the minimum time-box possible to do a release of the product is one week. The product comprise two major tasks: the theory (documentation, memory) and practice (how this theory is fitted to the real world experiments). The tasks are explained with more detail in the next section [[Tasks]].
+The Sprint time is approximately one week, because it is assumed that the minimum time-box possible to do a release of the product is one week. The product comprise two major tasks: the theory (documentation, memory) and practice (how this theory is fitted to the real world experiments). The tasks are explained with more detail in the next section.
 
 Figure \ref{fig:gantt2} shows the Scrum plan with the different sprint phases (s1, s2, s3, s4) and important milestones:
 - d1: project charter and tasks, delivery to mentors
@@ -559,6 +606,20 @@ Figure [[fig:wsd]] shows the *work style*, how the objectives will be accomplish
 [[../img/workstyle.png]]
 
 ** TODO Architecture Design
+- network architecture
+  - structure: nodes, connections, relationships
+  - behavior: protocols, functionality
+  - production and deployment plans
+- architecture features
+  - centralization vs. distribution
+  - open vs closed
+  - availability
+  - scalability
+    - extendability
+  - control
+    - security
+- network architectures (guifi)
+- signalling types
 * TODO Contributions and Results
 
 It is wanted to define the architecture of a general RTC service, as set of different services and applications.
@@ -690,6 +751,9 @@ Gateway
 * TODO Conclusions and Future Work
 ** TODO Conclusions
 ** TODO Future Work
+CUSAX \cite{rfc7081}
+
+# Jingle standard said that is difficult a client that do sip and xmpp, not anymore!
 * Fake
 [To be removed]
 
@@ -732,43 +796,82 @@ Fake section to put the last latex code of the document
 
 * Footnotes
 
-[fn:1] range of IP's used by Guifi.net and private networks.
+[fn:1] Range of IP's used by Guifi.net and private networks.
 
 [fn:2] http://www.scrumguides.org/docs/scrumguide/v1/scrum-guide-us.pdf.
 
 [fn:3] There are different metodologies grouped into agile. The process started with the write of the Agile Manifesto (12 principles) http://agilemanifesto.org/iso/en/principles.html. Since February 2001, this manifesto remains unchanged.
 
-[fn:4] the web implementation is proprietary software, but it can be easily migrated to other open source tools such as http://gitlab.com or http://gogs.io/.
+[fn:4] The web implementation is proprietary software, but it can be easily migrated to other open source tools such as http://gitlab.com or http://gogs.io/.
 
-[fn:5] International Telecommunication Union, formerly the International Telegraph Union.
+[fn:5] Formerly the International Telegraph Union.
 
-[fn:6] derived from signalling transport, working group of IETF.
+[fn:6] Derived from signalling transport, working group of IETF.
 
 [fn:7] ISO/IEC 7498-1:1994.
 
-[fn:9] jitter is briefly defined in the next section.
+[fn:9] Jitter is briefly defined in the next section.
 
-[fn:10] A bit can be 0 or 1. A stream of this symbols express information. In telecommunications the information unit is the bit, expressed with the unit b. In computer science the Byte, expressed with the unit B. 1 Byte is 8 bits. 
+[fn:10] A bit can be 0 or 1. A stream of this symbols represents information. In telecommunications the information unit is the bit, expressed with the unit b. In computer science the Byte, expressed with the unit B. 1 Byte is 8 bits. 
 
-[fn:11] Voice over IP. The use of the telephone adapted to the the Internet network.
+[fn:11] Voice over IP. The use of telephone adapted to the Internet network.
 
-[fn:8] a connection that goes directly from a host to another host, without an intermediate server.
+[fn:8] A connection that goes directly from a host to another host, without an intermediate server.
 
 [fn:12] HTTP is a coordinated effort by the IETF and the World Wide Web Consortium (W3C).
 
-[fn:13] an encryption system guarantees privacy, only authorized participants can read the content.
+[fn:13] An encryption system guarantees privacy, only authorized participants can read the content.
 
-[fn:14] Voice over IP, allows telephone calls via Internet
+[fn:14] Voice over IP, allows telephone calls via Internet.
 
 [fn:15] Simple Mail Transfer Protocol, defines the electronic mail (e-mail) transmission.
 
-[fn:16] SIP for Instant Messaging and Presence Leveraging Extensions https://tools.ietf.org/wg/simple/
+[fn:16] SIP for Instant Messaging and Presence Leveraging Extensions https://tools.ietf.org/wg/simple/.
 
-[fn:17] https://www.globalsolutions.telefonica.com/en/wholesale/products-services/global-voice/sip-trunking/
+[fn:17] https://www.globalsolutions.telefonica.com/en/wholesale/products-services/global-voice/sip-trunking/.
 
-[fn:18] http://www.business.att.com/enterprise/Service/voice-services/null/sip-trunking
+[fn:18] http://www.business.att.com/enterprise/Service/voice-services/null/sip-trunking.
 
-[fn:19] https://www.facebook.com/jan.koum/posts/10153230480220011
+[fn:19] https://www.facebook.com/jan.koum/posts/10153230480220011.
 
-[fn:20] SIP trunking means interconnection to this operator through SIP
+[fn:20] SIP trunking means interconnection to an operator through SIP.
 
+[fn:21] Formerly the protocol was originally named Jabber.
+
+[fn:22] Formerly the Jabber Software Foundation.
+
+[fn:23] In this document each IETF protocol is accompanied by its RFC.
+
+[fn:24] An information system for interlinked hypertext documents and other digital resources that are accessed via the Internet
+
+[fn:25] http://www.w3.org/Proposal.html
+
+[fn:26] https://tools.ietf.org/wg/rtcweb/
+
+[fn:27] http://www.w3.org/2011/04/webrtc/
+
+[fn:28] https://tools.ietf.org/html/draft-ietf-rtcweb-overview-13
+
+[fn:29] http://www.slideshare.net/victorpascual/webrtc-standards-update-october-2014/4
+
+[fn:30] https://tools.ietf.org/html/draft-ietf-rtcweb-transports-06
+
+[fn:31] https://tools.ietf.org/html/draft-ietf-rtcweb-rtp-usage-16
+
+[fn:32] https://tools.ietf.org/html/draft-ietf-rtcweb-security-07
+
+[fn:33] https://tools.ietf.org/html/draft-ietf-rtcweb-security-arch-10
+
+[fn:34] https://tools.ietf.org/html/draft-ietf-rtcweb-data-channel-11
+
+[fn:35] https://tools.ietf.org/html/draft-ietf-rtcweb-data-protocol-07
+
+[fn:36] https://tools.ietf.org/html/draft-ietf-rtcweb-audio-05
+
+[fn:37] https://tools.ietf.org/html/draft-ietf-rtcweb-video-00
+
+[fn:38] https://tools.ietf.org/html/draft-ietf-rtcweb-jsep-07
+
+[fn:39] http://www.w3.org/TR/2015/WD-webrtc-20150210/
+
+[fn:40] http://www.w3.org/TR/2015/WD-mediacapture-streams-20150414/
