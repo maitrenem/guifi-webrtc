@@ -211,7 +211,7 @@ There are different approaches to achieve real-time systems, that is why it is n
 
 It is also important how to transport the data, there are two fundamental approaches: circuit switching and packet switching.
 
-*Packet switching and the Internet*. The messages are divided in appropriate sized chunks of data known as packets. Packets travel from the source through a network, when they arrive at its destination, the messages are reconstructed. The network makes its best effort to deliver packets in a timely manner, but it does not make any guarantees. Because the resources of the network are used on demand, not reserved, as a consequence, a packet may have to wait for access a communication link. Each packet could be routed in a different network path depending on the network state. Some of them could be lost if there is a congestion (a lot of traffic, a large number of packets). The network equipment needed to build a packet switching infrastructure is affordable, flexible and can manage easily a large amount of data (throughput). The internet is an example of a network of networks that consists of lots of private, public, academic, business, and government networks of local to global scope. The technical operation and standardization of the Internet is done with the RFC's[fn:23] (Request for Comments) and is an activity of the IETF (Internet Engineering Task Force). The protocol stack of the Internet is the TCP/IP stack, the name was given due to the importance of this two protocols on the system.
+*Packet switching and the Internet*. The messages are divided in appropriate sized chunks of data known as packets. Packets travel from the source through a network, when they arrive at its destination, the messages are reconstructed. The network makes its best effort to deliver packets in a timely manner, but it does not make any guarantees. Because the resources of the network are used on demand, not reserved, as a consequence, a packet may have to wait for access a communication link. Each packet could be routed in a different network path depending on the network state. Some of them could be lost if there is a congestion (a lot of traffic, a large number of packets). The network equipment needed to build a packet switching infrastructure is affordable, flexible and can manage easily a large amount of data (throughput). The internet is an example of a network of networks that consists of lots of private, public, academic, business, and government networks of local to global scope. The technical operation and standardization of the Internet is done with the RFCs[fn:23] (Request for Comments) and is an activity of the IETF (Internet Engineering Task Force). The protocol stack of the Internet is the TCP/IP stack, the name was given due to the importance of this two protocols on the system.
 # https://en.wikipedia.org/wiki/Internet
 
 *Circuit switching and traditional telephony*. The resource (a network path composed of communication channels between source and destination) is reserved for the duration of the communication session between the endpoints. In one hand, is a guaranteed constant transmission rate, good link quality, in the other hand, is an expensive resource that is being wasted in silent periods. One of the techniques used to reduce the silent periods is the multiplexing of the circuits in time (Time-Division Multiplexing, TDM) or frequency (Frequency-Division Multiplexing, FDM). The Public Switched Telephone Network (PSTN) is an example of an aggregate network operated by national, regional and local telephony operators that used this type of network paradigm in the past. Now it is moving towards a packet switching network. The technical operation of the PSTN uses the standards created by the ITU (International Telecommunication Union[fn:5]). The protocol stack of PSTN network is the SS7 stack (Signaling System No. 7). Later, it was added the possibility to include generic data to its networks with ISDN (Integrated Services Digital Network).
@@ -238,7 +238,7 @@ SS7, ISDN and TCP/IP stacks are based on the Open Systems Interconnection model 
 | Link         | Physical addressing (close)           | Link         |
 | Physical     | Binary signal and transmission        | Physical     |
 
-Table [[tab:pdu]] shows the name of each Protocol Data Unit (PDU), the most important protocols and the organization that standarizes it. At link layer the most common PDU is the Ethernet frame, with its associated MAC address (Media Access Control). At the network layer the datagram, with its associated IP address (Internet Protocol). The version 4 of IP, IPv4 \cite{rfc791}, contains $2^{32}$ (4.3 billion) addresses, as this is not enough, that is why Internet network is upgrading to IPv6 \cite{rfc2460} with $2^{128}$ (more than $7.9\cdot10^{28}$ times as many as IPv4). Meanwhile, there are basically two types of IPv4 addresses: private IP \cite{rfc1918}, not reachable via Internet, and public IP, reachable via Internet. It is difficult to remember IP addresses to access different locations, that is why there is DNS (Domain Name Server, \cite{rfc1034}), it associates human readable addresses (domain) to IP's. An IP adddress includes a port in the range of 0 to 65535, its main purpose is to share a single physical connection to another place (host), for example an IP destination can has more than one different services available; the different services is usually associated with a specific port. At the transport layer, one unreliable and fast protocol, UDP (User Datagram Protocol, \cite{rfc768}) and another reliable, TCP (Transmission Control Protocol, \cite{rfc793}). For the real-time topic, UDP is massively used in the real-time communication, because TCP favors reliability over timeliness. TCP is usually used for the signaling. At the application layer there are many possibilities, an example is the DNS, briefly described above.
+Table [[tab:pdu]] shows the name of each Protocol Data Unit (PDU), the most important protocols and the organization that standarizes it. At link layer the most common PDU is the Ethernet frame, with its associated MAC address (Media Access Control). At the network layer the datagram, with its associated IP address (Internet Protocol). The version 4 of IP, IPv4 \cite{rfc791}, contains $2^{32}$ (4.3 billion) addresses, as this is not enough, that is why Internet network is upgrading to IPv6 \cite{rfc2460} with $2^{128}$ (more than $7.9\cdot10^{28}$ times as many as IPv4). Meanwhile, there are basically two types of IPv4 addresses: private IP \cite{rfc1918}, not reachable via Internet, and public IP, reachable via Internet. It is difficult to remember IP addresses to access different locations, that is why there is DNS (Domain Name Server, \cite{rfc1034}), it associates human readable addresses (domain) to IPs. An IP adddress includes a port in the range of 0 to 65535, its main purpose is to share a single physical connection to another place (host), for example an IP destination can has more than one different services available; the different services is usually associated with a specific port. At the transport layer, one unreliable and fast protocol, UDP (User Datagram Protocol, \cite{rfc768}) and another reliable, TCP (Transmission Control Protocol, \cite{rfc793}). For the real-time topic, UDP is massively used in the real-time communication, because TCP favors reliability over timeliness. TCP is usually used for the signaling. At the application layer there are many possibilities, an example is the DNS, briefly described above.
 
 # https://en.wikipedia.org/wiki/Port_(computer_networking)
 
@@ -277,7 +277,7 @@ Real-time data transport is managed with UDP. This protocol does not perform ret
 
 Some parts of \cite{velazquez2010voipguifi} and \cite{of2004voip} were included in this section. This sources are about voice and its quality, but it can be extended to certain forms of real-time video because of the improved technology nowadays.
 
-* TODO State of the art
+* State of the art
 Important mechanisms and different technologies that use WebRTC and other associated technologies such as SIP and XMPP
 
 ** Internet's evolution
@@ -327,7 +327,7 @@ SIP (Session Initiation Protocol, \cite{rfc3261}) is a protocol used to establis
 
 # http://tools.ietf.org/id/draft-rosenberg-sipping-siptrunk-00.txt
 
-XMPP[fn:21] (Extensible Messaging and Presence Protocol), is a protocol to manage instant messaging and presence of your contact list, called roster in its terminology. It is defined in the IETF \cite{rfc6120} and the XEP's (XMPP Extension Protocols) are worked by the XMPP Standards Foundation[fn:22] (XSF). It is one of the IM (Instant Messaging) applications available. It encrypts its traffic with TLS such as SIP and HTTP. It is text-based streaming XML (Extensible Markup Language) data in close to real-time. XMPP itself provides a signaling channel, typically via the TCP. Jingle \cite{xep0166} is a signaling protocol that extends XMPP with audio and video calls and is designed to interwork with SIP through gateways. Massively used services provides XMPP-based solutions such as WhatsApp Messenger with 800 million monthly active users[fn:19]. The XMPP clients usually are implemented as a software device.
+XMPP[fn:21] (Extensible Messaging and Presence Protocol), is a protocol to manage instant messaging and presence of your contact list, called roster in its terminology. It is defined in the IETF \cite{rfc6120} and the XEPs (XMPP Extension Protocols) are worked by the XMPP Standards Foundation[fn:22] (XSF). It is one of the IM (Instant Messaging) applications available. It encrypts its traffic with TLS such as SIP and HTTP. It is text-based streaming XML (Extensible Markup Language) data in close to real-time. XMPP itself provides a signaling channel, typically via the TCP. Jingle \cite{xep0166} is a signaling protocol that extends XMPP with audio and video calls and is designed to interwork with SIP through gateways. Massively used services provides XMPP-based solutions such as WhatsApp Messenger with 800 million monthly active users[fn:19]. The XMPP clients usually are implemented as a software device.
 
 # http://xmpp.org/extensions/xep-0166.xml
 # overview jingle http://xmpp.org/about-xmpp/technology-overview/jingle/
@@ -335,8 +335,8 @@ XMPP[fn:21] (Extensible Messaging and Presence Protocol), is a protocol to manag
 
 Because of firewalls and proxies, clients usually have connectivity problems connecting to SIP (port 5060) and XMPP services (port 5222). XMPP started using BOSH (Bidirectional-streams Over Synchronous HTTP, \cite{xep0124}), this had the problems of using HTTP for bidirectional communication. Now, with the standardization of Websocket protocol, there are SIP over websocket \cite{rfc7118} and XMPP over websocket \cite{rfc7395}.
 
-** TODO WebRTC
-WebRTC is the technology able to perform calls through the browser and real-time communications in general. Here is presented WebRTC through the works of the two organizations working on its standardization: IETF and W3C. The presentation of the different concepts it is inspired by some sections of the IETF Internet-Draft (IETF-ID) /Overview: Real Time Protocols for Browser-based Applications[fn:28]/.
+** WebRTC
+WebRTC is the technology able to perform calls through the browser and real-time communications in general. Here it is presented WebRTC through the works of the two organizations working on its standardization: IETF and W3C. The presentation of the different concepts is inspired by some sections of the IETF Internet-Draft (IETF-ID) /Overview: Real Time Protocols for Browser-based Applications[fn:28]/.
 
 WebRTC is a browser-embedded media engine released by Google in 2011. A media engine packages multimedia processing components into an optimized software solution for smoother integration and better performance. It is also an effort from IETF and W3C to add standardized RTC capabilities into browsers. IETF RTCWEB[fn:26] working group is producing architecture and requirements for selection and profiling of the on the wire protocols. W3C WEBRTC[fn:27] working group is defining browser APIs to enable Real-Time Communications in Web browsers. The WebRTC effort is still a work in progress. Figure [[fig:wrtcwp]] links the browser model with the work in progress of IETF and W3C, the source[fn:29] is from a Victor Pascual's presentation of WebRTC.
 
@@ -360,7 +360,7 @@ The WebRTC trapezoid architecture model (see figure [[fig:wrtca]]) shows the ele
 *Data framing* is defined in /Web Real-Time Communication (WebRTC): Media Transport and Use of RTP[fn:31]/. Data framing is RTP traffic. RTP and RTCP must be multiplexed on a single transport-layer flow. It has to support the use of multiple media streams (simultaneous SSRC values) in a single RTP session, more information at IETF-ID /Sending Multiple Media Streams in a Single RTP Session[fn:42]/.\\
 For non-RTP data, IETF-ID /WebRTC Data Channels[fn:34]/ defines generic transport service that allows browsers to exchange generic data from peer to peer. Additionally, the document discusses associated use cases and requirements. Data channels use SCTP (Stream Control Transmission Protocol, \cite{rfc4960}). It is a protocol that provides reliable or partially reliable message transport. A SCTP data channel has two streams with the same Stream Identifier, one in each direction, which are managed together. Stream Identifier uniquely identifies a stream. IETF-ID /WebRTC Data Channel Establishment Protocol[fn:35]/ (DCEP) is a protocol that establishes bidirectioanl data channels over an SCTP association with a consistent set of properties about how reliable it is wanted the transmission.
 
-*Securing*. IETF-ID /Security Considerations for WebRTC[fn:32]/ analyzes the security threats of WebRTC. IP Location Privacy (section 5.4) is a threat that concerns the privacy-oriented usage of VPN tunnels to be anonymous in Internet. VPN (Virtual Private Network, \cite{rfc4026}), extends a private network (with private IP's) across a public network (with public IP's) through its. This security threat is caused by the ICE procedure because it reveals a lot of information about the callee's location; that is why it should be prevented in undesirable cases. Daniel Roesler provides a demo of this security threat[fn:46]. Cullen Jennings in a presentation[fn:48] said that it is only affected by split VPN tunnels, because it reveals both external interfaces.\\
+*Securing*. IETF-ID /Security Considerations for WebRTC[fn:32]/ analyzes the security threats of WebRTC. IP Location Privacy (section 5.4) is a threat that concerns the privacy-oriented usage of VPN tunnels to be anonymous in Internet. VPN (Virtual Private Network, \cite{rfc4026}), extends a private network (with private IPs) across a public network (with public IPs) through its. This security threat is caused by the ICE procedure because it reveals a lot of information about the callee's location; that is why it should be prevented in undesirable cases. Daniel Roesler provides a demo of this security threat[fn:46]. Cullen Jennings in a presentation[fn:48] said that it is only affected by split VPN tunnels, because it reveals both external interfaces.\\
 IETF-ID /WebRTC Security Architecture[fn:33]/ defines a security architecture for WebRTC that takes in account the security threats of the other document. IP location privacy is out of scope. It defines the DTLS (Datagram Transport Layer Security, \cite{rfc4347}) handshake[fn:47]. It is a SCTP over DTLS (/DTLS Encapsulation of SCTP Packets[fn:49]/) for the data channel and a DTLS-SRTP \cite{rfc5763} for the media channel. The media channel or the data channel cannot be unencrypted. Once the DTLS handshake has completed, the keys are exported \cite{rfc5705} and used to key SRTP for the media channels.  DTLS fingerprints could be self-signed but it avoids a man-in-the-middle (MitM) attack if participants trust in a third party identity service or certificate authority.
 
 # https://en.wikipedia.org/wiki/Virtual_private_network
@@ -370,25 +370,13 @@ IETF-ID /WebRTC Security Architecture[fn:33]/ defines a security architecture fo
 
 *Connection management* is defined in /Javascript Session Establishment Protocol[fn:38]/ (JSEP). It describes the mechanisms to control the signaling of a multimedia session and its relation with the W3C RTCPeerConnection API. To reduce its complexity it is recommended to adapt the JSEP API into an application-defined over Websocket Protocol library, for example with XMPP or SIP. JSEP controls the signaling, particularly: (1) local and remote session descriptions with SDP and (2) participant's network addresses and ports available for the exchanging of real-time data (ICE). A simple example audio/video call is available at the Section 7 of the JSEP draft.
 
-*Presentation and control*. W3C APIs define the user interaction with the browser. W3C Working Draft /WebRTC 1.0: Real-time Communication Between Browsers[fn:39]/ define important API interfaces: (1) RTCPeerConnection in section /Peer-to-peer connections/, (2) RTCDatachannel in section /Peer-to-peer Data API/, (3) RTCStats in section /Statistics Model/, (4) RTCSessionDescription (JSEP) in section Session Description Model.\\
-W3C Working Draft /Media Capture and Streams[fn:40]/ defines the Media Capture API. It manages the local media devices such as audio and video.
+*Presentation and control*. W3C APIs define the user interaction with the browser. W3C Working Draft /WebRTC 1.0: Real-time Communication Between Browsers[fn:39]/ defines important API interfaces for WebRTC, the most relevant: (1) RTCPeerConnection in section 4 /Peer-to-peer connections/ allows browsers to communicate directly, (2) RTCSessionDescription (JSEP) in section 4.7 /Session Description Model/, (3) RTCDatachannel (data channel) in section 5 /Peer-to-peer Data API/ and (4) RTCStats in section 7 /Statistics Model/ is an evaluation tool of the communication.\\
+W3C Working Draft /Media Capture and Streams[fn:40]/ defines the Media Capture API. It facilitates to the browser the management of local media devices such as audio and video.
 
-*Local system support functions*
-User experience: echo cancellation, volume control, camera management including focus, zoom, pan/tilt controls (if available), and more. /A grandes rasgos/ From audio, video and MediaStream API
+*Local system support functions* improve the user experience. Examples of local functions are echo cancellation, volume control, camera focus, zoom, etc. Some of these functions are defined in Audio and Video Codec documents of IETF-ID and MediaStream API of W3C presented before.
 
-# G.711 PCMA and PCMU with the payload format specified in section 4.5.14 of [RFC3551].
-# G.711 voip interop
-
-# auto audio level, automatic gain control (AGC)
-# acoustic echo cancellation
-
-# camera source video: automatic focus, white balance, light level control, dynamic frame rate
-
-# Mandatory to implement video codec https://tools.ietf.org/html/draft-ietf-rtcweb-video-05#section-5
-
-
-\cite{wrtc2014loreto} was consulted as an additional source of information about WebRTC.
-* TODO Methodology
+The book \cite{wrtc2014loreto} was consulted as an additional source of information about WebRTC.
+* Methodology
 ** SWOT analysis of WebRTC
 
 An analysis of Strengths, Weaknesses, Opportunities and Threats (SWOT) will help the decision-making and tasks for the project.
@@ -588,21 +576,6 @@ Figure [[fig:wsd]] shows the *work style*, how the objectives will be accomplish
 #+NAME: fig:wsd
 [[../img/workstyle.png]]
 
-** TODO Architecture Design
-- network architecture
-  - structure: nodes, connections, relationships
-  - behavior: protocols, functionality
-  - production and deployment plans
-- architecture features
-  - centralization vs. distribution
-  - open vs closed
-  - availability
-  - scalability
-    - extendability
-  - control
-    - security
-- network architectures (guifi)
-- signaling types
 * TODO Contributions and Results
 
 It is wanted to define the architecture of a general RTC service, as set of different services and applications.
@@ -693,6 +666,20 @@ This section presents the components required for the architecture design. Concr
 - Gateway (GW): adapts or converts the communication to work with different communication systems. The most important difference between communication systems is the signaling protocol.
 
 ** TODO Architecture design
+- network architecture
+  - structure: nodes, connections, relationships
+  - behavior: protocols, functionality
+  - production and deployment plans
+- architecture features
+  - centralization vs. distribution
+  - open vs closed
+  - availability
+  - scalability
+    - extendability
+  - control
+    - security
+- network architectures (guifi)
+- signaling types
 
 /general diagrams/
 

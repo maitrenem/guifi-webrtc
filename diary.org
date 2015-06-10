@@ -1,5 +1,17 @@
 * Diary
 Everyday it's a-gettin' closer
+** <2015-06-10 Wed>
+- proposal: where it says architecture -> network architecture
+- change title to? Real-time Communications Network Architecture Design for Organizations with WebRTC
+  - if yes, change README, abstract, /controlled search & replace/
+** <2015-06-09 Tue>
+- https://tools.ietf.org/html/rfc5124#section-1 SAVPF seems that is for encryption RCTP
+- Extended *Secure* RTP Profile for Real-time Transport Control Protocol (RTCP)-Based Feedback (RTP/SAVPF) [https://tools.ietf.org/html/rfc5124] An RTP profile (SAVP) for secure real-time communications and another profile (AVPF) to provide timely feedback from the receivers to a sender are defined in RFC 3711 and RFC 4585, respectively.  This memo specifies the combination of both profiles to enable secure RTP communications with feedback.
+  - SRTP https://tools.ietf.org/html/rfc3711
+  - Extended RTP Profile for Real-time Transport Control Protocol (RTCP)-Based Feedback (RTP/AVPF) https://tools.ietf.org/html/rfc4585
+- Put this about WebRTC. media engine market: https://bloggeek.me/webrtc-media-engine/. Don't know how to put it, seems there is no space
+- [security] interesting/important How to work with OAuth and WebRTC: https://tools.ietf.org/html/draft-ietf-rtcweb-security-arch-11#appendix-A.2
+- State of the art of WebRTC finished
 ** <2015-06-08 Mon>
 - The one and only architectural requirement with respect to this part of a WebRTC application concerns the availability of a properly configured bidirectional communication channel between the web browser and the web server. WebSocket, for example.
 - The signalling channel is needed to allow the exchange of three types of information between WebRTC peers
@@ -12,7 +24,12 @@ Everyday it's a-gettin' closer
 - Opus: Opus: Supports constant and variable bitrate encoding from 6 kbit/s to 510 kbit/s, frame sizes from 2.5 ms to 60 ms, and various sampling rates from 8 kHz (with 4 kHz bandwidth) to 48 kHz (with 20 kHz bandwidth, where the entire hearing range of the human auditory system can be reproduced). Defined by IETF RFC 6176. [src http://www.webrtc.org/architecture]
 - screen sharing firefox hello http://www.wired.co.uk/news/archive/2015-03/06/firefox-hello-video-call-upgrade
 - trickle ice: incremental updates to the other peer
-- media engine market: https://bloggeek.me/webrtc-media-engine/
+- https://tools.ietf.org/html/draft-ietf-rtcweb-security-arch-11 seems an important document!!!
+- about PeerConnection: Once the PeerConnection is created, the calling service JS needs to set up some media.  Because this is an audio/video call, it creates a MediaStream with two MediaStreamTracks, one connected to an audio input and one connected to a video input. Source: https://tools.ietf.org/html/draft-ietf-rtcweb-security-arch-11
+- about JSEP: In the current W3C API, once some streams have been added, Alice's browser + JS generates a signaling message [I-D.ietf-rtcweb-jsep] containing: media channel information, ICE candidates, A fingerprint attribute binding the communication to a key pair [RFC5763] (SRTP+DTLS) [Note that this key may simply be ephemerally generated for this call or specific to this domain, and Alice may have a large number of such keys.]
+- interesting meetings about webrtc and presentations https://www.terena.org/activities/tf-webrtc/
+- chromium and firefox now works with meet jitsi https://hacks.mozilla.org/2015/06/firefox-multistream-and-renegotiation-for-jitsi-videobridge/
+  - the issue in jitsi-meet github https://github.com/jitsi/jitsi-meet/issues/4
 ** <2015-06-07 Sun>
 - Missing Proxy definition
 - Websocket bidirectional between web server and browser. WebRTC bidirectional between browsers. http://stackoverflow.com/questions/4118272/do-websockets-allow-for-p2p-browser-to-browser-communication
@@ -298,6 +315,7 @@ Everyday it's a-gettin' closer
 - Mediaserver (streaming)
   - http://lynckia.com/licode/
   - http://kurento.org
+    - https://www.terena.org/activities/tf-webrtc/meeting2/slides/20150519-kurento.pdf
   - licode vs kurento: https://groups.google.com/forum/#!topic/lynckia/CX71wIwcYWA
     - My sense is that Kurento is focused on video mixing big time. For example, companies can mix their logos etc in live videos. The focus is on augmenting video stream with ads or data or other things. Their focus seems less on conferencing solution. Whereas Licode does not attempt to mix streams. Their focus is entirely on video conferencing. Also, mixing in Kurento is still has to come a long way in comparison to FFmpeg.
 **** theory
@@ -616,6 +634,8 @@ Everyday it's a-gettin' closer
     - defined here https://tools.ietf.org/html/draft-ietf-rtcweb-overview-13 "as A WebRTC gateway is a WebRTC-compatible endpoint that mediates
       media traffic to non-WebRTC entities."
   - Media Server :: Provides conferencing recording, interworking, transcoding, stream processing
+    - MCU (Multipoint Conferencing Unit)
+    - SFU (Selective Forwarding Unit)
 - Daniel Pocock anouncing new SIP service for Debian community https://lists.debian.org/debian-devel-announce/2014/01/msg00004.html
   - A key feature of this SIP deployment is that it supports federated inter-connectivity with other SIP domains from the outset.  Please try it.  For details of how it works and how we establish trust between domains, please see RFC 5922 http://tools.ietf.org/html/rfc5922
   - rAsterisk compatible with WebRTC https://wiki.debian.org/UnifiedCommunications/DebianDevelopers/UserGuide/Asterisk

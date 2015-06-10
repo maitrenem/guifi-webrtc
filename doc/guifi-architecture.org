@@ -38,3 +38,7 @@
 - Wifi link quality is not bidirectional, could be different quality in both directions
 - Brandwidth requeriments: ?
 - DNS requeriments: ?
+** Good practices
+- When there are two zones, with different routing protocols. It is preferable that a single router understand the two protocols because has the two routing tables and makes easy the communication. Experiences of two protocols, two different routers connected, gave problems.
+** Questions
+- Are the professional VoIP routers using QoS? (Angel Elena)
