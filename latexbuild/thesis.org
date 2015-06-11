@@ -43,6 +43,7 @@
 \selectlanguage{english}
 
 %EN COMPTES DE ÍNDEX, LA TAULA DE CONTINGUTS ES TITULA SUMARI
+
 \addto\captionscatalan
   {\renewcommand{\contentsname}{\Large \sffamily Sumari}}
 
@@ -52,6 +53,8 @@
 %\usepackage{hyperref}
 \usepackage[hidelinks]{hyperref}
 \usepackage{titlesec}
+\usepackage{appendix}
+%\usepackage[toc,page]{appendix}
 \setcounter{secnumdepth}{5}
 % source: http://tex.stackexchange.com/questions/130795/
 % it is already defined later
@@ -153,6 +156,7 @@ El proyecto introduce la tecnología disruptiva WebRTC (comunicación web en tie
 %TAULA DE CONTINGUTS: OBLIGATÒRIA
 \selectlanguage{english}
 \tableofcontents
+\addcontentsline{toc}{chapter}{Contents}
 
 %INDEX DE FIGURES; NOMÉS ES POSA SI HI HA FIGURES
 \listoffigures
@@ -174,7 +178,7 @@ El proyecto introduce la tecnología disruptiva WebRTC (comunicación web en tie
 %\setlength{\parskip}{\baselineskip}
 #+END_LATEX
 
-* TODO Introduction
+* Introduction
 A project presentation, motivation, objectives and outline of the chapters.
 ** Motivation
 
@@ -193,7 +197,7 @@ To apply an RTC system to Guifi.net's commons network is a challenge. Attempts t
 - Designing RTC network architecture to fit the commons network scenario.
 - Ease of installation and use of RTC.
 
-** TODO Outline
+** Outline
 
 This document is organised in 5 chapters.
 
@@ -203,9 +207,9 @@ This document is organised in 5 chapters.
 
 *Chapter [[State of the art]] State of the art* discusses the state of the art of WebRTC and its associated technologies.
 
-*Chapter [[Methodology]] Methodology* contains a description of the processes involved to achieve this project.
+*Chapter [[Methodology]] Methodology* contains a general analysis of the topic and a description of the processes involved in order to achieve this project.
 
-*Chapter [[Contributions and Results]] Contributions and Results* develops the theory and practice of the objectives proposed by this project   *FIX*
+*Chapter [[Contributions and Results]] Contributions and Results* develops different elements to accomplish RTC in Guifi.net organization: requirements, network architecture design, component selection, implementation and demo.
 
 *Chapter [[Conclusions and Future Work]] Conclusions and Future Work* provides a general assessment of the project
 
@@ -346,10 +350,9 @@ XMPP[fn:21] (Extensible Messaging and Presence Protocol), is a protocol to manag
 Because of firewalls and proxies, clients usually have connectivity problems connecting to SIP (port 5060) and XMPP services (port 5222). XMPP started using BOSH (Bidirectional-streams Over Synchronous HTTP, \cite{xep0124}), this had the problems of using HTTP for bidirectional communication. Now, with the standardization of Websocket protocol, there are SIP over websocket \cite{rfc7118} and XMPP over websocket \cite{rfc7395}.
 
 ** WebRTC
-WebRTC is the technology able to make calls through the browser and real-time communications in general. In this section the two organizations working on WebRTC standardization, IETF and W3C, are presented. The different concepts laid out are inspired by the IETF Internet-Draft (IETF-ID) /Overview: Real Time Protocols for Browser-based Applications[fn:28]/.
+WebRTC is the technology able to make calls through the browser and real-time communications in general. In this section are presented the two organizations working on WebRTC standardization, IETF and W3C. The different concepts laid out are inspired by the IETF Internet-Draft (IETF-ID) /Overview: Real Time Protocols for Browser-based Applications[fn:28]/.
 
-WebRTC is a browser-embedded media engine released by Google in 2011. A media engine packages multimedia processing components into an optimized software solution for smoother integration and enhanced performance. WebRTC is also an effort by IETF and W3C to add standardized RTC capabilities into browsers. IETF RTCWEB[fn:26] Working Group is producing architecture and requirements for selection and profiling of the on-the-wire protocols. W3C WEBRTC[fn:27] Working Group is defining browser APIs to enable real-time communications in web browsers. IETF and W3Cs' work on WebRTC is still in progress. Figure [[fig:wrtcwp]] shows 
-the parts played by the IETF and W3C in the browser model. The source[fn:29] is Victor Pascual's presentation of WebRTC.
+WebRTC is a browser-embedded media engine released by Google in 2011. A media engine packages multimedia processing components into an optimized software solution for smoother integration and enhanced performance. WebRTC is also an effort by IETF and W3C to add standardized RTC capabilities into browsers through APIs. IETF RTCWEB[fn:26] Working Group is producing architecture and requirements for selection and profiling of the on-the-wire protocols. W3C WEBRTC[fn:27] Working Group is defining browser APIs to enable real-time communications in web browsers. IETF and W3Cs' work on WebRTC is still in progress. Figure [[fig:wrtcwp]] shows the parts played by the IETF and W3C in the browser model. The source[fn:29] is Victor Pascual's presentation of WebRTC.
 
 # media engine definition http://en.wikipedia.org/wiki/Global_IP_Solutions
 # what does IETF from charter: https://tools.ietf.org/wg/rtcweb/charters
@@ -398,7 +401,7 @@ An analysis of Strengths, Weaknesses, Opportunities and Threats (SWOT) will help
   - Ease of use: real-time communication is supported without the need for additional applications or plug-ins.
   - It helps to solve connectivity problems caused by NAT, Firewall, etc.
   - Solved the problem of selection of video and audio codecs.
-  - It is based on open standards and open source implementations.
+  - It is based on open standards, open source software implementations and has a royalty free patent[fn:68].
   - It has well general acceptance in both worlds: enterprise and community.
   - The communication between peers is bidirectional and can be P2P
   - WebRTC standard does not specify signaling: it can be used in very different scenarios.
@@ -413,6 +416,7 @@ An analysis of Strengths, Weaknesses, Opportunities and Threats (SWOT) will help
   - A WebRTC audio call could be routed to traditional telephony.
   - It uses javascript as programming language, this language has the widest developer's community.
   - It encourages a new generation of web applications using its strenghts.
+  - Google bought a relevant enterprise focused on media engines called GIPS (Global IP Solutions) and released it as WebRTC. Not only is becoming a standard in terms of Internet (IETF) and Web (W3C) technologies; but also a defacto standard in the industry because of the media engine's quality. This source[fn:69] analyzed media engine market consequences after WebRTC release, the result is that some of the companies are starting to use WebRTC. WebRTC reduces RTC systems complexity, that is why new companies entered market of media engine and are starting to deploy its own solutions.
 - Threats
   - WebRTC standard do not specify signaling: this can produce a positive or negative fragmentation of projects. Positive fragmentation: different projects for different applications. Negative fragmentation: divided effort.
   - Is a work in progress technology, it is being changed.
@@ -601,21 +605,39 @@ Figure [[fig:wsd]] shows the *work style*, how the objectives will be accomplish
 
 # Definition of a network network architecture of a general RTC service, as set of different services and applications.
 
-** TODO Guifi.net network architecture
+** TODO Guifi.net architecture
 Guifi.net is a commons telecommunication network that is developed with an agreement that guarantees that the network is freely accessible, open to participation, open to knowledge and neutral in data transport. The network interconnects the people that takes part in it (the community) and facilitates the access to Internet. The guifi.net foundation gives legal support to the agreement and the network.
 
-- *Government* is the guifi.net web application. Legal manager guifi.net Foundation[fn:62]
-  - Open source project based on drupal[fn:54] v6
-  - Manage IPv4 unique addresses
-  - The best place to make something standard or easy to use. Example: unsolclic, easy configuration of devices
+# community
 
-- *Social* architecture
-  - *Community*: all the people that have access to the guifi.net network
-  - *Zone*: geographic place where there are different *organizations*
-    - *Volunteer*: no SLA (Service-Level Agreement)
-    - *Association*: group of volunteers and professionals
-    - *Freelance professional*: SLA
-    - *Company*: group of professionals. SLA
+The community is all the people that have access to the Guifi.net network; it is segmentated in zones. Each zone is a geographic place where there are different organizations. As individuals there are volunteers, which maintain the network without SLA (Service-Level Agreement) and freelance professionals, with SLA. As groups there are non-SLA groups, usually non-profit associations of volunteers and professionals, and SLA groups, companies.
+
+# government
+
+Guifi.net has statistics and control of all its devices with an open source web application[fn:70] based on drupal[fn:54] v6. Figure [[fig:guifisc]] shows statistics of a device in terms of availability, delay and incoming and outgoing traffic. The web application connects to the specific zone server which has a software called snpservices[fn:71] (Spontaneous Networking Platform) whose traffic is SNMP (Simple Network Management Protocol, \cite{rfc3411}). The web application also controls the network: each node could has a unique IPv4. Therefore, it is easy to determine a potential attack; moreover aggressor and victim share the same legal framework. Hence, Guifi.net has better security than Internet.
+
+#+CAPTION: Statistics and control of a Guifi.net's device
+#+NAME: fig:guifisc
+[[../img/snpservices.png]]
+
+
+*Network architecture*
+
+Nodes: routers, PC's, /wireless antennas/, ...
+
+
+
+*Relationships*
+
+architecture feature associated: centralized, distributed
+
+- network topology
+  - Distributed Star
+  - Mesh
+
+
+/Guifi.net uses different protocols/
+*Behavior. Protocols. Funcionality*
 
 - *Technical* architecture in a zone
   - /Mesh/ - modern routing protocols
@@ -640,24 +662,98 @@ Guifi.net is a commons telecommunication network that is developed with an agree
 
 # https://en.wikipedia.org/wiki/Autonomous_system_(Internet)
 
-# DNS architecture dnsservices. MX record. Missing SRV for XMPP and SIP
 
-#+CAPTION: MX record in Guifi.net web
-#+NAME: fig:guifi-mx
-[[../img/guifi-mx.png]]
+# incluir Production and deployment plans en lo anterior
+# include open/closed system Architecture Feature: 
+# •  Open systems can be joined easily
+# –  Well-known protocols, easy to implement, more innovation
+# –  No access control
+# –  Easy to extend, can grow fast
+# •  Closed systems have a higher degree of control
+# –  Less risk of resource exhaustion
+# –  Higher security
+
+# include network architecture feature heterogeneity.
+
+
+
 
 # LINKS
 
-The vast majority of communication links are wireless, but there are some places where Guifi.net has deployed optical fiber. Also, in large cities such as Barcelona there are GRE-based (Generic Routing Encapsulation, \cite{rfc2784}) tunnels to improve connectivity using optical fiber services of ISP (Internet Service Provider). Figure [[fig:wifitech]] shows 802.11 Wi-Fi technologies. *FILL (802.11n is common, ac no, distance of wifi)*. The source is from section 4.2.3.1 of IRTF Internet-Draft /Alternative Network Deployments. Taxonomy and characterization[fn:51]/. This draft document is a work in progress of GAIA Research Group[fn:52][fn:53] (Global Access to the Internet for All) from IRTF. IRTF (Internet Research Task Force) is a research organization parallel to IETF.
+The vast majority of communication links are wireless, but there are some places where Guifi.net has deployed optical fiber. Also, in large cities such as Barcelona there are GRE-based (Generic Routing Encapsulation, \cite{rfc2784}) tunnels to improve connectivity using optical fiber services of ISP (Internet Service Provider). Figure [[tab:wifitech]] shows 802.11 Wi-Fi technologies. *FILL (802.11n is common, ac no, distance of wifi)*. The source is from section 4.2.3.1 of IRTF Internet-Draft /Alternative Network Deployments. Taxonomy and characterization[fn:51]/. This draft document is a work in progress of GAIA Research Group[fn:52][fn:53] (Global Access to the Internet for All) from IRTF. IRTF (Internet Research Task Force) is a research organization parallel to IETF.
 
 #+CAPTION: 802.11 (Wi-Fi) Technologies
-#+NAME: fig:wifitech
-[[../img/wifitech.png]]
+#+NAME: tab:wifitech
+| 802.11 | Release  |  Freq | BWdth | Data Rate per    | indoor | outdoor |
+| prot   | date     | (GHz) | (MHz) | stream (Mbps)    |    (m) |     (m) |
+|--------+----------+-------+-------+------------------+--------+---------|
+| a      | Sep 1999 |     5 |    20 | 6, 9, 12, 18, 24 |     35 |     120 |
+|        |          |       |       | 36, 48, 54       |        |         |
+| b      | Sep 1999 |   2.4 |    20 | 1, 2, 5.5, 11    |     35 |     140 |
+| g      | Jun 2003 |   2.4 |    20 | 6, 9, 12, 18, 24 |     38 |     140 |
+|        |          |       |       | 36, 48, 54       |        |         |
+| n      | Oct 2009 | 2.4/5 |    20 | 7.2, 14.4, 21.7, |     70 |     250 |
+|        |          |       |       | 28.9, 43.3,      |        |         |
+|        |          |       |       | 57.8, 65, 72.2   |        |         |
+| n      | Oct 2009 | 2.4/5 |    40 | 15, 30, 45, 60,  |        |         |
+|        |          |       |       | 90, 120,         |        |         |
+|        |          |       |       | 135, 150         |        |         |
+| ac     | Nov 2011 |     5 |    20 | Up to 87.6       |        |         |
+| ac     | Nov 2011 |     5 |    40 | Up to 200        |        |         |
+| ac     | Nov 2011 |     5 |    80 | Up to 433.3      |        |         |
+| ac     | Nov 2011 |     5 |   160 | Up to 866.7      |        |         |
+
+# indoor, outdoor: approx range (m)
+
+
+
+
+*Availability*
+Ejemplo
+
+*Redundancy* -> redundancy links
+
+*Scalability*
+
+/comentar pollos de rutas/
+
+*Extendability*
+
+/sí. se puede ir extendiendo hasta cierto punto en wifi, pero en caso de tener tantos enlaces y usuarios, hay más poder económico y se pude pasar a fibra. Caso Gurb (imagen de Gurb)/
+
+# example of extendability / scalability?
+#   - The best place to make something standard or easy to use. Example: unsolclic, easy configuration of devices
+
+
+*guifi es dumb network* (explicar)
+# Implementación ahora de QoS dificulta la heterogeneity, pero hace de guifi.net una red más inteligente
+
+
+
+# SERVICES THAT PROVIDE GUIFI.NET
+dnsservices
+
+# tema Cloudy y las ventajas que trae (incluye el dnsservices)
+Cloudy[fn:64]
+
+HTTP proxy
+
+
+
+
+
+
+
+*signaling*. Some parts (voip project) uses SIP. In-band signaling: Signaling information uses the same channel as the user data
 
 More information about Guifi.net network can be found in the first chapters at \cite{vilchez2014comnet}
 ** TODO Requirements
 *** TODO Network requirements
 *QoS*. Currently is complex to apply QoS in Guifi.net because of the difficulty to set up globally, firmware incompatibilities and lack of interest. Nearly all Guifi.net operators offering VoIP have deployed QoS with RouterOS in the parts of the network where they manage.
+
+# explicar que QoS es interesante de aplicar en contextos RTC
+
+
 
 # delay requirements
 *Delay*.
@@ -719,12 +815,12 @@ Extract from Table 4-6 of \cite{videoip2008}.
 This refers to Figure \ref{fig:test}
 
 #+BEGIN_LATEX
-\begin{figure}[htb]
+\begin{figure}[h]
 \centering
 \begin{tabular}{l}
-\includegraphics[scale=0.85]{../img/yt144p.png}\\
-\includegraphics[scale=0.85]{../img/yt360p.png}\\
-\includegraphics[scale=0.85]{../img/yt1080p.png}\\
+\includegraphics[scale=0.6]{../img/yt144p.png}\\
+\includegraphics[scale=0.6]{../img/yt360p.png}\\
+\includegraphics[scale=0.6]{../img/yt1080p.png}\\
 \end{tabular}
 \caption{\label{fig:test}Test bla bla bla bla bla.}
 \end{figure}
@@ -810,8 +906,24 @@ This section presents the components required for the network architecture desig
 - Gateway (GW): adapts or converts the communication to work with different communication systems. The most important difference between communication systems is the signaling protocol.
 
 ** TODO Network architecture design
+*** Generic parameters
+DIFF con guifi.net
 
-*** General
+
+
+- about dnsservices
+# DNS architecture dnsservices. MX record. Missing SRV for XMPP and SIP
+
+#+CAPTION: MX record in Guifi.net web
+#+NAME: fig:guifi-mx
+[[../img/guifi-mx.png]]
+
+
+
+
+es estructura web project, por lo tanto centraliza un poco. o no si se integra en los routers (~freedom box?) [reescibir esto en las conclusiones]
+
+# or perhaps should be in guifi.net architecture?
 - network architecture
   - structure: nodes, connections, relationships
   - behavior: protocols, functionality
@@ -827,7 +939,9 @@ This section presents the components required for the network architecture desig
 - network architectures (guifi)
 - signaling types
 
-*** Component diagram?
+*** Component diagram
+- explain, workflow
+
 /general diagrams/
 
 Each link has associated transport protocol
@@ -843,7 +957,7 @@ Each link has associated transport protocol
 
 /flow chart communication/
 
-*** Interaction between WebRTC and SIP
+*** Interoperability between WebRTC and SIP
 
 Authentication
 /authentication diagrams/
@@ -866,36 +980,63 @@ Gateway
 SRTP vs SDES ?
 
 ** TODO Component selection
-
-** TODO Applications available
-*** POCs
+- Part1. conceptual selection, example: SIP as signalling service
+- Part2. specific selection. Applications available
 
 ** TODO Implementation
-** TODO /Demo/
+/How to put the components/
+** TODO Demo
+Deployment (PoC)
+
+- browsers used
+- screenshot
+- wireshark captures
 * TODO Conclusions and Future Work
 ** TODO Conclusions
 # What is an organization? this applied to guifi.net, but with a similar approach is applied to other open source communities, enterprises, etc.
 
+- WebRTC facilitates the use of RTC in organizations. /Small/ organizations can solve the majority of its use cases, large organizations can do it better. Natural evolution of past technologies *FILL technologies?*. Previous attempts were more difficult in general, that is why only it was in large organizations.
+- It is required a minimal organization to apply RTC. Because of general architecture design of WebRTC requires at least a centralized server. Centralized server has low load and inexpensive cost. The organization required is similar to a web page project. Therefore, the architecture design cannot be completely decentralized.
+- Currently is not possible to use WebRTC and be anonymous, ICE procedure reveals a lot of information about a web page visitor.
+- Currently is not supported WebRTC media channel traffic through an HTTP Proxy, but there is a work in progress.
+- WebRTC and SIP interoperability: /JsSIP uses the WebRTC stack of the browser (currently just Chrome has a working WebRTC stack), and WebRTC is not "just "RTP" but it requires SRTP (Secure RTP), ICE, a new SDP profile (SAVPF) and so on. It's not possible to make a direct media session between JsSIP (or any other WebRTC based SIP device) and Linphone since Linphone is a basic SIP client with just common plain RTP support, no ICE no SRTP no SAVPF./
+
+
+# WARNING: SWOT analysis vs conclusions
+
+
+
+
+- *Personal/project conclusions?*. IETF has great resources, and easier to read than expected
 ** TODO Future Work
-CUSAX \cite{rfc7081} /as easy as 2 iframes/
-
+- work in the remaining use cases.
+  - Streaming.
+  - Server intercommunication, federation to Guifi.net (inside) and outside (Internet).
+- Improve integration of signaling services XMPP[fn:66] and/or SIP[fn:65] inside OpenWRT-based firmwares such as qMp and/or libremesh.
+- Develop a WebRTC plugin to Cloudy.
+- Develop a web-based CUSAX client (Combined Use of the Session Initiation Protocol (SIP) and the Extensible Messaging and Presence Protocol (XMPP), \cite{rfc7081}). Recommended libraries compatible with websocket: jssip for SIP and strophe.js[fn:67] for XMPP. /It is as easy as 2 iframes/. Take advantages of ease of use of SIP for real-time calls and XMPP list of contacts (roster) for its presence.
 # Jingle standard said that is difficult a client that do sip and xmpp, not anymore!
-* Fake
-[To be removed]
 
-Fake section to put the last latex code of the document
 #+BEGIN_LATEX
+\addcontentsline{toc}{chapter}{Bibliography}
 \bibliography{bibliography}
 \cleardoublepage
+#+END_LATEX
+
+# #+LATEX:\cleardoublepage
+
+#+LATEX: \begin{appendices}
+
+* One thing
+* Another thing
+#+LATEX: \end{appendices}
 
 
 
+
+#+BEGIN_LATEX
 \backmatter
 \printindex
-
-
-
-
 
 \end{document}
 
@@ -919,7 +1060,6 @@ Fake section to put the last latex code of the document
 %Cal eliminar les comandes \usepakage{makeidx} \makeindex \printindex
 %cal exacutar des de la línia de comandes makeindex authors
 #+END_LATEX
-
 * Footnotes
 
 [fn:1] Range of IP's used by Guifi.net and private networks.
@@ -1047,4 +1187,20 @@ Fake section to put the last latex code of the document
 [fn:62] http://fundacio.guifi.net/index.php/Foundation
 
 [fn:63] International Telecommunication Union. ITU-T Recommendation G.114 http://www.itu.int/rec/dologin_pub.asp?lang=e&id=T-REC-G.114-200305-I!!PDF-E
+
+[fn:64] http://cloudy.community/
+
+[fn:65] https://downloads.openwrt.org/barrier_breaker/14.07/x86/generic/packages/telephony/
+
+[fn:66] https://downloads.openwrt.org/barrier_breaker/14.07/x86/generic/packages/packages/prosody_0.9.4-1_x86.ipk
+
+[fn:67] http://strophe.im/strophejs/, example https://prosody.im/chat/
+
+[fn:68] http://www.webrtc.org/faq
+
+[fn:69] https://bloggeek.me/webrtc-media-engine
+
+[fn:70] https://guifi.net
+
+[fn:71] https://github.com/guifi/snpservices
 

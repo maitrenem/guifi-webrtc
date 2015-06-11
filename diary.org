@@ -2,10 +2,13 @@
 Everyday it's a-gettin' closer
 ** <2015-06-11 Thu>
 - http://10.228.203.232/cgi-bin/smokeping.cgi?target=guifi.WebUPF
-- JsSIP uses the WebRTC stack of the browser (currently just Chrome has a working WebRTC stack), and WebRTC is not "just "RTP" but it requires 
-SRTP (Secure RTP), ICE, a new SDP profile (SAVPF) and so on. It's not possible to make a direct media session between JsSIP (or any other 
-WebRTC based SIP device) and Linphone since Linphone is a basic SIP client with just common plain RTP support, no ICE no SRTP no SAVPF. 
-- src https://groups.google.com/forum/#!searchin/jssip/webrtc$20sip$20srtp$20rtp/jssip/Dr7IORICrJ8/qmdnDdO_Q9YJ
+- JsSIP uses the WebRTC stack of the browser (currently just Chrome has a working WebRTC stack), and WebRTC is not "just "RTP" but it requires SRTP (Secure RTP), ICE, a new SDP profile (SAVPF) and so on. It's not possible to make a direct media session between JsSIP (or any other WebRTC based SIP device) and Linphone since Linphone is a basic SIP client with just common plain RTP support, no ICE no SRTP no SAVPF. 
+  - src https://groups.google.com/forum/#!searchin/jssip/webrtc$20sip$20srtp$20rtp/jssip/Dr7IORICrJ8/qmdnDdO_Q9YJ
+- webrtc standalone client https://github.com/mozilla/webrtc-standalone
+- editor improve: added possibility to put appendix, bibliography appear in table of contents and pdf index, contents appear in pdf index
+- table of contents reestructure of project
+- ideas for conclusions future work
+- new opportunity in swot analysis
 ** <2015-06-10 Wed>
 - proposal: where it says architecture -> network architecture
   - Real-Time Communication Network Architecture Design for Organizations with WebRTC

@@ -57,6 +57,7 @@
     - [ ] centralization vs. distribution
     - [ ] open vs closed
     - [ ] availability
+    - [ ] redundancy
     - [ ] scalability
       - [ ] extendability
     - [ ] control
