@@ -12,7 +12,7 @@
 - [ ] From 50 to 75 pages of content
 **** TODO Documentation, sources of information
 ***** TODO Architecture and Deployment
-**** Things to say/explain
+**** Things to say/explain [13/28]
 - [X] Documentation of Scrum
 - [X] include pyramid explanation and work style in methodologies (inside tasks?)
 - [X] "I wanted to do about VoIP (see next Chapter) but Miquel Oliver encouraged me to do about WebRTC, and he presented me Victor Pascual."
@@ -22,14 +22,14 @@
   - [ ] Why is evolving WebRTC?
   - [ ] Why is changing the way ...?
 - [ ] How WebRTC is changing everything
-- [ ] Signalling JSON is the best option (webrtchacks.com) but others are more complex (Sip ws, XMPP ws), and work good. There is no problem at all with signal. I prefer signalling servers that were working for years, that a new signalling server with JSON (argument against simplewebrtc, json signalling server? not standard?)
+- [ ] [component selection] Signalling JSON is the best option (webrtchacks.com) but others are more complex (Sip ws, XMPP ws), and work good. There is no problem at all with signal. I prefer signalling servers that were working for years, that a new signalling server with JSON (argument against simplewebrtc, json signalling server? not standard?)
 - [X] What is an ATA
-- [ ] Explain at least one topic using math formulation
+- [ ] [network requirements?] Explain at least one topic using math formulation
 - [ ] About QoS, how is done by Angel Elena, what said velazquezPFC
 - [ ] What appendices, and detail them in Last part of Chapter 1, introduction
 - [ ] Brief mention to IP-ranges Subnetting
-- [ ] Softphone
-- [ ] Security compromised in VPN-tunnels, where the true IP address of the user can be read. (in webrtc state of the art)
+- [X] Softphone
+- [X] Security compromised in VPN-tunnels, where the true IP address of the user can be read. (in webrtc state of the art)
   - https://github.com/diafygi/webrtc-ips
   - https://torrentfreak.com/huge-security-flaw-leaks-vpn-users-real-ip-addresses-150130/
   - http://en.wikipedia.org/wiki/WebRTC#Concerns
@@ -42,12 +42,12 @@
   - [ ] publish subscribe pattern http://en.wikipedia.org/wiki/Publish%E2%80%93subscribe_pattern
   - [ ] simplex, half duplex, full-duplex http://en.wikipedia.org/wiki/WebSocket
     - This is made possible by providing a standardized way for the server to send content to the browser without being solicited by the client, and allowing for messages to be passed back and forth while keeping the connection open
-- [ ] client server model
-- [ ] p2p model
-- [ ] QoS en WebRTC?
-- [ ] SDP vs /JSON new format for SDP/
-- [ ] payload header protocol header. overhead http://en.wikipedia.org/wiki/Network_packet#Payload
-- [ ] security in SIP vs security in WebRTC
+- [X] client server model
+- [X] p2p model
+- [X] QoS en WebRTC? (little mention)
+- [X] SDP vs /JSON new format for SDP/
+- [X] payload header protocol header. overhead http://en.wikipedia.org/wiki/Network_packet#Payload
+- [ ] security in SIP (SDES) vs security in WebRTC (DTLS-SRTP or DTLS over STCP)
 - [ ] (fundamentals?) architecture design (AIS, 1. Architectures.pdf)
   - [ ] network architecture
     - [ ] structure: nodes, connections, relationships
@@ -63,15 +63,14 @@
       - [ ] security
   - [ ] network architectures (guifi)
   - [ ] signalling types
-- [ ] SIP security SDES
-- [ ] put to each protocol its RFC?
-- [ ] http proxy alpn (guifi.net)
+- [X] put to each protocol its RFC?
+- [X] http proxy alpn (guifi.net)
 - [ ] Annex
   - [ ] Rewrite rule of apache for websockets
   - [ ] Installation and configuration of kamailio
     - with GUI??
 ***** RFC's
-- [ ] SRTP RFC 3711 (wikipedia)
+- [X] SRTP RFC 3711 (wikipedia)
 ***** Graphics
 - [X] pyramid: requirements, design, implementation, poc
 - [ ] do a diagram like this http://www.just2good.co.uk/images/gif/tcpipstack.gif explain
@@ -81,8 +80,8 @@
 - [ ] flowchart
 **** Parts to Fill
 - [ ] every chapter should introduce the subparts
-- [ ] Chapter 1 Outline (1.3) has to be completed
-- [ ] 4.4.1 scrum plan, little introduction
+- [X] Chapter 1 Outline (1.3) has to be completed
+- [X] 4.4.1 scrum plan, little introduction
 **** Parts to Fix
 - [ ] Fix: Graph, MEDIA CTRL -> ????
 - [X] Fix: w-w graph, connection is not through data channel
@@ -95,7 +94,7 @@
 **** Review
 - [ ] Tasks, inside practice, WebRTC POC SCHEDULED: <2015-05-29 Fri>
 **** Bibliography
-***** Book SIP that I'm missing...
+***** Book SIP that I'm missing... (got the book)
 ***** RFC's
 ** TODO Metaorganization
 1 month, 4 iterations

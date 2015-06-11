@@ -1,15 +1,15 @@
 * Guifi.net: architecture of the network
-*Government* is the guifi.net web application. Legal manager guifi.net Foundation
-- Open source project based on drupal v6
-- Manage IPv4 unique addresses
-- The best place to make something standard or easy to use. Example: unsolclic, easy configuration of devices
-*Social* architecture
-- *Community*: all the people that have access to the guifi.net network
-- *Zone*: geographic place where there are different *organizations*
-  - *Volunteer*: no SLA (Service-Level Agreement)
-  - *Association*: group of volunteers and professionals
-  - *Freelance professional*: SLA
-  - *Company*: group of professionals. SLA
+- *Government* is the guifi.net web application. Legal manager guifi.net Foundation
+  - Open source project based on drupal v6
+  - Manage IPv4 unique addresses
+  - The best place to make something standard or easy to use. Example: unsolclic, easy configuration of devices
+- *Social* architecture
+  - *Community*: all the people that have access to the guifi.net network
+  - *Zone*: geographic place where there are different *organizations*
+    - *Volunteer*: no SLA (Service-Level Agreement)
+    - *Association*: group of volunteers and professionals
+    - *Freelance professional*: SLA
+    - *Company*: group of professionals. SLA
 - *Technical* architecture in a zone
   - /Mesh/ - modern routing protocols
     - *design*: each node extends the network

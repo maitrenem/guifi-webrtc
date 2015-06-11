@@ -62,7 +62,8 @@
 \SetWatermarkLightness{0.95}
 
 %AFEGIU EN AQUESTA PART LES VOSTRES DADES
-\title{Architecture Design of Real-Time Communication for Organizations with WebRTC}
+%\title{Architecture Design of Real-Time Communication for Organizations with WebRTC}
+\title{Real-Time Communication Network Architecture Design for Organizations with WebRTC}
 %\subtitle{}
 \author{Pedro Vílchez}
 \thyear{2015}
@@ -113,19 +114,28 @@ Thanks for reading. Thanks for your time.
 \selectlanguage{english}
 \section*{\Large \sffamily Abstract}
 
-The present project introduces the disrupting technology WebRTC (Web Real-Time Communication), that supports browser-to-browser applications without need of third party plugins. It is detailed how, since its release by Google in 2011, it is evolving and changing the way communications are understood. How to materialise a Real Time Communications in organizations with WebRTC and the use case of video and audio calls, taking as example Guifi.net and the opportunities that it offers: requirements, architecture design, component selection, implementation and demo.
+The present project introduces disrupting technology WebRTC (Web Real-Time Communication) which supports browser-to-browser applications without the need for third party plug-ins. It details how, since its release by Google in 2011, WebRTC is evolving and changing the way communications are understood. This project also discusses how to set up real-time communications in organizations with WebRTC, specifically the use cases of video and audio calls. The organization under discussion is Guifi.net and the elements analyzed are: requirements, network architecture design, component selection, implementation and demo.
+
+%old
+%The present project introduces the disrupting technology WebRTC (Web Real-Time Communication), that supports browser-to-browser applications without need of third party plugins. It is detailed how, since its release by Google in 2011, it is evolving and changing the way communications are understood. How to materialise a Real Time Communications in organizations with WebRTC and the use case of video and audio calls, taking as example Guifi.net and the opportunities that it offers: requirements, architecture design, component selection, implementation and demo.
 
 \selectlanguage{catalan}
 \vspace*{\fill}
 \section*{\Large \sffamily Resum}
 
-Aquest projecte introdueix la tecnologia disruptiva WebRTC (comunicació web en temps real), que suporta aplicacions de navegador a navegador sense la necessitat de complements adicionals. Es detalla com, des de que va ser alliberat per Google al 2011, està evolucionant i canviant la forma en que les comunicacions són enteses. Com materialitzar les comunicacions en temps real en organitzacions amb WebRTC i el cas d'ús de trucades de veu i vídeo, prenent com exemple Guifi.net i les oportunitats que ofereix: requeriments, disseny d'arquitectura, selecció de components, implementació i demostració.
+El projecte introdueix la tecnologia disruptiva WebRTC (comunicació web en temps real), que suporta aplicacions de navegador a navegador sense la necessitat de complements adicionals. Es detalla com, des de que va ser alliberat per Google al 2011, està evolucionant i canviant la forma en que les comunicacions són enteses. Aquest projecte també desenvolupa com posar en marxa comunicacions en temps real per organitzacions amb WebRTC, específicament els casos d'ús de trucades de veu i vídeo. La organització per desenvolupar-ho és Guifi.net i els elements que ho analitzen: requeriments, disseny d'arquitectura de xarxa, selecció de components, implementació i demostració.
+
+%old
+%Aquest projecte introdueix la tecnologia disruptiva WebRTC (comunicació web en temps real), que suporta aplicacions de navegador a navegador sense la necessitat de complements adicionals. Es detalla com, des de que va ser alliberat per Google al 2011, està evolucionant i canviant la forma en que les comunicacions són enteses. Com materialitzar les comunicacions en temps real en organitzacions amb WebRTC i el cas d'ús de trucades de veu i vídeo, prenent com exemple Guifi.net i les oportunitats que ofereix: requeriments, disseny d'arquitectura, selecció de components, implementació i demostració.
 
 \selectlanguage{spanish}
 \vspace*{\fill}
 \section*{\Large \sffamily Resumen}
 
-Este proyecto introduce la tecnología disruptiva WebRTC (comunicación web en tiempo real), que soporta aplicaciones de navegador a navegador sin necesidad de complementos adicionales. Se detalla cómo, desde que fue liberado por Google en el 2011, está evolucionando y cambiando la forma en que son entendidas las comunicaciones. Cómo materializar las comunicaciones en tiempo real en organizaciones con WebRTC y el caso de uso de llamadas de voz y vídeo, tomando como ejemplo Guifi.net y las oportunidades que ofrece: requerimientos, diseño de la arquitectura, selección de componentes, implementación y demostración.
+El proyecto introduce la tecnología disruptiva WebRTC (comunicación web en tiempo real), que soporta aplicaciones de navegador a navegador sin necesidad de complementos adicionales. Se detalla cómo, desde que fue liberado por Google en el 2011, está evolucionando y cambiando la forma en que son entendidas las comunicaciones. Este proyecto también desarrolla cómo poner en marcha las comunicaciones en tiempo real en organizaciones con WebRTC, específicamente los casos de uso de llamadas de voz y vídeo. La organización para desarrollarlo es Guifi.net y los elementos que lo analizan son: requerimientos, diseño de la arquitectura de red, selección de componentes, implementación y demostración.
+
+%old
+%Este proyecto introduce la tecnología disruptiva WebRTC (comunicación web en tiempo real), que soporta aplicaciones de navegador a navegador sin necesidad de complementos adicionales. Se detalla cómo, desde que fue liberado por Google en el 2011, está evolucionando y cambiando la forma en que son entendidas las comunicaciones. Cómo materializar las comunicaciones en tiempo real en organizaciones con WebRTC y el caso de uso de llamadas de voz y vídeo, tomando como ejemplo Guifi.net y las oportunidades que ofrece: requerimientos, diseño de la arquitectura, selección de componentes, implementación y demostración.
 
 \vspace*{\fill}
 
@@ -164,7 +174,7 @@ Este proyecto introduce la tecnología disruptiva WebRTC (comunicación web en t
 %\setlength{\parskip}{\baselineskip}
 #+END_LATEX
 
-* Introduction
+* TODO Introduction
 A project presentation, motivation, objectives and outline of the chapters.
 ** Motivation
 
@@ -180,10 +190,10 @@ To apply an RTC system to Guifi.net's commons network is a challenge. Attempts t
 
 - Free and secure communication between users via an RTC system and commons network infrastructure.
 - Backward compatibility with VoIP[fn:11] network. Hence, users can communicate to other VoIP operators from inside and/or outside Guifi.net.
-- Designing RTC architecture to fit the commons network scenario.
+- Designing RTC network architecture to fit the commons network scenario.
 - Ease of installation and use of RTC.
 
-** Outline
+** TODO Outline
 
 This document is organised in 5 chapters.
 
@@ -195,7 +205,7 @@ This document is organised in 5 chapters.
 
 *Chapter [[Methodology]] Methodology* contains a description of the processes involved to achieve this project.
 
-*Chapter [[Contributions and Results]] Contributions and Results* develops the theory and practice of the objectives proposed by this project
+*Chapter [[Contributions and Results]] Contributions and Results* develops the theory and practice of the objectives proposed by this project   *FIX*
 
 *Chapter [[Conclusions and Future Work]] Conclusions and Future Work* provides a general assessment of the project
 
@@ -271,7 +281,7 @@ More information about packet switching can be found at \cite{kurose2013net} and
 
 The network is defined as the router, switch and link components that interconnect all the path between receiver and its destination (them included). The real-time communication depends on how the network is affected by the following parameters.
 
-The bandwidth is the number of bits[fn:10] that can arrive from the source to the destination through the network in one unit of time (for example, MB/s). A greater bandwidth delivers higher definition of the media content. A packet can be lost if it is never received at the destination. A communication suffers jitter when different packets arrive with different delays at its destination. It is defined delay as the time between transmitting the packet and arriving at its destination. Due to the nature of packet switching, packets can be delivered out of order. The arrived packet can present a corruption of data. The prior parameters presented affect negatively to the communication. Its undesirable effects might be silent lapses and interruptions of the communication.
+The bandwidth is the number of bits[fn:10] that can arrive from the source to the destination through the network in one unit of time (for example, MB/s). A greater bandwidth delivers higher definition (better quality) of the media content. A packet can be lost if it is never received at the destination; it is represented by packet loss percentage (%). A communication suffers jitter when different packets arrive with different delays at its destination. It is defined delay as the time between transmitting the packet and arriving at its destination; it is represented by milliseconds (ms). Due to the nature of packet switching, packets can be delivered out of order. The arrived packet can present a corruption of data. The prior parameters presented affect negatively to the communication. Its undesirable effects might be silent lapses and interruptions of the communication.
 
 Real-time data transport is managed with UDP. This protocol does not perform retransmission, it means that the communication should be fixed for the next upcoming packets. Real-time communications require low bandwidth and delay. This two requirements can be achieved easily with the technologies nowadays.
 
@@ -336,9 +346,10 @@ XMPP[fn:21] (Extensible Messaging and Presence Protocol), is a protocol to manag
 Because of firewalls and proxies, clients usually have connectivity problems connecting to SIP (port 5060) and XMPP services (port 5222). XMPP started using BOSH (Bidirectional-streams Over Synchronous HTTP, \cite{xep0124}), this had the problems of using HTTP for bidirectional communication. Now, with the standardization of Websocket protocol, there are SIP over websocket \cite{rfc7118} and XMPP over websocket \cite{rfc7395}.
 
 ** WebRTC
-WebRTC is the technology able to perform calls through the browser and real-time communications in general. Here it is presented WebRTC through the works of the two organizations working on its standardization: IETF and W3C. The presentation of the different concepts is inspired by some sections of the IETF Internet-Draft (IETF-ID) /Overview: Real Time Protocols for Browser-based Applications[fn:28]/.
+WebRTC is the technology able to make calls through the browser and real-time communications in general. In this section the two organizations working on WebRTC standardization, IETF and W3C, are presented. The different concepts laid out are inspired by the IETF Internet-Draft (IETF-ID) /Overview: Real Time Protocols for Browser-based Applications[fn:28]/.
 
-WebRTC is a browser-embedded media engine released by Google in 2011. A media engine packages multimedia processing components into an optimized software solution for smoother integration and better performance. It is also an effort from IETF and W3C to add standardized RTC capabilities into browsers. IETF RTCWEB[fn:26] working group is producing architecture and requirements for selection and profiling of the on the wire protocols. W3C WEBRTC[fn:27] working group is defining browser APIs to enable Real-Time Communications in Web browsers. The WebRTC effort is still a work in progress. Figure [[fig:wrtcwp]] links the browser model with the work in progress of IETF and W3C, the source[fn:29] is from a Victor Pascual's presentation of WebRTC.
+WebRTC is a browser-embedded media engine released by Google in 2011. A media engine packages multimedia processing components into an optimized software solution for smoother integration and enhanced performance. WebRTC is also an effort by IETF and W3C to add standardized RTC capabilities into browsers. IETF RTCWEB[fn:26] Working Group is producing architecture and requirements for selection and profiling of the on-the-wire protocols. W3C WEBRTC[fn:27] Working Group is defining browser APIs to enable real-time communications in web browsers. IETF and W3Cs' work on WebRTC is still in progress. Figure [[fig:wrtcwp]] shows 
+the parts played by the IETF and W3C in the browser model. The source[fn:29] is Victor Pascual's presentation of WebRTC.
 
 # media engine definition http://en.wikipedia.org/wiki/Global_IP_Solutions
 # what does IETF from charter: https://tools.ietf.org/wg/rtcweb/charters
@@ -357,7 +368,9 @@ The WebRTC trapezoid architecture model (see figure [[fig:wrtca]]) shows the ele
 
 *Data transport* is defined in IETF-ID /Transports for WebRTC[fn:30]/. Generally, it is TCP for signaling channel and UDP for media channel. The WebRTC implementation could support accessing the Internet through an HTTP proxy with a /connect/ header as specified in IETF-ID /The ALPN HTTP Header Field[fn:45]/. It refers to IETF-ID: /DSCP and other packet markings for RTCWeb QoS[fn:41]/, about the usage of QoS with DSCP (Differentiated Services Code Points, \cite{rfc2474}).
 
-*Data framing* is defined in /Web Real-Time Communication (WebRTC): Media Transport and Use of RTP[fn:31]/. Data framing is RTP traffic. RTP and RTCP must be multiplexed on a single transport-layer flow. It has to support the use of multiple media streams (simultaneous SSRC values) in a single RTP session, more information at IETF-ID /Sending Multiple Media Streams in a Single RTP Session[fn:42]/.\\
+*Data framing* is defined in /Web Real-Time Communication (WebRTC): Media Transport and Use of RTP[fn:31]/. Data framing is RTP traffic. RTP and RTCP must be multiplexed on a single transport-layer flow. It has to support the use of multiple media streams (simultaneous SSRC values) in a single RTP session, more information at IETF-ID /Sending Multiple Media Streams in a Single RTP Session[fn:42]/. WebRTC uses as RTP Profile the Extended Secure RTP Profile for RTCP-Based Feedback (RTP/SAVPF, \cite{rfc5124})\\
+
+The complete specification of RTP for a particular application domain requires the choice of an RTP Profile.  For WebRTC use, the 
 For non-RTP data, IETF-ID /WebRTC Data Channels[fn:34]/ defines generic transport service that allows browsers to exchange generic data from peer to peer. Additionally, the document discusses associated use cases and requirements. Data channels use SCTP (Stream Control Transmission Protocol, \cite{rfc4960}). It is a protocol that provides reliable or partially reliable message transport. A SCTP data channel has two streams with the same Stream Identifier, one in each direction, which are managed together. Stream Identifier uniquely identifies a stream. IETF-ID /WebRTC Data Channel Establishment Protocol[fn:35]/ (DCEP) is a protocol that establishes bidirectioanl data channels over an SCTP association with a consistent set of properties about how reliable it is wanted the transmission.
 
 *Securing*. IETF-ID /Security Considerations for WebRTC[fn:32]/ analyzes the security threats of WebRTC. IP Location Privacy (section 5.4) is a threat that concerns the privacy-oriented usage of VPN tunnels to be anonymous in Internet. VPN (Virtual Private Network, \cite{rfc4026}), extends a private network (with private IPs) across a public network (with public IPs) through its. This security threat is caused by the ICE procedure because it reveals a lot of information about the callee's location; that is why it should be prevented in undesirable cases. Daniel Roesler provides a demo of this security threat[fn:46]. Cullen Jennings in a presentation[fn:48] said that it is only affected by split VPN tunnels, because it reveals both external interfaces.\\
@@ -368,7 +381,7 @@ IETF-ID /WebRTC Security Architecture[fn:33]/ defines a security architecture fo
 
 *Data formats*. IETF-ID /WebRTC Audio Codec and Processing Requirements[fn:36]/ proposes as required to implement the audio codecs G.711[fn:44], Opus \cite{rfc6716}. IETF-ID /WebRTC Video Processing and Codec Requirements[fn:37]/ proposes as required to implement the video codecs: H.264[fn:43], VP8 \cite{rfc6386}.
 
-*Connection management* is defined in /Javascript Session Establishment Protocol[fn:38]/ (JSEP). It describes the mechanisms to control the signaling of a multimedia session and its relation with the W3C RTCPeerConnection API. To reduce its complexity it is recommended to adapt the JSEP API into an application-defined over Websocket Protocol library, for example with XMPP or SIP. JSEP controls the signaling, particularly: (1) local and remote session descriptions with SDP and (2) participant's network addresses and ports available for the exchanging of real-time data (ICE). A simple example audio/video call is available at the Section 7 of the JSEP draft.
+*Connection management* is defined in /Javascript Session Establishment Protocol[fn:38]/ (JSEP). It describes the mechanisms to control the signaling of a multimedia session and its relation with the W3C RTCPeerConnection API. To reduce its complexity it is recommended to adapt the JSEP API into an application-defined over Websocket Protocol library[fn:50], for example with XMPP or SIP. JSEP controls the signaling, particularly: (1) local and remote session descriptions with SDP and (2) participant's network addresses and ports available for the exchanging of real-time data (ICE). A simple example audio/video call is available at the Section 7 of the JSEP draft.
 
 *Presentation and control*. W3C APIs define the user interaction with the browser. W3C Working Draft /WebRTC 1.0: Real-time Communication Between Browsers[fn:39]/ defines important API interfaces for WebRTC, the most relevant: (1) RTCPeerConnection in section 4 /Peer-to-peer connections/ allows browsers to communicate directly, (2) RTCSessionDescription (JSEP) in section 4.7 /Session Description Model/, (3) RTCDatachannel (data channel) in section 5 /Peer-to-peer Data API/ and (4) RTCStats in section 7 /Statistics Model/ is an evaluation tool of the communication.\\
 W3C Working Draft /Media Capture and Streams[fn:40]/ defines the Media Capture API. It facilitates to the browser the management of local media devices such as audio and video.
@@ -578,27 +591,158 @@ Figure [[fig:wsd]] shows the *work style*, how the objectives will be accomplish
 
 * TODO Contributions and Results
 
-It is wanted to define the architecture of a general RTC service, as set of different services and applications.
+*FILL*
 
-** TODO Architecture of Guifi.net
-** Requirements
-*** Network requirements
+# Analyzed elements for Guifi.net organization. 
 
-/number and math justification?/
+# Definition of a general RTC service for Guifi.net organization, understood as a set of different services and application.
 
-- DNS (multiple servers)
-- Quality of Service (QoS): put priority to real-time traffic
-- Throughput (more used than Bandwidth)
-- Delay
-- Jitter
-- Packet Loss
-- Congestion
+# organization
 
-# esential guide to telecommunications [page 77]
-# - Packet loss This refers to the packets that are dropped when there is network congestion. Packet loss results in uneven voice quality. Voice conversations “break up” when packet loss is too high.
-# - Latency This term refers to delays (in milliseconds) that are incurred when voice packets traverse the network. Latency results in long pauses within conversations, and clipped words.
-# - Jitter Jitter is uneven latency and packet loss, which results in noisy calls that contain pops and clicks or crackling sounds.IP Private Branch Exchange Architecture
-# - Echo This is the annoying effect of hearing your voice repeated, an issue with which so many of us are familiar. It is often caused when voice data is translated from a circuit-switched format to the IP format. This is usually corrected during installation by special echo-canceling software.
+# Definition of a network network architecture of a general RTC service, as set of different services and applications.
+
+** TODO Guifi.net network architecture
+Guifi.net is a commons telecommunication network that is developed with an agreement that guarantees that the network is freely accessible, open to participation, open to knowledge and neutral in data transport. The network interconnects the people that takes part in it (the community) and facilitates the access to Internet. The guifi.net foundation gives legal support to the agreement and the network.
+
+- *Government* is the guifi.net web application. Legal manager guifi.net Foundation[fn:62]
+  - Open source project based on drupal[fn:54] v6
+  - Manage IPv4 unique addresses
+  - The best place to make something standard or easy to use. Example: unsolclic, easy configuration of devices
+
+- *Social* architecture
+  - *Community*: all the people that have access to the guifi.net network
+  - *Zone*: geographic place where there are different *organizations*
+    - *Volunteer*: no SLA (Service-Level Agreement)
+    - *Association*: group of volunteers and professionals
+    - *Freelance professional*: SLA
+    - *Company*: group of professionals. SLA
+
+- *Technical* architecture in a zone
+  - /Mesh/ - modern routing protocols
+    - *design*: each node extends the network
+    - *firmware*: open source, based on OpenWrt[fn:61]. Most used:
+      qMp[fn:57] and libremesh[fn:58].
+    - *common internet sharing* through layer 3 tunnels or direct access
+    - *routing*
+      - bmx6[fn:59] (qMp or libremesh): Works at layer 3. Autodiscover neighbors
+      - batman-adv[fn:60] (libremesh): Works at layer 2 with linux kernel
+        features. It is like a distributed switch, no problem with
+        mobility
+  - /Infrastructure/ - traditional routing protocols
+    - *design*
+      - supernode: extends the network, conform a backbone network
+      - node or client node: connects to a supernode
+    - *firmware*: factory, examples: AirOS from Ubiquiti[fn:55]) and RouterOS from Mikrotik[fn:56].
+    - *common internet sharing* through HTTP proxy (specific ports), or application layer tunnels such as OpenVPN
+    - *routing*
+      - BGP \cite{rfc1267}, each supernode is an Autonomous System (AS). An Autonomous System 
+      - BGP for messages that goes inside or outside the AS, OSPF \cite{rfc2328} inside the AS
+
+# https://en.wikipedia.org/wiki/Autonomous_system_(Internet)
+
+# DNS architecture dnsservices. MX record. Missing SRV for XMPP and SIP
+
+#+CAPTION: MX record in Guifi.net web
+#+NAME: fig:guifi-mx
+[[../img/guifi-mx.png]]
+
+# LINKS
+
+The vast majority of communication links are wireless, but there are some places where Guifi.net has deployed optical fiber. Also, in large cities such as Barcelona there are GRE-based (Generic Routing Encapsulation, \cite{rfc2784}) tunnels to improve connectivity using optical fiber services of ISP (Internet Service Provider). Figure [[fig:wifitech]] shows 802.11 Wi-Fi technologies. *FILL (802.11n is common, ac no, distance of wifi)*. The source is from section 4.2.3.1 of IRTF Internet-Draft /Alternative Network Deployments. Taxonomy and characterization[fn:51]/. This draft document is a work in progress of GAIA Research Group[fn:52][fn:53] (Global Access to the Internet for All) from IRTF. IRTF (Internet Research Task Force) is a research organization parallel to IETF.
+
+#+CAPTION: 802.11 (Wi-Fi) Technologies
+#+NAME: fig:wifitech
+[[../img/wifitech.png]]
+
+More information about Guifi.net network can be found in the first chapters at \cite{vilchez2014comnet}
+** TODO Requirements
+*** TODO Network requirements
+*QoS*. Currently is complex to apply QoS in Guifi.net because of the difficulty to set up globally, firmware incompatibilities and lack of interest. Nearly all Guifi.net operators offering VoIP have deployed QoS with RouterOS in the parts of the network where they manage.
+
+# delay requirements
+*Delay*.
+- According to \cite{videoip2008}, for interactive video, delay in each direction should be below 150 msec and normally must be below 400 msec. For one-way applications, delay is usually not a significant factor
+- According to G.114[fn:63], for audio, if delays were kept below 150 ms, then most applications would not be significantly affected. While delays above 400 ms are unacceptable for general network planning purposes
+- For communications, audio is more important than video
+
+# http://en.wikipedia.org/wiki/Latency_(audio)
+
+*Jitter*
+
+
+# jitter requirements
+# gráficas de enlaces wifi
+
+# mejor candidato:
+# http://guifi.net/guifi/graph_detail?type=pings&node=28151&device=66650
+# http://guifi.net/node/28151
+# 
+# traceroute to 10.228.199.161 (10.228.199.161), 30 hops max, 60 byte packets
+#  1  10.138.27.97 (10.138.27.97)  0.605 ms  4.788 ms  4.787 ms
+#  2  172.25.35.229 (172.25.35.229)  4.801 ms  4.796 ms  4.783 ms
+#  3  10.138.27.225 (10.138.27.225)  4.699 ms  4.757 ms  6.869 ms
+#  4  10.138.27.33 (10.138.27.33)  7.172 ms  7.667 ms  7.875 ms
+#  5  10.228.201.193 (10.228.201.193)  9.710 ms  9.979 ms  10.195 ms
+#  6  10.228.199.193 (10.228.199.193)  12.400 ms  6.564 ms  8.140 ms
+#  7  10.139.95.97 (10.139.95.97)  10.232 ms  10.253 ms  10.603 ms
+#  8  10.228.199.161 (10.228.199.161)  16.250 ms  17.035 ms  17.296 ms
+# http://10.228.203.232/cgi-bin/smokeping.cgi?target=guifi.WebUPF
+
+
+# codec's Bandwidth
+
+*Audio and Video Codecs' Bandwidth*.
+
+- G.711, 64 Kbps bitrate (8 kHz sampling frequency x 8 bits per sample)
+- Opus, according to \cite{rfc6716}, scales from low bitrate narrowband speech at 6 Kbps to very high quality stereo music at 510 Kbps
+
+#+CAPTION: MPEG Video Compression Comparison
+#+NAME: tab:videobw
+|              | MPEG-1    | MPEG-2  | MPEG-3    | MPEG-4       |
+|              |           |         |           | AVC/H.264    |
+|--------------+-----------+---------+-----------+--------------|
+| Common       | 500-      | 2.5-    | 100 Kbps- | 1-4 Mbps SD  |
+| stream rates | 1500 Kbps | 50 Mbps | 10 Mbps   | 4-10 Mbps HD |
+
+- SD: Video image with a resolution defined in standards popularized in the 1950s and widely used for television around the world
+- HD: Video image with resolution greater than standard definition. Typical formats include 720-line progressively scanned images, 1080-line interlaced images, and other formats.
+
+- VP8 is similar to H.264
+
+Extract from Table 4-6 of \cite{videoip2008}.
+
+# videos de youtube como ejemplo, TODO change Test
+# practical example
+# Source: https://www.youtube.com/watch?v=BdYKR1RsYFY
+# Youtube video option /Stats for nerds/
+
+This refers to Figure \ref{fig:test}
+
+#+BEGIN_LATEX
+\begin{figure}[htb]
+\centering
+\begin{tabular}{l}
+\includegraphics[scale=0.85]{../img/yt144p.png}\\
+\includegraphics[scale=0.85]{../img/yt360p.png}\\
+\includegraphics[scale=0.85]{../img/yt1080p.png}\\
+\end{tabular}
+\caption{\label{fig:test}Test bla bla bla bla bla.}
+\end{figure}
+#+END_LATEX
+
+# I used the export of tab:test, changing table to figure. (I don't like to see image grid as table.)
+# #+MACRO:  p   \includegraphics[scale=0.85]{$1}
+# #+CAPTION: Test.
+# #+NAME: tab:test
+# | {{{p(../img/yt144p.png)}}}  |
+# | {{{p(../img/yt360p.png)}}}  |
+# | {{{p(../img/yt1080p.png)}}} |
+# refs to this
+# http://stackoverflow.com/questions/22732261/how-to-create-image-grid-with-org-mode-for-latex-export
+# http://thread.gmane.org/gmane.emacs.orgmode/84372
+
+vs bandwidth in 802.11 links
+
 *** Generic use cases
 The use cases developed are those that are bold.
 
@@ -654,9 +798,9 @@ A general RTC service could be defined as it follows:
 2. If a server reach another, the users of a server can communicate to the users of another server.
 3. The service is compatible with VoIP Guifi.net project.
 
-*** Required components
+*** Required components by specific use cases
 
-This section presents the components required for the architecture design. Concretely the requirements to send, receive calls, subscribe, unsubscribe and have integration are described now. For a WebRTC scenario, the components are distributed.
+This section presents the components required for the network architecture design. Concretely the requirements to send, receive calls, subscribe, unsubscribe and have integration are described now. For a WebRTC scenario, the components are distributed.
 - Application interface: gives appropriate interaction to the actors in order to perform the different operations. Is distributed, a web server (WSRV) offering a page, and a client executing the web application (WAPP) through the web browser.
 - Authentication service (AUTH): restricts access of service only to permitted users. Differentiate available operations depending on if is user or admin. Single sign on, after the web page is accessed, the user can operate.
 - Signaling protocol (SIG): manages the side to side connections and logic to establish the call. The two peers must use a compatible signaling protocol.
@@ -665,12 +809,14 @@ This section presents the components required for the architecture design. Concr
 - Connectivity solver (CS): a set of tools to avoid common communication problems that appear in networking scenarios. The most common problems are NAT and firewall.
 - Gateway (GW): adapts or converts the communication to work with different communication systems. The most important difference between communication systems is the signaling protocol.
 
-** TODO Architecture design
+** TODO Network architecture design
+
+*** General
 - network architecture
   - structure: nodes, connections, relationships
   - behavior: protocols, functionality
   - production and deployment plans
-- architecture features
+- network architecture features
   - centralization vs. distribution
   - open vs closed
   - availability
@@ -681,6 +827,7 @@ This section presents the components required for the architecture design. Concr
 - network architectures (guifi)
 - signaling types
 
+*** Component diagram?
 /general diagrams/
 
 Each link has associated transport protocol
@@ -689,9 +836,14 @@ Each link has associated transport protocol
 #+NAME: fig:compdiag
 [[../img/arch.png]]
 
+# sources from openclipart.org
+# - computer: https://openclipart.org/detail/159709/laptop
+# - server: https://openclipart.org/detail/13178/server
+# - telephone: https://openclipart.org/detail/192858/voip-phone
+
 /flow chart communication/
 
-*** WebRTC to SIP case
+*** Interaction between WebRTC and SIP
 
 Authentication
 /authentication diagrams/
@@ -722,8 +874,10 @@ SRTP vs SDES ?
 ** TODO /Demo/
 * TODO Conclusions and Future Work
 ** TODO Conclusions
+# What is an organization? this applied to guifi.net, but with a similar approach is applied to other open source communities, enterprises, etc.
+
 ** TODO Future Work
-CUSAX \cite{rfc7081}
+CUSAX \cite{rfc7081} /as easy as 2 iframes/
 
 # Jingle standard said that is difficult a client that do sip and xmpp, not anymore!
 * Fake
@@ -865,3 +1019,32 @@ Fake section to put the last latex code of the document
 [fn:47] A handshake determines how the communication of a protocol starts.
 
 [fn:49] https://tools.ietf.org/html/draft-ietf-tsvwg-sctp-dtls-encaps-09
+
+[fn:50] A list with examples at https://webrtchacks.com/vendor-directory/
+
+[fn:51] https://tools.ietf.org/html/draft-manyfolks-gaia-community-networks-02
+
+[fn:52] https://trac.tools.ietf.org/group/irtf/trac/wiki/gaia
+
+[fn:53] https://irtf.org/gaia
+
+[fn:54] https://drupal.org
+
+[fn:55] https://www.ubnt.com/
+
+[fn:56] http://www.mikrotik.com/
+
+[fn:57] https://qmp.cat
+
+[fn:58] http://libre-mesh.org/
+
+[fn:59] http://bmx6.net/projects/bmx6
+
+[fn:60] http://www.open-mesh.org/projects/batman-adv/wiki
+
+[fn:61] https://openwrt.org/
+
+[fn:62] http://fundacio.guifi.net/index.php/Foundation
+
+[fn:63] International Telecommunication Union. ITU-T Recommendation G.114 http://www.itu.int/rec/dologin_pub.asp?lang=e&id=T-REC-G.114-200305-I!!PDF-E
+

@@ -1,9 +1,17 @@
 * Diary
 Everyday it's a-gettin' closer
+** <2015-06-11 Thu>
+- http://10.228.203.232/cgi-bin/smokeping.cgi?target=guifi.WebUPF
+- JsSIP uses the WebRTC stack of the browser (currently just Chrome has a working WebRTC stack), and WebRTC is not "just "RTP" but it requires 
+SRTP (Secure RTP), ICE, a new SDP profile (SAVPF) and so on. It's not possible to make a direct media session between JsSIP (or any other 
+WebRTC based SIP device) and Linphone since Linphone is a basic SIP client with just common plain RTP support, no ICE no SRTP no SAVPF. 
+- src https://groups.google.com/forum/#!searchin/jssip/webrtc$20sip$20srtp$20rtp/jssip/Dr7IORICrJ8/qmdnDdO_Q9YJ
 ** <2015-06-10 Wed>
 - proposal: where it says architecture -> network architecture
+  - Real-Time Communication Network Architecture Design for Organizations with WebRTC
 - change title to? Real-time Communications Network Architecture Design for Organizations with WebRTC
   - if yes, change README, abstract, /controlled search & replace/
+- guifi architecture / network requirements
 ** <2015-06-09 Tue>
 - https://tools.ietf.org/html/rfc5124#section-1 SAVPF seems that is for encryption RCTP
 - Extended *Secure* RTP Profile for Real-time Transport Control Protocol (RTCP)-Based Feedback (RTP/SAVPF) [https://tools.ietf.org/html/rfc5124] An RTP profile (SAVP) for secure real-time communications and another profile (AVPF) to provide timely feedback from the receivers to a sender are defined in RFC 3711 and RFC 4585, respectively.  This memo specifies the combination of both profiles to enable secure RTP communications with feedback.
