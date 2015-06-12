@@ -105,6 +105,8 @@ Special thanks to Victor Pascual and Miquel Oliver for his mentorship. Thanks to
 
 Thanks to Daniel Pocock for its work on rtcquickstart.org. Thanks to webrtchacks.com and all its team for the useful articles.
 
+Thanks to Rachel Thalmann for revising certain parts of this text.
+
 Thanks to all the people that works for the democratization of communications
 
 Thanks for reading. Thanks for your time.
@@ -195,8 +197,8 @@ Study if the following objectives are reachable for Guifi.net:
 - Free and secure communication between users via an RTC system and commons network infrastructure.
 - Backward compatibility with VoIP[fn:11] network. Hence, users can communicate to other VoIP operators from inside and/or outside Guifi.net.
 - Designing RTC network architecture to fit the commons network scenario.
-- Ease of installation and use of RTC.
-
+- Ease of installation and usability of RTC.
+  
 ** Outline
 
 This document is organised in 5 chapters.
@@ -621,13 +623,28 @@ Guifi.net has statistics and control of all its devices with an open source web 
 [[../img/snpservices.png]]
 
 
-*Behavior. Protocols. Funcionality*
-
-Guifi.net is an heterogeneous network which has different technologies. There are mainly two routing protocol models: what its called traditional and mesh. Traditional model is used since Guifi.net's start, it is similar to models of organizations such as Internet. Its design has two components: supernode, which extends the network and together conform the backbone network, and a node or client node, that connects to a supernode. Its routing devices usually have factory's firmware such as AirOS from Ubiquiti[fn:55]) and RouterOS from Mikrotik[fn:56], both propietary. Routing protocol implementation in traditional model has two variations: BGP (Border Gateway Protocol, \cite{rfc1267}), where each supernode is an AS (Autononous System[fn:72]), or BGP for messages that goes inside or outside the AS, OSPF (Open Shortest Path First, \cite{rfc2328}) inside the AS. Mesh model is a more experimental and modern approach based on autodiscovering neighbors. Its design has one component, a node, that extends the network. Its routing devices have open source firmwares based on OpenWrt[fn:61] such as qMp[fn:57] and libremesh[fn:58]. There are two routing protocol implementations available in mesh model. Bmx6[fn:59] works on network layer; it is available in qMp or libremesh firmware. Batman-adv[fn:60] works on link layer with linux kernel tools; it is available in libremesh firmware.
-
+# *Behavior. Protocols. Funcionality*
+Guifi.net is an heterogeneous network which has different technologies. There are mainly two routing protocol models: what its called traditional and mesh. Traditional model is used since Guifi.net's start, it is similar to models of organizations such as Internet, which means that is ready for production environments. Figure [[fig:guifimap]] shows where is Guifi.net, the majority of zones uses this model. Its design has two components: supernode, which extends the network and together conform the backbone network, and a node or client node, that connects to a supernode. Its routing devices usually have factory's firmware such as AirOS from Ubiquiti[fn:55]) and RouterOS from Mikrotik[fn:56], both propietary. Routing protocol implementation in traditional model has two variations: BGP (Border Gateway Protocol, \cite{rfc1267}), where each supernode is an AS (Autononous System[fn:72]), or BGP for messages that goes inside or outside the AS, OSPF (Open Shortest Path First, \cite{rfc2328}) inside the AS. Mesh model is a more experimental and modern approach based on autodiscovering neighbors. Some Barcelona's zones are using this model. Its design has one component, a node, that extends the network. Its routing devices have open source firmwares based on OpenWrt[fn:61] such as qMp[fn:57] and libremesh[fn:58]. There are two routing protocol implementations available in mesh model. Bmx6[fn:59] works on network layer; it is available in qMp or libremesh firmware. Batman-adv[fn:60] works on link layer with linux kernel tools; it is available in libremesh firmware. Table [[tab:mvst]] summarizes the differences between the two models presented, and provides extra information.
 # https://en.wikipedia.org/wiki/Autonomous_system_(Internet)
 
+#+CAPTION: Model Traditional vs Mesh model
+#+NAME: fig:guifimap
+[[../img/guifi-map.png]]
 
+#+CAPTION: Model Traditional vs Mesh model
+#+NAME: tab:mvst
+|                         | Traditional model | Mesh model                      |
+|-------------------------+-------------------+---------------------------------|
+| Deployed IP version     | IPv4              | IPv4, IPv6                      |
+| Firmware license        | Mostly privative  | Free open source                |
+| Routing protocol        | BGP, OSPF         | bmx6, batman-adv                |
+| Average deployment time | Longer            | Shorter                         |
+| Average cost per link   | More              | Less                            |
+| Common operations       | Technical level   | User level                      |
+| Uncommon operations     | Technical level   | Technical and Programming level |
+
+
+# next ideas, more or less explained
 # incluir Production and deployment plans en lo anterior
 # include open/closed system Architecture Feature: 
 # •  Open systems can be joined easily
@@ -640,23 +657,28 @@ Guifi.net is an heterogeneous network which has different technologies. There ar
 
 
 
-*Network architecture*
-
-Nodes: routers, PC's, /wireless antennas/, ...
+Guifi.net is similar to Internet, that is why 's network components 
 
 
+# *Network architecture* and *Relationships*
 
-*Relationships*
+# WARNING: cambia de orden la enumeración si luego hablas de otra cosa
+The Guifi.net's network components are switchs, routers, servers and links. Its relationships in traditional model tend to be a star network topology. Supernodes have as much redundancy links as possible and this generates a mesh topology, client nodes connect to existing supernodes, this generates a star topology. As there are more client nodes than supernodes;
 
-architecture feature associated: centralized, distributed
+The Guifi.net's network components are switchs, routers, servers and links. In traditional model supernodes have as much redundancy links as possible and this generates a mesh topology called backbone network, client nodes connect to existing supernodes, this generates a star topology called access network. That is why the relationships between components in traditional model are similar to Internet. But Internet has a hierarchical backbone network (see figure [[fig:inetrel]], source wikipedia[fn:73]). The relationships between components in mesh model tend to a mesh network topology. Figure [[fig:topos]] shows *FILL*.
 
-- network topology
-  - Distributed Star
-  - Mesh
+#+CAPTION: Internet relationships. Backbone network: Tiers 1, 2, 3. Access network: Internet users.
+#+NAME: fig:inetrel
+[[../img/inet-rel.png]]
+# SRC IMAGEN https://en.wikipedia.org/wiki/File:Internet_Connectivity_Distribution_%26_Core.svg
 
 
+#+CAPTION: Right: Mesh model topology. Left: Traditional model topology
+#+NAME: fig:topos
+# imagen compuesta por: izquierda imagen de internet wiki, derecha grafo poblenou qmp
 
-# LINKS
+
+# *LINKS*
 
 The vast majority of communication links are wireless, but there are some places where Guifi.net has deployed optical fiber. Also, in large cities such as Barcelona there are GRE-based (Generic Routing Encapsulation, \cite{rfc2784}) tunnels to improve connectivity using optical fiber services of ISP (Internet Service Provider). Figure [[tab:wifitech]] shows 802.11 Wi-Fi technologies. *FILL (802.11n is common, ac no, distance of wifi)*. The source is from section 4.2.3.1 of IRTF Internet-Draft /Alternative Network Deployments. Taxonomy and characterization[fn:51]/. This draft document is a work in progress of GAIA Research Group[fn:52][fn:53] (Global Access to the Internet for All) from IRTF. IRTF (Internet Research Task Force) is a research organization parallel to IETF.
 
@@ -710,6 +732,8 @@ Ejemplo
 
 # SERVICES THAT PROVIDE GUIFI.NET
 dnsservices
+
+*Graph and DNS servers* (ver arriba antes de *FILL*)
 
 # tema Cloudy y las ventajas que trae (incluye el dnsservices)
 Cloudy[fn:64]
@@ -810,6 +834,8 @@ This refers to Figure \ref{fig:test}
 # http://thread.gmane.org/gmane.emacs.orgmode/84372
 
 vs bandwidth in 802.11 links
+
+-> bandwidth is cheap inside guifi.net
 
 *** Generic use cases
 The use cases developed are those that are bold.
@@ -966,13 +992,14 @@ Deployment (PoC)
 * TODO Conclusions and Future Work
 What has been done and what remains to be done
 ** TODO Conclusions
-Coming back to the objectives of this project, they are all reachable. WebRTC is open source. Encryption is mandatory for user data. WebRTC is backward compatible to some degree with previous RTC solutions. The provided network architecture design is a good starting point to continue implementing RTC in guifi.net, because the WebRTC design is as scalable and extensible as a web project. The ease of installation and use is being improved by many people, this work tried to summarize some of the work lines and proposed a direction for guifi.net's developer community. For other organizations such as open source communities, companies, etc. a similar approach could be applied.
+Coming back to the objectives of this project, all are attainable. WebRTC is open source and encryption is mandatory for user data. Since WebRTC is a natural evolution of previous technologies, it is backward compatible with previous RTC solutions, to some degree. The network architecture design proposed is a good starting point for continuing to implement RTC in Guifi.net, because WebRTC design is as scalable and extendable as any web project. 
+Up until now, many people have steadily been improving the ease of installation and usability of WebRTC and this work has attempted to summarize some of WebRTC's work lines. Also, it has proposed a direction for guifi.net's developer community. For other organizations such as open source communities, companies, etc. a similar approach could be applied.
 
-WebRTC facilitates the use of RTC in organizations. /Small/ organizations can solve the majority of its use cases, large organizations can do it better. WebRTC is a natural evolution of previous technologies. Previous attempts were more difficult in general, that is why only it was /only/ deployed in large organizations.
+WebRTC greatly facilitates use of RTC in organizations of all sizes. Smaller organizations can solve the use cases proposed. Larger organizations can benefit by solving even more complex use cases. Pre-WebRTC attempts were more challenging and they tended to be implemented in larger organizations.
 
-It is required a minimal organization to apply RTC. Because the general architecture design of WebRTC requires at least one centralized server. Centralized server has low load and inexpensive cost. The organization required is similar to a web page project. Therefore, the architecture design cannot be completely decentralized.
+As WebRTC architecture design is similar to Web architecture design, it cannot be completely decentralized. This is one of the disadvantages of WebRTC; its architecture design needs at least one centralized server, because of that a minimum of organization is required in order to implement it. However the advantage of these servers is that they require low CPU usage and are therefore inexpensive.
 
-There are three featured topics of WebRTC that are negative. Currently is not possible to use WebRTC and be anonymous, ICE procedure reveals a lot of information about a web page visitor. Currently is not supported WebRTC media channel traffic through an HTTP Proxy; this issue affects guifi.net's traditional model. WebRTC and SIP interoperability needs a gateway for the media channel. The gateway basically requires network resources and associated architecture, but it has low CPU load.
+There are three featured topics of WebRTC that are negative. Firstly, currently it is not possible to use WebRTC and be anonymous; the ICE procedure reveals a considerable amount of information about a web page visitor. Secondly, WebRTC media channel traffic is still not supported via an HTTP Proxy and this issue affects guifi.net's traditional model. And thirdly, WebRTC and SIP interoperability need a gateway for the media channel. However, the gateway mainly requires network resources, which are available for free inside Guifi.net.
 
 # /JsSIP uses the WebRTC stack of the browser (currently just Chrome has a working WebRTC stack), and WebRTC is not "just "RTP" but it requires SRTP (Secure RTP), ICE, a new SDP profile (SAVPF) and so on. It's not possible to make a direct media session between JsSIP (or any other WebRTC based SIP device) and Linphone since Linphone is a basic SIP client with just common plain RTP support, no ICE no SRTP no SAVPF./
 
@@ -981,16 +1008,17 @@ There are three featured topics of WebRTC that are negative. Currently is not po
 
 # - *Personal/project conclusions?*. IETF has great resources, and easier to read than expected
 ** TODO Future Work
-It is suggested to improve the current worked use cases and continue with the remaining.
+The suggested direction is firstly to improve currently implemented use cases and secondly to continue to implement those remaining.
 
-Integrate the proposed network architecture of WebRTC in Cloudy and guifi.net web. Thanks to this two project, ease of installation could arrive to the final user with relatively short development. 
+To improve currently implemented use cases, the suggested direction is to integrate the proposed network architecture of WebRTC with the Cloudy and the Guifi.net's web. With relatively little effort and thanks to the existence of these two projects, end-users could definitely profit from the ease of installation and usability of the WebRTC.
+
+To continue to implement remaining use cases, is needed for example contact list and presence service. The suggested direction is to develop a web-based CUSAX Client (Combined Use of the SIP and the XMPP, \cite{rfc7081}). CUSAX Client takes SIP for telephony-like services, and XMPP for instant messaging and presence services. The following libraries compatible with websocket are recommended for working on the CUSAX Client: jssip for SIP and strophe.js[fn:67] for XMPP. This proposal pretends to take the advantages of each system.
 
 #  - Streaming.
 #  - Server intercommunication, federation to Guifi.net (inside) and outside (Internet).
 
-Other interesting related projects to research on:
-- Improve integration of signaling services XMPP[fn:66] and/or SIP[fn:65] inside OpenWRT-based firmwares such as qMp and/or libremesh. An approach such that, could decentralize more the RTC system, but requires more intelligence or automatic ways of federation for lots of devices.
-- Develop a web-based CUSAX client (Combined Use of the SIP and the XMPP), \cite{rfc7081}). Recommended libraries compatible with websocket: jssip for SIP and strophe.js[fn:67] for XMPP. Take advantages of ease of use of SIP for real-time calls and XMPP list of contacts (roster) for its presence.
+A complementary direction for research is improving integration of the signaling services XMPP[fn:66] and/or SIP[fn:65] inside OpenWRT-based firmwares such as qMp and/or libremesh. Such an approach could further decentralize the RTC system but requires additional intelligence or automatic ways to federate a large number of devices.
+
 # Jingle standard said that is difficult a client that do sip and xmpp, not anymore!
 
 #+BEGIN_LATEX
@@ -1000,8 +1028,8 @@ Other interesting related projects to research on:
 #+END_LATEX
 
 #+LATEX: \begin{appendices}
-* One thing
-* Another thing
+* instalación kamailio con websockets
+* entorno desarrollo guifi.net
 
 
 
@@ -1177,5 +1205,7 @@ Other interesting related projects to research on:
 
 [fn:71] https://github.com/guifi/snpservices
 
-[fn:72] single administrative entity with a specific routing policy which anounces a network prefix (a set of IPs)
+[fn:72] single administrative entity with a specific routing policy which anounces at least one network prefix (a set of IPs)
+
+[fn:73] https://en.wikipedia.org/wiki/File:Internet_Connectivity_Distribution_%26_Core.svg
 

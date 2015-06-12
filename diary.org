@@ -1,5 +1,8 @@
 * Diary
 Everyday it's a-gettin' closer
+** <2015-06-12 Fri>
+- revision of conclusions and future work
+- working on guifi.net architecture, more images
 ** <2015-06-11 Thu>
 - http://10.228.203.232/cgi-bin/smokeping.cgi?target=guifi.WebUPF
 - JsSIP uses the WebRTC stack of the browser (currently just Chrome has a working WebRTC stack), and WebRTC is not "just "RTP" but it requires SRTP (Secure RTP), ICE, a new SDP profile (SAVPF) and so on. It's not possible to make a direct media session between JsSIP (or any other WebRTC based SIP device) and Linphone since Linphone is a basic SIP client with just common plain RTP support, no ICE no SRTP no SAVPF. 
