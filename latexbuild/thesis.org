@@ -191,7 +191,7 @@ Inside a commons network, the implementation of other services besides Internet 
 To apply an RTC system to Guifi.net's commons network is a challenge. Attempts to implement an RTC system have failed. WebRTC is a new opportunity to try again.
 
 ** Objectives
-
+Study if the following objectives are reachable for Guifi.net:
 - Free and secure communication between users via an RTC system and commons network infrastructure.
 - Backward compatibility with VoIP[fn:11] network. Hence, users can communicate to other VoIP operators from inside and/or outside Guifi.net.
 - Designing RTC network architecture to fit the commons network scenario.
@@ -246,7 +246,7 @@ SS7, ISDN and TCP/IP stacks are based on the Open Systems Interconnection model 
 |--------------+---------------------------------------+--------------|
 | Application  | Network and application services      | Application  |
 | Presentation | Data format                           | $\nearrow$   |
-| Session      | Signaling of data                    | $\nearrow$   |
+| Session      | Signaling of data                     | $\nearrow$   |
 | Transport    | Connection establishment side to side | Transport    |
 | Network      | Logic addressing (far)                | Network      |
 | Link         | Physical addressing (close)           | Link         |
@@ -393,6 +393,7 @@ W3C Working Draft /Media Capture and Streams[fn:40]/ defines the Media Capture A
 
 The book \cite{wrtc2014loreto} was consulted as an additional source of information about WebRTC.
 * Methodology
+Analysis of the selected topic for this project, its scope, resources associated with the project, its planning, tasks and work style.
 ** SWOT analysis of WebRTC
 
 An analysis of Strengths, Weaknesses, Opportunities and Threats (SWOT) will help the decision-making and tasks for the project.
@@ -594,8 +595,7 @@ Figure [[fig:wsd]] shows the *work style*, how the objectives will be accomplish
 [[../img/workstyle.png]]
 
 * TODO Contributions and Results
-
-*FILL*
+Network architecture design and analysis of how an RTC system is adapted to Guifi.net
 
 # Analyzed elements for Guifi.net organization. 
 
@@ -606,7 +606,7 @@ Figure [[fig:wsd]] shows the *work style*, how the objectives will be accomplish
 # Definition of a network network architecture of a general RTC service, as set of different services and applications.
 
 ** TODO Guifi.net architecture
-Guifi.net is a commons telecommunication network that is developed with an agreement that guarantees that the network is freely accessible, open to participation, open to knowledge and neutral in data transport. The network interconnects the people that takes part in it (the community) and facilitates the access to Internet. The guifi.net foundation gives legal support to the agreement and the network.
+Guifi.net is a commons telecommunication network started in 2004 that is developed with an agreement that guarantees that the network is freely accessible, open to participation, open to knowledge and neutral in data transport. The network interconnects the people that takes part in it (the community) and facilitates the access to Internet. The guifi.net foundation gives legal support to the agreement and the network.
 
 # community
 
@@ -619,6 +619,25 @@ Guifi.net has statistics and control of all its devices with an open source web 
 #+CAPTION: Statistics and control of a Guifi.net's device
 #+NAME: fig:guifisc
 [[../img/snpservices.png]]
+
+
+*Behavior. Protocols. Funcionality*
+
+Guifi.net is an heterogeneous network which has different technologies. There are mainly two routing protocol models: what its called traditional and mesh. Traditional model is used since Guifi.net's start, it is similar to models of organizations such as Internet. Its design has two components: supernode, which extends the network and together conform the backbone network, and a node or client node, that connects to a supernode. Its routing devices usually have factory's firmware such as AirOS from Ubiquiti[fn:55]) and RouterOS from Mikrotik[fn:56], both propietary. Routing protocol implementation in traditional model has two variations: BGP (Border Gateway Protocol, \cite{rfc1267}), where each supernode is an AS (Autononous System[fn:72]), or BGP for messages that goes inside or outside the AS, OSPF (Open Shortest Path First, \cite{rfc2328}) inside the AS. Mesh model is a more experimental and modern approach based on autodiscovering neighbors. Its design has one component, a node, that extends the network. Its routing devices have open source firmwares based on OpenWrt[fn:61] such as qMp[fn:57] and libremesh[fn:58]. There are two routing protocol implementations available in mesh model. Bmx6[fn:59] works on network layer; it is available in qMp or libremesh firmware. Batman-adv[fn:60] works on link layer with linux kernel tools; it is available in libremesh firmware.
+
+# https://en.wikipedia.org/wiki/Autonomous_system_(Internet)
+
+
+# incluir Production and deployment plans en lo anterior
+# include open/closed system Architecture Feature: 
+# •  Open systems can be joined easily
+# –  Well-known protocols, easy to implement, more innovation
+# –  No access control
+# –  Easy to extend, can grow fast
+# •  Closed systems have a higher degree of control
+# –  Less risk of resource exhaustion
+# –  Higher security
+
 
 
 *Network architecture*
@@ -634,47 +653,6 @@ architecture feature associated: centralized, distributed
 - network topology
   - Distributed Star
   - Mesh
-
-
-/Guifi.net uses different protocols/
-*Behavior. Protocols. Funcionality*
-
-- *Technical* architecture in a zone
-  - /Mesh/ - modern routing protocols
-    - *design*: each node extends the network
-    - *firmware*: open source, based on OpenWrt[fn:61]. Most used:
-      qMp[fn:57] and libremesh[fn:58].
-    - *common internet sharing* through layer 3 tunnels or direct access
-    - *routing*
-      - bmx6[fn:59] (qMp or libremesh): Works at layer 3. Autodiscover neighbors
-      - batman-adv[fn:60] (libremesh): Works at layer 2 with linux kernel
-        features. It is like a distributed switch, no problem with
-        mobility
-  - /Infrastructure/ - traditional routing protocols
-    - *design*
-      - supernode: extends the network, conform a backbone network
-      - node or client node: connects to a supernode
-    - *firmware*: factory, examples: AirOS from Ubiquiti[fn:55]) and RouterOS from Mikrotik[fn:56].
-    - *common internet sharing* through HTTP proxy (specific ports), or application layer tunnels such as OpenVPN
-    - *routing*
-      - BGP \cite{rfc1267}, each supernode is an Autonomous System (AS). An Autonomous System 
-      - BGP for messages that goes inside or outside the AS, OSPF \cite{rfc2328} inside the AS
-
-# https://en.wikipedia.org/wiki/Autonomous_system_(Internet)
-
-
-# incluir Production and deployment plans en lo anterior
-# include open/closed system Architecture Feature: 
-# •  Open systems can be joined easily
-# –  Well-known protocols, easy to implement, more innovation
-# –  No access control
-# –  Easy to extend, can grow fast
-# •  Closed systems have a higher degree of control
-# –  Less risk of resource exhaustion
-# –  Higher security
-
-# include network architecture feature heterogeneity.
-
 
 
 
@@ -763,26 +741,20 @@ More information about Guifi.net network can be found in the first chapters at \
 
 # http://en.wikipedia.org/wiki/Latency_(audio)
 
+#+CAPTION: Traceroute take 1
+#+NAME: fig:tr1
+[[../img/traceroute1.png]]
+
+#+CAPTION: Traceroute take 2
+#+NAME: fig:tr2
+[[../img/traceroute2.png]]
+
 *Jitter*
 
 
 # jitter requirements
 # gráficas de enlaces wifi
 
-# mejor candidato:
-# http://guifi.net/guifi/graph_detail?type=pings&node=28151&device=66650
-# http://guifi.net/node/28151
-# 
-# traceroute to 10.228.199.161 (10.228.199.161), 30 hops max, 60 byte packets
-#  1  10.138.27.97 (10.138.27.97)  0.605 ms  4.788 ms  4.787 ms
-#  2  172.25.35.229 (172.25.35.229)  4.801 ms  4.796 ms  4.783 ms
-#  3  10.138.27.225 (10.138.27.225)  4.699 ms  4.757 ms  6.869 ms
-#  4  10.138.27.33 (10.138.27.33)  7.172 ms  7.667 ms  7.875 ms
-#  5  10.228.201.193 (10.228.201.193)  9.710 ms  9.979 ms  10.195 ms
-#  6  10.228.199.193 (10.228.199.193)  12.400 ms  6.564 ms  8.140 ms
-#  7  10.139.95.97 (10.139.95.97)  10.232 ms  10.253 ms  10.603 ms
-#  8  10.228.199.161 (10.228.199.161)  16.250 ms  17.035 ms  17.296 ms
-# http://10.228.203.232/cgi-bin/smokeping.cgi?target=guifi.WebUPF
 
 
 # codec's Bandwidth
@@ -992,29 +964,33 @@ Deployment (PoC)
 - screenshot
 - wireshark captures
 * TODO Conclusions and Future Work
+What has been done and what remains to be done
 ** TODO Conclusions
-# What is an organization? this applied to guifi.net, but with a similar approach is applied to other open source communities, enterprises, etc.
+Coming back to the objectives of this project, they are all reachable. WebRTC is open source. Encryption is mandatory for user data. WebRTC is backward compatible to some degree with previous RTC solutions. The provided network architecture design is a good starting point to continue implementing RTC in guifi.net, because the WebRTC design is as scalable and extensible as a web project. The ease of installation and use is being improved by many people, this work tried to summarize some of the work lines and proposed a direction for guifi.net's developer community. For other organizations such as open source communities, companies, etc. a similar approach could be applied.
 
-- WebRTC facilitates the use of RTC in organizations. /Small/ organizations can solve the majority of its use cases, large organizations can do it better. Natural evolution of past technologies *FILL technologies?*. Previous attempts were more difficult in general, that is why only it was in large organizations.
-- It is required a minimal organization to apply RTC. Because of general architecture design of WebRTC requires at least a centralized server. Centralized server has low load and inexpensive cost. The organization required is similar to a web page project. Therefore, the architecture design cannot be completely decentralized.
-- Currently is not possible to use WebRTC and be anonymous, ICE procedure reveals a lot of information about a web page visitor.
-- Currently is not supported WebRTC media channel traffic through an HTTP Proxy, but there is a work in progress.
-- WebRTC and SIP interoperability: /JsSIP uses the WebRTC stack of the browser (currently just Chrome has a working WebRTC stack), and WebRTC is not "just "RTP" but it requires SRTP (Secure RTP), ICE, a new SDP profile (SAVPF) and so on. It's not possible to make a direct media session between JsSIP (or any other WebRTC based SIP device) and Linphone since Linphone is a basic SIP client with just common plain RTP support, no ICE no SRTP no SAVPF./
+WebRTC facilitates the use of RTC in organizations. /Small/ organizations can solve the majority of its use cases, large organizations can do it better. WebRTC is a natural evolution of previous technologies. Previous attempts were more difficult in general, that is why only it was /only/ deployed in large organizations.
+
+It is required a minimal organization to apply RTC. Because the general architecture design of WebRTC requires at least one centralized server. Centralized server has low load and inexpensive cost. The organization required is similar to a web page project. Therefore, the architecture design cannot be completely decentralized.
+
+There are three featured topics of WebRTC that are negative. Currently is not possible to use WebRTC and be anonymous, ICE procedure reveals a lot of information about a web page visitor. Currently is not supported WebRTC media channel traffic through an HTTP Proxy; this issue affects guifi.net's traditional model. WebRTC and SIP interoperability needs a gateway for the media channel. The gateway basically requires network resources and associated architecture, but it has low CPU load.
+
+# /JsSIP uses the WebRTC stack of the browser (currently just Chrome has a working WebRTC stack), and WebRTC is not "just "RTP" but it requires SRTP (Secure RTP), ICE, a new SDP profile (SAVPF) and so on. It's not possible to make a direct media session between JsSIP (or any other WebRTC based SIP device) and Linphone since Linphone is a basic SIP client with just common plain RTP support, no ICE no SRTP no SAVPF./
 
 
 # WARNING: SWOT analysis vs conclusions
 
-
-
-
-- *Personal/project conclusions?*. IETF has great resources, and easier to read than expected
+# - *Personal/project conclusions?*. IETF has great resources, and easier to read than expected
 ** TODO Future Work
-- work in the remaining use cases.
-  - Streaming.
-  - Server intercommunication, federation to Guifi.net (inside) and outside (Internet).
-- Improve integration of signaling services XMPP[fn:66] and/or SIP[fn:65] inside OpenWRT-based firmwares such as qMp and/or libremesh.
-- Develop a WebRTC plugin to Cloudy.
-- Develop a web-based CUSAX client (Combined Use of the Session Initiation Protocol (SIP) and the Extensible Messaging and Presence Protocol (XMPP), \cite{rfc7081}). Recommended libraries compatible with websocket: jssip for SIP and strophe.js[fn:67] for XMPP. /It is as easy as 2 iframes/. Take advantages of ease of use of SIP for real-time calls and XMPP list of contacts (roster) for its presence.
+It is suggested to improve the current worked use cases and continue with the remaining.
+
+Integrate the proposed network architecture of WebRTC in Cloudy and guifi.net web. Thanks to this two project, ease of installation could arrive to the final user with relatively short development. 
+
+#  - Streaming.
+#  - Server intercommunication, federation to Guifi.net (inside) and outside (Internet).
+
+Other interesting related projects to research on:
+- Improve integration of signaling services XMPP[fn:66] and/or SIP[fn:65] inside OpenWRT-based firmwares such as qMp and/or libremesh. An approach such that, could decentralize more the RTC system, but requires more intelligence or automatic ways of federation for lots of devices.
+- Develop a web-based CUSAX client (Combined Use of the SIP and the XMPP), \cite{rfc7081}). Recommended libraries compatible with websocket: jssip for SIP and strophe.js[fn:67] for XMPP. Take advantages of ease of use of SIP for real-time calls and XMPP list of contacts (roster) for its presence.
 # Jingle standard said that is difficult a client that do sip and xmpp, not anymore!
 
 #+BEGIN_LATEX
@@ -1023,16 +999,13 @@ Deployment (PoC)
 \cleardoublepage
 #+END_LATEX
 
-# #+LATEX:\cleardoublepage
-
 #+LATEX: \begin{appendices}
-
 * One thing
 * Another thing
+
+
+
 #+LATEX: \end{appendices}
-
-
-
 
 #+BEGIN_LATEX
 \backmatter
@@ -1203,4 +1176,6 @@ Deployment (PoC)
 [fn:70] https://guifi.net
 
 [fn:71] https://github.com/guifi/snpservices
+
+[fn:72] single administrative entity with a specific routing policy which anounces a network prefix (a set of IPs)
 

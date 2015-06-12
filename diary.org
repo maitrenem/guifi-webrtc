@@ -9,6 +9,9 @@ Everyday it's a-gettin' closer
 - table of contents reestructure of project
 - ideas for conclusions future work
 - new opportunity in swot analysis
+- /distributed star topology?/ http://en.wikipedia.org/wiki/File:Internet_map_1024.jpg
+- writing start of guifi.net architecture
+- proposal for conclusion and future work
 ** <2015-06-10 Wed>
 - proposal: where it says architecture -> network architecture
   - Real-Time Communication Network Architecture Design for Organizations with WebRTC
