@@ -1,5 +1,8 @@
 * Diary
 Everyday it's a-gettin' closer
+** <2015-06-13 Sat>
+- added security (ldap and oauth) as /important mechanism/ in internet's evolution
+- finished guifi.net architecture
 ** <2015-06-12 Fri>
 - revision of conclusions and future work
 - working on guifi.net architecture, more images

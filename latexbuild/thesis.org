@@ -332,6 +332,7 @@ Firewalls and web proxies commonly admit traffic via ports 80 (HTTP) and 443 (HT
 
 # - LDAP ?
 
+For an organization, many different applications and services imply complexity in fields such as usability, account management, security. One account per user is enough; LDAP (Lightweight Directory Access Protocol, \cite{rfc4511}) and OAuth (OAuth 2.0 Authorization Framework, \cite{rfc6749}) are two appropriate authentication services which facilitates access and management of applications in an organization. They can provide the service in centralized or hiearchically distributed manner.
 ** Voice, video calls and instant messaging
 # other title was "SIP and XMPP"
 # the other title was "Voice and video calls"
@@ -394,7 +395,7 @@ W3C Working Draft /Media Capture and Streams[fn:40]/ defines the Media Capture A
 *Local system support functions* improve the user experience. Examples of local functions are echo cancellation, volume control, camera focus, zoom, etc. Some of these functions are defined in Audio and Video Codec documents of IETF-ID and MediaStream API of W3C presented before.
 
 The book \cite{wrtc2014loreto} was consulted as an additional source of information about WebRTC.
-* Methodology
+* TODO Methodology
 Analysis of the selected topic for this project, its scope, resources associated with the project, its planning, tasks and work style.
 ** SWOT analysis of WebRTC
 
@@ -561,7 +562,7 @@ To ensure the scrum plan and the project, different tools were used:
     - thesis.org: source code of memory
     - thesis.pdf: memory
 
-** Tasks and work style
+** TODO Tasks and work style
 
 The tasks for this project are divided in two components: theory and practice.
 
@@ -607,7 +608,7 @@ Network architecture design and analysis of how an RTC system is adapted to Guif
 
 # Definition of a network network architecture of a general RTC service, as set of different services and applications.
 
-** TODO Guifi.net architecture
+** Guifi.net architecture
 Guifi.net is a commons telecommunication network started in 2004 that is developed with an agreement that guarantees that the network is freely accessible, open to participation, open to knowledge and neutral in data transport. The network interconnects the people that takes part in it (the community) and facilitates the access to Internet. The guifi.net foundation gives legal support to the agreement and the network.
 
 # community
@@ -622,12 +623,11 @@ Guifi.net has statistics and control of all its devices with an open source web 
 #+NAME: fig:guifisc
 [[../img/snpservices.png]]
 
-
 # *Behavior. Protocols. Funcionality*
 Guifi.net is an heterogeneous network which has different technologies. There are mainly two routing protocol models: what its called traditional and mesh. Traditional model is used since Guifi.net's start, it is similar to models of organizations such as Internet, which means that is ready for production environments. Figure [[fig:guifimap]] shows where is Guifi.net, the majority of zones uses this model. Its design has two components: supernode, which extends the network and together conform the backbone network, and a node or client node, that connects to a supernode. Its routing devices usually have factory's firmware such as AirOS from Ubiquiti[fn:55]) and RouterOS from Mikrotik[fn:56], both propietary. Routing protocol implementation in traditional model has two variations: BGP (Border Gateway Protocol, \cite{rfc1267}), where each supernode is an AS (Autononous System[fn:72]), or BGP for messages that goes inside or outside the AS, OSPF (Open Shortest Path First, \cite{rfc2328}) inside the AS. Mesh model is a more experimental and modern approach based on autodiscovering neighbors. Some Barcelona's zones are using this model. Its design has one component, a node, that extends the network. Its routing devices have open source firmwares based on OpenWrt[fn:61] such as qMp[fn:57] and libremesh[fn:58]. There are two routing protocol implementations available in mesh model. Bmx6[fn:59] works on network layer; it is available in qMp or libremesh firmware. Batman-adv[fn:60] works on link layer with linux kernel tools; it is available in libremesh firmware. Table [[tab:mvst]] summarizes the differences between the two models presented, and provides extra information.
 # https://en.wikipedia.org/wiki/Autonomous_system_(Internet)
 
-#+CAPTION: Model Traditional vs Mesh model
+#+CAPTION: Map of Guifi.net's coverage
 #+NAME: fig:guifimap
 [[../img/guifi-map.png]]
 
@@ -655,32 +655,21 @@ Guifi.net is an heterogeneous network which has different technologies. There ar
 # –  Less risk of resource exhaustion
 # –  Higher security
 
-
-
-Guifi.net is similar to Internet, that is why 's network components 
-
-
 # *Network architecture* and *Relationships*
 
 # WARNING: cambia de orden la enumeración si luego hablas de otra cosa
-The Guifi.net's network components are switchs, routers, servers and links. Its relationships in traditional model tend to be a star network topology. Supernodes have as much redundancy links as possible and this generates a mesh topology, client nodes connect to existing supernodes, this generates a star topology. As there are more client nodes than supernodes;
-
-The Guifi.net's network components are switchs, routers, servers and links. In traditional model supernodes have as much redundancy links as possible and this generates a mesh topology called backbone network, client nodes connect to existing supernodes, this generates a star topology called access network. That is why the relationships between components in traditional model are similar to Internet. But Internet has a hierarchical backbone network (see figure [[fig:inetrel]], source wikipedia[fn:73]). The relationships between components in mesh model tend to a mesh network topology. Figure [[fig:topos]] shows *FILL*.
+The Guifi.net's network components are switchs, routers, servers and links. In traditional model supernodes have as much redundancy links as possible and this generates a mesh topology called backbone network, client nodes connect to existing supernodes, this generates a star topology called access network. That is why the relationships between components in traditional model are similar to Internet; but Internet has a hierarchical backbone network (see figure [[fig:inetrel]], source wikipedia[fn:73]). The relationships between components in mesh model tend to a mesh network topology. Figure [[fig:topolos]] shows real network topologies deployments, left image is from wikipedia[fn:74].
 
 #+CAPTION: Internet relationships. Backbone network: Tiers 1, 2, 3. Access network: Internet users.
 #+NAME: fig:inetrel
 [[../img/inet-rel.png]]
-# SRC IMAGEN https://en.wikipedia.org/wiki/File:Internet_Connectivity_Distribution_%26_Core.svg
 
-
-#+CAPTION: Right: Mesh model topology. Left: Traditional model topology
-#+NAME: fig:topos
-# imagen compuesta por: izquierda imagen de internet wiki, derecha grafo poblenou qmp
-
+#+CAPTION: Left: Traditional model topology, a partial map of the Internet. Right: Mesh model topology, graph of a Guifi.net neighbor's network of Barcelona.
+#+NAME: fig:topolos
+[[../img/guifi-inet.png]]
 
 # *LINKS*
-
-The vast majority of communication links are wireless, but there are some places where Guifi.net has deployed optical fiber. Also, in large cities such as Barcelona there are GRE-based (Generic Routing Encapsulation, \cite{rfc2784}) tunnels to improve connectivity using optical fiber services of ISP (Internet Service Provider). Figure [[tab:wifitech]] shows 802.11 Wi-Fi technologies. *FILL (802.11n is common, ac no, distance of wifi)*. The source is from section 4.2.3.1 of IRTF Internet-Draft /Alternative Network Deployments. Taxonomy and characterization[fn:51]/. This draft document is a work in progress of GAIA Research Group[fn:52][fn:53] (Global Access to the Internet for All) from IRTF. IRTF (Internet Research Task Force) is a research organization parallel to IETF.
+The vast majority of communication links are wireless, but there are some places where Guifi.net has deployed optical fiber. Also, in large cities such as Barcelona there are GRE-based (Generic Routing Encapsulation, \cite{rfc2784}) tunnels to improve connectivity using optical fiber services of ISP (Internet Service Provider). Figure [[tab:wifitech]] shows features of 802.11 Wi-Fi technologies. There are remaining a, b, g 802.11 protocols from old links that still work, but most are 802.11n. Mesh model only uses 802.11n. Recently, 802.11ac is being tested in some point to point links of traditional model; but at the moment is not possible in mesh model because of the lack of support for 802.11ac in OpenWRT. The source is from section 4.2.3.1 of IRTF Internet-Draft /Alternative Network Deployments. Taxonomy and characterization[fn:51]/. This draft document is a work in progress of GAIA Research Group[fn:52][fn:53] (Global Access to the Internet for All) from IRTF. IRTF (Internet Research Task Force) is a research organization parallel to IETF.
 
 #+CAPTION: 802.11 (Wi-Fi) Technologies
 #+NAME: tab:wifitech
@@ -705,55 +694,37 @@ The vast majority of communication links are wireless, but there are some places
 
 # indoor, outdoor: approx range (m)
 
+# *Availability*. mentioned in control, statistics
+# *Redundancy* -> redundancy links (mentioned in topologies part)
 
+# mention scalability and extendability inside services part?
 
+The most common services in Guifi.net's network are: snpservices, dnsservices and internet sharing. Snpservices, as seen above, provides mechanisms of control and statistics about Guifi.net's nodes. Dnsservices is a service executed in zones' servers, regularly it queries Guifi.net's web to get its domain configuration, because these DNSs are configured via Guifi.net's web. There are multiple ways to share Internet; the most common, from traditional model, is a federated HTTP proxy. It shares internet with Guifi.net users thanks to an authenticated system based on LDAP. In the mesh model, users have direct access to a shared internet via layer 3 (network) tunnels. An equivalent solution to get direct access to Internet in traditional model is layer 4 (application) tunnels, but is less efficient.
 
-*Availability*
-Ejemplo
+Cloudy[fn:64] is service that proposes integration of snpservices, dnsservices, federated proxy and many more in a node. A node can manage its services, add a new one, and announce or discover services from other cloudy nodes through Guifi.net.
 
-*Redundancy* -> redundancy links
+Networks and services of Guifi.net are scalable and extendable. For the network's case, that is because Guifi.net is a small Internet's network architecture. For the service's case, that is because Guifi.net-related services are simple; Cloudy is complex, but is based on a software that manages the Community-Lab testbed of an european project called CONFINE[fn:75]. The least scalable and extendable part of Guifi.net is its web, but is not very problematic: the web doest not provide multimedia content, forks can be done because is an open source project, and the web architecture has solutions to prevent scalability and extendability problems such as load balancing.
 
-*Scalability*
-
-/comentar pollos de rutas/
-
-*Extendability*
-
-/sí. se puede ir extendiendo hasta cierto punto en wifi, pero en caso de tener tantos enlaces y usuarios, hay más poder económico y se pude pasar a fibra. Caso Gurb (imagen de Gurb)/
+# /sí. se puede ir extendiendo hasta cierto punto en wifi, pero en caso de tener tantos enlaces y usuarios, hay más poder económico y se pude pasar a fibra. Caso Gurb (imagen de Gurb)/
 
 # example of extendability / scalability?
 #   - The best place to make something standard or easy to use. Example: unsolclic, easy configuration of devices
 
-
-*guifi es dumb network* (explicar)
-# Implementación ahora de QoS dificulta la heterogeneity, pero hace de guifi.net una red más inteligente
-
-
-
 # SERVICES THAT PROVIDE GUIFI.NET
-dnsservices
 
-*Graph and DNS servers* (ver arriba antes de *FILL*)
-
-# tema Cloudy y las ventajas que trae (incluye el dnsservices)
-Cloudy[fn:64]
-
-HTTP proxy
-
-
-
-
-
-
-
-*signaling*. Some parts (voip project) uses SIP. In-band signaling: Signaling information uses the same channel as the user data
-
-More information about Guifi.net network can be found in the first chapters at \cite{vilchez2014comnet}
 ** TODO Requirements
 *** TODO Network requirements
 *QoS*. Currently is complex to apply QoS in Guifi.net because of the difficulty to set up globally, firmware incompatibilities and lack of interest. Nearly all Guifi.net operators offering VoIP have deployed QoS with RouterOS in the parts of the network where they manage.
 
 # explicar que QoS es interesante de aplicar en contextos RTC
+
+
+*signaling*. Some parts (voip project) uses SIP. In-band signaling: Signaling information uses the same channel as the user data
+
+*guifi es dumb network* (explicar)
+# Implementación ahora de QoS dificulta la heterogeneity, pero hace de guifi.net una red más inteligente
+
+
 
 
 
@@ -989,9 +960,9 @@ Deployment (PoC)
 - browsers used
 - screenshot
 - wireshark captures
-* TODO Conclusions and Future Work
+* Conclusions and Future Work
 What has been done and what remains to be done
-** TODO Conclusions
+** Conclusions
 Coming back to the objectives of this project, all are attainable. WebRTC is open source and encryption is mandatory for user data. Since WebRTC is a natural evolution of previous technologies, it is backward compatible with previous RTC solutions, to some degree. The network architecture design proposed is a good starting point for continuing to implement RTC in Guifi.net, because WebRTC design is as scalable and extendable as any web project. 
 Up until now, many people have steadily been improving the ease of installation and usability of WebRTC and this work has attempted to summarize some of WebRTC's work lines. Also, it has proposed a direction for guifi.net's developer community. For other organizations such as open source communities, companies, etc. a similar approach could be applied.
 
@@ -1007,7 +978,7 @@ There are three featured topics of WebRTC that are negative. Firstly, currently 
 # WARNING: SWOT analysis vs conclusions
 
 # - *Personal/project conclusions?*. IETF has great resources, and easier to read than expected
-** TODO Future Work
+** Future Work
 The suggested direction is firstly to improve currently implemented use cases and secondly to continue to implement those remaining.
 
 To improve currently implemented use cases, the suggested direction is to integrate the proposed network architecture of WebRTC with the Cloudy and the Guifi.net's web. With relatively little effort and thanks to the existence of these two projects, end-users could definitely profit from the ease of installation and usability of the WebRTC.
@@ -1208,4 +1179,8 @@ A complementary direction for research is improving integration of the signaling
 [fn:72] single administrative entity with a specific routing policy which anounces at least one network prefix (a set of IPs)
 
 [fn:73] https://en.wikipedia.org/wiki/File:Internet_Connectivity_Distribution_%26_Core.svg
+
+[fn:74] https://en.wikipedia.org/wiki/File:Internet_map_1024.jpg
+
+[fn:75] https://wiki.confine-project.eu/
 
