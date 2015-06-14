@@ -1,5 +1,26 @@
 * Diary
 Everyday it's a-gettin' closer
+** <2015-06-14 Sun>
+- review of guifi.net architecture and network requirement sections
+- Kamailio scripts to call from websocket UA to classic UA, and vice versa. https://github.com/caruizdiaz/kamailio-ws
+- doubts about "sdp exchange sip jsep webrtc" and "jsep compatibility with sip webrtc" and "rtpproxy kamailio webrtc sip"
+- rtpengine
+  - http://kamailio.org/docs/modules/devel/modules/rtpengine.html
+  - https://github.com/sipwise/rtpengine
+  - compile it https://voipmagazine.wordpress.com/2015/02/17/rtpengine-compilation-and-installation-in-fedora-redhat/
+- http://lists.sip-router.org/pipermail/sr-users/2014-November/085941.html
+- dtls
+  - https://www.w3.org/2014/strint/papers/51.pdf
+  - The Design and Implementation of Datagram TLS http://crypto.stanford.edu/~nagendra/papers/dtls.pdf
+  - in wireshark https://wiki.wireshark.org/DTLS
+    - https://wiki.wireshark.org/RTP
+- first sdp with INVITE, second (return) with SIP ACK
+- example call flow section 8.2: "INVITE Dialog through a Proxy". src https://tools.ietf.org/html/rfc7118
+- stats
+  - chrome://webrtc-internals/
+  - 
+- WebRTC + Kamailio as SIP-proxy + rtpproxy(?) as media-proxy http://lists.sip-router.org/pipermail/sr-users/2014-November/085941.html
+
 ** <2015-06-13 Sat>
 - added security (ldap and oauth) as /important mechanism/ in internet's evolution
 - bw vs throughput

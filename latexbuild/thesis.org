@@ -119,10 +119,10 @@ Thanks for reading. Thanks for your time.
 \selectlanguage{english}
 \section*{\Large \sffamily Abstract}
 
-The present project introduces disrupting technology WebRTC (Web Real-Time Communication) which supports browser-to-browser applications without the need for third party plug-ins. It details how, since its release by Google in 2011, WebRTC is evolving and changing the way communications are understood. This project also discusses how to set up real-time communications in organizations with WebRTC, specifically the use cases of video and audio calls. The organization under discussion is Guifi.net and the elements analyzed are: requirements, network architecture design, component selection, implementation and demo.
+The present project introduces disrupting technology WebRTC (Web Real-Time Communication) which supports browser-to-browser applications without the need for third party plug-ins. It details how, since its release by Google in 2011, WebRTC is evolving and changing the way communications are understood. This project also discusses how to set up real-time communications in organizations with WebRTC, specifically the use cases of video and audio calls. The organization under discussion is Guifi.net and the elements analyzed are: requirements, component selection, network architecture design, implementation and demo.
 
 %old
-%The present project introduces the disrupting technology WebRTC (Web Real-Time Communication), that supports browser-to-browser applications without need of third party plugins. It is detailed how, since its release by Google in 2011, it is evolving and changing the way communications are understood. How to materialise a Real Time Communications in organizations with WebRTC and the use case of video and audio calls, taking as example Guifi.net and the opportunities that it offers: requirements, architecture design, component selection, implementation and demo.
+%The present project introduces the disrupting technology WebRTC (Web Real-Time Communication), that supports browser-to-browser applications without need of third party plugins. It is detailed how, since its release by Google in 2011, it is evolving and changing the way communications are understood. How to materialise a Real Time Communications in organizations with WebRTC and the use case of video and audio calls, taking as example Guifi.net and the opportunities that it offers: requirements, component selection, architecture design, implementation and demo.
 
 \selectlanguage{catalan}
 \vspace*{\fill}
@@ -211,7 +211,7 @@ This document is organised in 5 chapters.
 
 *Chapter [[Methodology]] Methodology* contains a general analysis of the topic and a description of the processes involved in order to achieve this project.
 
-*Chapter [[Contributions and Results]] Contributions and Results* develops different elements to accomplish RTC in Guifi.net organization: requirements, network architecture design, component selection, implementation and demo.
+*Chapter [[Contributions and Results]] Contributions and Results* develops different elements to accomplish RTC in Guifi.net organization: requirements, component selection, network architecture design, implementation and demo.
 
 *Chapter [[Conclusions and Future Work]] Conclusions and Future Work* provides a general assessment of the project
 
@@ -387,7 +387,7 @@ IETF-ID /WebRTC Security Architecture[fn:33]/ defines a security architecture fo
 
 *Data formats*. IETF-ID /WebRTC Audio Codec and Processing Requirements[fn:36]/ proposes as required to implement the audio codecs G.711[fn:44], Opus \cite{rfc6716}. IETF-ID /WebRTC Video Processing and Codec Requirements[fn:37]/ proposes as required to implement the video codecs: H.264[fn:43], VP8 \cite{rfc6386}.
 
-*Connection management* is defined in /Javascript Session Establishment Protocol[fn:38]/ (JSEP). It describes the mechanisms to control the signaling of a multimedia session and its relation with the W3C RTCPeerConnection API. To reduce its complexity it is recommended to adapt the JSEP API into an application-defined over Websocket Protocol library[fn:50], for example with XMPP or SIP. JSEP controls the signaling, particularly: (1) local and remote session descriptions with SDP and (2) participant's network addresses and ports available for the exchanging of real-time data (ICE). A simple example audio/video call is available at the Section 7 of the JSEP draft.
+*Connection management* is defined in /Javascript Session Establishment Protocol[fn:38]/ (JSEP). It describes the mechanisms to control the signaling of a multimedia session and its relation with the W3C RTCPeerConnection API. To reduce its complexity it is recommended to adapt the JSEP API into an application-defined over Websocket Protocol library[fn:50], for example with XMPP or SIP. JSEP controls the signaling, particularly: (1) local and remote session descriptions with SDP and (2) participant's network addresses and ports available for the exchanging of real-time data (ICE). A simple example audio/video call is available at the Section 7 of this JSEP draft.
 
 *Presentation and control*. W3C APIs define the user interaction with the browser. W3C Working Draft /WebRTC 1.0: Real-time Communication Between Browsers[fn:39]/ defines important API interfaces for WebRTC, the most relevant: (1) RTCPeerConnection in section 4 /Peer-to-peer connections/ allows browsers to communicate directly, (2) RTCSessionDescription (JSEP) in section 4.7 /Session Description Model/, (3) RTCDatachannel (data channel) in section 5 /Peer-to-peer Data API/ and (4) RTCStats in section 7 /Statistics Model/ is an evaluation tool of the communication.\\
 W3C Working Draft /Media Capture and Streams[fn:40]/ defines the Media Capture API. It facilitates to the browser the management of local media devices such as audio and video.
@@ -450,11 +450,8 @@ Table [[tab:eqre]] shows the equipment resources and its economic estimation. Ob
 | PC with virtualization capabilities [home] |                  1000 |
 | Guifi.net equipments in university         |                  1000 |
 | PC with Internet public IPv4 [university]  |                   300 |
-| Laptop                                     |                   400 |
-| ATA x 2                                    |                    60 |
-| Old phone x 2                              |                     2 |
 |--------------------------------------------+-----------------------|
-| Total                                      |                  2962 |
+| Total                                      |                  2500 |
 
 # C-c + to sum all rows in a column
 # S-insertchar to insert the result
@@ -580,9 +577,10 @@ Inside *theory*, there is:
 - Search of information
   - What things should be read (checklist).
 
-Inside *practice*, there is:
-- WebRTC POC: what WebRTC Proof Of Concepts that have been executed, and wishlist (checklist). What signaling was used. The POCs are web applications that have library linking with signaling. Interested in SIP (jssip) and XMPP (strophe) signaling.
-- Tested components: what specific components that have been executed, and wishlist (checklist). LDAP Authentication, SSL/TLS certificates, STUN/TURN server, DNS.
+Inside *practice*, there is components' testing. Configuration and execution of network architecture design proposed.
+
+# what WebRTC Proof Of Concepts that have been executed, and wishlist (checklist). What signaling was used. The POCs are web applications that have library linking with signaling. Interested in SIP (jssip) and XMPP (strophe) signaling.
+# - Tested components: what specific components that have been executed, and wishlist (checklist). LDAP Authentication, SSL/TLS certificates, STUN/TURN server, DNS.
 # I don't know if I want to develop this for guifi
 # - Develop DNS for guifi.net: is a major task that has to be achieved.
 
@@ -624,14 +622,14 @@ Guifi.net has statistics and control of all its devices with an open source web 
 [[../img/snpservices.png]]
 
 # *Behavior. Protocols. Funcionality*
-Guifi.net is an heterogeneous network which has different technologies. There are mainly two routing protocol models: what its called traditional and mesh. Traditional model is used since Guifi.net's start, it is similar to models of organizations such as Internet, which means that is ready for production environments. Figure [[fig:guifimap]] shows where is Guifi.net, the majority of zones uses this model. Its design has two components: supernode, which extends the network and together conform the backbone network, and a node or client node, that connects to a supernode. Its routing devices usually have factory's firmware such as AirOS from Ubiquiti[fn:55]) and RouterOS from Mikrotik[fn:56], both propietary. Routing protocol implementation in traditional model has two variations: BGP (Border Gateway Protocol, \cite{rfc1267}), where each supernode is an AS (Autononous System[fn:72]), or BGP for messages that goes inside or outside the AS, OSPF (Open Shortest Path First, \cite{rfc2328}) inside the AS. Mesh model is a more experimental and modern approach based on autodiscovering neighbors. Some Barcelona's zones are using this model. Its design has one component, a node, that extends the network. Its routing devices have open source firmwares based on OpenWrt[fn:61] such as qMp[fn:57] and libremesh[fn:58]. There are two routing protocol implementations available in mesh model. Bmx6[fn:59] works on network layer; it is available in qMp or libremesh firmware. Batman-adv[fn:60] works on link layer with linux kernel tools; it is available in libremesh firmware. Table [[tab:mvst]] summarizes the differences between the two models presented, and provides extra information.
+Guifi.net is an heterogeneous network which has different technologies. There are mainly two routing protocol models: traditional and mesh. Traditional model is used since Guifi.net's start, it is similar to models of organizations such as Internet, which means that is ready for production environments. Figure [[fig:guifimap]] shows where is Guifi.net, the majority of zones uses this model. Its design has two components: supernode, which extends the network and together conform the backbone network, and a node or client node, that connects to a supernode. Its routing devices usually have factory's firmware such as AirOS from Ubiquiti[fn:55]) and RouterOS from Mikrotik[fn:56], both propietary. Routing protocol implementation in traditional model has two variations: BGP (Border Gateway Protocol, \cite{rfc1267}), where each supernode is an AS (Autononous System[fn:72]), or BGP for messages that goes inside or outside the AS, OSPF (Open Shortest Path First, \cite{rfc2328}) inside the AS. Mesh model is a more experimental and modern approach based on autodiscovering neighbors. Some Barcelona's zones are using this model. Its design has one component, a node, that extends the network. Its routing devices have open source firmwares based on OpenWrt[fn:61] such as qMp[fn:57] and libremesh[fn:58]. There are two routing protocol implementations available in mesh model. Bmx6[fn:59] works on network layer; it is available in qMp or libremesh firmware. Batman-adv[fn:60] works on link layer with linux kernel tools; it is available in libremesh firmware. Table [[tab:mvst]] summarizes the differences between the two models presented, and provides extra information.
 # https://en.wikipedia.org/wiki/Autonomous_system_(Internet)
 
 #+CAPTION: Map of Guifi.net's coverage
 #+NAME: fig:guifimap
 [[../img/guifi-map.png]]
 
-#+CAPTION: Model Traditional vs Mesh model
+#+CAPTION: Traditional Model vs Mesh model
 #+NAME: tab:mvst
 |                         | Traditional model | Mesh model                      |
 |-------------------------+-------------------+---------------------------------|
@@ -669,7 +667,7 @@ The Guifi.net's network components are switchs, routers, servers and links. In t
 [[../img/guifi-inet.png]]
 
 # *LINKS*
-The vast majority of communication links are wireless, but there are some places where Guifi.net has deployed optical fiber. Also, in large cities such as Barcelona there are GRE-based (Generic Routing Encapsulation, \cite{rfc2784}) tunnels to improve connectivity using optical fiber services of ISP (Internet Service Provider). Table [[tab:wifitech]] shows features of 802.11 Wi-Fi technologies. There are remaining a, b, g 802.11 protocols from old links that still work, but most are 802.11n. Mesh model only uses 802.11n. Recently, 802.11ac is being tested in some point to point links of traditional model; but at the moment is not possible in mesh model because of the lack of support for 802.11ac in OpenWRT. The source is from section 4.2.3.1 of IRTF Internet-Draft /Alternative Network Deployments. Taxonomy and characterization[fn:51]/. This draft document is a work in progress of GAIA Research Group[fn:52][fn:53] (Global Access to the Internet for All) from IRTF. IRTF (Internet Research Task Force) is a research organization parallel to IETF.
+The vast majority of communication links are wireless, but there are some places where Guifi.net has deployed optical fiber. Also, in large cities such as Barcelona there are GRE-based (Generic Routing Encapsulation, \cite{rfc2784}) tunnels to improve connectivity using optical fiber services of ISP (Internet Service Provider). Table [[tab:wifitech]] shows features of 802.11 Wi-Fi technologies. There are remaining a, b, g 802.11 protocols from old links that still work, but most are 802.11n. Mesh model only uses 802.11n. Recently, 802.11ac is being tested in some point to point links of traditional model; but at the moment is not possible in mesh model because of the lack of support for 802.11ac in OpenWRT. The table's source is from section 4.2.3.1 of IRTF Internet-Draft /Alternative Network Deployments. Taxonomy and characterization[fn:51]/; it describes community networks such as Guifi.net. This draft document is a work in progress of GAIA Research Group[fn:52][fn:53] (Global Access to the Internet for All) from IRTF. IRTF (Internet Research Task Force) is a research organization parallel to IETF. It describes community networks.
 
 #+CAPTION: 802.11 (Wi-Fi) Technologies
 #+NAME: tab:wifitech
@@ -701,7 +699,13 @@ The vast majority of communication links are wireless, but there are some places
 
 The most common services in Guifi.net's network are: snpservices, dnsservices and internet sharing. Snpservices, as seen above, provides mechanisms of control and statistics about Guifi.net's nodes. Dnsservices is a service executed in zones' servers, regularly it queries Guifi.net's web to get its domain configuration, because these DNSs are configured via Guifi.net's web. There are multiple ways to share Internet; the most common, from traditional model, is a federated HTTP proxy. It shares internet with Guifi.net users thanks to an authenticated system based on LDAP. In the mesh model, users have direct access to a shared internet via layer 3 (network) tunnels. An equivalent solution to get direct access to Internet in traditional model is layer 4 (application) tunnels, but is less efficient.
 
-Cloudy[fn:64] is service that proposes integration of snpservices, dnsservices, federated proxy and many more in a node. A node can manage its services, add a new one, and announce or discover services from other cloudy nodes through Guifi.net.
+An improvement to dnsservices is to include SRV record for XMPP and SIP near MX record's place in the Guifi.net's web configuration (see figure [[fig:guifi-mx]])
+
+#+CAPTION: MX record in Guifi.net web
+#+NAME: fig:guifi-mx
+[[../img/guifi-mx.png]]
+
+Cloudy[fn:64] is service that proposes integration in a node of snpservices, dnsservices, federated proxy and many more. A node can manage its services, add a new one, and announce or discover services from other cloudy nodes through Guifi.net.
 
 Networks and services of Guifi.net are scalable and extendable. For the network's case, that is because Guifi.net is a small Internet's network architecture. For the service's case, that is because Guifi.net-related services are simple; Cloudy is complex, but is based on a software that manages the Community-Lab testbed of an european project called CONFINE[fn:75]. The least scalable and extendable part of Guifi.net is its web, but is not very problematic: the web doest not provide multimedia content, forks can be done because is an open source project, and the web architecture has solutions to prevent scalability and extendability problems such as load balancing.
 
@@ -712,8 +716,8 @@ Networks and services of Guifi.net are scalable and extendable. For the network'
 
 # SERVICES THAT PROVIDE GUIFI.NET
 
-** TODO Requirements
-*** TODO Network requirements
+** Requirements
+*** Network requirements
 Analysis of network requirements for an hypothetical RTC system in Guifi.net network. Guifi.net is not a network designed for RTC, but has promising features to transport it.
 
 Guifi.net is a dumb network, i.e., a network that only routes packets and does not differentiate between applications. It has in-band signaling, i.e., signaling information uses the same channel as the user data. QoS could prioritize real-time traffic over non-real-time traffic, but currently is complex to apply QoS in Guifi.net because of the difficulty to set up globally, firmware incompatibilities and lack of interest. Nearly all Guifi.net operators offering VoIP have deployed QoS with RouterOS in the parts of the network where they manage; this affects negatively to the Guifi.net's heterogeneity. 
@@ -744,7 +748,7 @@ The bandwidth of Guifi.net's links should be enough to pass multimedia informati
 | Common       | 500-      | 2.5-    | 100 Kbps- | 1-4 Mbps SD[fn:76]  |
 | stream rates | 1500 Kbps | 50 Mbps | 10 Mbps   | 4-10 Mbps HD[fn:77] |
 
-Figure [[fig:vidtest]] shows a bandwidth test of a Youtube's video using /Stats for nerds/ option (video source[fn:78]). It uses different qualities: top's image has quality 144p[fn:79] and average throughput 247 Kbps, middle's image has quality 360p and average throughput 740 Kbps, bot's image has quality 1080p and average throughput 4324 Kbps.
+Figure [[fig:vidtest]] shows a bandwidth test of a Youtube's video using /Stats for nerds/ option (video source[fn:78]). It uses different qualities: top's image has quality 144p[fn:79], and average throughput 247 Kbps, middle's image has quality 360p and average throughput 740 Kbps, bot's image has quality 1080p and average throughput 4324 Kbps.
 
 #+CAPTION: Test
 #+NAME: fig:vidtest
@@ -757,9 +761,9 @@ For a common 802.11n link, from 15 to 150 Mbps, it can manage some RTC sessions 
 The use cases developed are those that are bold.
 
 Definitions:
-- Actors or Roles have a *user* and/or *admin* account. The user has minimum permissions in the application, the admin has all the permissions in the application. It can be defined one or more middle actors that have more permissions than user and less permissions than admin.
-- A *call* refers to an audio or video call, bidirectional communication with video and/or audio channel.
-- A user is *available* if is connected to the service and busy.
+- Actors or Roles have a user and/or admin account. The user has minimum permissions in the application, the admin has all the permissions in the application. It can be defined one or more middle actors that have more permissions than user and less permissions than admin.
+- A call refers to an audio or video call, bidirectional communication with video and/or audio channel.
+- A user is available if is connected to the service and busy.
 
 A general RTC service could be defined as it follows:
 1. *Send calls: a user calls another user with an audio channel. Optional channels of communication if available: video and chat.*
@@ -777,12 +781,12 @@ A general RTC service could be defined as it follows:
    - Bidirectional communication.
    - One of the two users stop the communication.
 3. A user can subscribe or unsubscribe to the RTC service.
-4. Call history: a user can see the calls sent, received, missed. He can delete it.
+4. Call history: a user can see the calls sent, received, missed. One can delete it.
 5. Missed call notification
-   - When a user calls to another user that is not available. A "missed call" notification is generated to be delivered to the other user.
-   - A user has been notified by a missed call if the device is compatible with this service and he is available.
+   - When a user calls to another user that is not available. A missed call notification is generated to be delivered to the other user.
+   - A user has been notified by a missed call if: (1) the device is compatible with this service and (2) one is available.
 6. Contact list
-   - A user can see the status (online, offline, busy, etc.) of another user in its contact list if he is allowed by the other user.
+   - A user can see the status (online, offline, busy, etc.) of another user in its contact list if one is allowed by the other user.
    - A user can add or remove another user from the contact list.
 7. Chat rooms
    - A user can be in a public place where there are rooms and people talk openly.
@@ -802,63 +806,52 @@ A general RTC service could be defined as it follows:
     - Users can report other users because of a social conflict, admin is notified.
 11. *Integration: all the services are integrated and is the same account.*
 
-*Guifi.net service* is defined as it follows:
+# \vspace{15 mm}
+\vspace{2.5 mm}
 
-1. A user can connect to a server if he could reach it with good quality, if not, he can easily install it in its zone.
+The Guifi.net service is defined as it follows:
+
+1. A user can connect to a server if he could reach it with good quality, if not, one can easily install it in its zone.
 2. If a server reach another, the users of a server can communicate to the users of another server.
-3. The service is compatible with VoIP Guifi.net project.
+3. *The service is compatible with VoIP Guifi.net project.*
 
 *** Required components by specific use cases
 
-This section presents the components required for the network architecture design. Concretely the requirements to send, receive calls, subscribe, unsubscribe and have integration are described now. For a WebRTC scenario, the components are distributed.
-- Application interface: gives appropriate interaction to the actors in order to perform the different operations. Is distributed, a web server (WSRV) offering a page, and a client executing the web application (WAPP) through the web browser.
-- Authentication service (AUTH): restricts access of service only to permitted users. Differentiate available operations depending on if is user or admin. Single sign on, after the web page is accessed, the user can operate.
-- Signaling protocol (SIG): manages the side to side connections and logic to establish the call. The two peers must use a compatible signaling protocol.
-- Transport protocol (TP): used between users and between user and server. Compatible, secure if possible.
-- Database (DB): stores and encrypts personal information or preferences for a particular user. Accessible through web application if succeed in authentication.
-- Connectivity solver (CS): a set of tools to avoid common communication problems that appear in networking scenarios. The most common problems are NAT and firewall.
-- Gateway (GW): adapts or converts the communication to work with different communication systems. The most important difference between communication systems is the signaling protocol.
+This section presents the components required for the network architecture design. Concretely, the following requirements are described: send, receive calls, subscribe, unsubscribe and have integration. For a WebRTC scenario, the components are distributed.
 
+- Application interface gives appropriate interaction to the actors in order to perform the different operations. It is distributed, a web server (WSRV) offering a page, and a client executing the web application (WAPP) through the web browser.
+- Authentication service (AUTH) restricts access of service only to permitted users. It differentiates available operations depending on if is user or admin. It provides single sign on, after the web page is accessed, the user can operate.
+- Signaling protocol (SIG) manages the side to side connections and logic to establish the call. The two peers must use a compatible signaling protocol.
+- Database (DB) stores and encrypts personal information or preferences for a particular user. It is accessible through web application if succeed in authentication.
+- Connectivity solver (CS) a set of tools to avoid common communication problems that appear in networking scenarios. The most common problems are NAT and firewall traversal.
+- Gateway adapts or converts the communication to work with different communication systems. The most important difference between communication systems is the signaling protocol. There are two types of gateways: Signaling Gateway (SGW) and Media Gateway (MGW).
+
+** TODO Component selection
+
+Selection of technologies for each component. 
+
+- Web Application. WebRTC is being implemented in web browsers. That is why is required to use web technologies. Given web application's constraint, other selections have to be done. Another possibility is to do an standalone WebRTC application, but it requires more development and is less flexible (see SWOT analysis).
+  - WAPP: HTML/CSS/JS. HTML (HyperText Markup Langauge) for web content, CSS (Cascading Style Sheets) for web design, JS (Javascript) for language programming features. JS has the commands to access WebRTC API's features.
+  - WSRV: HTTP server. It serves HTML/CSS/JS pages to web browsers.
+- AUTH: OAuth. It is used to authorize users to use an HTTP service. 
+- SIG: SIP
+- DB: SQL (poca información, muy estructurada).
+- CS: STUN, TURN
+- SGW: SIP over Websockets
+- MGW: RTP to RTP/SAVPF converter.
+# victor pascual dice que normalmente van sin cifrar por las dificultades
+# Yes, it’s true that the majority of RTP traffic in VoIP networks is not secured today – in fact, this is one of the very first features customers usually ask vendors to remove in order to meet their budgets. However, when secured, most of the deployments I’ve seen are using SDES (which as mentioned has a strong dependence on the signaling plane security).
+# src https://webrtchacks.com/webrtc-must-implement-dtls-srtp-but-must-not-implement-sdes/
+
+
+- Part1. conceptual selection, example: SIP as signaling service
+  
 ** TODO Network architecture design
-*** Generic parameters
-DIFF con guifi.net
+*FILL*
 
+# explain, workflow
 
-
-- about dnsservices
-# DNS architecture dnsservices. MX record. Missing SRV for XMPP and SIP
-
-#+CAPTION: MX record in Guifi.net web
-#+NAME: fig:guifi-mx
-[[../img/guifi-mx.png]]
-
-
-
-
-es estructura web project, por lo tanto centraliza un poco. o no si se integra en los routers (~freedom box?) [reescibir esto en las conclusiones]
-
-# or perhaps should be in guifi.net architecture?
-- network architecture
-  - structure: nodes, connections, relationships
-  - behavior: protocols, functionality
-  - production and deployment plans
-- network architecture features
-  - centralization vs. distribution
-  - open vs closed
-  - availability
-  - scalability
-    - extendability
-  - control
-    - security
-- network architectures (guifi)
-- signaling types
-
-*** Component diagram
-- explain, workflow
-
-/general diagrams/
-
-Each link has associated transport protocol
+# /general diagrams/ ???
 
 #+CAPTION: Component Diagram
 #+NAME: fig:compdiag
@@ -869,19 +862,21 @@ Each link has associated transport protocol
 # - server: https://openclipart.org/detail/13178/server
 # - telephone: https://openclipart.org/detail/192858/voip-phone
 
-/flow chart communication/
+# /flow chart communication/
 
-*** Interoperability between WebRTC and SIP
+# Interoperability between WebRTC and SIP
 
-Authentication
+Authentication Identity
 /authentication diagrams/
+src https://www.terena.org/activities/tf-webrtc/meeting2/slides/20150509-Cisco-WebRTC.pdf
+
 
 Gateway
 /gateway diagrams/ 
 
-#+CAPTION: SDP exchange during SIP signaling
-#+NAME: fig:compdiag
-[[../img/gw-sdp-exchange.png]]
+# #+CAPTION: SDP exchange during SIP signaling
+# #+NAME: fig:compdiag
+# [[../img/gw-sdp-exchange.png]]
 
 #+CAPTION: SIP transport
 #+NAME: fig:compdiag
@@ -891,20 +886,48 @@ Gateway
 #+NAME: fig:compdiag
 [[../img/gw-transport.png]]
 
-SRTP vs SDES ?
-
-** TODO Component selection
-- Part1. conceptual selection, example: SIP as signaling service
-- Part2. specific selection. Applications available
-
 ** TODO Implementation
-/How to put the components/
-** TODO Demo
-Deployment (PoC)
+Software application's selection for each component.
 
-- browsers used
-- screenshot
-- wireshark captures
+- WAPP: tryit.jssip.net[fn:80] , WSRV: apache HTTP server
+- AUTH: kamailio
+- SIG: kamailio
+- DB: SQL (poca información, muy estructurada)
+- CS: STUN, TURN [not tested]
+- SGW: jssip
+- MGW: rtpengine (formerly . src [not tested] http://www.kamailio.org/w/tag/rtpproxy-ng/ (antes rtpproxy-ng el módulo y mediaproxy la pplicación)
+
+# image of kamailio ecosystem
+
+** TODO Demo
+*FILL*
+
+
+# references to appendices
+
+# Deployment (PoC)
+
+- browsers used (latest versions.
+  - Google Chrome: Version 42.0.2311.152
+  - Firefox: Version 38.0.5
+
+#+CAPTION: Web SIP Client
+#+NAME: fig:cc
+[[../img/call-client.png]]
+
+#+CAPTION: Waiting a call
+#+NAME: fig:cw
+[[../img/call-waiting.png]]
+
+#+CAPTION: A call in progress
+#+NAME: fig:cip
+[[../img/call-in-progress.png]]
+
+# websocket web port 80, http proxy traverse signalling but not media
+
+#+CAPTION: Wireshark capture of websocket's SIP
+#+NAME: fig:ww
+[[../img/wireshark-websocket.png]]
 * Conclusions and Future Work
 What has been done and what remains to be done
 ** Conclusions
@@ -926,7 +949,7 @@ There are three featured topics of WebRTC that are negative. Firstly, currently 
 ** Future Work
 The suggested direction is firstly to improve currently implemented use cases and secondly to continue to implement those remaining.
 
-To improve currently implemented use cases, the suggested direction is to integrate the proposed network architecture of WebRTC with the Cloudy and the Guifi.net's web. With relatively little effort and thanks to the existence of these two projects, end-users could definitely profit from the ease of installation and usability of the WebRTC.
+To improve currently implemented use cases, integration of the proposed network architecture of WebRTC with the Cloudy and the Guifi.net's web. With relatively little effort and thanks to the existence of these two projects, end-users could definitely profit from the ease of installation and usability of the WebRTC.
 
 To continue to implement remaining use cases, is needed for example contact list and presence service. The suggested direction is to develop a web-based CUSAX Client (Combined Use of the SIP and the XMPP, \cite{rfc7081}). CUSAX Client takes SIP for telephony-like services, and XMPP for instant messaging and presence services. The following libraries compatible with websocket are recommended for working on the CUSAX Client: jssip for SIP and strophe.js[fn:67] for XMPP. This proposal pretends to take the advantages of each system.
 
@@ -944,8 +967,8 @@ A complementary direction for research is improving integration of the signaling
 #+END_LATEX
 
 #+LATEX: \begin{appendices}
-* instalación kamailio con websockets
-* entorno desarrollo guifi.net
+* Install Kamailio with Websocket support
+* Install tryit jssip Web SIP Client
 
 
 
@@ -1136,4 +1159,6 @@ A complementary direction for research is improving integration of the signaling
 [fn:78] https://www.youtube.com/watch?v=BdYKR1RsYFY.
 
 [fn:79] for example 144 is width's image and p means progressive video.
+
+[fn:80] http://tryit.jssip.net/
 
