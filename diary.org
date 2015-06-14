@@ -2,7 +2,11 @@
 Everyday it's a-gettin' closer
 ** <2015-06-13 Sat>
 - added security (ldap and oauth) as /important mechanism/ in internet's evolution
-- finished guifi.net architecture
+- bw vs throughput
+  - bandwidth is the maximum amount of data that can travel through a 'channel'.
+  - throughput is how much data actually does travel through the 'channel' successfully. This can be limited by a ton of different things including latency, and what protocol you are using.
+- guifi.net architecture finished
+- network requirement finished
 ** <2015-06-12 Fri>
 - revision of conclusions and future work
 - working on guifi.net architecture, more images

@@ -184,19 +184,19 @@ El proyecto introduce la tecnología disruptiva WebRTC (comunicación web en tie
 A project presentation, motivation, objectives and outline of the chapters.
 ** Motivation
 
-In my previous Bachelor's thesis \cite{vilchez2014comnet} I developed two ideas: /together we can build a commons network/ and /it is simple to start/. This project explores how to provide Real-Time Communications (RTC) to a commons network such as Guifi.net. Very few large cities have a commons network. Barcelona's commons network is called Guifi.net. However, the majority of Barcelona's population has no knowledge nor understanding of Guifi.net. Since the communications market is already highly commercial and competitive, users have a very wide choice of providers and therefore no need to think any further. In areas such as smaller cities and towns where large telecommunication companies have not invested in infrastructure, there is a far greater incentive to participate in a commons network.
+In my previous Bachelor's thesis \cite{vilchez2014comnet} I developed two ideas: /together we can build a community network/ and /it is simple to start/. This project explores how to provide Real-Time Communications (RTC) to a community network such as Guifi.net. Very few large cities have a community network. Barcelona's community network is called Guifi.net. However, the majority of Barcelona's population has no knowledge nor understanding of Guifi.net. Since the communications market is already highly commercial and competitive, users have a very wide choice of providers and therefore no need to think any further. In areas such as smaller cities and towns where large telecommunication companies have not invested in infrastructure, there is a far greater incentive to participate in a community network.
 
-# In my previous Bachelor's thesis \cite{vilchez2014comnet} I developed two ideas: /together we can build commons networks/ and /it is simple to start/. Even so, in cities like Barcelona many people do not have reason to understand what Guifi.net is, probably for two reasons: in cities the communications market is extremely competitive and to understand the commons model is complex for consumers. In areas where large operators has not invested, things are different: people lack internet, and they struggle to understand the commons model.
+# In my previous Bachelor's thesis \cite{vilchez2014comnet} I developed two ideas: /together we can build community networks/ and /it is simple to start/. Even so, in cities like Barcelona many people do not have reason to understand what Guifi.net is, probably for two reasons: in cities the communications market is extremely competitive and to understand the commons model is complex for consumers. In areas where large operators has not invested, things are different: people lack internet, and they struggle to understand the commons model.
 
-Inside a commons network, the implementation of other services besides Internet inherently adds value to the network and could help people understand its advantages. There are services based on contents which are difficult to maintain. But RTC as a service can be easily applied on a large scale. Once RTC has been set up, it is merely a question of time before people start using it. For various reasons a commons network generally functions within a narrow radius, and an RTC system could enhance social cohesion within the community.
+Inside a community network, the implementation of other services besides Internet inherently adds value to the network and could help people understand its advantages. There are services based on contents which are difficult to maintain. But RTC as a service can be easily applied on a large scale. Once RTC has been set up, it is merely a question of time before people start using it. For various reasons a community network generally functions within a narrow radius, and an RTC system could enhance social cohesion within the community.
 
-To apply an RTC system to Guifi.net's commons network is a challenge. Attempts to implement an RTC system have failed. WebRTC is a new opportunity to try again.
+To apply an RTC system to Guifi.net's community network is a challenge. Attempts to implement an RTC system have failed. WebRTC is a new opportunity to try again.
 
 ** Objectives
 Study if the following objectives are reachable for Guifi.net:
-- Free and secure communication between users via an RTC system and commons network infrastructure.
+- Free and secure communication between users via an RTC system and community network infrastructure.
 - Backward compatibility with VoIP[fn:11] network. Hence, users can communicate to other VoIP operators from inside and/or outside Guifi.net.
-- Designing RTC network architecture to fit the commons network scenario.
+- Designing RTC network architecture to fit the community network scenario.
 - Ease of installation and usability of RTC.
   
 ** Outline
@@ -669,7 +669,7 @@ The Guifi.net's network components are switchs, routers, servers and links. In t
 [[../img/guifi-inet.png]]
 
 # *LINKS*
-The vast majority of communication links are wireless, but there are some places where Guifi.net has deployed optical fiber. Also, in large cities such as Barcelona there are GRE-based (Generic Routing Encapsulation, \cite{rfc2784}) tunnels to improve connectivity using optical fiber services of ISP (Internet Service Provider). Figure [[tab:wifitech]] shows features of 802.11 Wi-Fi technologies. There are remaining a, b, g 802.11 protocols from old links that still work, but most are 802.11n. Mesh model only uses 802.11n. Recently, 802.11ac is being tested in some point to point links of traditional model; but at the moment is not possible in mesh model because of the lack of support for 802.11ac in OpenWRT. The source is from section 4.2.3.1 of IRTF Internet-Draft /Alternative Network Deployments. Taxonomy and characterization[fn:51]/. This draft document is a work in progress of GAIA Research Group[fn:52][fn:53] (Global Access to the Internet for All) from IRTF. IRTF (Internet Research Task Force) is a research organization parallel to IETF.
+The vast majority of communication links are wireless, but there are some places where Guifi.net has deployed optical fiber. Also, in large cities such as Barcelona there are GRE-based (Generic Routing Encapsulation, \cite{rfc2784}) tunnels to improve connectivity using optical fiber services of ISP (Internet Service Provider). Table [[tab:wifitech]] shows features of 802.11 Wi-Fi technologies. There are remaining a, b, g 802.11 protocols from old links that still work, but most are 802.11n. Mesh model only uses 802.11n. Recently, 802.11ac is being tested in some point to point links of traditional model; but at the moment is not possible in mesh model because of the lack of support for 802.11ac in OpenWRT. The source is from section 4.2.3.1 of IRTF Internet-Draft /Alternative Network Deployments. Taxonomy and characterization[fn:51]/. This draft document is a work in progress of GAIA Research Group[fn:52][fn:53] (Global Access to the Internet for All) from IRTF. IRTF (Internet Research Task Force) is a research organization parallel to IETF.
 
 #+CAPTION: 802.11 (Wi-Fi) Technologies
 #+NAME: tab:wifitech
@@ -714,99 +714,44 @@ Networks and services of Guifi.net are scalable and extendable. For the network'
 
 ** TODO Requirements
 *** TODO Network requirements
-*QoS*. Currently is complex to apply QoS in Guifi.net because of the difficulty to set up globally, firmware incompatibilities and lack of interest. Nearly all Guifi.net operators offering VoIP have deployed QoS with RouterOS in the parts of the network where they manage.
+Analysis of network requirements for an hypothetical RTC system in Guifi.net network. Guifi.net is not a network designed for RTC, but has promising features to transport it.
 
-# explicar que QoS es interesante de aplicar en contextos RTC
-
-
-*signaling*. Some parts (voip project) uses SIP. In-band signaling: Signaling information uses the same channel as the user data
-
-*guifi es dumb network* (explicar)
-# Implementación ahora de QoS dificulta la heterogeneity, pero hace de guifi.net una red más inteligente
+Guifi.net is a dumb network, i.e., a network that only routes packets and does not differentiate between applications. It has in-band signaling, i.e., signaling information uses the same channel as the user data. QoS could prioritize real-time traffic over non-real-time traffic, but currently is complex to apply QoS in Guifi.net because of the difficulty to set up globally, firmware incompatibilities and lack of interest. Nearly all Guifi.net operators offering VoIP have deployed QoS with RouterOS in the parts of the network where they manage; this affects negatively to the Guifi.net's heterogeneity. 
 
 
+Delay negatively affects interaction in multimedia applications. For audio, G.114[fn:63] determines that if delay is below 150 ms, then most applications would not be significantly affected, while delays above 400 ms are unacceptable for general network planning purposes. For interactive video, \cite{videoip2008} determines that delay in each direction should be below 150 msec and normally must be below 400 msec. For one-way applications, delay is usually not a significant factor.
 
+Figure [[fig:tr1a2]] shows a delay test for two different long network paths. The results show that the delay could be adequate to use RTC applications in guifi.net.
 
+A delay test for two different long network paths (see figure [[fig:tr1a2]]) shows that the delay could be adequate to use RTC applications in guifi.net.
 
-# delay requirements
-*Delay*.
-- According to \cite{videoip2008}, for interactive video, delay in each direction should be below 150 msec and normally must be below 400 msec. For one-way applications, delay is usually not a significant factor
-- According to G.114[fn:63], for audio, if delays were kept below 150 ms, then most applications would not be significantly affected. While delays above 400 ms are unacceptable for general network planning purposes
-- For communications, audio is more important than video
-
+# For communications, audio is more important than video
 # http://en.wikipedia.org/wiki/Latency_(audio)
 
-#+CAPTION: Traceroute take 1
-#+NAME: fig:tr1
-[[../img/traceroute1.png]]
+#+CAPTION: Measure of delay with traceroute tool, takes 1 and 2
+#+NAME: fig:tr1a2
+[[../img/traceroute1and2.png]]
 
-#+CAPTION: Traceroute take 2
-#+NAME: fig:tr2
-[[../img/traceroute2.png]]
+# *Jitter* ?
 
-*Jitter*
-
-
-# jitter requirements
-# gráficas de enlaces wifi
-
-
-
-# codec's Bandwidth
-
-*Audio and Video Codecs' Bandwidth*.
-
-- G.711, 64 Kbps bitrate (8 kHz sampling frequency x 8 bits per sample)
-- Opus, according to \cite{rfc6716}, scales from low bitrate narrowband speech at 6 Kbps to very high quality stereo music at 510 Kbps
+The bandwidth of Guifi.net's links should be enough to pass multimedia information. The mandatory audio and video WebRTC's codecs are discussed.  G.711 audio codec needs a throughput of 64 Kbps bitrate (8 kHz sampling frequency x 8 bits per sample). Opus audio codec, according to \cite{rfc6716}, scales from low bitrate narrowband speech at 6 Kbps to very high quality stereo music at 510 Kbps. Table [[tab:videobw]] shows throughput of H.264 video codec, source from Table 4-6 of \cite{videoip2008}. VP8 video codec is an alternative of H.264 and has a similar throughput.
 
 #+CAPTION: MPEG Video Compression Comparison
 #+NAME: tab:videobw
-|              | MPEG-1    | MPEG-2  | MPEG-3    | MPEG-4       |
-|              |           |         |           | AVC/H.264    |
-|--------------+-----------+---------+-----------+--------------|
-| Common       | 500-      | 2.5-    | 100 Kbps- | 1-4 Mbps SD  |
-| stream rates | 1500 Kbps | 50 Mbps | 10 Mbps   | 4-10 Mbps HD |
+|              | MPEG-1    | MPEG-2  | MPEG-3    | MPEG-4              |
+|              |           |         |           | AVC/H.264           |
+|--------------+-----------+---------+-----------+---------------------|
+| Common       | 500-      | 2.5-    | 100 Kbps- | 1-4 Mbps SD[fn:76]  |
+| stream rates | 1500 Kbps | 50 Mbps | 10 Mbps   | 4-10 Mbps HD[fn:77] |
 
-- SD: Video image with a resolution defined in standards popularized in the 1950s and widely used for television around the world
-- HD: Video image with resolution greater than standard definition. Typical formats include 720-line progressively scanned images, 1080-line interlaced images, and other formats.
+Figure [[fig:vidtest]] shows a bandwidth test of a Youtube's video using /Stats for nerds/ option (video source[fn:78]). It uses different qualities: top's image has quality 144p[fn:79] and average throughput 247 Kbps, middle's image has quality 360p and average throughput 740 Kbps, bot's image has quality 1080p and average throughput 4324 Kbps.
 
-- VP8 is similar to H.264
+#+CAPTION: Test
+#+NAME: fig:vidtest
+#+attr_latex: :width 200px
+[[../img/yt-merge.png]]
 
-Extract from Table 4-6 of \cite{videoip2008}.
-
-# videos de youtube como ejemplo, TODO change Test
-# practical example
-# Source: https://www.youtube.com/watch?v=BdYKR1RsYFY
-# Youtube video option /Stats for nerds/
-
-This refers to Figure \ref{fig:test}
-
-#+BEGIN_LATEX
-\begin{figure}[h]
-\centering
-\begin{tabular}{l}
-\includegraphics[scale=0.6]{../img/yt144p.png}\\
-\includegraphics[scale=0.6]{../img/yt360p.png}\\
-\includegraphics[scale=0.6]{../img/yt1080p.png}\\
-\end{tabular}
-\caption{\label{fig:test}Test bla bla bla bla bla.}
-\end{figure}
-#+END_LATEX
-
-# I used the export of tab:test, changing table to figure. (I don't like to see image grid as table.)
-# #+MACRO:  p   \includegraphics[scale=0.85]{$1}
-# #+CAPTION: Test.
-# #+NAME: tab:test
-# | {{{p(../img/yt144p.png)}}}  |
-# | {{{p(../img/yt360p.png)}}}  |
-# | {{{p(../img/yt1080p.png)}}} |
-# refs to this
-# http://stackoverflow.com/questions/22732261/how-to-create-image-grid-with-org-mode-for-latex-export
-# http://thread.gmane.org/gmane.emacs.orgmode/84372
-
-vs bandwidth in 802.11 links
-
--> bandwidth is cheap inside guifi.net
+For a common 802.11n link, from 15 to 150 Mbps, it can manage some RTC sessions concurrently. In a videoconference's situation, the most important part is audio, and the video could have low quality; because from the communicative point of view, audio is more important than video.
 
 *** Generic use cases
 The use cases developed are those that are bold.
@@ -949,7 +894,7 @@ Gateway
 SRTP vs SDES ?
 
 ** TODO Component selection
-- Part1. conceptual selection, example: SIP as signalling service
+- Part1. conceptual selection, example: SIP as signaling service
 - Part2. specific selection. Applications available
 
 ** TODO Implementation
@@ -1080,107 +1025,115 @@ A complementary direction for research is improving integration of the signaling
 
 [fn:23] In this document each IETF protocol is accompanied by its RFC.
 
-[fn:24] An information system for interlinked hypertext documents and other digital resources that are accessed via the Internet
+[fn:24] An information system for interlinked hypertext documents and other digital resources that are accessed via the Internet.
 
-[fn:25] http://www.w3.org/Proposal.html
+[fn:25] http://www.w3.org/Proposal.html.
 
-[fn:26] https://tools.ietf.org/wg/rtcweb/
+[fn:26] https://tools.ietf.org/wg/rtcweb/.
 
-[fn:27] http://www.w3.org/2011/04/webrtc/
+[fn:27] http://www.w3.org/2011/04/webrtc/.
 
-[fn:28] https://tools.ietf.org/html/draft-ietf-rtcweb-overview-13
+[fn:28] https://tools.ietf.org/html/draft-ietf-rtcweb-overview-13.
 
-[fn:29] http://www.slideshare.net/victorpascual/webrtc-standards-update-october-2014/4
+[fn:29] http://www.slideshare.net/victorpascual/webrtc-standards-update-october-2014/4.
 
-[fn:30] https://tools.ietf.org/html/draft-ietf-rtcweb-transports-08
+[fn:30] https://tools.ietf.org/html/draft-ietf-rtcweb-transports-08.
 
-[fn:31] https://tools.ietf.org/html/draft-ietf-rtcweb-rtp-usage-23
+[fn:31] https://tools.ietf.org/html/draft-ietf-rtcweb-rtp-usage-23.
 
-[fn:32] https://tools.ietf.org/html/draft-ietf-rtcweb-security-09
+[fn:32] https://tools.ietf.org/html/draft-ietf-rtcweb-security-09.
 
-[fn:33] https://tools.ietf.org/html/draft-ietf-rtcweb-security-arch-11
+[fn:33] https://tools.ietf.org/html/draft-ietf-rtcweb-security-arch-11.
 
-[fn:34] https://tools.ietf.org/html/draft-ietf-rtcweb-data-channel-13
+[fn:34] https://tools.ietf.org/html/draft-ietf-rtcweb-data-channel-13.
 
-[fn:35] https://tools.ietf.org/html/draft-ietf-rtcweb-data-protocol-09
+[fn:35] https://tools.ietf.org/html/draft-ietf-rtcweb-data-protocol-09.
 
-[fn:36] https://tools.ietf.org/html/draft-ietf-rtcweb-audio-07
+[fn:36] https://tools.ietf.org/html/draft-ietf-rtcweb-audio-07.
 
-[fn:37] https://tools.ietf.org/html/draft-ietf-rtcweb-video-05
+[fn:37] https://tools.ietf.org/html/draft-ietf-rtcweb-video-05.
 
-[fn:38] https://tools.ietf.org/html/draft-ietf-rtcweb-jsep-09
+[fn:38] https://tools.ietf.org/html/draft-ietf-rtcweb-jsep-09.
 
-[fn:39] http://www.w3.org/TR/2015/WD-webrtc-20150210/
+[fn:39] http://www.w3.org/TR/2015/WD-webrtc-20150210/.
 
-[fn:40] http://www.w3.org/TR/2015/WD-mediacapture-streams-20150414/
+[fn:40] http://www.w3.org/TR/2015/WD-mediacapture-streams-20150414/.
 
-[fn:41] https://tools.ietf.org/html/draft-ietf-tsvwg-rtcweb-qos-03
+[fn:41] https://tools.ietf.org/html/draft-ietf-tsvwg-rtcweb-qos-03.
 
-[fn:42] https://tools.ietf.org/html/draft-ietf-avtcore-rtp-multi-stream-07
+[fn:42] https://tools.ietf.org/html/draft-ietf-avtcore-rtp-multi-stream-07.
 
-[fn:43] https://www.itu.int/rec/T-REC-H.264-201402-I/en
+[fn:43] https://www.itu.int/rec/T-REC-H.264-201402-I/en.
 
-[fn:44] https://www.itu.int/rec/T-REC-G.711-198811-I/en
+[fn:44] https://www.itu.int/rec/T-REC-G.711-198811-I/en.
 
-[fn:45] http://tools.ietf.org/html/draft-ietf-httpbis-tunnel-protocol-04
+[fn:45] http://tools.ietf.org/html/draft-ietf-httpbis-tunnel-protocol-04.
 
-[fn:46] https://diafygi.github.io/webrtc-ips/
+[fn:46] https://diafygi.github.io/webrtc-ips/.
 
-[fn:48] https://www.terena.org/activities/tf-webrtc/meeting2/slides/20150509-Cisco-WebRTC.pdf
+[fn:48] https://www.terena.org/activities/tf-webrtc/meeting2/slides/20150509-Cisco-WebRTC.pdf.
 
-[fn:47] A handshake determines how the communication of a protocol starts.
+[fn:47] A handshake determines how the communication of a protocol starts..
 
-[fn:49] https://tools.ietf.org/html/draft-ietf-tsvwg-sctp-dtls-encaps-09
+[fn:49] https://tools.ietf.org/html/draft-ietf-tsvwg-sctp-dtls-encaps-09.
 
-[fn:50] A list with examples at https://webrtchacks.com/vendor-directory/
+[fn:50] A list with examples at https://webrtchacks.com/vendor-directory/.
 
-[fn:51] https://tools.ietf.org/html/draft-manyfolks-gaia-community-networks-02
+[fn:51] https://tools.ietf.org/html/draft-manyfolks-gaia-community-networks-02.
 
-[fn:52] https://trac.tools.ietf.org/group/irtf/trac/wiki/gaia
+[fn:52] https://trac.tools.ietf.org/group/irtf/trac/wiki/gaia.
 
-[fn:53] https://irtf.org/gaia
+[fn:53] https://irtf.org/gaia.
 
-[fn:54] https://drupal.org
+[fn:54] https://drupal.org.
 
-[fn:55] https://www.ubnt.com/
+[fn:55] https://www.ubnt.com/.
 
-[fn:56] http://www.mikrotik.com/
+[fn:56] http://www.mikrotik.com/.
 
-[fn:57] https://qmp.cat
+[fn:57] https://qmp.cat.
 
-[fn:58] http://libre-mesh.org/
+[fn:58] http://libre-mesh.org/.
 
-[fn:59] http://bmx6.net/projects/bmx6
+[fn:59] http://bmx6.net/projects/bmx6.
 
-[fn:60] http://www.open-mesh.org/projects/batman-adv/wiki
+[fn:60] http://www.open-mesh.org/projects/batman-adv/wiki.
 
-[fn:61] https://openwrt.org/
+[fn:61] https://openwrt.org/.
 
-[fn:62] http://fundacio.guifi.net/index.php/Foundation
+[fn:62] http://fundacio.guifi.net/index.php/Foundation.
 
-[fn:63] International Telecommunication Union. ITU-T Recommendation G.114 http://www.itu.int/rec/dologin_pub.asp?lang=e&id=T-REC-G.114-200305-I!!PDF-E
+[fn:63] International Telecommunication Union. ITU-T Recommendation G.114 http://www.itu.int/rec/dologin_pub.asp?lang=e&id=T-REC-G.114-200305-I!!PDF-E.
 
-[fn:64] http://cloudy.community/
+[fn:64] http://cloudy.community/.
 
-[fn:65] https://downloads.openwrt.org/barrier_breaker/14.07/x86/generic/packages/telephony/
+[fn:65] https://downloads.openwrt.org/barrier_breaker/14.07/x86/generic/packages/telephony/.
 
-[fn:66] https://downloads.openwrt.org/barrier_breaker/14.07/x86/generic/packages/packages/prosody_0.9.4-1_x86.ipk
+[fn:66] https://downloads.openwrt.org/barrier_breaker/14.07/x86/generic/packages/packages/prosody_0.9.4-1_x86.ipk.
 
-[fn:67] http://strophe.im/strophejs/, example https://prosody.im/chat/
+[fn:67] http://strophe.im/strophejs/, example https://prosody.im/chat/.
 
-[fn:68] http://www.webrtc.org/faq
+[fn:68] http://www.webrtc.org/faq.
 
-[fn:69] https://bloggeek.me/webrtc-media-engine
+[fn:69] https://bloggeek.me/webrtc-media-engine.
 
-[fn:70] https://guifi.net
+[fn:70] https://guifi.net.
 
-[fn:71] https://github.com/guifi/snpservices
+[fn:71] https://github.com/guifi/snpservices.
 
-[fn:72] single administrative entity with a specific routing policy which anounces at least one network prefix (a set of IPs)
+[fn:72] single administrative entity with a specific routing policy which anounces at least one network prefix (a set of IPs).
 
-[fn:73] https://en.wikipedia.org/wiki/File:Internet_Connectivity_Distribution_%26_Core.svg
+[fn:73] https://en.wikipedia.org/wiki/File:Internet_Connectivity_Distribution_%26_Core.svg.
 
-[fn:74] https://en.wikipedia.org/wiki/File:Internet_map_1024.jpg
+[fn:74] https://en.wikipedia.org/wiki/File:Internet_map_1024.jpg.
 
-[fn:75] https://wiki.confine-project.eu/
+[fn:75] https://wiki.confine-project.eu/.
+
+[fn:76] SD: Video image with a resolution of 1950's standards.
+
+[fn:77] HD: Video image with resolution greater than SD. 
+
+[fn:78] https://www.youtube.com/watch?v=BdYKR1RsYFY.
+
+[fn:79] for example 144 is width's image and p means progressive video.
 
