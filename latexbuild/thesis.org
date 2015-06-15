@@ -1,3 +1,4 @@
+
 #+LaTeX_class: tesi_upf
 #+OPTIONS: todo:nil
 # #+OPTIONS:   TeX:t LaTeX:t skip:nil d:nil todo:nil pri:nil tags:not-in-toc
@@ -91,7 +92,7 @@
 
 %%%%%% Dedicatòria; si no es vol posar, comenteu fins a final de dedicatòria
 
-\noindent Dedicated to my family.
+\noindent \begin{flushright} \textit{Dedicated to my family} \end{flushright}
 
 \cleardoublepage
 
@@ -106,7 +107,7 @@ Special thanks to Victor Pascual and Miquel Oliver for his mentorship. Thanks to
 
 Thanks to Daniel Pocock for its work on rtcquickstart.org. Thanks to webrtchacks.com and all its team for the useful articles.
 
-Thanks to Rachel Thalmann for revising certain parts of this text.
+Thanks to Rachel Thalmann for revising English on certain parts of this memory.
 
 Thanks to all the people that works for the democratization of communications.
 
@@ -120,7 +121,7 @@ Thanks for reading. Thanks for your time.
 \selectlanguage{english}
 \section*{\Large \sffamily Abstract}
 
-The present project introduces disrupting technology WebRTC (Web Real-Time Communication) which supports browser-to-browser applications without the need for third party plug-ins. It details how, since its release by Google in 2011, WebRTC is evolving and changing the way communications are understood. This project also discusses how to set up real-time communications in organizations with WebRTC, specifically the use cases of video and audio calls. The organization under discussion is Guifi.net and the elements analyzed are: requirements, component selection, network architecture design, implementation and demo.
+The present project introduces disrupting technology WebRTC (Web Real-Time Communication) which supports browser-to-browser applications without the need of third party plug-ins. It details how, since its release by Google in 2011, WebRTC is evolving and changing the way communications are understood. This project also discusses how to set up real-time communications in organizations with WebRTC, specifically the use cases of video and audio calls. The organization under discussion is Guifi.net and the elements analyzed are: requirements, component selection, network architecture design, implementation and demo.
 
 %old
 %The present project introduces the disrupting technology WebRTC (Web Real-Time Communication), that supports browser-to-browser applications without need of third party plugins. It is detailed how, since its release by Google in 2011, it is evolving and changing the way communications are understood. How to materialise a Real Time Communications in organizations with WebRTC and the use case of video and audio calls, taking as example Guifi.net and the opportunities that it offers: requirements, component selection, architecture design, implementation and demo.
@@ -202,7 +203,7 @@ Study if the following objectives are reachable for Guifi.net:
   
 ** Outline
 
-This document is organised in 5 chapters.
+This document is organized in 5 chapters.
 
 *Chapter [[Introduction]] Introduction* introduces the project. The motivation to start this project and the general objectives to achieve.
 
@@ -239,7 +240,7 @@ IETF and ITU did efforts to adapt its networks to the requested uses: transport 
 
 # https://en.wikipedia.org/wiki/SIGTRAN
 
-SS7, ISDN and TCP/IP stacks are based on the Open Systems Interconnection model (OSI model[fn:7]). Each protocol belongs to one layer. Each layer provides its service by performing certain actions within that layer and by using the services of the layer directly below it, this is called the service model. Table [[tab:ositcpip]] shows the difference between the and OSI model and the TCP/IP stack, each row is a layer. In TCP/IP, physical layer is implementated with hardware, for example with NIC (Network Interface Controller) or WNIC (Wireless Network Interface Controller), generally uses the IEEE 802 family, and its standardization is managed by IEEE (Institute of Electrical and Electronics Engineers.). Link layer is typically implemented by an element called switch, they provide close connectivity. Network layer is typically implemented by an element called router, they provide far connectivity. Session and presentation layers has to be implemented by the developer of the application ($\nearrow$).
+SS7, ISDN and TCP/IP stacks are based on the Open Systems Interconnection model (OSI model[fn:7]). Each protocol belongs to one layer. Each layer provides its service by performing certain actions within that layer and by using the services of the layer directly below it, this is called the service model. Table [[tab:ositcpip]] shows the difference between the and OSI model and the TCP/IP stack, each row is a layer. In TCP/IP, physical layer is implemented with hardware, for example with NIC (Network Interface Controller) or WNIC (Wireless Network Interface Controller), generally uses the IEEE 802 family, and its standardization is managed by IEEE (Institute of Electrical and Electronics Engineers.). Link layer is typically implemented by an element called switch, they provide close connectivity. Network layer is typically implemented by an element called router, they provide far connectivity. Session and presentation layers has to be implemented by the developer of the application ($\nearrow$).
 
 # https://en.wikipedia.org/wiki/OSI_model
 
@@ -255,7 +256,7 @@ SS7, ISDN and TCP/IP stacks are based on the Open Systems Interconnection model 
 | Link         | Physical addressing (close)           | Link         |
 | Physical     | Binary signal and transmission        | Physical     |
 
-Table [[tab:pdu]] shows the name of each Protocol Data Unit (PDU), the most important protocols and the organization that standarizes it. At link layer the most common PDU is the Ethernet frame, with its associated MAC address (Media Access Control). At the network layer the datagram, with its associated IP address (Internet Protocol). The version 4 of IP, IPv4 \cite{rfc791}, contains $2^{32}$ (4.3 billion) addresses, as this is not enough, that is why Internet network is upgrading to IPv6 \cite{rfc2460} with $2^{128}$ (more than $7.9\cdot10^{28}$ times as many as IPv4). Meanwhile, there are basically two types of IPv4 addresses: private IP \cite{rfc1918}, not reachable via Internet, and public IP, reachable via Internet. It is difficult to remember IP addresses to access different locations, that is why there is DNS (Domain Name Server, \cite{rfc1034}), it associates human readable addresses (domain) to IPs. An IP adddress includes a port in the range of 0 to 65535, its main purpose is to share a single physical connection to another place (host), for example an IP destination can has more than one different services available; the different services is usually associated with a specific port. At the transport layer, one unreliable and fast protocol, UDP (User Datagram Protocol, \cite{rfc768}) and another reliable, TCP (Transmission Control Protocol, \cite{rfc793}). For the real-time topic, UDP is massively used in the real-time communication, because TCP favors reliability over timeliness. TCP is usually used for the signaling. At the application layer there are many possibilities, an example is the DNS, briefly described above.
+Table [[tab:pdu]] shows the name of each Protocol Data Unit (PDU), the most important protocols and the organization that standardizes it. At link layer the most common PDU is the Ethernet frame, with its associated MAC address (Media Access Control). At the network layer the datagram, with its associated IP address (Internet Protocol). The version 4 of IP, IPv4 \cite{rfc791}, contains $2^{32}$ (4.3 billion) addresses, as this is not enough, that is why Internet network is upgrading to IPv6 \cite{rfc2460} with $2^{128}$ (more than $7.9\cdot10^{28}$ times as many as IPv4). Meanwhile, there are basically two types of IPv4 addresses: private IP \cite{rfc1918}, not reachable via Internet, and public IP, reachable via Internet. It is difficult to remember IP addresses to access different locations, that is why there is DNS (Domain Name Server, \cite{rfc1034}), it associates human readable addresses (domain) to IPs. An IP address includes a port in the range of 0 to 65535, its main purpose is to share a single physical connection to another place (host), for example an IP destination can has more than one different services available; the different services is usually associated with a specific port. At the transport layer, one unreliable and fast protocol, UDP (User Datagram Protocol, \cite{rfc768}) and another reliable, TCP (Transmission Control Protocol, \cite{rfc793}). For the real-time topic, UDP is massively used in the real-time communication, because TCP favors reliability over timeliness. TCP is usually used for the signaling. At the application layer there are many possibilities, an example is the DNS, briefly described above.
 
 # https://en.wikipedia.org/wiki/Port_(computer_networking)
 
@@ -286,7 +287,7 @@ More information about packet switching can be found at \cite{kurose2013net} and
 
 ** Real-time quality parameters
 
-The network is defined as the router, switch and link components that interconnect all the path between receiver and its destination (them included). The real-time communication depends on how the network is affected by the following parameters.
+Network is defined by router, switch and link components that interconnect all the path between receiver and its destination (them included). The real-time communication depends on how the network is affected by the following parameters.
 
 The bandwidth is the number of bits[fn:10] that can arrive from the source to the destination through the network in one unit of time (for example, MB/s). A greater bandwidth delivers higher definition (better quality) of the media content. A packet can be lost if it is never received at the destination; it is represented by packet loss percentage (%). A communication suffers jitter when different packets arrive with different delays at its destination. It is defined delay as the time between transmitting the packet and arriving at its destination; it is represented by milliseconds (ms). Due to the nature of packet switching, packets can be delivered out of order. The arrived packet can present a corruption of data. The prior parameters presented affect negatively to the communication. Its undesirable effects might be silent lapses and interruptions of the communication.
 
@@ -301,18 +302,18 @@ Important mechanisms and different technologies that use WebRTC and other associ
 
 The Internet is in constant evolution, and different mechanisms are necessary for solving problems affecting RTC.
 
-Apart from IPv4 addresses to destination hosts, people can sign up with devices onto host services and be reachable via Internet. A clear example of this is the email system; bob@example.com means that the user, bob, is registered in the domain example.com that is reachable via Internet. DNS needs an additional parameter to reach bob; in the case of email the parameter is MX record (Mail eXchanger record, detailed in the SMTP[fn:15] standard \cite{rfc5321}). This is a resource record that specifies a mail server responsible for accepting email messages on behalf of a recipient's domain. To advertise other network services such as SIP and XMPP, the SRV record (SeRVice record, \cite{rfc2782}) is necessary. The NAPTR record (Name Authority PoinTeR, \cite{rfc3403}) allows a simple contact address such as bob@example.com to contain the available forms of contact and its priority to different services.
+Apart from IPv4 addresses to destination hosts, people can sign up with devices onto host services and be reachable via Internet. A clear example of this is the email system; bob@example.com means that the user, Bob, is registered in the domain example.com that is reachable via Internet. DNS needs an additional parameter to reach Bob; in the case of email the parameter is MX record (Mail eXchanger record, detailed in the SMTP[fn:15] standard \cite{rfc5321}). This is a resource record that specifies a mail server responsible for accepting email messages on behalf of a recipient's domain. To advertise other network services such as SIP and XMPP, the SRV record (SeRVice record, \cite{rfc2782}) is necessary. The NAPTR record (Name Authority PoinTeR, \cite{rfc3403}) allows a simple contact address such as bob@example.com to contain the available forms of contact and its priority to different services.
 
 # http://en.wikipedia.org/wiki/MX_record
 # http://en.wikipedia.org/wiki/SRV_record
 # https://en.wikipedia.org/wiki/NAPTR_record
 # http://anders.com/cms/264/
 
-In the current upgrade from IPv4 to IPv6, NAT (Network Address Translation, \cite{rfc3235}) has been standarized in order to alleviate the scarcity and depletion of IPv4 addresses. NAT allows a public IP address to be reused among many different private networks (and its private IP addresses). It functions by connecting private local IP addresses and port tuples to one or more public IP addresses and port tuples. Unfortunately this introduces connectivity problems, especially in peer-to-peer connections[fn:8] (p2p). There are two server utilities which can be configured into a device to solve these problems. Both are required to be on the public network. A STUN server (Session Traversal Utilities for NAT, \cite{rfc5389}) allows a device to find out its public IP address if the device is located behind a NAT. STUN service keeps the NAT binding alive. A TURN server (Traversal Using Relays around NAT, \cite{rfc5766}) acts as a transport address intermediary between the two people wishing to communicate. Unlike STUN, TURN is resource-intensive for the provider. The problem with these two techniques is that they are optimal in some network topologies but a poor choice in others. That is why the most interesting solution for NAT traversal is ICE (Interactive Connectivity Establishment, \cite{rfc5245}). ICE exchanges, using the offer/answer SDP model, a multiplicity of IP addresses and ports, that includes STUN and TURN, which are then tested for connectivity by peer-to-peer connectivity checks. The best candidate transport address is then selected.
+In the current upgrade from IPv4 to IPv6, NAT (Network Address Translation, \cite{rfc3235}) has been standardized in order to alleviate the scarcity and depletion of IPv4 addresses. NAT allows a public IP address to be reused among many different private networks (and its private IP addresses). It functions by connecting private local IP addresses and port tuples to one or more public IP addresses and port tuples. Unfortunately this introduces connectivity problems, especially in peer-to-peer connections[fn:8] (p2p). There are two server utilities which can be configured into a device to solve these problems. Both are required to be on the public network. A STUN server (Session Traversal Utilities for NAT, \cite{rfc5389}) allows a device to find out its public IP address if the device is located behind a NAT. STUN service keeps the NAT binding alive. A TURN server (Traversal Using Relays around NAT, \cite{rfc5766}) acts as a transport address intermediary between the two people wishing to communicate. Unlike STUN, TURN is resource-intensive for the provider. The problem with these two techniques is that they are optimal in some network topologies but a poor choice in others. That is why the most interesting solution for NAT traversal is ICE (Interactive Connectivity Establishment, \cite{rfc5245}). ICE exchanges, using the offer/answer SDP model, a multiplicity of IP addresses and ports, that includes STUN and TURN, which are then tested for connectivity by peer-to-peer connectivity checks. The best candidate transport address is then selected.
 
 # http://en.wikipedia.org/wiki/STUN
 
-The World Wide Web[fn:24], the Web, is the most common way to use the Internet. It has a client-server distributed architecture model[fn:25]. Web servers act as providers of resources or services and web browsers as client requesters. It means that it follows a request-response communication model: client requests and server responses. The browsers navigates between different web pages provided by the web servers. The web navigation could be unencrypted with HTTP[fn:12] (HyperText Transfer Protocol, \cite{rfc2616}) requests or encrypted with HTTPS (HTTP Secure, \cite{rfc2818}). The success of the Web is promoting the use of web applications for all possible services. Two important features of web applications are that they are cross-platform, the browser is a default application in most of the operating systems, and easy to update or upgrade, the browsers only has to refresh the page to obtain a new version. An important problem of the request-response communication model was its complexity associated to the use of bidirectional communication or streaming \cite{rfc6202}, for example to call through a browser. The solution is provided below, the Websocket protocol.
+The World Wide Web[fn:24], the Web, is the most common way to use the Internet. It has a client-server distributed architecture model[fn:25]. Web servers act as providers of resources or services and web browsers as client requesting. It means that it follows a request-response communication model: client requests and server responses. The browsers navigates between different web pages provided by the web servers. The web navigation could be unencrypted with HTTP[fn:12] (HyperText Transfer Protocol, \cite{rfc2616}) requests or encrypted with HTTPS (HTTP Secure, \cite{rfc2818}). The success of the Web is promoting the use of web applications for all possible services. Two important features of web applications are that they are cross-platform, the browser is a default application in most of the operating systems, and easy to update or upgrade, the browsers only has to refresh the page to obtain a new version. An important problem of the request-response communication model was its complexity associated to the use of bidirectional communication or streaming \cite{rfc6202}, for example to call through a browser. The solution is provided below, the Websocket protocol.
 
 As Internet is such a vast, open and widely distributed network, it is therefore also open to undesirable consequences. For example, devices reachable via Internet are constantly attacked by other devices trying to exploit its weaknesses in computer systems and computer networks and thus can affect the security of an organization. For this and other reasons, its administrators deny by default any service which is not explicitly important to the organization. One of the components used to control the incoming and outgoing network traffic on an applied rule set is the firewall. But the firewall itself can also have undesirable consequences; in large organizations it can be less flexible. Take as an example a university with students interested in computers who are experimenting with services related to courses or projects; they may be having connectivity problems due to the restrictive nature of the firewall.
 
@@ -333,7 +334,7 @@ Firewalls and web proxies commonly admit traffic via ports 80 (HTTP) and 443 (HT
 
 # - LDAP ?
 
-For an organization, many different applications and services imply complexity in fields such as usability, account management, security. One account per user is enough; LDAP (Lightweight Directory Access Protocol, \cite{rfc4511}) and OAuth (OAuth 2.0 Authorization Framework, \cite{rfc6749}) are two appropriate authentication services which facilitates access and management of applications in an organization. They can provide the service in centralized or hiearchically distributed manner.
+For an organization, many different applications and services imply complexity in fields such as usability, account management, security. One account per user is enough; LDAP (Lightweight Directory Access Protocol, \cite{rfc4511}) and OAuth (OAuth 2.0 Authorization Framework, \cite{rfc6749}) are two appropriate authentication services which facilitates access and management of applications in an organization. They can provide the service in centralized or hierarchically distributed manner.
 ** Voice, video calls and instant messaging
 # other title was "SIP and XMPP"
 # the other title was "Voice and video calls"
@@ -341,7 +342,7 @@ For an organization, many different applications and services imply complexity i
 
 There are two strong open standard alternatives to supply the use cases of voice, video calls and instant messaging: SIP and XMPP.
 
-SIP (Session Initiation Protocol, \cite{rfc3261}) is a protocol used to establish, modify and terminate multimedia sessions in the Internet. It is one of the VoIP[fn:14] available services, an alternative to H.323 from the ITU. It is text-based, on a request/response transaction model from HTTP and SMTP; for example encrypted SIP is SIPS, and it has similarities to the relation between HTTP and HTTPS. SIP itself provides a TCP or UDP signaling channel, SDP to agree a media session and a RTP media channel. SIMPLE[fn:16] is a concluded workgroup at IETF that extended SIP with messaging and presence, this source offers an overview of the work done \cite{rfc6914}. Important telecommunication enterprises provides SIP trunking[fn:20] such as Telefonica[fn:17] and AT&T[fn:18]. SIP have hardware client implementations called SIP-based VoIP phones, and software client implementations called softphones. Old telephones can have a SIP conversion with ATA (Analog Telephone Adapter).
+SIP (Session Initiation Protocol, \cite{rfc3261}) is a protocol used to establish, modify and terminate multimedia sessions in the Internet. It is one of the VoIP[fn:14] available services, an alternative to H.323 from the ITU. It is text-based, on a request/response transaction model from HTTP and SMTP; for example encrypted SIP is SIPS, and it has similarities to the relation between HTTP and HTTPS. SIP itself provides a TCP or UDP signaling channel, SDP to agree a media session and a RTP media channel. SIMPLE[fn:16] is a concluded Working Group at IETF that extended SIP with messaging and presence, this source offers an overview of the work done \cite{rfc6914}. Important telecommunication enterprises provides SIP trunking[fn:20] such as Telefónica[fn:17] and AT&T[fn:18]. SIP have hardware client implementations called SIP-based VoIP phones, and software client implementations called softphones. Old telephones can have a SIP conversion with ATA (Analog Telephone Adapter).
 
 # http://tools.ietf.org/id/draft-rosenberg-sipping-siptrunk-00.txt
 
@@ -378,7 +379,7 @@ The WebRTC trapezoid architecture model (see figure [[fig:wrtca]]) shows the ele
 *Data framing* is defined in /Web Real-Time Communication (WebRTC): Media Transport and Use of RTP[fn:31]/. Data framing is RTP traffic. RTP and RTCP must be multiplexed on a single transport-layer flow. It has to support the use of multiple media streams (simultaneous SSRC values) in a single RTP session, more information at IETF-ID /Sending Multiple Media Streams in a Single RTP Session[fn:42]/. WebRTC uses as RTP Profile the Extended Secure RTP Profile for RTCP-Based Feedback (RTP/SAVPF, \cite{rfc5124})\\
 
 The complete specification of RTP for a particular application domain requires the choice of an RTP Profile.  For WebRTC use, the 
-For non-RTP data, IETF-ID /WebRTC Data Channels[fn:34]/ defines generic transport service that allows browsers to exchange generic data from peer to peer. Additionally, the document discusses associated use cases and requirements. Data channels use SCTP (Stream Control Transmission Protocol, \cite{rfc4960}). It is a protocol that provides reliable or partially reliable message transport. A SCTP data channel has two streams with the same Stream Identifier, one in each direction, which are managed together. Stream Identifier uniquely identifies a stream. IETF-ID /WebRTC Data Channel Establishment Protocol[fn:35]/ (DCEP) is a protocol that establishes bidirectioanl data channels over an SCTP association with a consistent set of properties about how reliable it is wanted the transmission.
+For non-RTP data, IETF-ID /WebRTC Data Channels[fn:34]/ defines generic transport service that allows browsers to exchange generic data from peer to peer. Additionally, the document discusses associated use cases and requirements. Data channels use SCTP (Stream Control Transmission Protocol, \cite{rfc4960}). It is a protocol that provides reliable or partially reliable message transport. A SCTP data channel has two streams with the same Stream Identifier, one in each direction, which are managed together. Stream Identifier uniquely identifies a stream. IETF-ID /WebRTC Data Channel Establishment Protocol[fn:35]/ (DCEP) is a protocol that establishes bidirectional data channels over an SCTP association with a consistent set of properties about how reliable it is wanted the transmission.
 
 *Securing*. IETF-ID /Security Considerations for WebRTC[fn:32]/ analyzes the security threats of WebRTC. IP Location Privacy (section 5.4) is a threat that concerns the privacy-oriented usage of VPN tunnels to be anonymous in Internet. VPN (Virtual Private Network, \cite{rfc4026}), extends a private network (with private IPs) across a public network (with public IPs) through its. This security threat is caused by the ICE procedure because it reveals a lot of information about the callee's location; that is why it should be prevented in undesirable cases. Daniel Roesler provides a demo of this security threat[fn:46]. Cullen Jennings in a presentation[fn:48] said that it is only affected by split VPN tunnels, because it reveals both external interfaces.\\
 IETF-ID /WebRTC Security Architecture[fn:33]/ defines a security architecture for WebRTC that takes in account the security threats of the other document. IP location privacy is out of scope. It defines the DTLS (Datagram Transport Layer Security, \cite{rfc4347}) handshake[fn:47]. It is a SCTP over DTLS (/DTLS Encapsulation of SCTP Packets[fn:49]/) for the data channel and a DTLS-SRTP \cite{rfc5763} for the media channel. The media channel or the data channel cannot be unencrypted. Once the DTLS handshake has completed, the keys are exported \cite{rfc5705} and used to key SRTP for the media channels.  DTLS fingerprints could be self-signed but it avoids a man-in-the-middle (MitM) attack if participants trust in a third party identity service or certificate authority.
@@ -420,8 +421,8 @@ An analysis of Strengths, Weaknesses, Opportunities and Threats (SWOT) will help
   - WebRTC can be used in web based softphone for VoIP. Easy to install, easy to update.
   - A WebRTC audio call could be routed to traditional telephony.
   - It uses javascript as programming language, this language has the widest developer's community.
-  - It encourages a new generation of web applications using its strenghts. For example, WebRTC can easily implement through a web page a /click to call button/ or a phone box[fn:95] (call without account).
-  - Google bought a relevant enterprise focused on media engines called GIPS (Global IP Solutions) and released it as WebRTC. Not only is becoming a standard in terms of Internet (IETF) and Web (W3C) technologies; but also a defacto standard in the industry because of the media engine's quality. This source[fn:69] analyzed media engine market consequences after WebRTC release, the result is that some of the companies are starting to use WebRTC. WebRTC reduces RTC systems complexity, that is why new companies entered market of media engine and are starting to deploy its own solutions.
+  - It encourages a new generation of web applications using its strengths. For example, WebRTC can easily implement through a web page a /click to call button/ or a phone box[fn:95] (call without account).
+  - Google bought a relevant enterprise focused on media engines called GIPS (Global IP Solutions) and released it as WebRTC. Not only is becoming a standard in terms of Internet (IETF) and Web (W3C) technologies; but also a /de facto/ standard in the industry because of the media engine's quality. This source[fn:69] analyzed media engine market consequences after WebRTC release, the result is that some of the companies are starting to use WebRTC. WebRTC reduces RTC systems complexity, that is why new companies entered market of media engine and are starting to deploy its own solutions.
 - Threats
   - WebRTC standard do not specify signaling: this can produce a positive or negative fragmentation of projects. Positive fragmentation: different projects for different applications. Negative fragmentation: divided effort.
   - Is a work in progress technology, it is being changed.
@@ -448,9 +449,9 @@ Table [[tab:eqre]] shows the equipment resources and its economic estimation. Ob
 | Material                                   | Estimated cost (euro) |
 |--------------------------------------------+-----------------------|
 | Guifi.net equipments in my home            |                   200 |
-| PC with virtualization capabilities [home] |                  1000 |
+| PC with virtualization capabilities (home) |                  1000 |
 | Guifi.net equipments in university         |                  1000 |
-| PC with Internet public IPv4 [university]  |                   300 |
+| PC with Internet public IPv4 (university) |                   300 |
 |--------------------------------------------+-----------------------|
 | Total                                      |                  2500 |
 
@@ -484,7 +485,7 @@ The project can be separated in two phases. The first phase is a long preamble o
 \end{figure}
 #+END_LATEX
 
-In the first phase, while studying VoIP the intention was to work about VoIP and Guifi.net. But Miquel Oliver encouraged me to do it about WebRTC. He presented me Victor Pascual, a SIP and WebRTC expert. It was hard to realise a convenient project, because this technology involves lots of protocols, other technologies, and it’s being modified now. In this phase It were settled the necessary
+In the first phase, while studying VoIP the intention was to work about VoIP and Guifi.net. But Miquel Oliver encouraged me to do it about WebRTC. He presented me Victor Pascual, a SIP and WebRTC expert. It was hard to realize a convenient project, because this technology involves lots of protocols, other technologies, and it’s being modified now. In this phase It were settled the necessary
 concepts to start the project.
 
 The second phase is an agile plan, inspired by the Scrum methodology. Scrum is one of the Agile methods[fn:3] used for software development. The important fact is that promotes adaptive planning and flexible response to change. Scrum, particularly, is a general method that should be adapted to a concrete scenario.
@@ -546,16 +547,16 @@ time slot format=isodate
 
 To ensure the scrum plan and the project, different tools were used:
 - Emacs orgmode: is a plain text syntax and software that facilitates different operations
-  - nested concepts: It is possible to fold and unfold nested concepts different parts. This brings facilities to take different points of view of the project.
+  - nested concepts: it is possible to fold and unfold nested concepts different parts. This brings facilities to take different points of view of the project.
   - write the memory of the project and export to UPF publication constraints.
-  - diary: used as autoevaluation tool. Time spent in some operations. Place to record when was discovered something.
+  - diary: used as self evaluation tool. Time spent in some operations. Place to record when was discovered something.
   - tasks: to write things to do and mark them as TODO and DONE. To see overall progress of the project.
 - Git: is a distributed version control system that helps to ensure the work is not lost. It can has a local and remote copy of all different states (commits) of the project. It is very flexible to do changes and apply.
 - Github[fn:4] repository: is a social network that uses git and has the largest community. A place to host and share open source projects. This project is hosted as a repository in https://github.com/pedro-nonfree/guifi-webrtc. Featured files:
   - diary.org: record of activity in time
   - tasks.org: parts to do for the project
   - doc directory: independent parts written before starting the memory, or that needs isolation
-    - doc/index.org: organise the different files of this directory
+    - doc/index.org: organize the different files of this directory
   - latexbuild directory: place where emacs orgmode thesis file is exported to latex and compiled to PDF
     - thesis.org: source code of memory
     - thesis.pdf: memory
@@ -582,14 +583,14 @@ Inside *practice*, there is components' testing. The task is to configure and ex
 
 # what WebRTC Proof Of Concepts that have been executed, and wishlist (checklist). What signaling was used. The POCs are web applications that have library linking with signaling. Interested in SIP (jssip) and XMPP (strophe) signaling.
 # - Tested components: what specific components that have been executed, and wishlist (checklist). LDAP Authentication, SSL/TLS certificates, STUN/TURN server, DNS.
-# I don't know if I want to develop this for guifi
-# - Develop DNS for guifi.net: is a major task that has to be achieved.
+# I don't know if I want to develop this for Guifi
+# - Develop DNS for Guifi.net: is a major task that has to be achieved.
 
 Figure [[fig:wsd]] shows the *work style*, how the objectives will be accomplished and its quality. Stable means that it should be clear and complete its content; best effort that it will work in the best way possible but with less priority:
 - Requirements: use cases, constraints needed for the chosen organization. (quality: stable)
-- Design: arquitecture design that fits the requirements. (quality: stable)
+- Design: architecture design that fits the requirements. (quality: stable)
 - Implementation: component selection, protocols (quality: best effort)
-- PoC: applications that shows some of the results (quality: best effort)
+- PoC (Proof Of Concept): applications that shows some of the results (quality: best effort)
 
 # #+ATTR_LATEX: :width 5cm
 #+CAPTION: Work style diagram
@@ -608,11 +609,11 @@ Network architecture design and analysis of how an RTC system is adapted to Guif
 # Definition of a network network architecture of a general RTC service, as set of different services and applications.
 
 ** Guifi.net architecture
-Guifi.net is a commons telecommunication network started in 2004 that is developed with an agreement that guarantees that the network is freely accessible, open to participation, open to knowledge and neutral in data transport. The network interconnects the people that takes part in it (the community) and facilitates the access to Internet. The guifi.net foundation gives legal support to the agreement and the network.
+Guifi.net is a commons telecommunication network started in 2004 that is developed with an agreement that guarantees that the network is freely accessible, open to participation, open to knowledge and neutral in data transport. The network interconnects the people that takes part in it (the community) and facilitates the access to Internet. The Guifi.net foundation gives legal support to the agreement and the network.
 
 # community
 
-The community is all the people that have access to the Guifi.net network; it is segmentated in zones. Each zone is a geographic place where there are different organizations. As individuals there are volunteers, which maintain the network without SLA (Service-Level Agreement) and freelance professionals, with SLA. As groups there are non-SLA groups, usually non-profit associations of volunteers and professionals, and SLA groups, companies.
+The community is all the people that have access to the Guifi.net network; it is segmented in zones. Each zone is a geographic place where there are different organizations. As individuals there are volunteers, which maintain the network without SLA (Service-Level Agreement) and freelance professionals, with SLA. As groups there are non-SLA groups, usually non-profit associations of volunteers and professionals, and SLA groups, companies.
 
 # government
 
@@ -622,8 +623,8 @@ Guifi.net has statistics and control of all its devices with an open source web 
 #+NAME: fig:guifisc
 [[../img/snpservices.png]]
 
-# *Behavior. Protocols. Funcionality*
-Guifi.net is an heterogeneous network which has different technologies. There are mainly two routing protocol models: traditional and mesh. Traditional model is used since Guifi.net's start, it is similar to models of organizations such as Internet, which means that is ready for production environments. Figure [[fig:guifimap]] shows where is Guifi.net, the majority of zones uses this model. Its design has two components: supernode, which extends the network and together conform the backbone network, and a node or client node, that connects to a supernode. Its routing devices usually have factory's firmware such as AirOS from Ubiquiti[fn:55]) and RouterOS from Mikrotik[fn:56], both propietary. Routing protocol implementation in traditional model has two variations: BGP (Border Gateway Protocol, \cite{rfc1267}), where each supernode is an AS (Autononous System[fn:72]), or BGP for messages that goes inside or outside the AS, OSPF (Open Shortest Path First, \cite{rfc2328}) inside the AS. Mesh model is a more experimental and modern approach based on autodiscovering neighbors. Some Barcelona's zones are using this model. Its design has one component, a node, that extends the network. Its routing devices have open source firmwares based on OpenWrt[fn:61] such as qMp[fn:57] and libremesh[fn:58]. There are two routing protocol implementations available in mesh model. Bmx6[fn:59] works on network layer; it is available in qMp or libremesh firmware. Batman-adv[fn:60] works on link layer with linux kernel tools; it is available in libremesh firmware. Table [[tab:mvst]] summarizes the differences between the two models presented, and provides extra information.
+# *Behavior. Protocols. Functionality*
+Guifi.net is an heterogeneous network which has different technologies. There are mainly two routing protocol models: traditional and mesh. Traditional model is used since Guifi.net's start, it is similar to models of organizations such as Internet, which means that is ready for production environments. Figure [[fig:guifimap]] shows where is Guifi.net, the majority of zones uses this model. Its design has two components: supernode, which extends the network and together conform the backbone network, and a node or client node, that connects to a supernode. Its routing devices usually have factory's firmware such as AirOS from Ubiquiti[fn:55]) and RouterOS from Mikrotik[fn:56], both proprietary. Routing protocol implementation in traditional model has two variations: BGP (Border Gateway Protocol, \cite{rfc1267}), where each supernode is an AS (Autonomous System[fn:72]), or BGP for messages that goes inside or outside the AS, OSPF (Open Shortest Path First, \cite{rfc2328}) inside the AS. Mesh model is a more experimental and modern approach based on autodiscovering neighbors. Some Barcelona's zones are using this model. Its design has one component, a node, that extends the network. Its routing devices have open source firmwares based on OpenWrt[fn:61] such as qMp[fn:57] and libremesh[fn:58]. There are two routing protocol implementations available in mesh model. Bmx6[fn:59] works on network layer; it is available in qMp or libremesh firmware. Batman-adv[fn:60] works on link layer with linux kernel tools; it is available in libremesh firmware. Table [[tab:mvst]] summarizes the differences between the two models presented, and provides extra information.
 # https://en.wikipedia.org/wiki/Autonomous_system_(Internet)
 
 #+CAPTION: Map of Guifi.net's coverage
@@ -635,7 +636,7 @@ Guifi.net is an heterogeneous network which has different technologies. There ar
 |                         | Traditional model | Mesh model                      |
 |-------------------------+-------------------+---------------------------------|
 | Deployed IP version     | IPv4              | IPv4, IPv6                      |
-| Firmware license        | Mostly privative  | Free open source                |
+| Firmware license        | Mostly private    | Free open source                |
 | Routing protocol        | BGP, OSPF         | bmx6, batman-adv                |
 | Average deployment time | Longer            | Shorter                         |
 | Average cost per link   | More              | Less                            |
@@ -663,7 +664,7 @@ The Guifi.net's network components are switchs, routers, servers and links. In t
 #+NAME: fig:inetrel
 [[../img/inet-rel.png]]
 
-#+CAPTION: Left: Traditional model topology, a partial map of the Internet. Right: Mesh model topology, graph of a Guifi.net neighbor's network of Barcelona.
+#+CAPTION: Left: Traditional model topology is similar to Internet's topology. Right: Mesh model topology, graph of a Guifi.net neighbor's network of Barcelona.
 #+NAME: fig:topolos
 [[../img/guifi-inet.png]]
 
@@ -708,7 +709,7 @@ An improvement to dnsservices is to include SRV record for XMPP and SIP near MX 
 
 Cloudy[fn:64] is service that proposes integration in a node of snpservices, dnsservices, federated proxy and many more. A node can manage its services, add a new one, and announce or discover services from other cloudy nodes through Guifi.net.
 
-Networks and services of Guifi.net are scalable and extendable. For the network's case, that is because Guifi.net is a small Internet's network architecture. For the service's case, that is because Guifi.net-related services are simple; Cloudy is complex, but is based on a software that manages the Community-Lab testbed of an european project called CONFINE[fn:75]. The least scalable and extendable part of Guifi.net is its web, but is not very problematic: the web doest not provide multimedia content, forks can be done because is an open source project, and the web architecture has solutions to prevent scalability and extendability problems such as load balancing.
+Networks and services of Guifi.net are scalable and extendable. For the network's case, that is because Guifi.net is a small Internet's network architecture. For the service's case, that is because Guifi.net-related services are simple; Cloudy is complex, but is based on a software that manages the Community-Lab testbed of an European project called CONFINE[fn:75]. The least scalable and extendable part of Guifi.net is its web, but is not very problematic: the web does not provide multimedia content, forks can be done because is an open source project, and the web architecture has solutions to prevent scalability and extendability problems such as load balancing.
 
 # /sí. se puede ir extendiendo hasta cierto punto en wifi, pero en caso de tener tantos enlaces y usuarios, hay más poder económico y se pude pasar a fibra. Caso Gurb (imagen de Gurb)/
 
@@ -727,9 +728,9 @@ Guifi.net is a dumb network, i.e., a network that only routes packets and does n
 
 Delay negatively affects interaction in multimedia applications. For audio, G.114[fn:63] determines that if delay is below 150 ms, then most applications would not be significantly affected, while delays above 400 ms are unacceptable for general network planning purposes. For interactive video, \cite{videoip2008} determines that delay in each direction should be below 150 msec and normally must be below 400 msec. For one-way applications, delay is usually not a significant factor.
 
-Figure [[fig:tr1a2]] shows a delay test for two different long network paths. The results show that the delay could be adequate to use RTC applications in guifi.net.
+Figure [[fig:tr1a2]] shows a delay test for two different long network paths. The results show that the delay could be adequate to use RTC applications in Guifi.net.
 
-A delay test for two different long network paths (see figure [[fig:tr1a2]]) shows that the delay could be adequate to use RTC applications in guifi.net.
+A delay test for two different long network paths (see figure [[fig:tr1a2]]) shows that the delay could be adequate to use RTC applications in Guifi.net.
 
 # For communications, audio is more important than video
 # http://en.wikipedia.org/wiki/Latency_(audio)
@@ -752,7 +753,7 @@ The bandwidth of Guifi.net's links should be enough to pass multimedia informati
 
 Figure [[fig:vidtest]] shows a bandwidth test of a Youtube's video using /Stats for nerds/ option (video source[fn:78]). It uses different qualities: top's image has quality 144p[fn:79], and average throughput 247 Kbps, middle's image has quality 360p and average throughput 740 Kbps, bot's image has quality 1080p and average throughput 4324 Kbps.
 
-#+CAPTION: Test
+#+CAPTION: Youtube's videos with different qualities
 #+NAME: fig:vidtest
 #+attr_latex: :width 200px
 [[../img/yt-merge.png]]
@@ -802,7 +803,7 @@ A general RTC service could be defined as it follows:
 9. Share advanced media
    - User can share its screen with another user.
    - User can share files of limited size in a room or privately to another user. The data is temporarily stored.
-   - Share N streams to N users (Multiuser bidirectional videoconference).
+   - Share N streams to N users (Multi-user bidirectional videoconference).
    - Share one stream to N users (Streaming).
 10. Administration
     - User can only change its settings. Admin can change configuration of all users.
@@ -847,7 +848,7 @@ Selection of technologies for each component.
   
 ** Network architecture design
 
-Component diagram (see [[fig:compdiag]]) is the keypoint to explain the different procedures and gateways.
+Component diagram (see [[fig:compdiag]]) is the key point to explain the different procedures and gateways.
 
 #+CAPTION: Component Diagram
 #+NAME: fig:compdiag
@@ -897,25 +898,25 @@ WebRTC is still under development. That is why is recommended to use browsers' l
 
 # Deployment (PoC)
 
-Figure [[fig:cc]] shows tryit web client. It is generic, and can be used to login other proxy servers. The login parameters needed are the SIP URI, for example =bob@10.1.56.201=, its password and web socket URI, for example =ws://10.1.56.201:8080=. This means that a kamailio sip proxy has IP =10.1.56.201=, it is listenining websocket port =8080= and it has a user registered called bob.
+Figure [[fig:cc]] shows tryit web client. It is generic, and can be used to login other proxy servers. The login parameters needed are the SIP URI, for example =bob@10.1.56.201=, its password and web socket URI, for example =ws://10.1.56.201:8080=. This means that a kamailio sip proxy has IP =10.1.56.201=, it is listening websocket port =8080= and it has a user registered called Bob.
 
 #+CAPTION: Web SIP Client
 #+NAME: fig:cc
 [[../img/call-client.png]]
 
-Figure [[fig:cw]] shows the next screen. bob is succesfully registered. To perform a call, fill green box with SIP URI and click call.
+Figure [[fig:cw]] shows the next screen. Bob is successfully registered. To perform a call, fill green box with SIP URI and click call.
 
 #+CAPTION: Waiting a call
 #+NAME: fig:cw
 [[../img/call-waiting.png]]
 
-Figure [[fig:cip]] shows a call in progress. There are three services available: audio, video and chat. Video is on the right side of the interface, smaller frame is bob's screen and larger frame is from alice; the videos' frame are similar because this POC used two laptops that are placed in the same location. Additionally, this call opened a chat (datachannel).
+Figure [[fig:cip]] shows a call in progress. There are three services available: audio, video and chat. Video is on the right side of the interface, smaller frame is Bob's screen and larger frame is from Alice; the videos' frame are similar because this POC used two laptops that are placed in the same location. Additionally, this call opened a chat (datachannel).
 
 #+CAPTION: A call in progress
 #+NAME: fig:cip
 [[../img/call-in-progress.png]]
 
-# websocket web port 80, http proxy traverse signalling but not media
+# websocket web port 80, http proxy traverse signaling but not media
 
 A wireshark[fn:94] capture of call procedure from Bob's perspective (figure [[fig:ww]]) shows how it is a typical call's SIP procedure encapsulated with websocket. The websocket's seven messages are:
 1. REGISTER Bob. After register, one can send or receive calls.
@@ -937,13 +938,13 @@ What has been done and what remains to be done
 ** Conclusions
 
 Coming back to the objectives of this project, all are attainable. WebRTC is open source and encryption is mandatory for user data. Since WebRTC is a natural evolution of previous technologies, it is backward compatible with previous RTC solutions, to some degree; but this project could not evaluate it exhaustively. The network architecture design proposed is a good starting point for continuing to implement RTC in Guifi.net, because WebRTC design is as scalable and extendable as any web project. 
-Up until now, many people have steadily been improving the ease of installation and usability of WebRTC and this work has attempted to summarize some of WebRTC's work lines. Also, it has proposed a direction for guifi.net's developer community. For other organizations such as open source communities, companies, etc. a similar approach could be applied.
+Up until now, many people have steadily been improving the ease of installation and usability of WebRTC and this work has attempted to summarize some of WebRTC's work lines. Also, it has proposed a direction for Guifi.net's developer community. For other organizations such as open source communities, companies, etc. a similar approach could be applied.
 
 WebRTC greatly facilitates use of RTC in organizations of all sizes. Smaller organizations can solve the use cases proposed. Larger organizations can benefit by solving even more complex use cases. Pre-WebRTC attempts were more challenging and they tended to be implemented in larger organizations.
 
 As WebRTC architecture design is similar to Web architecture design, it cannot be completely decentralized. This is one of the disadvantages of WebRTC; its architecture design needs at least one centralized server, because of that a minimum of organization is required in order to implement it. However the advantage of these servers is that they require low CPU usage and are therefore inexpensive.
 
-There are three featured topics of WebRTC that are negative. Firstly, currently it is not possible to use WebRTC and be anonymous; the ICE procedure reveals a considerable amount of information about a web page visitor. Secondly, WebRTC media channel traffic is still not supported via an HTTP Proxy and this issue affects guifi.net's traditional model. And thirdly, WebRTC and SIP interoperability need a gateway for the media channel. However, the gateway mainly requires network resources, which are available for free inside Guifi.net.
+There are three featured topics of WebRTC that are negative. Firstly, nowadays it is not possible to use WebRTC and be anonymous; the ICE procedure reveals a considerable amount of information about a web page visitor. Secondly, WebRTC media channel traffic is still not supported via an HTTP Proxy and this issue affects Guifi.net's traditional model. And thirdly, WebRTC and SIP interoperability need a gateway for the media channel. However, the gateway mainly requires network resources, which are available for free inside Guifi.net.
 
 # /JsSIP uses the WebRTC stack of the browser (currently just Chrome has a working WebRTC stack), and WebRTC is not "just "RTP" but it requires SRTP (Secure RTP), ICE, a new SDP profile (SAVPF) and so on. It's not possible to make a direct media session between JsSIP (or any other WebRTC based SIP device) and Linphone since Linphone is a basic SIP client with just common plain RTP support, no ICE no SRTP no SAVPF./
 
@@ -976,7 +977,7 @@ A complementary direction for research is improving integration of the signaling
 #+LATEX: \begin{appendices}
 
 * Demo installation
-Install in your own server the demo. This guide assumes a Debian 7 Wheezy installation with Internet access and administration rights.
+Guide to install the demo. It assumes a Debian 7 Wheezy installation with Internet access and administration rights.
 ** Kamailio with websocket support
 Based on this source[fn:96].
 1. Add the following lines to =/etc/apt/sources.list=
@@ -1020,7 +1021,7 @@ Based on this source[fn:96].
    #+end_src
 9. Restart kamailio service =sudo service kamailio restart=
 10. Execute kamdbctl create, put MySQL password. Say yes to all questions.
-11. Add users. Example; command to add bob's user: =kamctl add bob bobsecret=, where bobsecret is his password.
+11. Add users. Example; command to add Bob's user: =kamctl add bob bobsecret=, where bobsecret is his password.
 12. Restart kamailio service =sudo service kamailio restart=
 ** Tryit jssip Web SIP Client
 1. Install HTTP server apache and git =sudo apt-get install apache2 git=.
@@ -1208,9 +1209,9 @@ Based on this source[fn:96].
 
 [fn:75] https://wiki.confine-project.eu/.
 
-[fn:76] SD: Video image with a resolution of 1950's standards.
+[fn:76] SD: video image with a resolution of 1950's standards.
 
-[fn:77] HD: Video image with resolution greater than SD. 
+[fn:77] HD: video image with resolution greater than SD. 
 
 [fn:78] https://www.youtube.com/watch?v=BdYKR1RsYFY.
 
