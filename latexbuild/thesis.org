@@ -26,7 +26,7 @@
 %FONTS TIMES O GARAMOND, 
 \usepackage{times}
 %\usepackage{garamond}
-\usepackage{url}
+\usepackage[hyphens]{url}
 
 \usepackage{pdfpages}
 %SENSE HEADINGS: NO MODIFICAR
@@ -52,6 +52,7 @@
 % ~~~~~~~~~~~~~~~~~~~~~~~~~~
 %\usepackage{hyperref}
 \usepackage[hidelinks]{hyperref}
+
 \usepackage{titlesec}
 \usepackage{appendix}
 %\usepackage[toc,page]{appendix}
@@ -60,9 +61,9 @@
 % it is already defined later
 % \usepackage{pdfpages}
 
-\usepackage{draftwatermark}
-\SetWatermarkText{DRAFT}
-\SetWatermarkLightness{0.95}
+%\usepackage{draftwatermark}
+%\SetWatermarkText{DRAFT}
+%\SetWatermarkLightness{0.95}
 
 %AFEGIU EN AQUESTA PART LES VOSTRES DADES
 %\title{Architecture Design of Real-Time Communication for Organizations with WebRTC}
@@ -107,7 +108,7 @@ Thanks to Daniel Pocock for its work on rtcquickstart.org. Thanks to webrtchacks
 
 Thanks to Rachel Thalmann for revising certain parts of this text.
 
-Thanks to all the people that works for the democratization of communications
+Thanks to all the people that works for the democratization of communications.
 
 Thanks for reading. Thanks for your time.
 
@@ -395,7 +396,7 @@ W3C Working Draft /Media Capture and Streams[fn:40]/ defines the Media Capture A
 *Local system support functions* improve the user experience. Examples of local functions are echo cancellation, volume control, camera focus, zoom, etc. Some of these functions are defined in Audio and Video Codec documents of IETF-ID and MediaStream API of W3C presented before.
 
 The book \cite{wrtc2014loreto} was consulted as an additional source of information about WebRTC.
-* TODO Methodology
+* Methodology
 Analysis of the selected topic for this project, its scope, resources associated with the project, its planning, tasks and work style.
 ** SWOT analysis of WebRTC
 
@@ -419,7 +420,7 @@ An analysis of Strengths, Weaknesses, Opportunities and Threats (SWOT) will help
   - WebRTC can be used in web based softphone for VoIP. Easy to install, easy to update.
   - A WebRTC audio call could be routed to traditional telephony.
   - It uses javascript as programming language, this language has the widest developer's community.
-  - It encourages a new generation of web applications using its strenghts.
+  - It encourages a new generation of web applications using its strenghts. For example, WebRTC can easily implement through a web page a /click to call button/ or a phone box[fn:95] (call without account).
   - Google bought a relevant enterprise focused on media engines called GIPS (Global IP Solutions) and released it as WebRTC. Not only is becoming a standard in terms of Internet (IETF) and Web (W3C) technologies; but also a defacto standard in the industry because of the media engine's quality. This source[fn:69] analyzed media engine market consequences after WebRTC release, the result is that some of the companies are starting to use WebRTC. WebRTC reduces RTC systems complexity, that is why new companies entered market of media engine and are starting to deploy its own solutions.
 - Threats
   - WebRTC standard do not specify signaling: this can produce a positive or negative fragmentation of projects. Positive fragmentation: different projects for different applications. Negative fragmentation: divided effort.
@@ -595,7 +596,7 @@ Figure [[fig:wsd]] shows the *work style*, how the objectives will be accomplish
 #+NAME: fig:wsd
 [[../img/workstyle.png]]
 
-* TODO Contributions and Results
+* Contributions and Results
 Network architecture design and analysis of how an RTC system is adapted to Guifi.net
 
 # Analyzed elements for Guifi.net organization. 
@@ -852,17 +853,17 @@ Component diagram (see [[fig:compdiag]]) is the keypoint to explain the differen
 #+NAME: fig:compdiag
 [[../img/arch.png]]
 
-*Signaling between server and clients*. Component diagram's figure shows four clients (A, B, C, phone) which have signaling connections to a server. The server has integrated multiple components; but they could be distributed in different server nodes. Laptops A and B have web application (WAPP) provided by the web server (WSRV) which connect to signaling server (SG1) through SIP over websocket (red line). Laptop C has a standalone softphone application which connects to signaling server (SG2) through SIP. Phone connects to signaling server (SG2) through SIP. Figure [[fig:gw-sip-transport]] shows a signaling gateway (SGW) which translates SIP over websocket to SIP.
+*Signaling between server and clients*. Component diagram's figure shows four clients (A, B, C, phone) which have signaling connections to a server. The server has integrated multiple components; but they could be distributed in different server nodes. Laptops A and B have web application (WAPP) provided by the web server (WSRV) which connect to signaling server (SG1) through SIP over websocket (red line). Laptop C has a standalone softphone application which connects to signaling server (SG2) through SIP. Phone connects to signaling server (SG2) through SIP. Figure [[fig:gwm]] shows a signaling gateway (SGW) which translates SIP over websocket to SIP.
 
 #+CAPTION: Signaling Gateway
-#+NAME: fig:gw-sip-transport
-[[../img/gw-sip-transport.png]]
+#+NAME: fig:gwm
+[[../img/gws.png]]
 
-*Media transport between clients*. Blue lines between clients shows how is handled the media. Between WebRTC or between SIP, media could be p2p. Figure [[fig:gw-sip-media]] shows a media gateway (MGW) which translates media that goes between WebRTC and SIP clients. Additionally, if needed, connectivity solver component provides STUN and TURN services to clients. TURN service is expensive; it could require authentication for its use.
+*Media transport between clients*. Blue lines between clients shows how is handled the media. Between WebRTC or between SIP, media could be p2p. Figure [[fig:gws]] shows a media gateway (MGW) which translates media that goes between WebRTC and SIP clients. Additionally, if needed, connectivity solver component provides STUN and TURN services to clients. TURN service is expensive; it could require authentication for its use.
 
-#+CAPTION: Transport
-#+NAME: fig:gw-sip-media
-[[../img/gw-transport.png]]
+#+CAPTION: Media Gateway
+#+NAME: fig:gws
+[[../img/gwm.png]]
 
 *Authentication*. In WebRTC, clients use OAuth (AUTH) to authenticate their users. They obtain an identity to sign their DTLS key, and they gain access to the RTC application. In a context call, during exchange of DTLS keys, other users can verify foreign identities. With SIP, clients can authenticate to signaling service; but verification is not possible. This source explains Identity and DTLS procedure with greater detail[fn:87].
 
@@ -872,24 +873,25 @@ Database (DB) manages users accounts; therefore it assist authentication module 
 
 Software application's selection for each component.
 
-- SIG: kamailio[fn:88]. It is a long career project that comes from the origins of SIP Proxy.
+- SIG: kamailio[fn:88]. It is a long career project that comes from the origins of SIP Proxy. Kamailio can also manage websocket connections and link them to legacy SIP. Websocket secure (WSS) was not tested.
 - SGW: jssip. It is written by the authors of SIP over websocket RFC.
-- MGW: rtpengine[fn:89] (formerly rtpproxy-ng kamailio's module for mediaproxy-ng). It is prepared to interconnect WebRTC to RTP[fn:90]; because it is compatible with SDES, DTLS-SRTP, etc.
+- MGW: rtpengine[fn:89] (formerly rtpproxy-ng kamailio's module for mediaproxy-ng). It is prepared to interconnect WebRTC to RTP[fn:90]; because it is compatible with SDES, DTLS-SRTP, etc. Rtpengine was not tested.
 - WAPP: tryit.jssip.net[fn:80]. It is a functional demo application proposed by jssip.
   - Browsers: Firefox and Chrome. They are the most used browsers[fn:93].
-- WSRV: apache HTTP server. It is a common, easy to use and well-known HTTP server.
+- WSRV: apache HTTP server. It is a common, easy to use and well-known HTTP server. HTTPS was not tested.
 - AUTH: kamailio. This is the fast way to start implementing an RTC system. Kamailio can manage accounts. OAuth was not tested.
 - CS: coturn. It is an advanced (updated) version of rfc5766-turn-server[fn:91] and is recommended by this source[fn:92]. It was not tested.
 - DB: MySQL. It is a common, easy to use and well-known relational database.
 
-Not tested (summary): coturn (CS), OAuth (AUTH).
+Not tested (summary): WSS (SIG), rtpengine (MGW), HTTPS (WSRV), coturn (CS), OAuth (AUTH).
 
 # image of kamailio ecosystem: http://www.kamailio.org/w/features/
 
-** TODO Demo
+** Demo
+
 This section shows a POC (Proof Of Concept) of WebRTC that runs on Guifi.net. It is about a video call between two users. Refer to appendices to obtain documentation about how to install sip proxy, and web application with WebRTC support.
 
-WebRTC is still under development. That is why is recommended to use the browsers' latest versions. For Google Chrome, version 42.0.2311.152. For Firefox, Version 38.0.5
+WebRTC is still under development. That is why is recommended to use browsers' latest versions. For Google Chrome, version 42.0.2311.152. For Firefox, version 38.0.5
 
 # references to appendices
 
@@ -901,7 +903,7 @@ Figure [[fig:cc]] shows tryit web client. It is generic, and can be used to logi
 #+NAME: fig:cc
 [[../img/call-client.png]]
 
-Figure [[fig:cw]] shows the next screen. bob is succesfully registered, that is, he can call or wait a call. To perform a call, fill green box with SIP URI and click call.
+Figure [[fig:cw]] shows the next screen. bob is succesfully registered. To perform a call, fill green box with SIP URI and click call.
 
 #+CAPTION: Waiting a call
 #+NAME: fig:cw
@@ -915,24 +917,26 @@ Figure [[fig:cip]] shows a call in progress. There are three services available:
 
 # websocket web port 80, http proxy traverse signalling but not media
 
-A wireshark[fn:94] capture (figure [[fig:ww]]) shows how it looks a typical call's SIP procedure with websocket. The websocket seven messages are:
-1. REGISTER
-2. SIP 200 OK
-3. INVITE sip:alice@10.1.56.201 (contains SDP offer)
-4. SIP 100 TRYING
-5. SIP 180 RINGING
-6. SIP 200 OK (contains SDP answer)
-7. ACK
+A wireshark[fn:94] capture of call procedure from Bob's perspective (figure [[fig:ww]]) shows how it is a typical call's SIP procedure encapsulated with websocket. The websocket's seven messages are:
+1. REGISTER Bob. After register, one can send or receive calls.
+2. SIP 200 OK. Authentication success for Bob's user from SIP Proxy.
+3. INVITE Alice (contains SDP offer). Bob request a call to Alice.
+4. SIP 100 TRYING. SIP Proxy informs to Bob that its call is being processed.
+5. SIP 180 RINGING. SIP Proxy informs to Bob that Alice SIP's device is ringing.
+6. SIP 200 OK (contains SDP answer). Alice accepts the call
+7. ACK. Bob confirms to SIP Proxy that he received Alice's acceptation of Bob's call.
 
 #+CAPTION: Wireshark capture of websocket's SIP
 #+NAME: fig:ww
 [[../img/wireshark-websocket.png]]
 
-
 * Conclusions and Future Work
+
 What has been done and what remains to be done
-** TODO Conclusions
-Coming back to the objectives of this project, all are attainable. WebRTC is open source and encryption is mandatory for user data. Since WebRTC is a natural evolution of previous technologies, it is backward compatible with previous RTC solutions, to some degree. The network architecture design proposed is a good starting point for continuing to implement RTC in Guifi.net, because WebRTC design is as scalable and extendable as any web project. 
+
+** Conclusions
+
+Coming back to the objectives of this project, all are attainable. WebRTC is open source and encryption is mandatory for user data. Since WebRTC is a natural evolution of previous technologies, it is backward compatible with previous RTC solutions, to some degree; but this project could not evaluate it exhaustively. The network architecture design proposed is a good starting point for continuing to implement RTC in Guifi.net, because WebRTC design is as scalable and extendable as any web project. 
 Up until now, many people have steadily been improving the ease of installation and usability of WebRTC and this work has attempted to summarize some of WebRTC's work lines. Also, it has proposed a direction for guifi.net's developer community. For other organizations such as open source communities, companies, etc. a similar approach could be applied.
 
 WebRTC greatly facilitates use of RTC in organizations of all sizes. Smaller organizations can solve the use cases proposed. Larger organizations can benefit by solving even more complex use cases. Pre-WebRTC attempts were more challenging and they tended to be implemented in larger organizations.
@@ -947,10 +951,12 @@ There are three featured topics of WebRTC that are negative. Firstly, currently 
 # WARNING: SWOT analysis vs conclusions
 
 # - *Personal/project conclusions?*. IETF has great resources, and easier to read than expected
-** TODO Future Work
+
+** Future Work
+
 The suggested direction is firstly to improve currently implemented use cases and secondly to continue to implement those remaining.
 
-To improve currently implemented use cases, integration of the proposed network architecture of WebRTC with the Cloudy and the Guifi.net's web. With relatively little effort and thanks to the existence of these two projects, end-users could definitely profit from the ease of installation and usability of the WebRTC.
+To improve currently implemented use cases, integration of the proposed network architecture of WebRTC with the Cloudy and the Guifi.net's web. With relatively little effort and thanks to the existence of these two projects, end-users could definitely profit from the ease of installation and usability of the WebRTC. Also, improve analysis and testing of backward compatibility of WebRTC and SIP.
 
 To continue to implement remaining use cases, is needed for example contact list and presence service. The suggested direction is to develop a web-based CUSAX Client (Combined Use of the SIP and the XMPP, \cite{rfc7081}). CUSAX Client takes SIP for telephony-like services, and XMPP for instant messaging and presence services. The following libraries compatible with websocket are recommended for working on the CUSAX Client: jssip for SIP and strophe.js[fn:67] for XMPP. This proposal pretends to take the advantages of each system.
 
@@ -968,10 +974,59 @@ A complementary direction for research is improving integration of the signaling
 #+END_LATEX
 
 #+LATEX: \begin{appendices}
-* Install Kamailio with Websocket support
-* Install tryit jssip Web SIP Client
 
-
+* Demo installation
+Install in your own server the demo. This guide assumes a Debian 7 Wheezy installation with Internet access and administration rights.
+** Kamailio with websocket support
+Based on this source[fn:96].
+1. Add the following lines to =/etc/apt/sources.list=
+   #+begin_src 
+   # kamailio
+   deb http://deb.kamailio.org/kamailio wheezy main
+   deb-src http://deb.kamailio.org/kamailio wheezy main
+   #+end_src
+2. Validate the repository: download key =wget= http://deb.kamailio.org/kamailiodebkey.gpg and apply it =apt-key add kamailiodebkey.gpg=
+3. Install kamailio with websocket support:\\ =sudo apt-get install kamailio kamailio-websocket-modules kamailio-mysql-modules kamailio-tls-modules=
+4. Install database: =sudo apt-get install mysql-server=. Remember the password, it will required later.
+5. In file =/etc/default/kamailio= uncomment =RUN_KAMAILIO=yes=
+6. In =/etc/kamailio/kamctlrc= put =SIP_DOMAIN=fill=, where =fill= is a domain or IP address
+7. Put https://gist.github.com/jesusprubio/4066845 as configuration file for =/etc/kamailio/kamailio.conf= and modify with your IP address in lines:
+   #+begin_src
+   #!substdef "!MY_IP_ADDR!172.16.190.128!g"
+   #!substdef "!MY_DOMAIN!172.16.190.128!g"
+   #+end_src
+8. In /etc/kamailio/kamctlrc, put =SIP_DOMAIN=fill=, where fill is a domain or IP address, and uncomment =DBENGINE=MYSQL=, and uncomment the following lines:
+   #+begin_src 
+   ## database host
+   DBHOST=localhost
+   
+   ## database name (for ORACLE this is TNS name)
+   DBNAME=kamailio
+   
+   # database path used by dbtext, db_berkeley or sqlite
+   # DB_PATH="/usr/local/etc/kamailio/dbtext"
+   
+   ## database read/write user
+   DBRWUSER="kamailio"
+   
+   ## password for database read/write user
+   DBRWPW="kamailiorw"
+   
+   ## database read only user
+   DBROUSER="kamailioro"
+   
+   ## password for database read only user
+   DBROPW="kamailioro"
+   #+end_src
+9. Restart kamailio service =sudo service kamailio restart=
+10. Execute kamdbctl create, put MySQL password. Say yes to all questions.
+11. Add users. Example; command to add bob's user: =kamctl add bob bobsecret=, where bobsecret is his password.
+12. Restart kamailio service =sudo service kamailio restart=
+** Tryit jssip Web SIP Client
+1. Install HTTP server apache and git =sudo apt-get install apache2 git=.
+2. Go to the following path with the command =cd /var/www= and obtain tryit application from =git clone=  https://github.com/opentelecoms-org/jssip-tryit-web-mirror.
+3. rename file to jssip: =mv oldname jssip=
+4. Access the application in http://server/jssip, where server part could be a domain or an IP.
 
 #+LATEX: \end{appendices}
 
@@ -1190,4 +1245,8 @@ A complementary direction for research is improving integration of the signaling
 [fn:93] http://gs.statcounter.com/\#all-browser-ww-monthly-201502-201502-map
 
 [fn:94] network traffic sniffer, https://wireshark.org
+
+[fn:95] https://freephonebox.net/
+
+[fn:96] http://kb.asipto.com/kamailio:skype-like-service-in-less-than-one-hour
 

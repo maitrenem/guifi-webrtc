@@ -1,5 +1,10 @@
 * Diary
 Everyday it's a-gettin' closer
+** <2015-06-15 Mon>
+- https://webrtchacks.com/webrtc-and-man-in-the-middle-attacks/
+- demo and appendix finished
+- some corrections applied
+- quit watermark
 ** <2015-06-14 Sun>
 - review of guifi.net architecture and network requirement sections
 - Kamailio scripts to call from websocket UA to classic UA, and vice versa. https://github.com/caruizdiaz/kamailio-ws
