@@ -18,9 +18,14 @@ Everyday it's a-gettin' closer
 - example call flow section 8.2: "INVITE Dialog through a Proxy". src https://tools.ietf.org/html/rfc7118
 - stats
   - chrome://webrtc-internals/
-  - 
 - WebRTC + Kamailio as SIP-proxy + rtpproxy(?) as media-proxy http://lists.sip-router.org/pipermail/sr-users/2014-November/085941.html
-
+- guifi.net voip project encryption: tls, vtun and vpn
+- RTPProxy: Routing VoIP calls over VPN links
+- finished
+  - component selection
+  - network architecture design
+  - implementation
+- remaining: last thoughts demo, review conclusions, future work, appendices
 ** <2015-06-13 Sat>
 - added security (ldap and oauth) as /important mechanism/ in internet's evolution
 - bw vs throughput

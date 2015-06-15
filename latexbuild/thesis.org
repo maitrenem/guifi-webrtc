@@ -559,7 +559,7 @@ To ensure the scrum plan and the project, different tools were used:
     - thesis.org: source code of memory
     - thesis.pdf: memory
 
-** TODO Tasks and work style
+** Tasks and work style
 
 The tasks for this project are divided in two components: theory and practice.
 
@@ -577,7 +577,7 @@ Inside *theory*, there is:
 - Search of information
   - What things should be read (checklist).
 
-Inside *practice*, there is components' testing. Configuration and execution of network architecture design proposed.
+Inside *practice*, there is components' testing. The task is to configure and execute the proposed network architecture design.
 
 # what WebRTC Proof Of Concepts that have been executed, and wishlist (checklist). What signaling was used. The POCs are web applications that have library linking with signaling. Interested in SIP (jssip) and XMPP (strophe) signaling.
 # - Tested components: what specific components that have been executed, and wishlist (checklist). LDAP Authentication, SSL/TLS certificates, STUN/TURN server, DNS.
@@ -718,6 +718,7 @@ Networks and services of Guifi.net are scalable and extendable. For the network'
 
 ** Requirements
 *** Network requirements
+
 Analysis of network requirements for an hypothetical RTC system in Guifi.net network. Guifi.net is not a network designed for RTC, but has promising features to transport it.
 
 Guifi.net is a dumb network, i.e., a network that only routes packets and does not differentiate between applications. It has in-band signaling, i.e., signaling information uses the same channel as the user data. QoS could prioritize real-time traffic over non-real-time traffic, but currently is complex to apply QoS in Guifi.net because of the difficulty to set up globally, firmware incompatibilities and lack of interest. Nearly all Guifi.net operators offering VoIP have deployed QoS with RouterOS in the parts of the network where they manage; this affects negatively to the Guifi.net's heterogeneity. 
@@ -758,6 +759,7 @@ Figure [[fig:vidtest]] shows a bandwidth test of a Youtube's video using /Stats 
 For a common 802.11n link, from 15 to 150 Mbps, it can manage some RTC sessions concurrently. In a videoconference's situation, the most important part is audio, and the video could have low quality; because from the communicative point of view, audio is more important than video.
 
 *** Generic use cases
+
 The use cases developed are those that are bold.
 
 Definitions:
@@ -819,105 +821,93 @@ The Guifi.net service is defined as it follows:
 
 This section presents the components required for the network architecture design. Concretely, the following requirements are described: send, receive calls, subscribe, unsubscribe and have integration. For a WebRTC scenario, the components are distributed.
 
+- Signaling protocol (SIG) manages the side to side connections and logic to establish the call. The two peers must use a compatible signaling protocol.
+- Gateway adapts or converts the communication to work with different communication systems. The most important difference between communication systems is the signaling protocol. There are two types of gateways: Signaling Gateway (SGW) and Media Gateway (MGW).
 - Application interface gives appropriate interaction to the actors in order to perform the different operations. It is distributed, a web server (WSRV) offering a page, and a client executing the web application (WAPP) through the web browser.
 - Authentication service (AUTH) restricts access of service only to permitted users. It differentiates available operations depending on if is user or admin. It provides single sign on, after the web page is accessed, the user can operate.
-- Signaling protocol (SIG) manages the side to side connections and logic to establish the call. The two peers must use a compatible signaling protocol.
-- Database (DB) stores and encrypts personal information or preferences for a particular user. It is accessible through web application if succeed in authentication.
 - Connectivity solver (CS) a set of tools to avoid common communication problems that appear in networking scenarios. The most common problems are NAT and firewall traversal.
-- Gateway adapts or converts the communication to work with different communication systems. The most important difference between communication systems is the signaling protocol. There are two types of gateways: Signaling Gateway (SGW) and Media Gateway (MGW).
+- Database (DB) stores and encrypts personal information or preferences for a particular user. It is accessible through web application if succeed in authentication.
 
-** TODO Component selection
+** Component selection
 
 Selection of technologies for each component. 
 
-- Web Application. WebRTC is being implemented in web browsers. That is why is required to use web technologies. Given web application's constraint, other selections have to be done. Another possibility is to do an standalone WebRTC application, but it requires more development and is less flexible (see SWOT analysis).
-  - WAPP: HTML/CSS/JS. HTML (HyperText Markup Langauge) for web content, CSS (Cascading Style Sheets) for web design, JS (Javascript) for language programming features. JS has the commands to access WebRTC API's features.
+- SIG: SIP, because is a signaling protocol that since its origins is designed to perform calls.
+- SGW: SIP over Websockets. It is required to transmit SIP signaling via Web Application.
+- MGW: Conversion between SIP and WebRTC media channels is required due to incompatibilities at transport layer. According to an author[fn:86] the majority of RTP traffic in VoIP networks is not secured today; when it is secured, most of the deployments he has seen use SDES (Session Description Protocol (SDP) Security Descriptions for Media Streams \cite{rfc4568}). Guifi.net's VoIP project use RTP tunneled with VPN.
+- Web Application. WebRTC is being implemented in web browsers. That is why is required to use web technologies. Given web application's constraint, other selections have to be done. Another possibility is to do an standalone WebRTC application using the native code[fn:81], but it requires more development and is less flexible (see SWOT analysis).
+  - WAPP: HTML/CSS/JS. HTML (HyperText Markup Language[fn:82]) for web content, CSS (Cascading Style Sheets[fn:83]) for web design, JS (Javascript[fn:84]) for language programming features. JS has the commands to access WebRTC API's features.
   - WSRV: HTTP server. It serves HTML/CSS/JS pages to web browsers.
-- AUTH: OAuth. It is used to authorize users to use an HTTP service. 
-- SIG: SIP
-- DB: SQL (poca información, muy estructurada).
-- CS: STUN, TURN
-- SGW: SIP over Websockets
-- MGW: RTP to RTP/SAVPF converter.
-# victor pascual dice que normalmente van sin cifrar por las dificultades
-# Yes, it’s true that the majority of RTP traffic in VoIP networks is not secured today – in fact, this is one of the very first features customers usually ask vendors to remove in order to meet their budgets. However, when secured, most of the deployments I’ve seen are using SDES (which as mentioned has a strong dependence on the signaling plane security).
-# src https://webrtchacks.com/webrtc-must-implement-dtls-srtp-but-must-not-implement-sdes/
+- AUTH: OAuth. It is used to authorize users to HTTP services.
+- CS: STUN, TURN. They are servers which WebRTC needs to solve some of the possible connectivity problems.
+- DB: RDBMS (Relational Database Management System[fn:85]). Stored information is few and has a clear structure. The number of users is low.
 
-
-- Part1. conceptual selection, example: SIP as signaling service
+# guifi.net voip project uses tls, vtun and vpn. plain RTP to RTP/SAVPF converter.
   
-** TODO Network architecture design
-*FILL*
+** Network architecture design
 
-# explain, workflow
-
-# /general diagrams/ ???
+Component diagram (see [[fig:compdiag]]) is the keypoint to explain the different procedures and gateways.
 
 #+CAPTION: Component Diagram
 #+NAME: fig:compdiag
 [[../img/arch.png]]
 
-# sources from openclipart.org
-# - computer: https://openclipart.org/detail/159709/laptop
-# - server: https://openclipart.org/detail/13178/server
-# - telephone: https://openclipart.org/detail/192858/voip-phone
+*Signaling between server and clients*. Component diagram's figure shows four clients (A, B, C, phone) which have signaling connections to a server. The server has integrated multiple components; but they could be distributed in different server nodes. Laptops A and B have web application (WAPP) provided by the web server (WSRV) which connect to signaling server (SG1) through SIP over websocket (red line). Laptop C has a standalone softphone application which connects to signaling server (SG2) through SIP. Phone connects to signaling server (SG2) through SIP. Figure [[fig:gw-sip-transport]] shows a signaling gateway (SGW) which translates SIP over websocket to SIP.
 
-# /flow chart communication/
-
-# Interoperability between WebRTC and SIP
-
-Authentication Identity
-/authentication diagrams/
-src https://www.terena.org/activities/tf-webrtc/meeting2/slides/20150509-Cisco-WebRTC.pdf
-
-
-Gateway
-/gateway diagrams/ 
-
-# #+CAPTION: SDP exchange during SIP signaling
-# #+NAME: fig:compdiag
-# [[../img/gw-sdp-exchange.png]]
-
-#+CAPTION: SIP transport
-#+NAME: fig:compdiag
+#+CAPTION: Signaling Gateway
+#+NAME: fig:gw-sip-transport
 [[../img/gw-sip-transport.png]]
 
+*Media transport between clients*. Blue lines between clients shows how is handled the media. Between WebRTC or between SIP, media could be p2p. Figure [[fig:gw-sip-media]] shows a media gateway (MGW) which translates media that goes between WebRTC and SIP clients. Additionally, if needed, connectivity solver component provides STUN and TURN services to clients. TURN service is expensive; it could require authentication for its use.
+
 #+CAPTION: Transport
-#+NAME: fig:compdiag
+#+NAME: fig:gw-sip-media
 [[../img/gw-transport.png]]
 
-** TODO Implementation
+*Authentication*. In WebRTC, clients use OAuth (AUTH) to authenticate their users. They obtain an identity to sign their DTLS key, and they gain access to the RTC application. In a context call, during exchange of DTLS keys, other users can verify foreign identities. With SIP, clients can authenticate to signaling service; but verification is not possible. This source explains Identity and DTLS procedure with greater detail[fn:87].
+
+Database (DB) manages users accounts; therefore it assist authentication module and other components that needs authentication.
+
+** Implementation
+
 Software application's selection for each component.
 
-- WAPP: tryit.jssip.net[fn:80] , WSRV: apache HTTP server
-- AUTH: kamailio
-- SIG: kamailio
-- DB: SQL (poca información, muy estructurada)
-- CS: STUN, TURN [not tested]
-- SGW: jssip
-- MGW: rtpengine (formerly . src [not tested] http://www.kamailio.org/w/tag/rtpproxy-ng/ (antes rtpproxy-ng el módulo y mediaproxy la pplicación)
+- SIG: kamailio[fn:88]. It is a long career project that comes from the origins of SIP Proxy.
+- SGW: jssip. It is written by the authors of SIP over websocket RFC.
+- MGW: rtpengine[fn:89] (formerly rtpproxy-ng kamailio's module for mediaproxy-ng). It is prepared to interconnect WebRTC to RTP[fn:90]; because it is compatible with SDES, DTLS-SRTP, etc.
+- WAPP: tryit.jssip.net[fn:80]. It is a functional demo application proposed by jssip.
+  - Browsers: Firefox and Chrome. They are the most used browsers[fn:93].
+- WSRV: apache HTTP server. It is a common, easy to use and well-known HTTP server.
+- AUTH: kamailio. This is the fast way to start implementing an RTC system. Kamailio can manage accounts. OAuth was not tested.
+- CS: coturn. It is an advanced (updated) version of rfc5766-turn-server[fn:91] and is recommended by this source[fn:92]. It was not tested.
+- DB: MySQL. It is a common, easy to use and well-known relational database.
 
-# image of kamailio ecosystem
+Not tested (summary): coturn (CS), OAuth (AUTH).
+
+# image of kamailio ecosystem: http://www.kamailio.org/w/features/
 
 ** TODO Demo
-*FILL*
+This section shows a POC (Proof Of Concept) of WebRTC that runs on Guifi.net. It is about a video call between two users. Refer to appendices to obtain documentation about how to install sip proxy, and web application with WebRTC support.
 
+WebRTC is still under development. That is why is recommended to use the browsers' latest versions. For Google Chrome, version 42.0.2311.152. For Firefox, Version 38.0.5
 
 # references to appendices
 
 # Deployment (PoC)
 
-- browsers used (latest versions.
-  - Google Chrome: Version 42.0.2311.152
-  - Firefox: Version 38.0.5
+Figure [[fig:cc]] shows tryit web client. It is generic, and can be used to login other proxy servers. The login parameters needed are the SIP URI, for example =bob@10.1.56.201=, its password and web socket URI, for example =ws://10.1.56.201:8080=. This means that a kamailio sip proxy has IP =10.1.56.201=, it is listenining websocket port =8080= and it has a user registered called bob.
 
 #+CAPTION: Web SIP Client
 #+NAME: fig:cc
 [[../img/call-client.png]]
 
+Figure [[fig:cw]] shows the next screen. bob is succesfully registered, that is, he can call or wait a call. To perform a call, fill green box with SIP URI and click call.
+
 #+CAPTION: Waiting a call
 #+NAME: fig:cw
 [[../img/call-waiting.png]]
+
+Figure [[fig:cip]] shows a call in progress. There are three services available: audio, video and chat. Video is on the right side of the interface, smaller frame is bob's screen and larger frame is from alice; the videos' frame are similar because this POC used two laptops that are placed in the same location. Additionally, this call opened a chat (datachannel).
 
 #+CAPTION: A call in progress
 #+NAME: fig:cip
@@ -925,12 +915,23 @@ Software application's selection for each component.
 
 # websocket web port 80, http proxy traverse signalling but not media
 
+A wireshark[fn:94] capture (figure [[fig:ww]]) shows how it looks a typical call's SIP procedure with websocket. The websocket seven messages are:
+1. REGISTER
+2. SIP 200 OK
+3. INVITE sip:alice@10.1.56.201 (contains SDP offer)
+4. SIP 100 TRYING
+5. SIP 180 RINGING
+6. SIP 200 OK (contains SDP answer)
+7. ACK
+
 #+CAPTION: Wireshark capture of websocket's SIP
 #+NAME: fig:ww
 [[../img/wireshark-websocket.png]]
+
+
 * Conclusions and Future Work
 What has been done and what remains to be done
-** Conclusions
+** TODO Conclusions
 Coming back to the objectives of this project, all are attainable. WebRTC is open source and encryption is mandatory for user data. Since WebRTC is a natural evolution of previous technologies, it is backward compatible with previous RTC solutions, to some degree. The network architecture design proposed is a good starting point for continuing to implement RTC in Guifi.net, because WebRTC design is as scalable and extendable as any web project. 
 Up until now, many people have steadily been improving the ease of installation and usability of WebRTC and this work has attempted to summarize some of WebRTC's work lines. Also, it has proposed a direction for guifi.net's developer community. For other organizations such as open source communities, companies, etc. a similar approach could be applied.
 
@@ -946,7 +947,7 @@ There are three featured topics of WebRTC that are negative. Firstly, currently 
 # WARNING: SWOT analysis vs conclusions
 
 # - *Personal/project conclusions?*. IETF has great resources, and easier to read than expected
-** Future Work
+** TODO Future Work
 The suggested direction is firstly to improve currently implemented use cases and secondly to continue to implement those remaining.
 
 To improve currently implemented use cases, integration of the proposed network architecture of WebRTC with the Cloudy and the Guifi.net's web. With relatively little effort and thanks to the existence of these two projects, end-users could definitely profit from the ease of installation and usability of the WebRTC.
@@ -1161,4 +1162,32 @@ A complementary direction for research is improving integration of the signaling
 [fn:79] for example 144 is width's image and p means progressive video.
 
 [fn:80] http://tryit.jssip.net/
+
+[fn:81] http://www.webrtc.org/native-code
+
+[fn:82] http://www.w3.org/html/
+
+[fn:83] http://www.w3.org/Style/CSS/Overview.en.html
+
+[fn:84] http://www.w3.org/standards/webdesign/script
+
+[fn:85] Database based on relational database model. Usually employs SQL as their query language. 
+
+[fn:86] https://webrtchacks.com/webrtc-must-implement-dtls-srtp-but-must-not-implement-sdes/
+
+[fn:87] https://www.terena.org/activities/tf-webrtc/meeting2/slides/20150509-Cisco-WebRTC.pdf
+
+[fn:88] http://kamailio.org/
+
+[fn:89] https://github.com/sipwise/rtpengine
+
+[fn:90] http://www.kamailio.org/w/tag/rtpproxy-ng/
+
+[fn:91] https://code.google.com/p/rfc5766-turn-server/
+
+[fn:92] https://webrtchacks.com/coturn/
+
+[fn:93] http://gs.statcounter.com/\#all-browser-ww-monthly-201502-201502-map
+
+[fn:94] network traffic sniffer, https://wireshark.org
 
