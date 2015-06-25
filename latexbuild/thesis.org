@@ -328,7 +328,7 @@ Another common mechanism to control the networks is the proxy. A proxy is a netw
 # https://en.wikipedia.org/wiki/World_Wide_Web
 # https://en.wikipedia.org/wiki/Proxy_server
 
-Firewalls and web proxies commonly admit traffic via ports 80 (HTTP) and 443 (HTTPS). The Websocket protocol (WS, and WSS for Websocket Secured, \cite{rfc6455}) introduces bidirectional communication between a browser and a web server via ports 80, 443 or any other specified port. This provides websocket-based services an ability to traverse firewalls and proxies, and also prepares the way for a new generation of bidirectional applications, such as RTC.
+Firewalls and web proxies commonly admit traffic via ports 80 (HTTP) and 443 (HTTPS). The Websocket protocol (WS, and WSS for Websocket Secured, \cite{rfc6455}) introduces bidirectional communication between a browser and a web server via ports 80, 443 or any other specified port. This provides Websocket-based services an ability to traverse firewalls and proxies, and also prepares the way for a new generation of bidirectional applications, such as RTC.
 
 # https://www.websocket.org/aboutwebsocket.html
 
@@ -352,7 +352,7 @@ XMPP[fn:21] (Extensible Messaging and Presence Protocol), is a protocol to manag
 # overview jingle http://xmpp.org/about-xmpp/technology-overview/jingle/
 # http://xmpp.org/internet-drafts/draft-saintandre-jingle-sip-00.html
 
-Because of firewalls and proxies, clients usually have connectivity problems connecting to SIP (port 5060) and XMPP services (port 5222). XMPP started using BOSH (Bidirectional-streams Over Synchronous HTTP, \cite{xep0124}), this had the problems of using HTTP for bidirectional communication. Now, with the standardization of Websocket protocol, there are SIP over websocket \cite{rfc7118} and XMPP over websocket \cite{rfc7395}.
+Because of firewalls and proxies, clients usually have connectivity problems connecting to SIP (port 5060) and XMPP services (port 5222). XMPP started using BOSH (Bidirectional-streams Over Synchronous HTTP, \cite{xep0124}), this had the problems of using HTTP for bidirectional communication. Now, with the standardization of Websocket protocol, there are SIP over Websocket \cite{rfc7118} and XMPP over Websocket \cite{rfc7395}.
 
 ** WebRTC
 WebRTC is the technology able to make calls through the browser and real-time communications in general. In this section are presented the two organizations working on WebRTC standardization, IETF and W3C. The different concepts laid out are inspired by the IETF Internet-Draft (IETF-ID) /Overview: Real Time Protocols for Browser-based Applications[fn:28]/.
@@ -587,10 +587,12 @@ Inside *practice*, there is components' testing. The task is to configure and ex
 # - Develop DNS for Guifi.net: is a major task that has to be achieved.
 
 Figure [[fig:wsd]] shows the *work style*, how the objectives will be accomplished and its quality. Stable means that it should be clear and complete its content; best effort that it will work in the best way possible but with less priority:
-- Requirements: use cases, constraints needed for the chosen organization. (quality: stable)
-- Design: architecture design that fits the requirements. (quality: stable)
-- Implementation: component selection, protocols (quality: best effort)
-- PoC (Proof Of Concept): applications that shows some of the results (quality: best effort)
+- Gufi.net architecture: analysis of how Guifi.net works. This helps development of requirements.
+- Requirements: use cases, constraints needed for the chosen organization. Quality: stable.
+- Component selection: justification of specific protocols involved. Quality: stable.
+- Design: network architecture design that fits the requirements and component selection. (quality: stable)
+- Implementation: execute the design with available applications. Quality: best effort.
+- Demo: deployment of a network that fits the implementation. Applications shows some of the results. This is called a PoC (Proof Of Concept). Quality: best effort.
 
 # #+ATTR_LATEX: :width 5cm
 #+CAPTION: Work style diagram
@@ -854,7 +856,7 @@ Component diagram (see [[fig:compdiag]]) is the key point to explain the differe
 #+NAME: fig:compdiag
 [[../img/arch.png]]
 
-*Signaling between server and clients*. Component diagram's figure shows four clients (A, B, C, phone) which have signaling connections to a server. The server has integrated multiple components; but they could be distributed in different server nodes. Laptops A and B have web application (WAPP) provided by the web server (WSRV) which connect to signaling server (SG1) through SIP over websocket (red line). Laptop C has a standalone softphone application which connects to signaling server (SG2) through SIP. Phone connects to signaling server (SG2) through SIP. Figure [[fig:gwm]] shows a signaling gateway (SGW) which translates SIP over websocket to SIP.
+*Signaling between server and clients*. Component diagram's figure shows four clients (A, B, C, phone) which have signaling connections to a server. The server has integrated multiple components; but they could be distributed in different server nodes. Laptops A and B have web application (WAPP) provided by the web server (WSRV) which connect to signaling server (SG1) through SIP over Websocket (red line). Laptop C has a standalone softphone application which connects to signaling server (SG2) through SIP. Phone connects to signaling server (SG2) through SIP. Figure [[fig:gwm]] shows a signaling gateway (SGW) which translates SIP over Websocket to SIP.
 
 #+CAPTION: Signaling Gateway
 #+NAME: fig:gwm
@@ -872,33 +874,33 @@ Database (DB) manages users accounts; therefore it assist authentication module 
 
 ** Implementation
 
-Software application's selection for each component.
+Software application's selection for each network architecture design component.
 
-- SIG: kamailio[fn:88]. It is a long career project that comes from the origins of SIP Proxy. Kamailio can also manage websocket connections and link them to legacy SIP. Websocket secure (WSS) was not tested.
-- SGW: jssip. It is written by the authors of SIP over websocket RFC.
-- MGW: rtpengine[fn:89] (formerly rtpproxy-ng kamailio's module for mediaproxy-ng). It is prepared to interconnect WebRTC to RTP[fn:90]; because it is compatible with SDES, DTLS-SRTP, etc. Rtpengine was not tested.
-- WAPP: tryit.jssip.net[fn:80]. It is a functional demo application proposed by jssip.
-  - Browsers: Firefox and Chrome. They are the most used browsers[fn:93].
-- WSRV: apache HTTP server. It is a common, easy to use and well-known HTTP server. HTTPS was not tested.
-- AUTH: kamailio. This is the fast way to start implementing an RTC system. Kamailio can manage accounts. OAuth was not tested.
+- SIG: Kamailio[fn:88]. It is a long career project that comes from the origins of SIP Proxy. Kamailio can also manage Websocket connections and link them to legacy SIP. Websocket secure (WSS) was not tested.
+- SGW: Kamailio listens and interoperate between signaling protocols: Websocket, TCP and UDP SIP clients.
+- MGW: rtpengine[fn:89] (formerly rtpproxy-ng Kamailio's module for mediaproxy-ng). It is prepared to interconnect WebRTC to RTP[fn:90]; because it is compatible with SDES, DTLS-SRTP, etc. Rtpengine was not tested.
+- WAPP: HTML/CSS/JS web application with javascript library jssip. Jssip implements a Websocket SIP client. It is written by the authors of SIP over Websocket RFC. Web applications based on jssip are tryit[fn:100] and jscommunicator[fn:101].
+- APP: jitsi[fn:99]. It is a softphone application which supports multiple operating systems such as Windows, Mac OS X and GNU/Linux.
+- WSRV: apache HTTP server[fn:97]. It is a common, easy to use and well-known HTTP server. HTTPS was not tested.
+- AUTH: Kamailio. This is the fast way to start implementing an RTC system. Kamailio can manage accounts. OAuth was not tested.
 - CS: coturn. It is an advanced (updated) version of rfc5766-turn-server[fn:91] and is recommended by this source[fn:92]. It was not tested.
-- DB: MySQL. It is a common, easy to use and well-known relational database.
+- DB: MySQL[fn:98]. It is a common, easy to use and well-known relational database.
 
-Not tested (summary): WSS (SIG), rtpengine (MGW), HTTPS (WSRV), coturn (CS), OAuth (AUTH).
+Summary of applications which were not tested: WSS (SIG), rtpengine (MGW), HTTPS (WSRV), OAuth (AUTH), coturn (CS).
 
 # image of kamailio ecosystem: http://www.kamailio.org/w/features/
 
 ** Demo
 
-This section shows a POC (Proof Of Concept) of WebRTC that runs on Guifi.net. It is about a video call between two users. Refer to appendices to obtain documentation about how to install sip proxy, and web application with WebRTC support.
+This section shows a POC (Proof Of Concept) of WebRTC that runs on Guifi.net. It is about a video call between two users. Refer to appendices to obtain documentation about how to install SIP Proxy, and web application with WebRTC support.
 
-WebRTC is still under development. That is why is recommended to use browsers' latest versions. For Google Chrome, version 42.0.2311.152. For Firefox, version 38.0.5
+WebRTC is still under development. That is why is recommended to use browsers' latest versions. For Google Chrome, version 42.0.2311.152. For Firefox, version 38.0.5. Chrome and Firefox are the most used browsers[fn:93].
 
 # references to appendices
 
 # Deployment (PoC)
 
-Figure [[fig:cc]] shows tryit web client. It is generic, and can be used to login other proxy servers. The login parameters needed are the SIP URI, for example =bob@10.1.56.201=, its password and web socket URI, for example =ws://10.1.56.201:8080=. This means that a kamailio sip proxy has IP =10.1.56.201=, it is listening websocket port =8080= and it has a user registered called Bob.
+Jssip has a demo application called tryit[fn:102] which can be used to deploy an RTC system. Figure [[fig:cc]] shows tryit web client. It is generic, and can be used to login other proxy servers. The login parameters needed are the SIP URI, for example =bob@10.1.56.201=, its password and web socket URI, for example =ws://10.1.56.201:8080=. This means that a Kamailio SIP Proxy has IP =10.1.56.201=, it is listening Websocket port =8080= and it has a user registered called Bob.
 
 #+CAPTION: Web SIP Client
 #+NAME: fig:cc
@@ -910,7 +912,7 @@ Figure [[fig:cw]] shows the next screen. Bob is successfully registered. To perf
 #+NAME: fig:cw
 [[../img/call-waiting.png]]
 
-Figure [[fig:cip]] shows a call in progress. There are three services available: audio, video and chat. Video is on the right side of the interface, smaller frame is Bob's screen and larger frame is from Alice; the videos' frame are similar because this POC used two laptops that are placed in the same location. Additionally, this call opened a chat (datachannel).
+Figure [[fig:cip]] shows a call in progress. There are three services available: audio, video and chat. Video is on the right side of the interface, smaller frame is Bob's screen and larger frame is from Alice; the videos' frame are similar because this POC used two laptops that are placed in the same location. Additionally, this call opens a chat (datachannel).
 
 #+CAPTION: A call in progress
 #+NAME: fig:cip
@@ -918,7 +920,7 @@ Figure [[fig:cip]] shows a call in progress. There are three services available:
 
 # websocket web port 80, http proxy traverse signaling but not media
 
-A wireshark[fn:94] capture of call procedure from Bob's perspective (figure [[fig:ww]]) shows how it is a typical call's SIP procedure encapsulated with websocket. The websocket's seven messages are:
+A Wireshark[fn:94] capture of call procedure from Bob's perspective (figure [[fig:ww]]) shows how it is a typical call's SIP procedure encapsulated with Websocket. The Websocket's seven messages are:
 1. REGISTER Bob. After register, one can send or receive calls.
 2. SIP 200 OK. Authentication success for Bob's user from SIP Proxy.
 3. INVITE Alice (contains SDP offer). Bob request a call to Alice.
@@ -927,9 +929,45 @@ A wireshark[fn:94] capture of call procedure from Bob's perspective (figure [[fi
 6. SIP 200 OK (contains SDP answer). Alice accepts the call
 7. ACK. Bob confirms to SIP Proxy that he received Alice's acceptation of Bob's call.
 
-#+CAPTION: Wireshark capture of websocket's SIP
+#+CAPTION: Wireshark capture of Websocket's SIP
 #+NAME: fig:ww
 [[../img/wireshark-websocket.png]]
+
+*** Evaluation
+
+Figure [[fig:ad]] shows network architecture design of the demo. Some of the components are missing.
+
+#+CAPTION: Deployed Component Diagram 
+#+NAME: fig:ad
+[[../img/arch-deploy.png]]
+
+- SIG and SGW: signaling is working as expected between UDP, TCP and Websocket SIP clients.
+- MGW is not implemented nor deployed, that is why media channel cannot pass between UDP and TCP to Websocket SIP clients.
+- APP, WAPP and WSRV worked as expected. 
+- AUTH is not implemented nor deployed using OAuth; but Kamailio has an authentication service that can be used in the different SIP clients.
+- CS is not implemented nor deployed. But tryit from jssip uses Google's STUN =stun.l.google.com:19302=. It will not work in a Guifi.net environment without Internet access.
+- DB is directly linked with SIG and indirectly linked to WSRV through Websocket SIP clients.
+
+*** Performance
+The performance could not be measured appropiately, but some of the measures indicate that it is enough for a small community. With organization and investment, the community could grow.
+
+This demo system was used for some calls with a Guifi.net's user that involved Guifi.net infrastructure. The length of the calls were from 30 minutes to 1 hour. The calls involved audio and video streams from one side (sent), and audio stream from the other side (received). During the conversation, cuts happened[fn:103] from one side, the other, or both. These cuts produced audio loss, but after some seconds, the audio came back. That is because the network path has lots of hops (see figure [[fig:ctr]]) and involves old infrastructure. For this network path and from my side, a typical bandwidth test revealed 8 Mbps of download and timeout error of upload. Note that wireless links could be asymmetric, as in this case.
+
+#+CAPTION: Traceroute to Guifi.net's user implied several hops
+#+NAME: fig:ctr
+[[../img/conversation-traceroute.png]]
+
+Adapted figures [[fig:cvs]] and [[fig:cdj]] show how Google Chrome[fn:104] reveal some of the parameters of a conversation. For figure [[fig:cvs]], the upload bandwith is clearly limited, but the voice quality was acceptable. The delay parameter is tolerable.
+
+#+CAPTION: Bandwidth and delay parameters
+#+NAME: fig:cvs
+[[../img/conversation-video-stats.png]]
+
+Figure [[fig:cdj]] gives jitter parameter of a fragment, and another delay measure of another fragment. Sometimes the network become unstable, in that case was not perceived loss of audio.
+
+#+CAPTION: Jitter and delay parameters
+#+NAME: fig:cdj
+[[../img/conversation-delay-jitter.png]]
 
 * Conclusions and Future Work
 
@@ -959,7 +997,7 @@ The suggested direction is firstly to improve currently implemented use cases an
 
 To improve currently implemented use cases, integration of the proposed network architecture of WebRTC with the Cloudy and the Guifi.net's web. With relatively little effort and thanks to the existence of these two projects, end-users could definitely profit from the ease of installation and usability of the WebRTC. Also, improve analysis and testing of backward compatibility of WebRTC and SIP.
 
-To continue to implement remaining use cases, is needed for example contact list and presence service. The suggested direction is to develop a web-based CUSAX Client (Combined Use of the SIP and the XMPP, \cite{rfc7081}). CUSAX Client takes SIP for telephony-like services, and XMPP for instant messaging and presence services. The following libraries compatible with websocket are recommended for working on the CUSAX Client: jssip for SIP and strophe.js[fn:67] for XMPP. This proposal pretends to take the advantages of each system.
+To continue to implement remaining use cases, is needed for example contact list and presence service. The suggested direction is to develop a web-based CUSAX Client (Combined Use of the SIP and the XMPP, \cite{rfc7081}). CUSAX Client takes SIP for telephony-like services, and XMPP for instant messaging and presence services. The following libraries compatible with Websocket are recommended for working on the CUSAX Client: jssip for SIP and strophe.js[fn:67] for XMPP. This proposal pretends to take the advantages of each system.
 
 #  - Streaming.
 #  - Server intercommunication, federation to Guifi.net (inside) and outside (Internet).
@@ -978,7 +1016,7 @@ A complementary direction for research is improving integration of the signaling
 
 * Demo installation
 Guide to install the demo. It assumes a Debian 7 Wheezy installation with Internet access and administration rights.
-** Kamailio with websocket support
+** Kamailio with Websocket support
 Based on this source[fn:96].
 1. Add the following lines to =/etc/apt/sources.list=
    #+begin_src 
@@ -987,7 +1025,7 @@ Based on this source[fn:96].
    deb-src http://deb.kamailio.org/kamailio wheezy main
    #+end_src
 2. Validate the repository: download key =wget= http://deb.kamailio.org/kamailiodebkey.gpg and apply it =apt-key add kamailiodebkey.gpg=
-3. Install kamailio with websocket support:\\ =sudo apt-get install kamailio kamailio-websocket-modules kamailio-mysql-modules kamailio-tls-modules=
+3. Install kamailio with Websocket support:\\ =sudo apt-get install kamailio kamailio-websocket-modules kamailio-mysql-modules kamailio-tls-modules=
 4. Install database: =sudo apt-get install mysql-server=. Remember the password, it will required later.
 5. In file =/etc/default/kamailio= uncomment =RUN_KAMAILIO=yes=
 6. In =/etc/kamailio/kamctlrc= put =SIP_DOMAIN=fill=, where =fill= is a domain or IP address
@@ -1019,10 +1057,10 @@ Based on this source[fn:96].
    ## password for database read only user
    DBROPW="kamailioro"
    #+end_src
-9. Restart kamailio service =sudo service kamailio restart=
+9. Restart Kamailio service =sudo service kamailio restart=
 10. Execute kamdbctl create, put MySQL password. Say yes to all questions.
 11. Add users. Example; command to add Bob's user: =kamctl add bob bobsecret=, where bobsecret is his password.
-12. Restart kamailio service =sudo service kamailio restart=
+12. Restart Kamailio service =sudo service kamailio restart=
 ** Tryit jssip Web SIP Client
 1. Install HTTP server apache and git =sudo apt-get install apache2 git=.
 2. Go to the following path with the command =cd /var/www= and obtain tryit application from =git clone=  https://github.com/opentelecoms-org/jssip-tryit-web-mirror.
@@ -1250,4 +1288,20 @@ Based on this source[fn:96].
 [fn:95] https://freephonebox.net/
 
 [fn:96] http://kb.asipto.com/kamailio:skype-like-service-in-less-than-one-hour
+
+[fn:97] http://httpd.apache.org/
+
+[fn:98] https://www.mysql.com/
+
+[fn:99] https://jitsi.org/
+
+[fn:100] http://tryit.jssip.net/
+
+[fn:101] https://rtc.debian.org/
+
+[fn:102] http://tryit.jssip.net/
+
+[fn:103] The worst conversation had four cuts of few seconds. It lasted 40 minutes.
+
+[fn:104] From Google Chrome browser: chrome://webrtc-internals
 

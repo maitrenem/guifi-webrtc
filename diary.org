@@ -1,5 +1,26 @@
 * Diary
 Everyday it's a-gettin' closer
+** <2015-06-25 Thu>
+- questions
+  - [X] It is not clear from the report whether you actually implemented the demonstrator described in section 5, or whether this is something you just installed and evaluated.  Perhaps you should clarify this in the report.
+    - Implementation is based on the design. With a figure, perhaps it is clear.
+    - Changes
+      - Rewrite of some parts in /work style/
+  - [X] Section 5 and particularly section 5.6 describes the demo very briefly, but present very few details on its validation.  One of the burning questions not answered in this section: is the performance of this demo on the Guifi.net network sufficiently satisfactory to allow for real voice communications? In other words, does it satisfy the latency and jitter requirements for voice communication?  Perhaps you could address this in section 5.
+    - New subsection Evaluation to present the components working from network architecture design (and a figure) (first question). Evaluation includes performance of calls inside guifi.net.
+      - chrome://webrtc-internals/
+      - about:webrtc
+    - /it is difficult for me to explain jitter now/
+  - [ ] Be careful when defining “real time” in section 2.  Most people equate “real time” to “fast” or “low latency”, but this is not entirely correct.  The hard definition of real time is that the system must respond within a guaranteed time. This is not exactly the same as saying that the latency must be low. For voice over IP, what is important is low average latency and low jitter but hard real-time (guaranteed latency) and packet loss are usually not strict requirements.
+  - [ ] In section 2.2, page 7 you state that real time requires low bandwith and delay.  I understand why real-time requires low delay but not why it requires low bandwidth. Can you explain this?
+  - [ ] I understand from your report that WebRTC defines a browser software model, but it does not specify new protocols for browser-to-browser or browser-to-server communications.  Is this correct.  Perhaps section 3.3 could explain this  more explicitly.
+  - [ ] In section 4.1 you state that WebRTC solves the problem with NAT, but I don't understand this as you’re still using SIP and XMPP for signalling.
+  - [ ] In section 4.4, is it meaningful to apply SCRUM to a one-person development project? Of course you can work with sprints, but do you need to distinguish the different roles if the team has one person?  The more important question is, who is the customer of this project? How were they involved in the project?
+  - [ ] In the bottom line of figure 5.10, should “SIP over WS” be changed to “SIP over RTP”?  Note also that there is no figure 5.9!
+    - 5.9 exist, it's just above
+    - Figure 5.10 is incorrect /no es SIP over WS o ... es Media Transport over...?/
+- additional changes
+  - Implentation of SGW and WAPP components was incorrect.
 ** <2015-06-15 Mon>
 - https://webrtchacks.com/webrtc-and-man-in-the-middle-attacks/
 - demo and appendix finished
