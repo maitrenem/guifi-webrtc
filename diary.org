@@ -1,6 +1,6 @@
 * Diary
 Everyday it's a-gettin' closer
-** <2015-06-25 Thu>
+** <2015-06-25 Thu>--<2015-06-26 Fri>
 - questions
   - [X] It is not clear from the report whether you actually implemented the demonstrator described in section 5, or whether this is something you just installed and evaluated.  Perhaps you should clarify this in the report.
     - Implementation is based on the design. With a figure, perhaps it is clear.
@@ -16,9 +16,9 @@ Everyday it's a-gettin' closer
   - [ ] I understand from your report that WebRTC defines a browser software model, but it does not specify new protocols for browser-to-browser or browser-to-server communications.  Is this correct.  Perhaps section 3.3 could explain this  more explicitly.
   - [ ] In section 4.1 you state that WebRTC solves the problem with NAT, but I don't understand this as you’re still using SIP and XMPP for signalling.
   - [ ] In section 4.4, is it meaningful to apply SCRUM to a one-person development project? Of course you can work with sprints, but do you need to distinguish the different roles if the team has one person?  The more important question is, who is the customer of this project? How were they involved in the project?
-  - [ ] In the bottom line of figure 5.10, should “SIP over WS” be changed to “SIP over RTP”?  Note also that there is no figure 5.9!
-    - 5.9 exist, it's just above
-    - Figure 5.10 is incorrect /no es SIP over WS o ... es Media Transport over...?/
+  - [X] In the bottom line of figure 5.10, should “SIP over WS” be changed to “SIP over RTP”?  Note also that there is no figure 5.9!
+    - 5.9 exist, it's just above. 5.10 was incorrect
+    - rewrite of that part
 - additional changes
   - Implentation of SGW and WAPP components was incorrect.
 ** <2015-06-15 Mon>

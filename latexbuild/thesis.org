@@ -103,14 +103,10 @@
 \noindent {\Large \sffamily Acknowledgments}
 \\[12pt] 
 
-Special thanks to Victor Pascual and Miquel Oliver for his mentorship. Thanks to Victor Oncins and Angel Elena (craem) for his feedback and help.
-
-Thanks to Daniel Pocock for its work on rtcquickstart.org. Thanks to webrtchacks.com and all its team for the useful articles.
-
-Thanks to Rachel Thalmann for revising English on certain parts of this memory.
-
-Thanks to all the people that works for the democratization of communications.
-
+Special thanks to Victor Pascual and Miquel Oliver for his mentorship. Thanks to Victor Oncins and Angel Elena (craem) for his feedback and help.\\
+Thanks to Daniel Pocock for its work on rtcquickstart.org. Thanks to webrtchacks.com and all its team for its useful articles.\\
+Thanks to Rachel Thalmann for revising English on certain parts of this memory.\\
+Thanks to all the people that works for the democratization of communications.\\
 Thanks for reading. Thanks for your time.
 
 \cleardoublepage
@@ -838,7 +834,7 @@ Selection of technologies for each component.
 
 - SIG: SIP, because is a signaling protocol that since its origins is designed to perform calls.
 - SGW: SIP over Websockets. It is required to transmit SIP signaling via Web Application.
-- MGW: Conversion between SIP and WebRTC media channels is required due to incompatibilities at transport layer. According to an author[fn:86] the majority of RTP traffic in VoIP networks is not secured today; when it is secured, most of the deployments he has seen use SDES (Session Description Protocol (SDP) Security Descriptions for Media Streams \cite{rfc4568}). Guifi.net's VoIP project use RTP tunneled with VPN.
+- MGW: Conversion between common SIP and WebRTC (DTLS-SRTP) media channels is required due to incompatibilities at transport layer. According to an author[fn:86] the majority of RTP traffic in VoIP networks (common SIP) is not secured today; when it is secured, most of the deployments he has seen use SDES (SDP Security Descriptions for Media Streams \cite{rfc4568}). Guifi.net's VoIP project use RTP tunneled with VPN.
 - Web Application. WebRTC is being implemented in web browsers. That is why is required to use web technologies. Given web application's constraint, other selections have to be done. Another possibility is to do an standalone WebRTC application using the native code[fn:81], but it requires more development and is less flexible (see SWOT analysis).
   - WAPP: HTML/CSS/JS. HTML (HyperText Markup Language[fn:82]) for web content, CSS (Cascading Style Sheets[fn:83]) for web design, JS (Javascript[fn:84]) for language programming features. JS has the commands to access WebRTC API's features.
   - WSRV: HTTP server. It serves HTML/CSS/JS pages to web browsers.
@@ -862,15 +858,15 @@ Component diagram (see [[fig:compdiag]]) is the key point to explain the differe
 #+NAME: fig:gwm
 [[../img/gws.png]]
 
-*Media transport between clients*. Blue lines between clients shows how is handled the media. Between WebRTC or between SIP, media could be p2p. Figure [[fig:gws]] shows a media gateway (MGW) which translates media that goes between WebRTC and SIP clients. Additionally, if needed, connectivity solver component provides STUN and TURN services to clients. TURN service is expensive; it could require authentication for its use.
+*Media transport between clients*. Blue lines between clients shows how is handled the media. Between WebRTC or between SIP, media could be p2p. Figure [[fig:gws]] shows probably the most common scenario for a media gateway (MGW), which translates media that goes between WebRTC and SIP clients. In summary MGW requires reencryption (such as DTLS-STRP to SDES-SRTP[fn:105]) or encryption/decryption (DTLS-SRTP to RTP). Additionally, connectivity solver component provides STUN and TURN services to clients. TURN service is expensive; it could require authentication for its use.
 
 #+CAPTION: Media Gateway
 #+NAME: fig:gws
 [[../img/gwm.png]]
 
-*Authentication*. In WebRTC, clients use OAuth (AUTH) to authenticate their users. They obtain an identity to sign their DTLS key, and they gain access to the RTC application. In a context call, during exchange of DTLS keys, other users can verify foreign identities. With SIP, clients can authenticate to signaling service; but verification is not possible. This source explains Identity and DTLS procedure with greater detail[fn:87].
+*Authentication*. In WebRTC, clients use OAuth (AUTH) to authenticate their users. They obtain an identity to sign their DTLS key, and they gain access to the RTC application. In a call, during exchange of DTLS keys, users can verify foreign identities. In common SIP clients, they authenticate to signaling service (SIPS); but verification of foreign identities is not possible. This source explains Identity and DTLS procedure with greater detail[fn:87].
 
-Database (DB) manages users accounts; therefore it assist authentication module and other components that needs authentication.
+*Database* manages users accounts; therefore it assist authentication module and other components that needs authentication.
 
 ** Implementation
 
@@ -959,13 +955,13 @@ This demo system was used for some calls with a Guifi.net's user that involved G
 
 Adapted figures [[fig:cvs]] and [[fig:cdj]] show how Google Chrome[fn:104] reveal some of the parameters of a conversation. For figure [[fig:cvs]], the upload bandwith is clearly limited, but the voice quality was acceptable. The delay parameter is tolerable.
 
-#+CAPTION: Bandwidth and delay parameters
+#+CAPTION: Bandwidth and delay sample parameters
 #+NAME: fig:cvs
 [[../img/conversation-video-stats.png]]
 
-Figure [[fig:cdj]] gives jitter parameter of a fragment, and another delay measure of another fragment. Sometimes the network become unstable, in that case was not perceived loss of audio.
+Figure [[fig:cdj]] gives samples of jitter and delay parameters. Sometimes the network become unstable, in that case was not perceived loss of audio.
 
-#+CAPTION: Jitter and delay parameters
+#+CAPTION: Jitter and delay sample parameters
 #+NAME: fig:cdj
 [[../img/conversation-delay-jitter.png]]
 
@@ -1304,4 +1300,6 @@ Based on this source[fn:96].
 [fn:103] The worst conversation had four cuts of few seconds. It lasted 40 minutes.
 
 [fn:104] From Google Chrome browser: chrome://webrtc-internals
+
+[fn:105] http://www.ietf.org/proceedings/87/slides/slides-87-rtcweb-5.pdf
 
