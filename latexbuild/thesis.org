@@ -219,7 +219,7 @@ The generic concepts and infrastructures that make possible real-time communicat
 
 In order to design communications in a system, the different elements must know what to do with the messages. That is why it is needed protocols. A protocol defines the format and the order of messages exchanged between two or more communicating entities, as well as the actions taken on the transmission and/or receipt of a message or other event.
 
-Real-time communications are even more complex, the information has to arrive fast and it is convenient to prepare the receiver of the communication. Signaling is the process of sending control information over networks to monitor, control, route, and set up sessions between devices. These sessions include video and audio conference calls, data sessions, video calls, and mobile and landline telephone calls. Signaling is also used to set up instant messaging and chat sessions. A signaling protocol, is a protocol that needs signaling features.
+Real-time communications are even more complex, the information has to arrive within a guaranteed time and it is convenient to prepare the receiver of the communication. Signaling is the process of sending control information over networks to monitor, control, route, and set up sessions between devices. These sessions include video and audio conference calls, data sessions, video calls, and mobile and landline telephone calls. Signaling is also used to set up instant messaging and chat sessions. A signaling protocol, is a protocol that needs signaling features.
 
 There are different approaches to achieve real-time systems, that is why it is needed compatibility between the systems. A gateway allows equipment with different protocols to communicate with one another. For example, gateways are used when incompatible video systems are used for a video conference.
 
@@ -281,13 +281,17 @@ During a call, there is the RTP (Real-time Transport Protocol, \cite{rfc3550}). 
 
 More information about packet switching can be found at \cite{kurose2013net} and about general telecommunications and signaling at \cite{dodd2012telecom}. Some parts of that sources were included in this section.
 
-** Real-time quality parameters
+** Basic real-time quality parameters
 
 Network is defined by router, switch and link components that interconnect all the path between receiver and its destination (them included). The real-time communication depends on how the network is affected by the following parameters.
 
-The bandwidth is the number of bits[fn:10] that can arrive from the source to the destination through the network in one unit of time (for example, MB/s). A greater bandwidth delivers higher definition (better quality) of the media content. A packet can be lost if it is never received at the destination; it is represented by packet loss percentage (%). A communication suffers jitter when different packets arrive with different delays at its destination. It is defined delay as the time between transmitting the packet and arriving at its destination; it is represented by milliseconds (ms). Due to the nature of packet switching, packets can be delivered out of order. The arrived packet can present a corruption of data. The prior parameters presented affect negatively to the communication. Its undesirable effects might be silent lapses and interruptions of the communication.
+The bandwidth is the number of bits[fn:10] that can arrive from the source to the destination through the network in one unit of time (for example, MB/s). A greater bandwidth delivers higher definition (better quality) of the media content. A packet can be lost if it is never received at the destination; it is represented by packet loss[fn:109] percentage (%). A communication suffers jitter when different packets arrive with different delays at its destination. It is defined delay as the time between transmitting the packet and arriving at its destination; it is represented by milliseconds (ms). Due to the nature of packet switching, packets can be delivered out of order. The arrived packet can present a corruption of data. The prior parameters presented affect negatively to the communication. Its undesirable effects might be silent lapses and interruptions of the communication.
 
-Real-time data transport is managed with UDP. This protocol does not perform retransmission, it means that the communication should be fixed for the next upcoming packets. Real-time communications require low bandwidth and delay. This two requirements can be achieved easily with the technologies nowadays.
+Real-time communications require low average and guaranteed measure of bandwidth and delay. This two requirements can be achieved easily with the technologies nowadays. For example bandwidth was 56 Kbps in the 90s with dial-up Internet access, and now it is of 24.3 Mbps of download, and 11.2 Mbps of upload according to netindex.com[fn:107][fn:108]. A G.711 call[fn:106] could represent 64 Kbps, which means that it represented 114% of bandwidth usage in the 90s and less than 0.01% now.
+
+# This could be extended with additional quality parameters (see diary.org)
+
+Real-time data transport is managed with UDP. This protocol does not perform retransmission, it means that the communication should be fixed for the next upcoming packets. 
 
 Some parts of \cite{velazquez2010voipguifi} and \cite{of2004voip} were included in this section. This sources are about voice and its quality, but it can be extended to certain forms of real-time video because of the improved technology nowadays.
 
@@ -295,6 +299,8 @@ Some parts of \cite{velazquez2010voipguifi} and \cite{of2004voip} were included 
 Important mechanisms and different technologies that use WebRTC and other associated technologies such as SIP and XMPP
 
 ** Internet's evolution
+
+This section presents different technologies, some of them have a strong relation with WebRTC: DNS records and pointers, NAT, STUN, TURN, ICE, SDP, HTTP, Websocket, firewall, proxy, LDAP, OAuth.
 
 The Internet is in constant evolution, and different mechanisms are necessary for solving problems affecting RTC.
 
@@ -316,7 +322,7 @@ As Internet is such a vast, open and widely distributed network, it is therefore
 # https://en.wikipedia.org/wiki/Firewall_(computing)
 # https://en.wikipedia.org/wiki/Hacker_(computer_security)
 
-Another common mechanism to control the networks is the proxy. A proxy is a network entity that acts as an intermediary between two communication entities. A web proxy satisfies HTTP requests on the behalf of an origin web server. A proxy has the ability to inspect traffic flowing through the service, and can ensure no traffic flows through to the Internet without inspection or control.
+Proxy is another common mechanism to control networks. A proxy is a network entity that acts as an intermediary between two communication entities. A web proxy satisfies HTTP requests on the behalf of an origin web server. A proxy has the ability to inspect traffic flowing through the service, and can ensure no traffic flows through to the Internet without inspection or control.
 
 # https://www.bluecoat.com/security/security-archive/2011-10-04/why-do-you-need-proxy-secure-web-gateway-0
 # https://en.wikipedia.org/wiki/Client%E2%80%93server_model
@@ -351,7 +357,7 @@ XMPP[fn:21] (Extensible Messaging and Presence Protocol), is a protocol to manag
 Because of firewalls and proxies, clients usually have connectivity problems connecting to SIP (port 5060) and XMPP services (port 5222). XMPP started using BOSH (Bidirectional-streams Over Synchronous HTTP, \cite{xep0124}), this had the problems of using HTTP for bidirectional communication. Now, with the standardization of Websocket protocol, there are SIP over Websocket \cite{rfc7118} and XMPP over Websocket \cite{rfc7395}.
 
 ** WebRTC
-WebRTC is the technology able to make calls through the browser and real-time communications in general. In this section are presented the two organizations working on WebRTC standardization, IETF and W3C. The different concepts laid out are inspired by the IETF Internet-Draft (IETF-ID) /Overview: Real Time Protocols for Browser-based Applications[fn:28]/.
+WebRTC is a set of chosen technologies[fn:110] able to make calls through the browser and real-time communications in general. In this section are presented the two organizations working on WebRTC standardization, IETF and W3C. The different concepts laid out are inspired by the IETF Internet-Draft (IETF-ID) /Overview: Real Time Protocols for Browser-based Applications[fn:28]/.
 
 WebRTC is a browser-embedded media engine released by Google in 2011. A media engine packages multimedia processing components into an optimized software solution for smoother integration and enhanced performance. WebRTC is also an effort by IETF and W3C to add standardized RTC capabilities into browsers through APIs. IETF RTCWEB[fn:26] Working Group is producing architecture and requirements for selection and profiling of the on-the-wire protocols. W3C WEBRTC[fn:27] Working Group is defining browser APIs to enable real-time communications in web browsers. IETF and W3Cs' work on WebRTC is still in progress. Figure [[fig:wrtcwp]] shows the parts played by the IETF and W3C in the browser model. The source[fn:29] is Victor Pascual's presentation of WebRTC.
 
@@ -401,7 +407,7 @@ An analysis of Strengths, Weaknesses, Opportunities and Threats (SWOT) will help
 
 - Strengths
   - Ease of use: real-time communication is supported without the need for additional applications or plug-ins.
-  - It helps to solve connectivity problems caused by NAT, Firewall, etc.
+  - It helps to solve connectivity problems caused by NAT, firewall, etc. (see section [[Internet's evolution]]).
   - Solved the problem of selection of video and audio codecs.
   - It is based on open standards, open source software implementations and has a royalty free patent[fn:68].
   - It has well general acceptance in both worlds: enterprise and community.
@@ -487,7 +493,7 @@ concepts to start the project.
 The second phase is an agile plan, inspired by the Scrum methodology. Scrum is one of the Agile methods[fn:3] used for software development. The important fact is that promotes adaptive planning and flexible response to change. Scrum, particularly, is a general method that should be adapted to a concrete scenario.
 
 The Scrum Team consists of a Product Owner, the Development Team, and a Scrum Master. The work of the scrum team according to the Scrum Guide[fn:2] is /deliver products iteratively and incrementally, maximizing opportunities for feedback. Incremental deliveries of "Done" product ensure a potentially useful version of working product is always available/. The roles are
-- Product Owner: /is responsible for maximizing the value of the product and the work of the Development Team/
+- Product Owner: /is responsible for maximizing the value of the product and the work of the Development Team/. Product Owner communicates with customers and stakeholders.
 - Development Team: /consists of professionals who do the work of delivering a potentially releasable Increment of "Done" product at the end of each Sprint/
 - Scrum Master: /is responsible for ensuring Scrum is understood and enacted/
 
@@ -495,14 +501,9 @@ The Scrum Team consists of a Product Owner, the Development Team, and a Scrum Ma
 
 *** Scrum plan
 
-It is necessary to adapt the different concepts that comprise the scrum methodology for this particular project.
+In order to adapt the different concepts that comprise the scrum methodology for this particular project, the different scrum roles are assumed by the author: Product Owner, Development Team and Scrum Master. This means that the author has to control the project with different points of view that originally corresponds to different people; but with this manner, the author has more autoevaluation tools.
 
-Roles:
-- Product Owner (in some way, stakeholders): Mentors, University, people interested in the project. The author is interested in the output of the project because is volunteer in Guifi.net.
-- Development Team: assumed by the author
-- Scrum Master: assumed by the author, optionally could be assumed by mentors.
-
-This means that the author has to see the project with different points of view.
+Stakeholders and customers: mentors, University, people interested in the project. The author is interested in the output of the project because is a volunteer in Guifi.net. Mentors participate in this project through regular meetings with the author to discuss the contents. Author sends questions and content to stakeholders in order to obtain feedback.
 
 The Sprint time is approximately one week, because it is assumed that the minimum time-box possible to do a release of the product is one week. The product comprise two major tasks: the theory (documentation, memory) and practice (how this theory is fitted to the real world experiments). The tasks are explained with more detail in the next section.
 
@@ -606,7 +607,9 @@ Network architecture design and analysis of how an RTC system is adapted to Guif
 
 # Definition of a network network architecture of a general RTC service, as set of different services and applications.
 
-** Guifi.net architecture
+** Network architecture analysis of Guifi.net
+Guifi.net is the selected scenario to design and implement an RTC system.
+
 Guifi.net is a commons telecommunication network started in 2004 that is developed with an agreement that guarantees that the network is freely accessible, open to participation, open to knowledge and neutral in data transport. The network interconnects the people that takes part in it (the community) and facilitates the access to Internet. The Guifi.net foundation gives legal support to the agreement and the network.
 
 # community
@@ -619,13 +622,13 @@ Guifi.net has statistics and control of all its devices with an open source web 
 
 #+CAPTION: Statistics and control of a Guifi.net's device
 #+NAME: fig:guifisc
-[[../img/snpservices.png]]
+[[../img/snpservices-new.png]]
 
 # *Behavior. Protocols. Functionality*
 Guifi.net is an heterogeneous network which has different technologies. There are mainly two routing protocol models: traditional and mesh. Traditional model is used since Guifi.net's start, it is similar to models of organizations such as Internet, which means that is ready for production environments. Figure [[fig:guifimap]] shows where is Guifi.net, the majority of zones uses this model. Its design has two components: supernode, which extends the network and together conform the backbone network, and a node or client node, that connects to a supernode. Its routing devices usually have factory's firmware such as AirOS from Ubiquiti[fn:55]) and RouterOS from Mikrotik[fn:56], both proprietary. Routing protocol implementation in traditional model has two variations: BGP (Border Gateway Protocol, \cite{rfc1267}), where each supernode is an AS (Autonomous System[fn:72]), or BGP for messages that goes inside or outside the AS, OSPF (Open Shortest Path First, \cite{rfc2328}) inside the AS. Mesh model is a more experimental and modern approach based on autodiscovering neighbors. Some Barcelona's zones are using this model. Its design has one component, a node, that extends the network. Its routing devices have open source firmwares based on OpenWrt[fn:61] such as qMp[fn:57] and libremesh[fn:58]. There are two routing protocol implementations available in mesh model. Bmx6[fn:59] works on network layer; it is available in qMp or libremesh firmware. Batman-adv[fn:60] works on link layer with linux kernel tools; it is available in libremesh firmware. Table [[tab:mvst]] summarizes the differences between the two models presented, and provides extra information.
 # https://en.wikipedia.org/wiki/Autonomous_system_(Internet)
 
-#+CAPTION: Map of Guifi.net's coverage
+#+CAPTION: Map of Guifi.net's coverage (Catalonia's zone)
 #+NAME: fig:guifimap
 [[../img/guifi-map.png]]
 
@@ -707,7 +710,7 @@ An improvement to dnsservices is to include SRV record for XMPP and SIP near MX 
 
 Cloudy[fn:64] is service that proposes integration in a node of snpservices, dnsservices, federated proxy and many more. A node can manage its services, add a new one, and announce or discover services from other cloudy nodes through Guifi.net.
 
-Networks and services of Guifi.net are scalable and extendable. For the network's case, that is because Guifi.net is a small Internet's network architecture. For the service's case, that is because Guifi.net-related services are simple; Cloudy is complex, but is based on a software that manages the Community-Lab testbed of an European project called CONFINE[fn:75]. The least scalable and extendable part of Guifi.net is its web, but is not very problematic: the web does not provide multimedia content, forks can be done because is an open source project, and the web architecture has solutions to prevent scalability and extendability problems such as load balancing.
+Networks and services of Guifi.net are scalable and extendable. For the network's case, that is because Guifi.net is a small Internet's network architecture. For the service's case, that is because Guifi.net-related services are simple; Cloudy is complex, but is based on a software that manages the Community-Lab testbed of an European project called CONFINE[fn:75]. The least scalable and extendable part of Guifi.net is its web, but is not very problematic: the web does not provide multimedia content, forks can be done because is an open source project, and the web architecture has solutions to prevent scalability and extendability problems such as load balancing and/or adding redundancies.
 
 # /sí. se puede ir extendiendo hasta cierto punto en wifi, pero en caso de tener tantos enlaces y usuarios, hay más poder económico y se pude pasar a fibra. Caso Gurb (imagen de Gurb)/
 
@@ -760,7 +763,7 @@ For a common 802.11n link, from 15 to 150 Mbps, it can manage some RTC sessions 
 
 *** Generic use cases
 
-The use cases developed are those that are bold.
+The designed use cases are those that are bold.
 
 Definitions:
 - Actors or Roles have a user and/or admin account. The user has minimum permissions in the application, the admin has all the permissions in the application. It can be defined one or more middle actors that have more permissions than user and less permissions than admin.
@@ -868,13 +871,14 @@ Component diagram (see [[fig:compdiag]]) is the key point to explain the differe
 
 *Database* manages users accounts; therefore it assist authentication module and other components that needs authentication.
 
+*Reliability of network architecture*. Server part could have a single point of failure that can be mitigated as any common Internet architecture such as DNS or HTTP service: load balancing and/or adding redundancies. In fail's case, components can be easily restored because WebRTC relies in wide known and tested technologies.
 ** Implementation
 
 Software application's selection for each network architecture design component.
 
 - SIG: Kamailio[fn:88]. It is a long career project that comes from the origins of SIP Proxy. Kamailio can also manage Websocket connections and link them to legacy SIP. Websocket secure (WSS) was not tested.
 - SGW: Kamailio listens and interoperate between signaling protocols: Websocket, TCP and UDP SIP clients.
-- MGW: rtpengine[fn:89] (formerly rtpproxy-ng Kamailio's module for mediaproxy-ng). It is prepared to interconnect WebRTC to RTP[fn:90]; because it is compatible with SDES, DTLS-SRTP, etc. Rtpengine was not tested.
+- MGW: Rtpengine[fn:89] (formerly rtpproxy-ng Kamailio's module for mediaproxy-ng). It is prepared to interconnect WebRTC to RTP[fn:90]; because it is compatible with SDES, DTLS-SRTP, etc. Rtpengine was not tested.
 - WAPP: HTML/CSS/JS web application with javascript library jssip. Jssip implements a Websocket SIP client. It is written by the authors of SIP over Websocket RFC. Web applications based on jssip are tryit[fn:100] and jscommunicator[fn:101].
 - APP: jitsi[fn:99]. It is a softphone application which supports multiple operating systems such as Windows, Mac OS X and GNU/Linux.
 - WSRV: apache HTTP server[fn:97]. It is a common, easy to use and well-known HTTP server. HTTPS was not tested.
@@ -931,7 +935,11 @@ A Wireshark[fn:94] capture of call procedure from Bob's perspective (figure [[fi
 
 *** Evaluation
 
-Figure [[fig:ad]] shows network architecture design of the demo. Some of the components are missing.
+How use cases and network architecture design are implemented in the demo.
+
+Use cases 1 and 2 (see section [[Generic use cases]]) are working as expected. Use case 11 was not included in the demo.
+
+Figure [[fig:ad]] shows network architecture design of the demo. Some of the components are missing from the original network architecture design (see section [[Network architecture design]]).
 
 #+CAPTION: Deployed Component Diagram 
 #+NAME: fig:ad
@@ -945,12 +953,13 @@ Figure [[fig:ad]] shows network architecture design of the demo. Some of the com
 - DB is directly linked with SIG and indirectly linked to WSRV through Websocket SIP clients.
 
 *** Performance
-The performance could not be measured appropiately, but some of the measures indicate that it is enough for a small community. With organization and investment, the community could grow.
+The performance could not be measured appropiately[fn:113], but some of the measures indicate that it is enough for a small community. With organization and investment, the community could grow.
 
 This demo system was used for some calls with a Guifi.net's user that involved Guifi.net infrastructure. The length of the calls were from 30 minutes to 1 hour. The calls involved audio and video streams from one side (sent), and audio stream from the other side (received). During the conversation, cuts happened[fn:103] from one side, the other, or both. These cuts produced audio loss, but after some seconds, the audio came back. That is because the network path has lots of hops (see figure [[fig:ctr]]) and involves old infrastructure. For this network path and from my side, a typical bandwidth test revealed 8 Mbps of download and timeout error of upload. Note that wireless links could be asymmetric, as in this case.
 
 #+CAPTION: Traceroute to Guifi.net's user implied several hops
 #+NAME: fig:ctr
+# #+ATTR_LATEX: :width 10cm
 [[../img/conversation-traceroute.png]]
 
 Adapted figures [[fig:cvs]] and [[fig:cdj]] show how Google Chrome[fn:104] reveal some of the parameters of a conversation. For figure [[fig:cvs]], the upload bandwith is clearly limited, but the voice quality was acceptable. The delay parameter is tolerable.
@@ -989,11 +998,13 @@ There are three featured topics of WebRTC that are negative. Firstly, nowadays i
 
 ** Future Work
 
-The suggested direction is firstly to improve currently implemented use cases and secondly to continue to implement those remaining.
+The suggested direction is firstly to improve currently implemented use cases, secondly to continue to implement those remaining and thirdly to perform a stress test of the demo.
 
 To improve currently implemented use cases, integration of the proposed network architecture of WebRTC with the Cloudy and the Guifi.net's web. With relatively little effort and thanks to the existence of these two projects, end-users could definitely profit from the ease of installation and usability of the WebRTC. Also, improve analysis and testing of backward compatibility of WebRTC and SIP.
 
 To continue to implement remaining use cases, is needed for example contact list and presence service. The suggested direction is to develop a web-based CUSAX Client (Combined Use of the SIP and the XMPP, \cite{rfc7081}). CUSAX Client takes SIP for telephony-like services, and XMPP for instant messaging and presence services. The following libraries compatible with Websocket are recommended for working on the CUSAX Client: jssip for SIP and strophe.js[fn:67] for XMPP. This proposal pretends to take the advantages of each system.
+
+To perform a stress test of the demo. This could help to know how much concurrent users allow the network design, and measures of overall latency and bandwidth usage.
 
 #  - Streaming.
 #  - Server intercommunication, federation to Guifi.net (inside) and outside (Internet).
@@ -1011,7 +1022,7 @@ A complementary direction for research is improving integration of the signaling
 #+LATEX: \begin{appendices}
 
 * Demo installation
-Guide to install the demo. It assumes a Debian 7 Wheezy installation with Internet access and administration rights.
+Guide to install the demo. It assumes a Debian 7 Wheezy installation with Internet access and administration rights. Demo infrastructure of server part was tested in a common physical machine and in a virtualized one with KVM[fn:111] through Proxmox[fn:112] virtualization management solution.
 ** Kamailio with Websocket support
 Based on this source[fn:96].
 1. Add the following lines to =/etc/apt/sources.list=
@@ -1107,7 +1118,7 @@ Based on this source[fn:96].
 
 [fn:7] ISO/IEC 7498-1:1994.
 
-[fn:9] Jitter is briefly defined in the next section.
+[fn:9] Jitter is briefly defined in section [[Basic real-time quality parameters]]
 
 [fn:10] A bit can be 0 or 1. A stream of this symbols represents information. In telecommunications the information unit is the bit, expressed with the unit b. In computer science the Byte, expressed with the unit B. 1 Byte is 8 bits. 
 
@@ -1235,7 +1246,7 @@ Based on this source[fn:96].
 
 [fn:71] https://github.com/guifi/snpservices.
 
-[fn:72] single administrative entity with a specific routing policy which anounces at least one network prefix (a set of IPs).
+[fn:72] Single administrative entity with a specific routing policy which anounces at least one network prefix (a set of IPs).
 
 [fn:73] https://en.wikipedia.org/wiki/File:Internet_Connectivity_Distribution_%26_Core.svg.
 
@@ -1249,7 +1260,7 @@ Based on this source[fn:96].
 
 [fn:78] https://www.youtube.com/watch?v=BdYKR1RsYFY.
 
-[fn:79] for example 144 is width's image and p means progressive video.
+[fn:79] For example 144 is width's image and p means progressive video.
 
 [fn:80] http://tryit.jssip.net/
 
@@ -1279,7 +1290,7 @@ Based on this source[fn:96].
 
 [fn:93] http://gs.statcounter.com/\#all-browser-ww-monthly-201502-201502-map
 
-[fn:94] network traffic sniffer, https://wireshark.org
+[fn:94] Network traffic sniffer, https://wireshark.org
 
 [fn:95] https://freephonebox.net/
 
@@ -1303,3 +1314,18 @@ Based on this source[fn:96].
 
 [fn:105] http://www.ietf.org/proceedings/87/slides/slides-87-rtcweb-5.pdf
 
+[fn:107] http://www.netindex.com/ (July 2, 2015)
+
+[fn:106] More information about G.711 (see section [[Network requirements]])
+
+[fn:108] This download and upload values can be reached with wireless technologies (see section [[Guifi.net architecture]])
+
+[fn:109] Packet loss can appear in bad wireless links or in congested networks.
+
+[fn:110] Most of them are prior to WebRTC
+
+[fn:111] Kernel-based Virtual Machine, linux kernel virtualization solution
+
+[fn:112] https://www.proxmox.com/
+
+[fn:113] That is why a stress test is added as future work.
