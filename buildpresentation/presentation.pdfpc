@@ -1,0 +1,127 @@
+[file]
+presentation.pdf
+[skip]
+2,
+[notes]
+### 1
+- saluda (soy). nombre apellido. Presento TFG para _ informática
+- va sobre comunicaciones en tiempo real
+- concretamente (proyecto, abstract): título
+- para ello: ejemplo guifi.net, diferentes elementos analizados: requerimientos, analisis de componentes, diseño de arquitectura, implementación y demo
+___________________________
+antes de entrar en materia, por qué WebRTC?
+
+Operadores telecom lo están usando como sustituto a sus productos
+### 2
+estructura contenidos para esta presentación ~ memoria
+
+* intro: motivación y objectivos
+* funda: comunicaciones y parámetros RTC
+* estado del arte: SIP, XMPP, WebRTC
+* metodo: cómo se ha trabajado, enfoque de este proyecto
+* c y r: diferentes elementos analizados
+* c y f: conclusiones extraídas de este trabajo, trabajo futuro
+### 3
+- aspectos muy generales del proyecto
+### 4
+- este proyecto es una propuesta personal, y estos son los hechos que me impulsaron a llevarlo a cabo
+
+
+- Previous project: TFG
+
+
+al final decir que se puede generalizar a cualquier organización
+### 5
+- objetivos de este proyecto
+
+
+Free: open source
+Secure: sistema de seguretat robust
+### 6
+capítulo sobre los fundamentos en materia de comunicaciones y parámetros básicos RTC
+### 7
+se incluyen las definiciones de protocolo, señalización y gateway
+2 formas de entender las comunicaciones
+- cómo funciona internet/datos genéricos
+- cómo funciona el mundo de la telefonía/datos tiempo real
+- actualmente se mezclan, interesan: datos genéricos + datos tiempo real
+_______________
+parámetros básicos que afectan las com en RT como...
+### 8
+soluciones anteriores para comunicarse en tiempo real, y WebRTC
+### 9
+Desde hace bastante tiempo hay dos soluciones en cuanto a señalización: SIP y XMPP
+### 10
+Se puede apreciar que, como se ha dicho, no hay definido un método de señalización
+
+WebRTC es un motor de medios incrustado en el navegador
+
+También es un proceso de estandarización llevado a cabo por IETF y W3C
+IETF se encarga de la selección de protocolos para MEDIOS: DTLS-SRTP (media) SCTP over DTLS (data channel)
+W3C se encarga de APIs to access RTC functions in browser
+### 11
+En el apartado metodología hay diferentes puntos que tratan cómo se ha llevado a cabo el proyecto.
+
+Se destaca el más importante
+
+### 12
+Per tal de garantir un cicle de desenvolupament
+
+Esta pirámide representa la forma en que se trabajan este proyecto. Cada fase recoge de la anterior.
+
+Se parten de unos requerimientos bien analizados, se diseñan algunos de ellos, se implementa una parte, y se acaban mostrando algunos detalles.
+### 13
+En este capítulo es donde se trabajan las diferentes partes de la metodología
+### 14
+Para empezar, se ha analizado el escenario de guifi.net, donde se va a diseñar e implementar un sistema RTC.
+
+
+Lo que puede llegar a ser más problemático: enlaces wifi
+### 15
+Hay unos requisitos de red a cumplir
+
+
+ITU G.114 es antigua pero de las pocas referencias sobre este tema
+### 16
+Y unos casos de uso que tienen los usuarios de Guifi.net
+
+En el documento se han elaborado más en base a las necesidades reales. Aquí se exponen los que más se van a desarrollar
+### 17
+El diseño de arquitectura con WebRTC y los casos de uso tiene unos requisitos en cuanto a los componentes (NOMBRARLOS Y EXPLICARLOS). los enlaces. la parte servidor. la parte cliente.
+
+La parte servidor es necesariamente bastante centralizada.
+
+Después hay 2 tipos de clientes: A, B (WebRTC) y C, Teléfono (SIP)
+### 18
+De los requisitos de componentes, que han sido diseñados en una arquitectura de red, hay que seleccionar cómo se va a hacer. Qué protocolos, metodologías, paradigmas se van a usar para desempeñar las diferentes funciones.
+### 19
+Una vez sabemos cómo hacerlo hay que decidir qué software lo va a hacer
+### 20
+Finalmente, parte del software implementado, se usa para montar una demostración
+
+Explicar las diferentes partes de esta pantalla
+
+Al finalizar esta presentación se va a enseñar esta demo
+### 21
+Respecto al diseño de arquitectura original, estos son los componentes que están funcionando en la demo
+### 22
+Se provó con diversas llamadas de 30 minutos y 1 hora. La infraestructura de red tuvo momentos inestables. La conexión se cortó varias veces. Teniendo en cuenta el tramo de red inestable y la cantidad de saltos que tuvo que hacer, no está mal.
+
+Estas gráficas representan diferentes momentos de algunas de las llamadas.
+
+Como se puede apreciar (comentar gráficas)
+### 23
+### 24
+En cuanto a las conclusiones,
+
+1. los objetivos iniciales se pueden conseguir. RTC libre y seguro, compatible con SIP, diseño de arquitectura según las necesidades, facilidad en instalación y uso de la solución.
+2. 
+3. (...) pero podemos llegar a hacer que sean bastante ligeros y distribuidos
+4. anon (STUN), Proxy (shared inet guifi), (...)
+### 25
+remaining use cases: los de la memoria
+
+Test de estrés para determinar capacidad de la red, número de usuarios, posibilidades de profesionalizarlo
+
+Integración natural de la señalización en los routers de guifi.net
+### 26

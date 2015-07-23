@@ -1,0 +1,192 @@
+# #####
+# basic
+# #####
+#+startup: beamer
+#+LaTeX_CLASS: beamer
+#+LaTeX_CLASS_OPTIONS: [bigger]
+# #+BEAMER_FRAME_LEVEL: 3
+# #+OPTIONS: H:3
+#+OPTIONS: H:3 num:t toc:nil \n:nil todo:nil pri:nil @:t ::t |:t ^:{} _:{} *:t TeX:t LaTeX:t
+# source: http://orgmode.org/manual/Beamer-export.html
+
+# #####
+# style
+# #####
+#+latex_header: \mode<beamer>{\usetheme{Goettingen}}
+# #+latex_header: \mode<beamer>{\usetheme{Hannover}}
+# #+BEAMER_THEME: Gottingen
+#+latex_header: \mode<beamer>{\usepackage{times}}
+#+latex_header: \setbeamertemplate{footline}[page number]{}
+#+latex_header: \setbeamerfont{page number in head/foot}{size=\small}}
+# In increasing order: \tiny, \scriptsize, \footnotesize, \small, \normalsize (default), \large, \Large, \LARGE, \huge and \Huge.
+# http://www.latex-community.org/forum/viewtopic.php?f=4&t=14510
+# #+latex_header: \setbeamertemplate{footline}[frame number]
+#+latex_header: \setbeamertemplate{navigation symbols}{}
+# http://angel-de-vicente.blogspot.com.es/2013/04/presentations-with-org-mode-beamer.html
+# Beamer theme gallery: Goettingen default default
+# \usetheme{Goettingen}
+# http://www.latex-community.org/forum/viewtopic.php?f=4&t=13865
+# http://orgmode.org/worg/exporters/beamer/tutorial.html
+# presenting the sections
+#+latex_header: \AtBeginSection[]{\begin{frame}<beamer>\frametitle{Chapter}\tableofcontents[currentsection]\end{frame}}
+
+# #####
+# data
+# #####
+#+TITLE:     Real-Time Communication Network Architecture Design for Organizations with WebRTC
+# #+latex_header: \subtitle{null}
+#+AUTHOR:    Pedro Vílchez
+#+DATE:      2015-07-13 Monday
+# #+DESCRIPTION: 
+# #+KEYWORDS: 
+# #+LANGUAGE:  en
+# #+OPTIONS:   H:2 num:t toc:t \n:nil @:t ::t |:t ^:t -:t f:t *:t <:t
+# #+OPTIONS:   TeX:t LaTeX:t skip:nil d:nil todo:t pri:nil tags:not-in-toc
+# #+INFOJS_OPT: view:nil toc:nil ltoc:t mouse:underline buttons:0 path:http://orgmode.org/org-info.js
+# #+EXPORT_SELECT_TAGS: export
+# #+EXPORT_EXCLUDE_TAGS: noexport
+# #+LINK_UP:   
+# #+LINK_HOME:
+
+*** Why WebRTC?
+1. It is Relatively new (2011); standardization process is not ended
+2. It is a convergence between telecommunications and the Internet
+3. There are already WebRTC applications in the market from telecommunication operators
+*** Contents
+#+BEGIN_LATEX
+%\begin{frame}{Outline}
+\tableofcontents
+%\end{frame}
+#+END_LATEX
+* Introduction
+*** Motivation
+- Previous project: start a simple community network[fn:114].
+- Now: provide Real-Time Communications (RTC) to a community network such as Guifi.net.
+  - Add value to the network
+  - Enhance social cohesion within the community
+*** Objectives
+- Free and secure communication between users via an RTC system and community network infrastructure.
+- Backward compatibility with VoIP[fn:11] network. Hence, users can communicate to other VoIP operators from inside and/or outside Guifi.net.
+- Designing RTC network architecture to fit the community network scenario.
+- Ease of installation and usability of RTC.
+* Fundamentals
+*** Fundamentals
+- Communications
+  - Protocol, signaling, gateway
+  - Internet, flexible infrastructure for generic data.
+    - Standardization: IETF
+  - Traditional telephony, guaranteed delivery for real-time data.
+    - Standardization: ITU
+  - IETF and ITU did efforts to have networks which process real-time data and generic data
+- Basic real-time quality parameters: bandwidth, mean delay, delay variation, etc.
+* State of the art
+*** State of the art
+- SIP signaling
+  - Nature: establish, modify and terminate multimedia sessions in the Internet
+  - Implemented XMPP-based solution (SIMPLE)
+- XMPP signaling
+  - Nature: manage instant messaging and presence of your contact list
+  - Implemented SIP-based solution (Jingle)
+- WebRTC
+  - Open to any existing signaling method such as SIP or XMPP
+*** WebRTC
+# - Browser-embedded media engine
+# - Effort by IETF and W3C to add standardized RTC capabilities into browsers through APIs
+[[../img/webrtc-protocols.png]]
+* Methodology
+*** Methodology
+# - SWOT analysis of WebRTC
+# # Justifies why was chosen to do a project about WebRTC
+# - Scope
+# - Resources
+# - Planning
+# - Tasks and work style
+[[../img/workstyle.png]]
+* Contributions and Results
+*** Network architecture analysis of Guifi.net
+The selected scenario to design and implement an RTC system.
+- Community: volunteers and professionals
+- Government of Guifi.net: manage of Guifi.net's web, legal support
+- Behavior, protocols and functionality: similar to Internet
+- Network architecture: star topology and mesh
+- Links: the vast majority of communication links are wireless
+- Known services: Internet sharing and network control
+*** Network requirements
+- QoS: differentiate real-time data from non real-time data
+  - QoS on Guifi.net is complex
+- G.114 says that delay should be below 150ms
+  - Guifi.net seems to fit this requeriment
+- Bandwidth: Audio 64 Kbps, Video 1-10 Mbps
+  - Guifi.net has common links from 15 to 150 Mbps
+*** Use cases
+- Send calls: a user calls another user with an audio channel. Optional channels of communication if available: video and chat
+- Receive calls: a user receives a call only if is connected to the service with at least one device and is available
+- Integration: all the services are integrated and is the same account
+*** Network architecture design
+# 1. Required components
+# 2. Component selection
+[[../img/arch.png]]
+*** Component selection
+# remember: component selection
+
+[[../img/arch-compsel.png]]
+
+# - Signaling (SIG): SIP
+# - Signaling Gateway (SGW): SIP over Websockets
+# - Media Gateway (MGW): Conversion between common SIP and WebRTC
+# - Standalone application (APP): SIP client
+# - Web Application (WAPP): HTML/CSS/JS
+# - Web Server (WSRV): HTTP server
+# - Authentication service (AUTH): OAuth
+# - Connectivity solver (CS): STUN, TURN
+# - Database (DB): RDBMS (Relational Database Management System)
+*** Implementation
+
+[[../img/arch-implem.png]]
+
+# - Signaling (SIG): Kamailio
+# - Signaling Gateway (SGW): Kamailio
+# - Media Gateway (MGW): Rtpengine
+# - Standalone application (APP): Jitsi
+# - Web Application (WAPP): HTML/CSS/JS with javascript library Jssip
+# - Web Server (WSRV): HTTP server
+# - Authentication service (AUTH): Kamailio
+# - Connectivity solver (CS): Coturn
+# - Database (DB): MySQL
+*** Demo Evaluation
+[[../img/arch-deploy.png]]
+*** Demo
+[[../img/call-in-progress.png]]
+
+/Installation instructions in the appendix of the memory/
+*** Demo Performance
+# [[../img/conversation-traceroute.png]]
+[[../img/conversation-video-stats.png]]
+
+[[../img/conversation-delay-jitter.png]]
+* Conclusions and Future Work
+*** Conclusions
+- Objectives of the project are attainable
+- WebRTC facilitates use of RTC in organizations of all sizes
+- WebRTC requires some centralization
+- Pending featured topics
+  - Anonymity
+  - WebRTC media cannot go to HTTP Proxy
+  - Interoperability between WebRTC and SIP needs a media gateway
+*** Future Work
+- Improve implemented use cases
+- Implement remaining use cases
+- Stress test of the demo
+- Improve integration of XMPP and SIP signaling inside Guifi.net open source firmwares
+*** Thanks! Questions?
+#+BEGIN_LATEX
+%\begin{frame}{Outline}
+%\begin{center}
+%\Huge 
+%\end{center}
+\tableofcontents
+%\end{frame}
+#+END_LATEX
+* Footnotes
+[fn:11] Voice over IP. The use of telephone adapted to the Internet network.
+[fn:114] Starting, Contributing and Empowering Community Networks in cities

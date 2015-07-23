@@ -60,7 +60,8 @@
 \setcounter{secnumdepth}{5}
 % source: http://tex.stackexchange.com/questions/130795/
 % it is already defined later
-% \usepackage{pdfpages}
+\usepackage{pdfpages}
+
 
 %\usepackage{draftwatermark}
 %\SetWatermarkText{DRAFT}
@@ -78,6 +79,8 @@
 \usepackage{pgfgantt}
 
 \begin{document}
+
+\includepdf[pages={1}]{frontpage.pdf}
 
 \pdfstringdefDisableCommands{%
 \let\MakeUppercase\relax
@@ -103,7 +106,7 @@
 \noindent {\Large \sffamily Acknowledgments}
 \\[12pt] 
 
-Special thanks to Victor Pascual and Miquel Oliver for his mentorship. Thanks to Victor Oncins and Angel Elena (craem) for his feedback and help.\\
+Special thanks to Victor Pascual and Miquel Oliver for their mentorship. Thanks to Victor Oncins and Angel Elena (craem) for their feedback and help.\\
 Thanks to Daniel Pocock for its work on rtcquickstart.org. Thanks to webrtchacks.com and all its team for its useful articles.\\
 Thanks to Rachel Thalmann for revising English on certain parts of this memory.\\
 Thanks to all the people that works for the democratization of communications.\\
@@ -126,7 +129,7 @@ The present project introduces disrupting technology WebRTC (Web Real-Time Commu
 \vspace*{\fill}
 \section*{\Large \sffamily Resum}
 
-El projecte introdueix la tecnologia disruptiva WebRTC (comunicació web en temps real), que suporta aplicacions de navegador a navegador sense la necessitat de complements adicionals. Es detalla com, des de que va ser alliberat per Google al 2011, està evolucionant i canviant la forma en que les comunicacions són enteses. Aquest projecte també desenvolupa com posar en marxa comunicacions en temps real per organitzacions amb WebRTC, específicament els casos d'ús de trucades de veu i vídeo. La organització per desenvolupar-ho és Guifi.net i els elements que ho analitzen: requeriments, disseny d'arquitectura de xarxa, selecció de components, implementació i demostració.
+El projecte introdueix la tecnologia disruptiva WebRTC (comunicació web en temps real), que suporta aplicacions de navegador a navegador sense la necessitat de complements adicionals. Es detalla com, des de que va ser alliberat per Google al 2011, està evolucionant i canviant la forma en que les comunicacions són enteses. Aquest projecte també desenvolupa com posar en marxa comunicacions en temps real per organitzacions amb WebRTC, específicament els casos d'ús de trucades de veu i vídeo. L'organització per desenvolupar-ho és Guifi.net i els elements que ho analitzen: requeriments, disseny d'arquitectura de xarxa, selecció de components, implementació i demostració.
 
 %old
 %Aquest projecte introdueix la tecnologia disruptiva WebRTC (comunicació web en temps real), que suporta aplicacions de navegador a navegador sense la necessitat de complements adicionals. Es detalla com, des de que va ser alliberat per Google al 2011, està evolucionant i canviant la forma en que les comunicacions són enteses. Com materialitzar les comunicacions en temps real en organitzacions amb WebRTC i el cas d'ús de trucades de veu i vídeo, prenent com exemple Guifi.net i les oportunitats que ofereix: requeriments, disseny d'arquitectura, selecció de components, implementació i demostració.
@@ -274,7 +277,7 @@ Every PDU has two types of fields: header and payload. A PDU is encapsulated wit
 
 Before initializing a call is a requirement to convey media details to the participants, SDP (Session Description Protocol, \cite{rfc4566}) provides a standard representation for such information.
 
-During a call, there is the RTP (Real-time Transport Protocol, \cite{rfc3550}). The majority of the RTP implementations are build on top of UDP. RTP is a protocol used to encapsulate multimedia content (audio, video). Its header contains a sequence number and timestamp. The sequence number increments by one for each RTP data packet sent, and may be used by the receiver to detect packet loss and to restore packet sequence. The timestamp registers the time when the RTP packet has been generated, it helps with the synchronization and jitter[fn:9] calculations. The RTP Control Protocol (RTCP) periodically sends packets with statistics information to participants in a streaming multimedia RTP session. RTP and RTCP provide information on the quality of communication but do nothing to fix or improve it. An application may use this information to control quality of service parameters. RTCP itself does not provide encryption[fn:13] or authentication methods. If they are needed, it is available the SRTP (Secure Real-time Transport Protocol, \cite{rfc3711}). 
+During a call, there is the RTP (Real-time Transport Protocol, \cite{rfc3550}). The majority of the RTP implementations are build on top of UDP. RTP is a protocol used to encapsulate multimedia content (audio, video). Its header contains a sequence number and timestamp. The sequence number increments by one for each RTP data packet sent, and may be used by the receiver to detect packet loss and to restore packet sequence. The timestamp registers the time when the RTP packet has been generated. It allows to synchronize media, and provides calculations of delay variations which help to improve perception quality. The RTP Control Protocol (RTCP) periodically sends packets with statistics information to participants in a streaming multimedia RTP session. RTP and RTCP provide information on the quality of communication but do nothing to fix or improve it. An application may use this information to control quality of service parameters. RTCP itself does not provide encryption[fn:13] or authentication methods. If they are needed, it is available the SRTP (Secure Real-time Transport Protocol, \cite{rfc3711}). 
 
 # https://en.wikipedia.org/wiki/Real-time_Transport_Protocol
 # RTCP https://en.wikipedia.org/wiki/RTP_Control_Protocol
@@ -285,7 +288,7 @@ More information about packet switching can be found at \cite{kurose2013net} and
 
 Network is defined by router, switch and link components that interconnect all the path between receiver and its destination (them included). The real-time communication depends on how the network is affected by the following parameters.
 
-The bandwidth is the number of bits[fn:10] that can arrive from the source to the destination through the network in one unit of time (for example, MB/s). A greater bandwidth delivers higher definition (better quality) of the media content. A packet can be lost if it is never received at the destination; it is represented by packet loss[fn:109] percentage (%). A communication suffers jitter when different packets arrive with different delays at its destination. It is defined delay as the time between transmitting the packet and arriving at its destination; it is represented by milliseconds (ms). Due to the nature of packet switching, packets can be delivered out of order. The arrived packet can present a corruption of data. The prior parameters presented affect negatively to the communication. Its undesirable effects might be silent lapses and interruptions of the communication.
+The bandwidth is the number of bits[fn:10] that can arrive from the source to the destination through the network in one unit of time (for example, MB/s). A greater bandwidth delivers higher definition (better quality) of the media content. A packet can be lost if it is never received at the destination; it is represented by packet loss[fn:109] percentage (%). A communication suffers PDV (Packet Delay Variation, \cite{rfc3393}) when different packets arrive with different delays at its destination[fn:9]. It is defined delay as the time between transmitting the packet and arriving at its destination; it is represented by milliseconds (ms). Due to the nature of packet switching, packets can be delivered out of order. The arrived packet can present a corruption of data. The prior parameters presented affect negatively to the communication. Its undesirable effects might be silent lapses and interruptions of the communication.
 
 Real-time communications require low average and guaranteed measure of bandwidth and delay. This two requirements can be achieved easily with the technologies nowadays. For example bandwidth was 56 Kbps in the 90s with dial-up Internet access, and now it is of 24.3 Mbps of download, and 11.2 Mbps of upload according to netindex.com[fn:107][fn:108]. A G.711 call[fn:106] could represent 64 Kbps, which means that it represented 114% of bandwidth usage in the 90s and less than 0.01% now.
 
@@ -359,7 +362,7 @@ Because of firewalls and proxies, clients usually have connectivity problems con
 ** WebRTC
 WebRTC is a set of chosen technologies[fn:110] able to make calls through the browser and real-time communications in general. In this section are presented the two organizations working on WebRTC standardization, IETF and W3C. The different concepts laid out are inspired by the IETF Internet-Draft (IETF-ID) /Overview: Real Time Protocols for Browser-based Applications[fn:28]/.
 
-WebRTC is a browser-embedded media engine released by Google in 2011. A media engine packages multimedia processing components into an optimized software solution for smoother integration and enhanced performance. WebRTC is also an effort by IETF and W3C to add standardized RTC capabilities into browsers through APIs. IETF RTCWEB[fn:26] Working Group is producing architecture and requirements for selection and profiling of the on-the-wire protocols. W3C WEBRTC[fn:27] Working Group is defining browser APIs to enable real-time communications in web browsers. IETF and W3Cs' work on WebRTC is still in progress. Figure [[fig:wrtcwp]] shows the parts played by the IETF and W3C in the browser model. The source[fn:29] is Victor Pascual's presentation of WebRTC.
+WebRTC is a browser-embedded media engine released by Google in 2011. A media engine packages multimedia processing components into an optimized software solution for smoother integration and enhanced performance. WebRTC is also an effort by IETF and W3C to add standardized RTC capabilities into browsers through APIs[fn:114]. IETF RTCWEB[fn:26] Working Group is producing architecture and requirements for selection and profiling of the on-the-wire protocols. W3C WEBRTC[fn:27] Working Group is defining browser APIs to enable real-time communications in web browsers. IETF and W3Cs' work on WebRTC is still in progress. Figure [[fig:wrtcwp]] shows the parts played by the IETF and W3C in the browser model. The source[fn:29] is Victor Pascual's presentation of WebRTC.
 
 # media engine definition http://en.wikipedia.org/wiki/Global_IP_Solutions
 # what does IETF from charter: https://tools.ietf.org/wg/rtcweb/charters
@@ -408,10 +411,10 @@ An analysis of Strengths, Weaknesses, Opportunities and Threats (SWOT) will help
 - Strengths
   - Ease of use: real-time communication is supported without the need for additional applications or plug-ins.
   - It helps to solve connectivity problems caused by NAT, firewall, etc. (see section [[Internet's evolution]]).
-  - Solved the problem of selection of video and audio codecs.
+  - It selects particular video and audio codecs to standardize.
   - It is based on open standards, open source software implementations and has a royalty free patent[fn:68].
   - It has well general acceptance in both worlds: enterprise and community.
-  - The communication between peers is bidirectional and can be P2P
+  - The communication between peers is bidirectional and it can be P2P
   - WebRTC standard does not specify signaling: it can be used in very different scenarios.
   - The communication channel between peers is encrypted
 - Weaknesses
@@ -426,8 +429,8 @@ An analysis of Strengths, Weaknesses, Opportunities and Threats (SWOT) will help
   - It encourages a new generation of web applications using its strengths. For example, WebRTC can easily implement through a web page a /click to call button/ or a phone box[fn:95] (call without account).
   - Google bought a relevant enterprise focused on media engines called GIPS (Global IP Solutions) and released it as WebRTC. Not only is becoming a standard in terms of Internet (IETF) and Web (W3C) technologies; but also a /de facto/ standard in the industry because of the media engine's quality. This source[fn:69] analyzed media engine market consequences after WebRTC release, the result is that some of the companies are starting to use WebRTC. WebRTC reduces RTC systems complexity, that is why new companies entered market of media engine and are starting to deploy its own solutions.
 - Threats
-  - WebRTC standard do not specify signaling: this can produce a positive or negative fragmentation of projects. Positive fragmentation: different projects for different applications. Negative fragmentation: divided effort.
-  - Is a work in progress technology, it is being changed.
+  - WebRTC standard does not specify signaling: this can produce a positive or negative fragmentation of projects. Positive fragmentation: different projects for different applications. Negative fragmentation: divided effort.
+  - It is a work in progress technology, it is being changed.
 
 ** Scope
 
@@ -828,8 +831,8 @@ This section presents the components required for the network architecture desig
 - Gateway adapts or converts the communication to work with different communication systems. The most important difference between communication systems is the signaling protocol. There are two types of gateways: Signaling Gateway (SGW) and Media Gateway (MGW).
 - Application interface gives appropriate interaction to the actors in order to perform the different operations. It is distributed, a web server (WSRV) offering a page, and a client executing the web application (WAPP) through the web browser.
 - Authentication service (AUTH) restricts access of service only to permitted users. It differentiates available operations depending on if is user or admin. It provides single sign on, after the web page is accessed, the user can operate.
+- Database (DB) is used for authentication only if users are directly registered to service. Also, DB stores and encrypts personal information or preferences for a particular user of web application if succeed in authentication.
 - Connectivity solver (CS) a set of tools to avoid common communication problems that appear in networking scenarios. The most common problems are NAT and firewall traversal.
-- Database (DB) stores and encrypts personal information or preferences for a particular user. It is accessible through web application if succeed in authentication.
 
 ** Component selection
 
@@ -838,12 +841,12 @@ Selection of technologies for each component.
 - SIG: SIP, because is a signaling protocol that since its origins is designed to perform calls.
 - SGW: SIP over Websockets. It is required to transmit SIP signaling via Web Application.
 - MGW: Conversion between common SIP and WebRTC (DTLS-SRTP) media channels is required due to incompatibilities at transport layer. According to an author[fn:86] the majority of RTP traffic in VoIP networks (common SIP) is not secured today; when it is secured, most of the deployments he has seen use SDES (SDP Security Descriptions for Media Streams \cite{rfc4568}). Guifi.net's VoIP project use RTP tunneled with VPN.
-- Web Application. WebRTC is being implemented in web browsers. That is why is required to use web technologies. Given web application's constraint, other selections have to be done. Another possibility is to do an standalone WebRTC application using the native code[fn:81], but it requires more development and is less flexible (see SWOT analysis).
+- Web Application. WebRTC is being implemented in web browsers. That is why is required to use web technologies. Given web application's constraint, other selections have to be done. Another possibility is to do an standalone softphone WebRTC application using the native code[fn:81], but it requires more development and is less flexible (see SWOT analysis).
   - WAPP: HTML/CSS/JS. HTML (HyperText Markup Language[fn:82]) for web content, CSS (Cascading Style Sheets[fn:83]) for web design, JS (Javascript[fn:84]) for language programming features. JS has the commands to access WebRTC API's features.
   - WSRV: HTTP server. It serves HTML/CSS/JS pages to web browsers.
 - AUTH: OAuth. It is used to authorize users to HTTP services.
-- CS: STUN, TURN. They are servers which WebRTC needs to solve some of the possible connectivity problems.
 - DB: RDBMS (Relational Database Management System[fn:85]). Stored information is few and has a clear structure. The number of users is low.
+- CS: STUN, TURN. They are servers which WebRTC needs to solve some of the possible connectivity problems.
 
 # guifi.net voip project uses tls, vtun and vpn. plain RTP to RTP/SAVPF converter.
   
@@ -874,17 +877,21 @@ Component diagram (see [[fig:compdiag]]) is the key point to explain the differe
 *Reliability of network architecture*. Server part could have a single point of failure that can be mitigated as any common Internet architecture such as DNS or HTTP service: load balancing and/or adding redundancies. In fail's case, components can be easily restored because WebRTC relies in wide known and tested technologies.
 ** Implementation
 
-Software application's selection for each network architecture design component.
+Figure [[fig:ai]] shows a software application's selection for each network architecture design component.
+
+#+CAPTION: Implementation
+#+NAME: fig:ai
+[[../img/arch-implem.png]]
 
 - SIG: Kamailio[fn:88]. It is a long career project that comes from the origins of SIP Proxy. Kamailio can also manage Websocket connections and link them to legacy SIP. Websocket secure (WSS) was not tested.
 - SGW: Kamailio listens and interoperate between signaling protocols: Websocket, TCP and UDP SIP clients.
 - MGW: Rtpengine[fn:89] (formerly rtpproxy-ng Kamailio's module for mediaproxy-ng). It is prepared to interconnect WebRTC to RTP[fn:90]; because it is compatible with SDES, DTLS-SRTP, etc. Rtpengine was not tested.
 - WAPP: HTML/CSS/JS web application with javascript library jssip. Jssip implements a Websocket SIP client. It is written by the authors of SIP over Websocket RFC. Web applications based on jssip are tryit[fn:100] and jscommunicator[fn:101].
-- APP: jitsi[fn:99]. It is a softphone application which supports multiple operating systems such as Windows, Mac OS X and GNU/Linux.
+- APP: jitsi[fn:99]. It is a standalone softphone application which supports multiple operating systems such as Windows, Mac OS X and GNU/Linux.
 - WSRV: apache HTTP server[fn:97]. It is a common, easy to use and well-known HTTP server. HTTPS was not tested.
 - AUTH: Kamailio. This is the fast way to start implementing an RTC system. Kamailio can manage accounts. OAuth was not tested.
-- CS: coturn. It is an advanced (updated) version of rfc5766-turn-server[fn:91] and is recommended by this source[fn:92]. It was not tested.
 - DB: MySQL[fn:98]. It is a common, easy to use and well-known relational database.
+- CS: coturn. It is an advanced (updated) version of rfc5766-turn-server[fn:91] and is recommended by this source[fn:92]. It was not tested.
 
 Summary of applications which were not tested: WSS (SIG), rtpengine (MGW), HTTPS (WSRV), OAuth (AUTH), coturn (CS).
 
@@ -949,8 +956,8 @@ Figure [[fig:ad]] shows network architecture design of the demo. Some of the com
 - MGW is not implemented nor deployed, that is why media channel cannot pass between UDP and TCP to Websocket SIP clients.
 - APP, WAPP and WSRV worked as expected. 
 - AUTH is not implemented nor deployed using OAuth; but Kamailio has an authentication service that can be used in the different SIP clients.
+- DB is used with AUTH during SIG. DB for user preferences is not used by WAPP, that part is not implemented.
 - CS is not implemented nor deployed. But tryit from jssip uses Google's STUN =stun.l.google.com:19302=. It will not work in a Guifi.net environment without Internet access.
-- DB is directly linked with SIG and indirectly linked to WSRV through Websocket SIP clients.
 
 *** Performance
 The performance could not be measured appropiately[fn:113], but some of the measures indicate that it is enough for a small community. With organization and investment, the community could grow.
@@ -968,7 +975,7 @@ Adapted figures [[fig:cvs]] and [[fig:cdj]] show how Google Chrome[fn:104] revea
 #+NAME: fig:cvs
 [[../img/conversation-video-stats.png]]
 
-Figure [[fig:cdj]] gives samples of jitter and delay parameters. Sometimes the network become unstable, in that case was not perceived loss of audio.
+Figure [[fig:cdj]] gives samples of jitter (PDV) and delay parameters. Sometimes the network become unstable, in that case was not perceived loss of audio.
 
 #+CAPTION: Jitter and delay sample parameters
 #+NAME: fig:cdj
@@ -1117,8 +1124,6 @@ Based on this source[fn:96].
 [fn:6] Derived from signaling transport, working group of IETF.
 
 [fn:7] ISO/IEC 7498-1:1994.
-
-[fn:9] Jitter is briefly defined in section [[Basic real-time quality parameters]]
 
 [fn:10] A bit can be 0 or 1. A stream of this symbols represents information. In telecommunications the information unit is the bit, expressed with the unit b. In computer science the Byte, expressed with the unit B. 1 Byte is 8 bits. 
 
@@ -1329,3 +1334,7 @@ Based on this source[fn:96].
 [fn:112] https://www.proxmox.com/
 
 [fn:113] That is why a stress test is added as future work.
+
+[fn:9] The variation in packet delay is sometimes called "jitter"
+
+[fn:114] Application Programming Interface (API) provides an easy way to access internal or external software components and functionalities.
